@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.62 2002/04/11 11:20:08 tieum Exp $
+//  $Id: pp.inc,v 1.63 2002/04/12 10:51:27 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -29,7 +29,6 @@ define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '2a');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
-define('RUSAGE_BOTH', -2);
 
 // all classes extend this one :
 require_once('base/pp_class.inc');
@@ -170,8 +169,9 @@ function my_output_callback($buffer)
   $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
-  if($pp->compress_data && $pp->ob->get_compression() != 0)
+  if($pp->compress_data && ($pp->ob->get_compression() != 'none') )
   {
+    $pp->syslog("-- compressing data (using ".$pp->ob->compression."--");
     $pp->ob->compress_add_headers();
     $str = $pp->ob->compress($str);
   }
@@ -179,16 +179,6 @@ function my_output_callback($buffer)
   $pp->header->header_send();
   return $str;
 }
-//
-// function get_rusage($dump = 0)
-// {
-//   static $rusage;
-//   if($dump)
-//     return $rusage;
-//   $dat = getrusage();
-//   $rusage[] = $dat['ru_utime.tv_sec'] + $dat['ru_stime.tv_sec'].'/'.$dat['ru_oublock'];
-//   flush();
-// }
 
 register_shutdown_function('my_shutdown_function');
 $pp = new pp;
