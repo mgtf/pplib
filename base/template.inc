@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.98 2003/11/12 13:19:19 mgf Exp $
+// $Id: template.inc,v 1.99 2003/11/12 14:11:57 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -281,6 +281,10 @@ class template extends file {
   ////
   // !private function
   function find_end($str, $begin = 0) {
+    if(function_exists('icms_tpl_find_end')) {
+      $end = icms_tpl_find_end($str, $begin);
+      return ($end == -1) ? false : $end;
+    }
     static $c = array();
     $k = md5(serialize(array($str, $begin)));
     if(isset($c[$k])) {
@@ -289,14 +293,14 @@ class template extends file {
     $nb = 1;
     for ($i = $begin + 1; $nb && (strlen($str) > $i); $i++) {
       switch ($str[$i]) {
-	case $this->tag_start:
-	  if($str[$i - 1] != '\\')
-	    $nb++;
-	  break;
-	case $this->tag_stop:
-	  if($str[$i - 1] != '\\')
-	    $nb--;
-	  break;
+        case $this->tag_start:
+          if($str[$i - 1] != '\\')
+            $nb++;
+          break;
+        case $this->tag_stop:
+          if($str[$i - 1] != '\\')
+            $nb--;
+          break;
       }
     }
     $r = $nb ? false : $i;
@@ -309,6 +313,10 @@ class template extends file {
   // return the first occurence of $char in $str, starting
   // at $str[1] and where $char in not escaped
   function find_char($str, $char) {
+    if(function_exists('icms_tpl_find_char')) {
+      $pos = icms_tpl_find_char($str, $char);
+      return ($pos == -1) ? false : $pos;
+    }
     static $c = array();
     $k = md5(serialize(array($str, $char)));
     if(isset($c[$k])) {
@@ -318,7 +326,7 @@ class template extends file {
     $r = false;
     for ($i = 1; $i < $l; $i++) {
       if (($str[$i] == $char) && ($str[$i - 1] != '\\')) {
-	$c[$k] = $i;
+        $c[$k] = $i;
         return $i;
       }
     }
