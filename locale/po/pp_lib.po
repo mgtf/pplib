@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-18 11:23+0100\n"
+"POT-Creation-Date: 2002-01-18 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,16 +46,16 @@ msgstr ""
 msgid "error"
 msgstr ""
 
-#: base/pp_error.inc:27 base/pp_error.inc:43 base/pp_file.inc:41
-#: base/pp_file.inc:64
+#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:41
+#: base/pp_file.inc:63
 msgid "file"
 msgstr ""
 
-#: base/pp_error.inc:27 base/pp_error.inc:43 base/pp_xml_expat.inc:42
+#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:42
 msgid "line"
 msgstr ""
 
-#: base/pp_error.inc:40
+#: base/pp_error.inc:39
 msgid "warning"
 msgstr ""
 
@@ -87,15 +87,16 @@ msgstr ""
 msgid "can't close"
 msgstr ""
 
-#: base/pp_file.inc:65 base/pp_template.inc:368 base/pp_template.inc:401
+#: base/pp_file.inc:64 base/pp_template.inc:95 base/pp_template.inc:371
+#: base/pp_template.inc:404
 msgid "does not exist"
 msgstr ""
 
-#: base/pp_file.inc:67
+#: base/pp_file.inc:66
 msgid "is not readable"
 msgstr ""
 
-#: base/pp_file.inc:81
+#: base/pp_file.inc:82
 msgid "can't create lock file"
 msgstr ""
 
@@ -139,7 +140,7 @@ msgstr ""
 msgid "this format is not supported"
 msgstr ""
 
-#: base/pp_mysql.inc:70
+#: base/pp_mysql.inc:69
 msgid "db access was not configured"
 msgstr ""
 
@@ -167,59 +168,59 @@ msgstr ""
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:96 base/pp_template.inc:98
-msgid "is not defined"
-msgstr ""
-
-#: base/pp_template.inc:109 base/pp_template.inc:132
-msgid "arg is not an array"
-msgstr ""
-
-#: base/pp_template.inc:145
-msgid "no file to read."
-msgstr ""
-
-#: base/pp_template.inc:172
-msgid "no file to write."
-msgstr ""
-
-#: base/pp_template.inc:174
-msgid "no data to write."
-msgstr ""
-
-#: base/pp_template.inc:206
-msgid "template timeout"
-msgstr ""
-
-#: base/pp_template.inc:206
-msgid "max iteration"
-msgstr ""
-
-#: base/pp_template.inc:306 base/pp_template.inc:359
-msgid "template error"
-msgstr ""
-
-#: base/pp_template.inc:368 base/pp_template.inc:400
+#: base/pp_template.inc:95 base/pp_template.inc:371 base/pp_template.inc:403
 msgid "function"
 msgstr ""
 
-#: base/pp_template.inc:385
+#: base/pp_template.inc:99 base/pp_template.inc:101
+msgid "is not defined"
+msgstr ""
+
+#: base/pp_template.inc:112 base/pp_template.inc:135
+msgid "arg is not an array"
+msgstr ""
+
+#: base/pp_template.inc:148
+msgid "no file to read."
+msgstr ""
+
+#: base/pp_template.inc:175
+msgid "no file to write."
+msgstr ""
+
+#: base/pp_template.inc:177
+msgid "no data to write."
+msgstr ""
+
+#: base/pp_template.inc:209
+msgid "template timeout"
+msgstr ""
+
+#: base/pp_template.inc:209
+msgid "max iteration"
+msgstr ""
+
+#: base/pp_template.inc:309 base/pp_template.inc:362
+msgid "template error"
+msgstr ""
+
+#: base/pp_template.inc:388
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:386
+#: base/pp_template.inc:389
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:407
+#: base/pp_template.inc:410
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:499
+#: base/pp_template.inc:512
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:502
+#: base/pp_template.inc:515
 msgid "action"
 msgstr ""
 
