@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.11 2002/01/31 12:44:43 tieum Exp $
+//  $Id: pp.inc,v 1.12 2002/01/31 13:47:02 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -105,8 +105,6 @@ function my_output_callback($str)
   // continue only if $pp is define at this time.
   if(! is_object($pp))
     return "-- output error --\n";
-  //
-
   if(MAINTENANCE_MODE == 1)
   {
     if($pp->tpl->mime_subtype == 'html')
@@ -139,18 +137,9 @@ function my_output_callback($str)
       $str .= _("page generated on ").$elapsed.' sec '.
 	      '(pplib version : '.$pp->version.')'."\n";
   }
-
   $str = $str.$pp->footer_str;
-
-  if($pp->no_parse == TRUE)
-  {
-    if(AUTO_STRIPSLASHES)
-      return stripslashes($str);
-    else
-      return $str;
-  }
-
-  $str = $pp->tpl->parse_template($str);
+  if($pp->no_parse != TRUE)
+    $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
   return $str;
