@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.39 2002/06/06 09:24:57 tieum Exp $
+//  $Id: template.inc,v 1.40 2002/06/06 09:27:13 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -567,7 +567,7 @@ class pp_template extends pp_file
       {
 	new_($string, 'pp_string');
 	$value = $string->cut_text($v['options']['text'], 50);
-	$value = strlen($value) ? $value : 'not set !';
+	$value = strlen($value) ? $value : _('not set').' !';
 	$value = $this->escape_tags($value);
 	$value = '('._("value").' : <b>\''.(nl2br(htmlspecialchars($value))).'\'</b>)';
       }
