@@ -18,6 +18,7 @@ all:
 	@echo ". locale"
 	@echo ". doc"
 	@echo ". doc-pdf"
+	@echo ". bench"
 	@echo
 clean:
 	$(RM) *~
@@ -73,3 +74,9 @@ doc-re: doc-distclean doc
 phpxref_pplib_doc:
 	chmod +x $(PHPXREF)
 	$(PHPXREF) -c $(CONF_LIB) $<
+
+#
+# bench
+#
+bench:
+	cd scripts ; ./bench.php | lynx -stdin -dump ; cd ..
