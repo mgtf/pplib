@@ -1,6 +1,6 @@
 <?
 
-// $Id: mail.inc,v 1.7 2002/07/11 17:13:47 tieum Exp $
+// $Id: mail.inc,v 1.8 2002/07/11 17:53:28 tieum Exp $
 
 class pp_mail extends pp_mime
 {
@@ -46,14 +46,15 @@ class pp_mail extends pp_mime
       $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
     if($this->has_attachment)
     {
-      $boundary = 'pplib'.PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION.'-'.md5(uniqid(rand()));
+      $boundary = '--pplib-'.md5(uniqid(rand()));
       $headers .= 
 	"Content-Type: multipart/mixed;\n".
 	"\tboundary=\"$boundary\";\n".
 	"Content-Transfer-Encoding: 7bit";
+      $boundary = "--$boundary";
       // rewrite message body :
       $this->message = 
-	"--$boundary\n".
+	"$boundary\n".
 	($this->is_html ? 
 	 "Content-Type: text/html; charset=iso-8859-1\n" : 
 	 "Content-Type: text/plain; charset=us-ascii\n"
@@ -64,12 +65,15 @@ class pp_mail extends pp_mime
       while(list($name, $data) = each($this->attachment_data))
       {
 	$this->message .= 
-	  "\n--$boundary\n".
+	  "\n$boundary\n".
 	  "Content-Type: ".$data['type'].";\n".
-	  "\tname=\"$name\";\n\n".
-	  $data['data']."\n\n";
+	  "\tname=\"$name\"\n".
+	  "Content-Transfer-Encoding: base64\n".
+	  "Content-Disposition: inline;\n".
+	  "\tfilename=\"$name\"\n\n".
+	  $data['data'];
       }
-      $this->message .= "--$boundary-\n";
+      $this->message .= "$boundary--\n";
     }
     mail($this->to, $this->subject, $this->message, $headers);
   }
@@ -78,7 +82,7 @@ class pp_mail extends pp_mime
   {
     $this->has_attachment = TRUE;
     $this->attachment_data[$name] = array(
-	'data' => base64_encode($data), 
+	'data' => chunk_split(base64_encode($data)), 
 	'type' => $this->get_mime($ext));
   }
 }
