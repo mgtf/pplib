@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.60 2002/04/04 09:55:38 tieum Exp $
+//  $Id: pp.inc,v 1.61 2002/04/11 11:08:30 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -134,7 +134,8 @@ function my_output_callback($buffer)
   if(MAINTENANCE_MODE == 1)
   {
     if($pp->tpl->mime_subtype == 'html')
-      return _("pp site is currently in a maintenance state").
+      return 
+	_("pp site is currently in a maintenance state").
 	'<br>'.
 	_("Please come back later");
     else
@@ -144,7 +145,7 @@ function my_output_callback($buffer)
     " pplib v".
     $pp->version.
     " - ".
-    date("D M d Y").
+    date("D M d Y")." ".
     $pp->tpl->comment_end.
     "\n".
     $pp->header_str.
@@ -156,8 +157,8 @@ function my_output_callback($buffer)
     $timer->stop('full_page_parse_time');
     $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
     if($pp->tpl->mime_subtype == 'html')
-      $str .= '
-	<br><div align="center"><font size="1" face="Verdana">'.
+      $str .= 
+	'<br><div align="center"><font size="1" face="Verdana">'.
 	_("page generated on ").$elapsed.' sec '.
 	'(pplib version : '.$pp->version.')</font></div>';
     else
