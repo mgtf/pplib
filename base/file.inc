@@ -1,5 +1,5 @@
 <?
-// $Id: file.inc,v 1.8 2002/02/21 12:04:25 tieum Exp $
+// $Id: file.inc,v 1.9 2002/02/22 10:45:52 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -49,10 +49,11 @@ class pp_file extends pp_mime
       $this->ex_lock();
     if($this->fd == FALSE)
       $this->error("pp_file::write : "._("can't open")." '".$this->filename."'");
-    set_magic_quotes_runtime(0);
+    // using set_magic_quotes_runtime does _not_ work.
+    // set_magic_quotes_runtime(0);
     if( @fwrite($this->fd, $this->data) == -1)
       $this->error("pp_file::write : "._("can't write")." '".$this->filename."'");
-    set_magic_quotes_runtime(get_magic_quotes_gpc());
+    // set_magic_quotes_runtime(get_magic_quotes_gpc());
     if($lock)
       $this->unlock();
     if( @fclose($this->fd) == FALSE )
@@ -73,9 +74,10 @@ class pp_file extends pp_mime
       $this->error("pp_file::read : "._("can't open")." '".$this->filename."'");
     if($lock)
       $this->sh_lock();
-    set_magic_quotes_runtime(0);
+    // using set_magic_quotes_runtime does _not_ work.
+    // set_magic_quotes_runtime(0);
     $this->data = @fread ($this->fd, filesize ($this->filename));
-    set_magic_quotes_runtime(get_magic_quotes_gpc());
+    // set_magic_quotes_runtime(get_magic_quotes_gpc());
     if($lock)
       $this->unlock();
     if ( @fclose($this->fd) == FALSE )
