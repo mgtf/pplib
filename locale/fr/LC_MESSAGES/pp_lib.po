@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-18 16:35+0100\n"
+"POT-Creation-Date: 2002-01-22 16:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,10 +137,46 @@ msgstr "pas de taille pour l'image"
 msgid "can't create image"
 msgstr "impossible de créer l'image"
 
-#: base/pp_image.inc:169
+#: base/pp_image.inc:200
 #, fuzzy
 msgid "format is not supported"
 msgstr "n'est pas supporté"
+
+#: base/pp_list.inc:253
+msgid "Search"
+msgstr "Rechercher"
+
+#: base/pp_list.inc:255
+msgid "into"
+msgstr "dans"
+
+#: base/pp_list.inc:275
+msgid "displaying"
+msgstr "en affichant"
+
+#: base/pp_list.inc:282
+msgid "elements per page."
+msgstr "éléments par page."
+
+#: base/pp_list.inc:282
+msgid "Sort by"
+msgstr "Classer par"
+
+#: base/pp_list.inc:301
+msgid "order"
+msgstr "par ordre"
+
+#: base/pp_list.inc:303
+msgid "ascendent"
+msgstr "croissant"
+
+#: base/pp_list.inc:304
+msgid "descendent"
+msgstr "decroissant"
+
+#: base/pp_list.inc:387
+msgid "Total"
+msgstr "Total"
 
 #: base/pp_mime.inc:88
 msgid "can't add mime type"
@@ -164,14 +200,10 @@ msgid "cannot use database"
 msgstr "impossible d'utiliser la base de donnée"
 
 #: base/pp_mysql.inc:151
-msgid "query"
-msgstr "requete"
-
-#: base/pp_mysql.inc:158
 msgid "invalid sql"
 msgstr "requete sql invalide"
 
-#: base/pp_mysql.inc:168
+#: base/pp_mysql.inc:159
 msgid "next_record called with no query pending"
 msgstr "next_record appelé sans requete"
 
@@ -282,3 +314,6 @@ msgstr "Veuillez vous reconnecter ulterieurement."
 #: pp.inc:140 pp.inc:143
 msgid "page generated on "
 msgstr "page générée en "
+
+#~ msgid "query"
+#~ msgstr "requete"

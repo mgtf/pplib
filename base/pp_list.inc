@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.9 2002/01/21 15:51:22 tieum Exp $
+//  $Id: pp_list.inc,v 1.10 2002/01/22 15:40:20 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -250,9 +250,9 @@ class pp_list extends pp_template
   {
     new_($form, 'pp_form');
     $form->action = '';
-    $form->data .= '<font size=1>Rechercher </font>';
+    $form->data .= '<font size=1>'._("Search").' </font>';
     $form->add_field("text", $this->id."_search_string", "size=\"10\"");
-    $form->data .= '<font size=1>dans </font>';
+    $form->data .= '<font size=1>'._("into").' </font>';
     $form->add_field("select", $this->id."_current_search_field", 'onChange=document.'.$this->id.'_list_search.submit()');
     foreach( (explode(',', $this->search_fields)) as $f)
     {
@@ -272,14 +272,14 @@ class pp_list extends pp_template
     $form->add_field('end_select', '');
     // menu nbre d'elements par page : 
     $choices = array(5, 10, 15, 20, 25, 30, 40, 50, 75, 100);
-    $form->data .= '<font size=1>en affichant </font>';
+    $form->data .= '<font size=1>'._("displaying").' </font>';
     $form->add_field("select", $this->id."_max_elements", "onChange=document.".$this->id."_list_search.submit()");
     foreach($choices as $choice)
       $form->add_field("option", $choice, 
 		       ($choice == $this->max_elements) ? 'SELECTED' : '', $choice);
     $form->add_field("end_select", "");
     // classer par :
-    $form->data .= '<font size=1>éléments par page.<br>Classer par </font>';
+    $form->data .= '<font size=1>'._("elements per page.").'<br>'._("Sort by").' </font>';
     $form->add_field("select", $this->id."_current_order_field", "onChange=document.".$this->id."_list_search.submit()");
     foreach( (explode(',', $this->order_fields)) as $f)
     {
@@ -298,10 +298,10 @@ class pp_list extends pp_template
     }
     $form->add_field('end_select', '');
     // ordre croissant/décroissant :
-    $form->data .= '<font size=1> par ordre </font>';
+    $form->data .= '<font size=1> '._("order").' </font>';
     $form->add_field("select", $this->id."_order", "onChange=document.".$this->id."_list_search.submit()");
-    $form->add_field('option', 'croissant', ($this->order == 'ASC') ? 'SELECTED' : '', 'ASC');
-    $form->add_field('option', 'décroissant', ($this->order == 'DESC') ? 'SELECTED' : '', 'DESC');
+    $form->add_field('option', _("ascendent"), ($this->order == 'ASC') ? 'SELECTED' : '', 'ASC');
+    $form->add_field('option', _("descendent"), ($this->order == 'DESC') ? 'SELECTED' : '', 'DESC');
     $form->add_field('end_select', '');
     //
     return $form->parse_form('name="'.$this->id.'_list_search"');
@@ -384,7 +384,7 @@ class pp_list extends pp_template
     if ($nbp * $this->max_elements != $nb)
       $nbp++;
     if($nbp <= 1)
-      return '<b>Total : '.$nb.'</b></nobr>';
+      return '<font class="list">'._("Total").' : '.$nb.'</font></nobr>';
     new_($f, 'pp_form');
     $f->add_field('hidden', $this->id.'_want_page');
     if($this->current_page)

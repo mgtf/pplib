@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-18 16:35+0100\n"
+"POT-Creation-Date: 2002-01-22 16:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,8 +128,44 @@ msgstr ""
 msgid "can't create image"
 msgstr ""
 
-#: base/pp_image.inc:169
+#: base/pp_image.inc:200
 msgid "format is not supported"
+msgstr ""
+
+#: base/pp_list.inc:253
+msgid "Search"
+msgstr ""
+
+#: base/pp_list.inc:255
+msgid "into"
+msgstr ""
+
+#: base/pp_list.inc:275
+msgid "displaying"
+msgstr ""
+
+#: base/pp_list.inc:282
+msgid "elements per page."
+msgstr ""
+
+#: base/pp_list.inc:282
+msgid "Sort by"
+msgstr ""
+
+#: base/pp_list.inc:301
+msgid "order"
+msgstr ""
+
+#: base/pp_list.inc:303
+msgid "ascendent"
+msgstr ""
+
+#: base/pp_list.inc:304
+msgid "descendent"
+msgstr ""
+
+#: base/pp_list.inc:387
+msgid "Total"
 msgstr ""
 
 #: base/pp_mime.inc:88
@@ -153,14 +189,10 @@ msgid "cannot use database"
 msgstr ""
 
 #: base/pp_mysql.inc:151
-msgid "query"
-msgstr ""
-
-#: base/pp_mysql.inc:158
 msgid "invalid sql"
 msgstr ""
 
-#: base/pp_mysql.inc:168
+#: base/pp_mysql.inc:159
 msgid "next_record called with no query pending"
 msgstr ""
 
