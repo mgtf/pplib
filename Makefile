@@ -71,4 +71,5 @@ doc-distclean:
 doc-re: doc-distclean doc
 
 phpxref_pplib_doc:
+	chmod +x $(PHPXREF)
 	$(PHPXREF) -c $(CONF_LIB) $<
