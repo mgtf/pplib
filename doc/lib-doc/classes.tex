@@ -1,4 +1,4 @@
-% $Id: classes.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $
+% $Id: classes.tex,v 1.2 2002/03/25 12:26:49 tieum Exp $
 \textcolor{section}{\section{Description des classes}}
   Les classes sont accessibles via l'objet \$pp, vous pouvez toutefois créer des nouveaux objets directement.
   \textcolor{subsection}{\subsection{Classe pp\_template}}
@@ -32,12 +32,25 @@
 								       est TRUE}
     \method{parse\_template\_file\_to\_file}{\$file\_src, \$file\_dest, \$force = 0}{Traite \$file\_src et ecrit la chaîne parsée 
 										     il ne le modifie que si \$force est TRUE}
+    \method{template\_if(\$tag)}{Tag prédéfini. Syntaxe : \{if cond='' then='' else=''\}}
+    \method{template\_dynbloc(\$tag)}{Tag prédéfini. Syntaxe : \{dynbloc bloc=''\}}
+    \method{template\_replace(\$tag)}{Tag prédéfini. Syntaxe : \{replace what='' by='' in=''\}}
+    \method{template\_include(\$tag)}{Tag prédéfini. Syntaxe : \{include name='' type='php/raw'\}}
+    \method{template\_uppercase(\$tag)}{Tag prédéfini. Prend comme parametre data et renvoie data en majuscule 
+                                        ex: \{uppercase data='\{nom\}'\} retourne \{nom\} en majuscule}
+    \method{template\_ua\_mozilla(\$tag)}{Tag prédéfini. Renvoie TRUE si le browser client est MOZILLA/NETSCAPE}
+    \method{template\_ua\_msie(\$tag)}{Tag prédéfini. Renvoie TRUE si le browser client est MSIE}
+    \method{template\_urlencode(\$tag)}{Tag prédéfini. Prend comme parametre data et retourne urlencode(data)}
+    \method{template\_urldecode(\$tag)}{Tag prédéfini. Prend comme parametre data et retourne urldecode(data)}
   \end{methods_def}
   \begin{constants_def}{pp\_template}
-    \const{TEMPLATE\_TIMEOUT}{Définit le nombre d'itérations maximum du parseur }
+    \const{TEMPLATE\_TIMEOUT}{Définit le nombre d'itérations maximum du parseur}
     \const{INC\_PATH}{Chemin vers les fichiers à inclure}
     \const{TPL\_PATH}{Chemin vers les gabarits}
-    \const{DEBUG}{Mode verbeux}
+    \const{DEBUG}{Flag True/False pour le mode verbeux, affichage de tout les warnings générés par le parseur PHP}
+    \const{DEVEL\_MODE}{Flag True/False pour le mode de developpement, 
+                        affiche le temps pris pour généré la page et la version de la lib en bas de chaque page}
+    \const{SYSLOG}{Flag True/False pour logger les erreurs/warning dans syslog}
   \end{constants_def}
   ~\\
   ~\\
@@ -48,18 +61,18 @@
     \item \{if\} 
     exemple d'utilisation : affichage en fonction du navigateur du client.
     \begin{verbatim}
-<?
-...
-$ua_netscape = (strstr($HTTP_USER_AGENT, 'Mozilla') != FALSE &&
-	       ((strstr($HTTP_USER_AGENT, '4.51') != FALSE) || 
-	        (strstr($HTTP_USER_AGENT, '4.75') != FALSE)) ) ? 1 : 0;
-$pp->tpl->add_tag_array( array('ua_netscape' => $ua_netscape) );
-$pp->tpl->parse_template("
-      <h1>votre navigateur est du type : 
-      {if cond='{ua_netscape}' then='netscape' else='internet explorer'}</h1>
-  ");
-...
-?>
+    <?
+    ...
+    $ua_netscape = (strstr($HTTP_USER_AGENT, 'Mozilla') != FALSE &&
+		   ((strstr($HTTP_USER_AGENT, '4.51') != FALSE) || 
+		    (strstr($HTTP_USER_AGENT, '4.75') != FALSE)) ) ? 1 : 0;
+    $pp->tpl->add_tag_array( array('ua_netscape' => $ua_netscape) );
+    $pp->tpl->parse_template("
+	  <h1>votre navigateur est du type : 
+	  {if cond='{ua_netscape}' then='netscape' else='internet explorer'}</h1>
+      ");
+    ...
+    ?>
     \end{verbatim}
     \item \{include\}
     Ce tag prend une option `type' qui peut valoir 'raw' ou 'php' (défaut).\\
