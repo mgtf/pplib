@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.69 2003/08/07 15:56:32 mgf Exp $
+// $Id: template.inc,v 1.70 2003/08/07 18:12:21 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -228,7 +228,11 @@ class pp_template extends pp_file {
       $before = substr($remaining, 0, $begin);
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
       $remaining = substr($remaining, $end);
-      $result .= $before.$this->parse_tag($tag_string);
+      $result .= $before;
+      if(substr($tag_string, 0, 7) == 'dynbloc')
+	$result .= $this->parse_tag($tag_string);
+      else
+	$result .= $this->parse_tag($this->parse_template($tag_string));
       $this->parse_iteration++;
     }
     $result .= $remaining;
