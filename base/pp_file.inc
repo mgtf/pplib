@@ -1,5 +1,5 @@
 <?
-// $Id: pp_file.inc,v 1.10 2002/04/04 09:29:11 tieum Exp $
+// $Id: pp_file.inc,v 1.11 2002/09/18 11:24:40 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -23,9 +23,14 @@ class pp_file extends pp_mime
     return array($path, $filename);
   }
 
+  function exists()
+  {
+    return file_exists($this->filename);
+  }
+
   function unlink()
   {
-    if( file_exists($this->filename))
+    if($this->exists())
       unlink($this->filename);
     else
       user_error('pp_file::unlink : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
@@ -38,7 +43,7 @@ class pp_file extends pp_mime
     $p = $this->split_filename();
     $path = $p[0];
     $filename = $p[1];
-    if( file_exists($this->filename) && !$force)
+    if( $this->exists() && !$force)
       user_error(
 	  "pp_file::write : "._("file")." '".$filename."' ".
 	  _("already exist, use pp_file->write(1) to force overwrite"), E_USER_ERROR);
@@ -67,7 +72,7 @@ class pp_file extends pp_mime
   {
     if($this->filename == -1 || strlen($this->filename) < 1)
       user_error("pp_file::read : no file to read", E_USER_ERROR);
-    if(! @file_exists($this->filename))
+    if(! $this->exists())
       user_error(
 	  "pp_file::read : "._("file")." '".$this->filename."' ".
 	  _("does not exist"), E_USER_ERROR);
@@ -79,7 +84,7 @@ class pp_file extends pp_mime
       $this->sh_lock();
     // using set_magic_quotes_runtime does _not_ work.
     // set_magic_quotes_runtime(0);
-    $this->data = @fread ($this->fd, filesize ($this->filename));
+    $this->data = @fread($this->fd, filesize ($this->filename));
     // set_magic_quotes_runtime(get_magic_quotes_gpc());
     if($lock)
       $this->unlock();
@@ -110,6 +115,20 @@ class pp_file extends pp_mime
   {
     if( flock($this->fd, LOCK_UN) == FALSE)
       user_error("pp_file::lock : "._("can't unlock file ").$this->filename, E_USER_ERROR);
+  }
+
+  function get_mime()
+  {
+    if(! $this->exists())
+      user_error('pp_file::get_mime : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
+    global $pp;
+    $pp->ob->suspend();
+    system('/usr/bin/file -i '.$this->filename);
+    $mime = $pp->ob->resume();
+    $mime = split(':', $mime);
+    $mime = split('/', $mime[1]);
+    $this->mime_type = substr($mime[0], 1);
+    $this->mime_subtype = $mime[1];
   }
 };
 
