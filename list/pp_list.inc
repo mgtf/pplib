@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.18 2002/02/05 15:15:21 tieum Exp $
+//  $Id: pp_list.inc,v 1.19 2002/02/05 15:18:44 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -356,7 +356,7 @@ class pp_list extends pp_template
 	if(is_array($this->function_on_field) && 
 	   array_key_exists($f, $this->function_on_field))
 	{
-	  $fonc = $this->function_on_field($f);
+	  $fonc = $this->function_on_field[$f];
 	  $q .= ', '.$f.' = '.$fonc.'(\''.$data.'\')';
 	}
 	else
@@ -422,7 +422,7 @@ class pp_list extends pp_template
 	if(is_array($this->function_on_field) && 
 	   array_key_exists($f, $this->function_on_field))
 	{
-	  $fonc = $this->function_on_field($f);
+	  $fonc = $this->function_on_field[$f];
 	  $q .= ', '.$f.' = '.$fonc.'(\''.$data.'\')';
 	}
 	else
