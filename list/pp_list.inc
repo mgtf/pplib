@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.21 2002/02/06 14:52:24 tieum Exp $
+//  $Id: pp_list.inc,v 1.22 2002/02/06 14:55:09 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -484,7 +484,7 @@ class pp_list extends pp_template
 
   function get_where()
   {
-    $where = '';
+    $where = '1';
     if($this->search_string)
       $where .= $this->current_search_field." LIKE '%".$this->search_string."%'";
     if($this->additional_where_clause != -1)
