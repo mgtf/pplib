@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.28 2002/03/14 15:08:25 tieum Exp $
+//  $Id: pp_template.inc,v 1.29 2002/03/15 12:11:36 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -36,6 +36,8 @@
 //  template_uppercase($tag)
 //  template_ua_mozilla($tag)
 //  template_ua_msie($tag)
+//  template_urlencode($tag)
+//  template_urldecode($tag)
 //
 //  consts : 
 //
@@ -57,6 +59,8 @@
 // {self}
 // {ua_mozilla}
 // {ua_msie}
+// {urlencode data=''}
+// {urldecode data=''}
 
 class pp_template extends pp_file
 {
@@ -106,6 +110,8 @@ class pp_template extends pp_file
     $this->add_tag('self', 'template_self');
     $this->add_tag('ua_mozilla', 'template_ua_mozilla');
     $this->add_tag('ua_msie', 'template_ua_msie');
+    $this->add_tag('urlencode', 'template_urlencode');
+    $this->add_tag('urldecode', 'template_urldecode');
   }
 
   function add_tag($name, $action, $options = array())
@@ -516,7 +522,7 @@ class pp_template extends pp_file
     reset($HTTP_GET_VARS);
     while(list($k, $v) = each($HTTP_GET_VARS))
       if($v != NULL)
-	$self .= '&'.$k.'='.$v;
+	$self .= '&'.$k.'='.urlencode($v);
     return $self;
   }
 
@@ -551,6 +557,20 @@ class pp_template extends pp_file
 	    </th></tr>'.
            $s.
 	   '</table><br>';
+  }
+
+  ////
+  // !private function
+  function template_urlencode($tag)
+  {
+    return urlencode($tag['options']['data']);
+  }
+
+  ////
+  // !private function
+  function template_urldecode($tag)
+  {
+    return urldecode($tag['options']['data']);
   }
 
   ////
