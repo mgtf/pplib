@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_class.inc,v 1.13 2002/09/18 11:58:44 tieum Exp $
+// $Id: pp_class.inc,v 1.14 2002/11/20 13:57:46 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // I don't even know if it's really usefull
 // Ce fichier est soumis à la licence d'utilisation
@@ -27,8 +27,8 @@ function new_(&$object, $classname, $arg = '')
   }
   else
   {
-    global $pp;
-    $pp->error(
+    new_($tpl, 'pp_template');
+    $tpl->error(
 	"new_ : "._("you are trying to create an object from the class")." $classname\n".
 	_("but it is already an object from the class")." $class");
   }
