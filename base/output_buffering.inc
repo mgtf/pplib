@@ -1,5 +1,5 @@
 <?
-// $Id: output_buffering.inc,v 1.6 2002/02/28 10:13:55 tieum Exp $
+// $Id: output_buffering.inc,v 1.7 2002/02/28 11:34:18 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -68,18 +68,22 @@ class pp_output_buffering extends pp_class
 
   function compress_send_headers() 
   {
-    global $HTTP_SERVER_VARS;
+    global $HTTP_SERVER_VARS, $pp;
     $this->get_compression();
     if ($this->do_compression && $this->do_caching) 
     {
       $etag = 'PPLIB-cache-' . md5(substr($this->data, -40));
-      header("ETag: $etag");
+      $pp->header->header_add("ETag: $etag");
+      // header("ETag: $etag");
       if (strstr(stripslashes($HTTP_SERVER_VARS['HTTP_IF_NONE_MATCH']), $etag))
-        header('HTTP/1.0 304');
+	$pp->header->header_add("HTTP/1.0 304");
+        // header('HTTP/1.0 304');
       else
       {
-	header("Content-Encoding: ".$this->compression);
-        header('Vary: Accept-Encoding');
+	$pp->header->header_add("Content-Encoding: ".$this->compression);
+	$pp->header->header_add("Vary: Accept-Encoding");
+        // header("Content-Encoding: ".$this->compression);
+        // header('Vary: Accept-Encoding');
       }
     }
   }

@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.37 2002/02/28 10:34:37 tieum Exp $
+//  $Id: pp.inc,v 1.38 2002/02/28 11:34:16 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -17,7 +17,7 @@
 //  PP_LIB_PATH
 //  PP_SYSLOG_NAME
 
-define('PP_LIB_PATH', '/usr/lib/pplib/');
+define('PP_LIB_PATH', '/home/tieum/sfp/pplib');
 define('PP_SYSLOG_NAME', '[ PPLIB ]');
 define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '1b');
@@ -79,8 +79,8 @@ class pp extends pp_class
   function pp()
   {
     $this->pp_class();
-    register_shutdown_function(array($this, 'my_shutdown_function'));
-    new_($this->ob, 'pp_output_buffering', array($this, 'my_output_callback'));
+    register_shutdown_function(array(& $this, 'my_shutdown_function'));
+    new_($this->ob, 'pp_output_buffering', array(& $this, 'my_output_callback'));
     new_($this->tpl, 'pp_template');
     new_($this->string, 'pp_string');
     new_($this->db, 'pp_db');
@@ -126,6 +126,7 @@ class pp extends pp_class
       else
 	return '';
     }
+    $this->tpl->mime_subtype = 'html';
     $str = $this->tpl->comment_start.
       " pplib v".
       $this->version.
@@ -157,6 +158,7 @@ class pp extends pp_class
       $str = stripslashes($str);
     $this->ob->compress_send_headers();
     $str = $this->ob->compress($str);
+    $this->header->header_send();
     return $str;
   }
 };

@@ -1,5 +1,5 @@
 <? 
-// $Id: header.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: header.inc,v 1.2 2002/02/28 11:34:18 tieum Exp $
 
 class pp_header extends pp_mime
 {
@@ -20,9 +20,8 @@ class pp_header extends pp_mime
 
   function header_send()
   {
-    if(headers_sent() == FALSE)
-      foreach($this->headers as $header)
-	header($header);
+    foreach($this->headers as $header)
+      header($header);
   }
 };
 
