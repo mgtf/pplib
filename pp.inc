@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.24 2002/02/20 17:35:43 tieum Exp $
+//  $Id: pp.inc,v 1.25 2002/02/20 18:00:12 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -53,6 +53,7 @@ require_once('base/pp_xml_expat.inc');
 require_once('base/pp_image.inc');
 require_once('base/pp_ttf_text.inc');
 require_once('base/pp_wddx.inc');
+require_once('base/pp_module.inc');
 require_once('list/pp_list.inc');
 
 class pp extends pp_class
