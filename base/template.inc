@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.5 2002/01/18 15:30:24 tieum Exp $
+//  $Id: template.inc,v 1.6 2002/01/23 11:06:41 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -125,7 +125,8 @@ class pp_template extends pp_file
 
   function del_tag($name)
   {
-    $this->tags[$name] = NULL;
+    if(isset($this->tags))
+      unset($this->tags[$name]);
   }
 
   function del_tag_array($array)
