@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.76 2003/08/25 22:26:11 mgf Exp $
+// $Id: template.inc,v 1.77 2003/08/27 11:33:06 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -125,12 +125,18 @@ class pp_template extends pp_file {
   // par celui-ci.
   function add_tag($name, $action, $options = array()) {
     if( ! function_exists($action) && ! method_exists($this, $action))
-      user_error("pp_template::add_tag : "._("function")." '".$action."' "._("does not exist"), E_USER_ERROR);
+      user_error(
+	  "pp_template::add_tag : "._("function").
+	  " '".$action."' "._("does not exist"), E_USER_ERROR);
     if( (! strlen($name)) || (! strlen($action)) ) {
       if(! strlen($name))
-	user_error("pp_template::add_tag : \$name "._("is not defined").", action = '$action'", E_USER_ERROR);
+	user_error(
+	    "pp_template::add_tag : \$name ".
+	    _("is not defined").", action = '$action'", E_USER_ERROR);
       else
-	user_error("pp_template::add_tag : \$action "._("is not defined").", name = '$name'", E_USER_ERROR);
+	user_error(
+	    "pp_template::add_tag : \$action ".
+	    _("is not defined").", name = '$name'", E_USER_ERROR);
     }
     $this->del_tag($name);
     $this->tags[$name]['action'] = $action;
@@ -348,9 +354,16 @@ class pp_template extends pp_file {
       $tag['options'][$name] =& $par;
     } 
 
-    if (!$tag)
-      return user_error("pp_template::parse_tag : "._("template error"), E_USER_ERROR);
-
+    if (! $tag) {
+      if($this->mime_subtype == 'html' || $this->mime_subtype == 'xhtml') {
+	return user_error(
+	    "pp_template::parse_tag : "._("parse error : ").
+	    htmlentities($tag_str), E_USER_ERROR);
+      } else {
+	return user_error(
+	    "pp_template::parse_tag : "._("parse error : ").$tag_str, E_USER_ERROR);
+      }
+    }
     $f =& $tag['action'];
 
     if(method_exists($this, $f))
@@ -358,7 +371,7 @@ class pp_template extends pp_file {
     elseif(function_exists($f))
       return $f($tag);
     else
-      return user_error("pp_template::parse_tag : "._("function")." '".
+      return user_error("pp_template::parse_tag : "._("function or method")." '".
 	  $tag['action']."' "._("does not exist"), E_USER_ERROR);
   }
 
