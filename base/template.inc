@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.36 2002/05/17 13:50:54 tieum Exp $
+//  $Id: template.inc,v 1.37 2002/05/22 10:22:01 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -61,6 +61,7 @@
 // {ua_msie}
 // {urlencode data=''}
 // {urldecode data=''}
+// {hrdate data='' type=''}
 
 class pp_template extends pp_file
 {
@@ -113,6 +114,7 @@ class pp_template extends pp_file
     $this->add_tag('ua_msie', 'template_ua_msie');
     $this->add_tag('urlencode', 'template_urlencode');
     $this->add_tag('urldecode', 'template_urldecode');
+    $this->add_tag('hrdate', 'template_hrdate');
   }
 
   function add_tag($name, $action, $options = array())
@@ -212,8 +214,8 @@ class pp_template extends pp_file
   function parse_template_file_to_file($file_src, $file_dest, $force = 0)
   {
     return $this->parse_template_to_file($this->parse_template_file($file_src), 
-					 $file_dest, 
-					 $force);
+	$file_dest, 
+	$force);
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -233,7 +235,7 @@ class pp_template extends pp_file
       $this->parse_iteration++;
       if ($this->parse_iteration >= $this->timeout)
 	user_error('pp_template::do_parse_template : '.
-	           _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
+	    _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
       $end = $this->find_end($remaining, $begin);
       $before = substr($remaining, 0, $begin);
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
@@ -282,49 +284,49 @@ class pp_template extends pp_file
   {
     $len = strlen($str);
     for ($i = 1; $i < $len; $i++)
-    if (($str[$i] == '"') && ($str[$i - 1] != '\\'))
-      return ($i);
+      if (($str[$i] == '"') && ($str[$i - 1] != '\\'))
+	return ($i);
   }
 
   ////
   // !private function
   function squote_end($str)
   {
-   $len = strlen($str);
-   for ($i = 1; $i < $len; $i++)
-    if (($str[$i] == "'") && ($str[$i - 1] != '\\'))
-     return ($i);
+    $len = strlen($str);
+    for ($i = 1; $i < $len; $i++)
+      if (($str[$i] == "'") && ($str[$i - 1] != '\\'))
+	return ($i);
   }
 
   ////
   // !private function
   function bquote_end($str)
   {
-   $len = strlen($str);
-   for ($i = 1; $i < $len; $i++)
-    if (($str[$i] == "`") && ($str[$i - 1] != '\\'))
-     return ($i);
+    $len = strlen($str);
+    for ($i = 1; $i < $len; $i++)
+      if (($str[$i] == "`") && ($str[$i - 1] != '\\'))
+	return ($i);
   }
 
   ////
   // !private function
   function brace_end($str)
   {
-   $len = strlen($str);
-   $nb = 1;
-   for ($i = 1; ($i < $len) && ($nb); $i++)
+    $len = strlen($str);
+    $nb = 1;
+    for ($i = 1; ($i < $len) && ($nb); $i++)
     {
-     switch ($str[$i])
+      switch ($str[$i])
       {
-      case $this->tag_start:
-       $nb++;
-       break;
-      case $this->tag_stop:
-       $nb--;
-       break;
+	case $this->tag_start:
+	  $nb++;
+	  break;
+	case $this->tag_stop:
+	  $nb--;
+	  break;
       }
     }
-   return ($i);
+    return ($i);
   }
 
   ////
@@ -353,13 +355,13 @@ class pp_template extends pp_file
 	  $par = stripslashes(substr($other, 1, $end - 1));
 	  $param = substr($other, $end);
 	  break;
-	case "'":
-	  $end = $this->squote_end($other);
+	  case "'":
+	    $end = $this->squote_end($other);
 	  $par = stripslashes(substr($other, 1, $end - 1));
 	  $param = substr($other, $end);
 	  break;
-	case "`":
-	  $end = $this->bquote_end($other);
+	  case "`":
+	    $end = $this->bquote_end($other);
 	  $par = stripslashes(substr($other, 1, $end - 1));
 	  $param = substr($other, $end);
 	  break;
@@ -393,10 +395,10 @@ class pp_template extends pp_file
     if(method_exists($this, $f))
       return $this->$f($tag);
     elseif(function_exists($f))
-       return $f($tag);
+      return $f($tag);
     else
       return user_error("pp_template::parse_tag : "._("function")." '".
-	                $tag[action]."' "._("does not exist"), E_USER_ERROR);
+	  $tag[action]."' "._("does not exist"), E_USER_ERROR);
   }
 
   ////
@@ -416,7 +418,7 @@ class pp_template extends pp_file
       $type = $tag['options']['type'];
     if ($name == '')
       return user_error("pp_template::template_include : "._("you must specify template name").",\n".
-			_("correct syntax is")." : {include name=\"filename\" type=\"type\"}", E_USER_ERROR);
+	  _("correct syntax is")." : {include name=\"filename\" type=\"type\"}", E_USER_ERROR);
     switch ($type)
     {
       case 'raw':
@@ -428,13 +430,13 @@ class pp_template extends pp_file
 	  return user_error(_("no such include file")." : $file", E_USER_ERROR);
 	include_once($file);
 	$function = 'template_'.$name;
-        if(! function_exists($function))
-          return user_error("pp_template::template_include : ".
-			    _("function")." : 'template_$name()' ".
-			    _("does not exist"), E_USER_ERROR);
-        $s = $function($tag);
+	if(! function_exists($function))
+	  return user_error("pp_template::template_include : ".
+	      _("function")." : 'template_$name()' ".
+	      _("does not exist"), E_USER_ERROR);
+	$s = $function($tag);
 	if ($s)
-	 return ($this->parse_template($s));
+	  return ($this->parse_template($s));
 	else
 	  return user_error(_("invalid include file").": $file", E_USER_ERROR);
     }
@@ -475,7 +477,7 @@ class pp_template extends pp_file
       $bloc = $tag['options']['bloc'];
     else
       user_error("pp_template::template_dynbloc : ".
-		 _("you must specify `bloc` arg in dynbloc tag"), E_USER_ERROR);
+	  _("you must specify `bloc` arg in dynbloc tag"), E_USER_ERROR);
     if(! is_array($data))
       $data = array();
     foreach($data as $v)
@@ -547,24 +549,24 @@ class pp_template extends pp_file
       if($v['action'] == 'template_echo')
       {
 	new_($string, 'pp_string');
-        $value = $string->cut_text($v['options']['text'], 50);
+	$value = $string->cut_text($v['options']['text'], 50);
 	$value = strlen($value) ? $value : 'not set !';
 	$value = '('._("value").' : <b>\''.(nl2br(htmlspecialchars($value))).'\'</b>)';
       }
       else
-        $value = '('._("action").' : <b>\''.$v['action'].'\'</b>)';
+	$value = '('._("action").' : <b>\''.$v['action'].'\'</b>)';
       $s .= '<tr>
-	       <td>
-		 <font size=1><b>'.$v['name'].'</b> '.$value.'</font>
-	       </td>
-	     </tr>';
+	<td>
+	<font size=1><b>'.$v['name'].'</b> '.$value.'</font>
+	</td>
+	</tr>';
     }
     return '<table align=center border=1 cellspacing=0 cellpadding=2>
-	    <tr><th bgcolor="FFCCCC">
-	    <font size=1 color="red">template debug</font>
-	    </th></tr>'.
-           $s.
-	   '</table><br>';
+      <tr><th bgcolor="FFCCCC">
+      <font size=1 color="red">template debug</font>
+      </th></tr>'.
+      $s.
+      '</table><br>';
   }
 
   ////
@@ -592,7 +594,7 @@ class pp_template extends pp_file
       new_($agent, 'pp_sniff');
       $this->add_tag_array(
 	  array('ua_mozilla' => ($agent->browser == 'mozilla') ? 1 : 0)
-      );
+	  );
       return ($agent->browser == 'mozilla') ? 1 : 0;
     }
   }
@@ -608,11 +610,47 @@ class pp_template extends pp_file
       new_($agent, 'pp_sniff');
       $this->add_tag_array(
 	  array('ua_msie' => ($agent->browser == 'msie') ? 1 : 0)
-      );
+	  );
       return ($agent->browser == 'msie') ? 1 : 0;
     }
   }
 
+  function template_hrdate($tag)
+  {
+    $date = $tag['options']['data'];
+    $type = array_key_exists('type', $tag['options']) ? $tag['options']['type'] : 1;
+    $langue = array_key_exists('langue', $tag['options']) ? $tag['options']['langue'] : 1;
+    $mois = substr($date, 5, 2);
+    $annee = substr($date, 0, 4);
+    $jour = substr($date, -2);
+    if ($type == "2")
+    {
+      $nom_jour[0] = ($langue == 2) ? "Dimanche" : "Sunday";
+      $nom_jour[1] = ($langue == 2) ? "Lundi" : "Monday";
+      $nom_jour[2] = ($langue == 2) ? "Mardi" : "Tuesday";
+      $nom_jour[3] = ($langue == 2) ? "Mercredi" : "Wednesday";
+      $nom_jour[4] = ($langue == 2) ? "Jeudi" : "Thursday";
+      $nom_jour[5] = ($langue == 2) ? "Vendredi" : "Friday";
+      $nom_jour[6] = ($langue == 2) ? "Samedi" : "Saturday";
+      $nom_mois[1] = ($langue == 2) ? "janvier" : "January";
+      $nom_mois[2] = ($langue == 2) ? "f&eacute;vrier" : "February";
+      $nom_mois[3] = ($langue == 2) ? "mars" : "March";
+      $nom_mois[4] = ($langue == 2) ? "avril" : "April";
+      $nom_mois[5] = ($langue == 2) ? "mai" : "May";
+      $nom_mois[6] = ($langue == 2) ? "juin" : "June";
+      $nom_mois[7] = ($langue == 2) ? "juillet" : "July";
+      $nom_mois[8] = ($langue == 2) ? "ao&ucirc;t" : "August";
+      $nom_mois[9] = ($langue == 2) ? "septembre" : "September";
+      $nom_mois[10] = ($langue == 2) ? "octobre" : "October";
+      $nom_mois[11] = ($langue == 2) ? "novembre" : "November";
+      $nom_mois[12] = ($langue == 2) ? "d&eacute;cembre" : "December";
+
+      $jour_semaine = $nom_jour[date("w",mktime(0,0,0,$mois,$jour,$annee))];
+      $mois = $nom_mois[(int)$mois];
+      return $jour_semaine." ".$jour." ".$mois." ".$annee;
+    }
+    return "$jour/$mois/$annee";
+  }
 };
 
 ?>
