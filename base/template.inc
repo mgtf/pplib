@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.13 2002/02/19 13:36:49 tieum Exp $
+//  $Id: template.inc,v 1.14 2002/02/19 14:26:16 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -49,7 +49,7 @@
 // {debug}
 // {replace mode='' what='' by='' in=''}
 // {uppercase data=''}
-//
+// {self}
 
 class pp_template extends pp_file
 {
@@ -497,11 +497,14 @@ class pp_template extends pp_file
   // !private function
   function template_self($tag)
   {
-    $str = '?';
-    global $HTTP_GET_VARS;
+    static $self = '';
+    if($self != '')
+      return $self;
+    $self = '?';
+    print_r($HTTP_GET_VARS);
     while(list($k, $v) = each($HTTP_GET_VARS))
-      $str .= '&'.$k.'='.$v;
-    return $str;
+      $self .= '&'.$k.'='.$v;
+    return $self;
   }
 
   ////
