@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.11 2002/01/24 10:36:11 tieum Exp $
+//  $Id: pp_list.inc,v 1.12 2002/01/24 11:06:37 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -50,6 +50,10 @@ class pp_list extends pp_template
   var $order_fields;
   var $order;                 // e.g. DESC/ASC
   var $current_page;
+  // wrappers :
+  var $del_wrapper;
+  var $upd_wrapper;
+  var $add_wrapper;
 
   function pp_list()
   {
@@ -69,6 +73,9 @@ class pp_list extends pp_template
     $this->message_upd = '[ modification effectuée ]';
     $this->message = '';
     $this->id = 'please_change_list_id';
+    $this->del_wrapper = -1;
+    $this->upd_wrapper = -1;
+    $this->add_wrapper = -1;
   }
 
   function parse_list()
@@ -333,6 +340,8 @@ class pp_list extends pp_template
     $q .= ' WHERE '.$this->sql_key.' = '.$id;
     new_($up, 'pp_db', $q);
     $this->message .= $this->message_upd;
+    if($this->upd_wrapper != -1 && function_exists($this->upd_wrapper))
+      $this->upd_wrapper();
   }
 
   function del_data($listdel)
@@ -362,6 +371,8 @@ class pp_list extends pp_template
       $del->query("DELETE FROM ".$this->sql_table." WHERE ".$this->sql_key." = $k");
     }
     $this->message .= $this->message_del;
+    if($this->del_wrapper != -1 && function_exists($this->del_wrapper))
+      $this->del_wrapper();
   }
 
   function add_data($listadd)
@@ -380,6 +391,8 @@ class pp_list extends pp_template
       new_($add, 'pp_db', $q);
       $add->free();
       $this->message .= $this->message_add;
+      if($this->add_wrapper != -1 && function_exists($this->add_wrapper))
+	$this->add_wrapper();
       return (1);
     }
     return (-1);
