@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.6 2002/01/21 16:12:32 tieum Exp $
+//  $Id: mysql.inc,v 1.7 2002/01/23 11:31:11 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -127,9 +127,11 @@ class pp_db extends pp_class {
   }
 
   /* public: discard the query result */
-  function free() {
+  function free() 
+  {
+    if(is_resource($this->query_id))
       @mysql_free_result($this->query_id);
-      $this->query_id = 0;
+    $this->query_id = 0;
   }
 
   /* public: perform a query */
