@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.2 2002/01/22 11:21:21 tieum Exp $
+// $Id: pp_image.inc,v 1.3 2002/01/22 12:01:45 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -162,6 +162,37 @@ class pp_image extends pp_file
     $this->image_update_infos();
     return 1;
   }
+
+  //
+  // A FINIR ...
+  //
+  // function image_mirror($axe = 'X')
+  // {
+  //   new_($tmp, 'pp_image');
+  //   $tmp->xsize = $this->xsize;
+  //   $tmp->ysize = $this->ysize;
+  //   $tmp->truecolor = 0;
+  //   $tmp->image_create();
+  //   for($i = 1; $i <= $tmp->xsize ; $i++)
+  //     for($j = 1; $j <= $tmp->ysize ; $j++)
+  //     {
+  //       // die($i.$j);
+  //       // $col = imagecolorat($this->image, $i, $j);
+  //       $col = 'CEDEEF';//  imagecolorat($this->image, 10, 10);
+  //       imagesetpixel($tmp->image, $tmp->xsize, $tmp->ysize - $j, $col);
+  //     }
+  //   $this->image_copy($tmp->image);
+  //   // $this = $tmp;
+  // }
+
+  // function image_copy($id)
+  // {
+  //   $w = ImageSX($id);
+  //   $h = ImageSY($id);
+  //   ImageCopy($id, $this->image, 0, 0, 0, 0, $w, $h);
+  // }
+  //
+  //
 
   function image_get_data()
   {
