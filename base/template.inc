@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.43 2002/06/07 10:31:44 tieum Exp $
+//  $Id: template.inc,v 1.44 2002/06/12 09:30:43 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -241,7 +241,13 @@ class pp_template extends pp_file
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
       $remaining = substr($remaining, $end);
       $result .= $before;
-      $result .= $this->parse_tag($this->parse_template($tag_string));
+      // XXX - à tester, permet de mettre des tags dans le champ bloc des dynamic bloc
+      if(substr($tag_string, 0, 7) == 'dynbloc')
+	$result .= $this->parse_tag($tag_string);
+      else
+	$result .= $this->parse_tag($this->parse_template($tag_string));
+      // XXX - ancien code.
+      // $result .= $this->parse_tag($this->parse_template($tag_string));
     }
     $result .= $remaining;
     $this->parse_iteration = 0;
