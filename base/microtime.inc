@@ -1,7 +1,7 @@
 <?php
 
 ////
-// $Id: microtime.inc,v 1.5 2003/08/28 18:16:28 mgf Exp $
+// $Id: microtime.inc,v 1.6 2003/09/01 13:51:23 mgf Exp $
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
@@ -17,32 +17,27 @@ class microtime extends _stdclass {
     var $t_stop;
     var $t_elapsed;
 
-    function microtime()
-    {
+    function microtime() {
       $this->_stdclass();
       $t_start = 0; 
       $t_stop = 0;
       $t_elapsed = 0;
     }
 
-    function microtime_()
-    {
+    function microtime_() {
       list($usec, $sec) = explode(" ", microtime()); 
       return ((float)$usec + (float)$sec); 
     } 
 	
-    function start($name = 'default') 
-    { 
+    function start($name = 'default') { 
       $this->t_start[$name] = $this->microtime_(); 
     }
     
-    function stop($name = 'default')  
-    { 
+    function stop($name = 'default') { 
       $this->t_stop[$name]  = $this->microtime_(); 
     }
 
-    function elapsed($name = 'default') 
-    {
+    function elapsed($name = 'default') {
       if ($this->t_elapsed != 0)
 	return $this->t_elapsed[$name];
       else
