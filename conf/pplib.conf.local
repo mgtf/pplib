@@ -1,6 +1,5 @@
 <?
 
-define('PP_LIB_PATH', '/home/mgf/iota/pplib/');
 define('PP_SYSLOG_PREFIX', '[ PPLIB ]');
 define('GENERAL_WEBMASTER_MAIL', 'mgf@mgf.private.com');
 define('MAGIC_MIME_FILE', '/usr/share/misc/magic.mime');
