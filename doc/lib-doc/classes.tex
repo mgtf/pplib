@@ -1,4 +1,4 @@
-% $Id: classes.tex,v 1.2 2002/03/25 12:26:49 tieum Exp $
+% $Id: classes.tex,v 1.3 2002/03/25 12:34:17 tieum Exp $
 \textcolor{section}{\section{Description des classes}}
   Les classes sont accessibles via l'objet \$pp, vous pouvez toutefois créer des nouveaux objets directement.
   \textcolor{subsection}{\subsection{Classe pp\_template}}
@@ -10,6 +10,7 @@
     \var{dynbloc\_data}{tableau associatif contenant les données devant être remplie \textbf{avant} l'utilisation du tag '\{dynbloc ... \}'}
     \var{timeout}{Définit le nombre d'itérations maximum du parseur. par défaut : constante TEMPLATE\_TIMEOUT}
     \var{debug}{Mode verbeux. par défaut : constante DEBUG}
+    \var{syslog}{Flag pour savoir si l'on doit logger avec syslog les warning/erreurs.}
     \var{tpl\_path}{Chemin vers les gabarits. par défaut : constant TPL\_PATH}
     \var{inc\_path}{Chemin vers les fichiers à inclure. défaut : constant TPL\_PATH}
   \end{vars_def}
@@ -32,16 +33,16 @@
 								       est TRUE}
     \method{parse\_template\_file\_to\_file}{\$file\_src, \$file\_dest, \$force = 0}{Traite \$file\_src et ecrit la chaîne parsée 
 										     il ne le modifie que si \$force est TRUE}
-    \method{template\_if(\$tag)}{Tag prédéfini. Syntaxe : \{if cond='' then='' else=''\}}
-    \method{template\_dynbloc(\$tag)}{Tag prédéfini. Syntaxe : \{dynbloc bloc=''\}}
-    \method{template\_replace(\$tag)}{Tag prédéfini. Syntaxe : \{replace what='' by='' in=''\}}
-    \method{template\_include(\$tag)}{Tag prédéfini. Syntaxe : \{include name='' type='php/raw'\}}
-    \method{template\_uppercase(\$tag)}{Tag prédéfini. Prend comme parametre data et renvoie data en majuscule 
+    \method{template\_if}{\$tag}{Tag prédéfini. Syntaxe : \{if cond=' ' then=' ' else=' '\}}
+    \method{template\_dynbloc}{\$tag}{Tag prédéfini. Syntaxe : \{dynbloc bloc=' '\}}
+    \method{template\_replace}{\$tag}{Tag prédéfini. Syntaxe : \{replace what=' ' by=' ' in=' '\}}
+    \method{template\_include}{\$tag}{Tag prédéfini. Syntaxe : \{include name=' ' type='php/raw'\}}
+    \method{template\_uppercase}{\$tag}{Tag prédéfini. Prend comme parametre data et renvoie data en majuscule 
                                         ex: \{uppercase data='\{nom\}'\} retourne \{nom\} en majuscule}
-    \method{template\_ua\_mozilla(\$tag)}{Tag prédéfini. Renvoie TRUE si le browser client est MOZILLA/NETSCAPE}
-    \method{template\_ua\_msie(\$tag)}{Tag prédéfini. Renvoie TRUE si le browser client est MSIE}
-    \method{template\_urlencode(\$tag)}{Tag prédéfini. Prend comme parametre data et retourne urlencode(data)}
-    \method{template\_urldecode(\$tag)}{Tag prédéfini. Prend comme parametre data et retourne urldecode(data)}
+    \method{template\_ua\_mozilla}{\$tag}{Tag prédéfini. Renvoie TRUE si le browser client est MOZILLA/NETSCAPE}
+    \method{template\_ua\_msie}{\$tag}{Tag prédéfini. Renvoie TRUE si le browser client est MSIE}
+    \method{template\_urlencode}{\$tag}{Tag prédéfini. Prend comme parametre data et retourne urlencode(data)}
+    \method{template\_urldecode}{\$tag}{Tag prédéfini. Prend comme parametre data et retourne urldecode(data)}
   \end{methods_def}
   \begin{constants_def}{pp\_template}
     \const{TEMPLATE\_TIMEOUT}{Définit le nombre d'itérations maximum du parseur}
@@ -86,19 +87,19 @@
     Permet d'ajouter un bloc dynamique dans un template.\\
     exemple d'utilisation :\\
     \begin{verbatim}
-<?
-...
-$pp->tpl->dynbloc_data = array(
-    1 => array('nom' => 'dupont',
-               'prenom' => 'paul'),
-    2 => array('nom' => 'durand',
-               'prenom' => 'pierre')
-    );
-echo '<table>'.
-     $pp->tpl->parse_template("{dynbloc bloc='<tr><td>{nom}</td><td>{prenom}</td></tr>'}").
-     '</table>';
-...
-?>
+    <?
+    ...
+    $pp->tpl->dynbloc_data = array(
+	1 => array('nom' => 'dupont',
+		   'prenom' => 'paul'),
+	2 => array('nom' => 'durand',
+		   'prenom' => 'pierre')
+	);
+    echo '<table>'.
+	 $pp->tpl->parse_template("{dynbloc bloc='<tr><td>{nom}</td><td>{prenom}</td></tr>'}").
+	 '</table>';
+    ...
+    ?>
     \end{verbatim}
     ce code retournera :
     \begin{verbatim}
