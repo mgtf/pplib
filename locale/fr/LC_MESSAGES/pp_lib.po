@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-06-06 11:29+0200\n"
+"POT-Creation-Date: 2002-07-03 18:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgid "warning"
 msgstr "attention"
 
 #: base/pp_file.inc:31 base/pp_file.inc:73 base/pp_template.inc:123
-#: base/pp_template.inc:409 base/pp_template.inc:453 base/pp_ttf_text.inc:88
+#: base/pp_template.inc:417 base/pp_template.inc:461 base/pp_ttf_text.inc:88
 msgid "does not exist"
 msgstr "n'existe pas"
 
@@ -157,19 +157,19 @@ msgstr "n'est pas supporté"
 msgid "db access was not configured"
 msgstr "l'accès à la base de données n'est pas configuré"
 
-#: base/pp_mysql.inc:115
+#: base/pp_mysql.inc:116
 msgid "can't connect to"
 msgstr "impossible de se connecter"
 
-#: base/pp_mysql.inc:117
+#: base/pp_mysql.inc:118
 msgid "cannot use database"
 msgstr "impossible d'utiliser la base de donnée"
 
-#: base/pp_mysql.inc:147
+#: base/pp_mysql.inc:148
 msgid "invalid sql"
 msgstr "requete sql invalide"
 
-#: base/pp_mysql.inc:163
+#: base/pp_mysql.inc:164
 msgid "next_record called with no query pending"
 msgstr "next_record appelé sans requete"
 
@@ -177,7 +177,7 @@ msgstr "next_record appelé sans requete"
 msgid "no output callback function defined"
 msgstr "aucune fonction de callback définie"
 
-#: base/pp_template.inc:123 base/pp_template.inc:408 base/pp_template.inc:452
+#: base/pp_template.inc:123 base/pp_template.inc:416 base/pp_template.inc:460
 msgid "function"
 msgstr "fonction"
 
@@ -209,42 +209,42 @@ msgstr "template timeout"
 msgid "max iteration"
 msgstr "itération max"
 
-#: base/pp_template.inc:346 base/pp_template.inc:399
+#: base/pp_template.inc:354 base/pp_template.inc:407
 msgid "template error"
 msgstr "erreur de traitement du gabarit"
 
-#: base/pp_template.inc:437
+#: base/pp_template.inc:445
 msgid "you must specify template name"
 msgstr "vous devez spécifier au moins une taille"
 
-#: base/pp_template.inc:438
+#: base/pp_template.inc:446
 msgid "correct syntax is"
 msgstr "la syntaxe correct est"
 
-#: base/pp_template.inc:447
+#: base/pp_template.inc:455
 #, fuzzy
 msgid "no such include file"
 msgstr "fichier à inclure invalide"
 
-#: base/pp_template.inc:458
+#: base/pp_template.inc:466
 msgid "invalid include file"
 msgstr "fichier à inclure invalide"
 
-#: base/pp_template.inc:488 base/pp_template.inc:570
+#: base/pp_template.inc:496 base/pp_template.inc:577
 #, fuzzy
 msgid "not set"
 msgstr "indefini"
 
-#: base/pp_template.inc:497
+#: base/pp_template.inc:505
 #, fuzzy
 msgid "you must specify `bloc` arg in dynbloc tag"
 msgstr "vous devez spécifier au moins une taille"
 
-#: base/pp_template.inc:572
+#: base/pp_template.inc:579
 msgid "value"
 msgstr "valeur"
 
-#: base/pp_template.inc:575
+#: base/pp_template.inc:582
 msgid "action"
 msgstr "action"
 
@@ -274,15 +274,15 @@ msgstr "impossible de créer un nouveau parseur XML"
 msgid "XML parse error"
 msgstr "XML erreur"
 
-#: pp.inc:134
+#: pp.inc:138
 msgid "pp site is currently in a maintenance state"
 msgstr "Ce site est actuellement en état de maintenance"
 
-#: pp.inc:136
+#: pp.inc:140
 msgid "Please come back later"
 msgstr "Veuillez vous reconnecter ulterieurement"
 
-#: pp.inc:158 pp.inc:162
+#: pp.inc:162 pp.inc:166
 msgid "page generated on "
 msgstr "page générée en "
 
