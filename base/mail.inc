@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mail.inc,v 1.19 2003/08/27 11:25:29 mgf Exp $
+// $Id: mail.inc,v 1.20 2003/08/28 15:22:44 mgf Exp $
 // !send complex email with attachments
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -29,7 +29,7 @@
 define('BOUNDARY_PREFIX', '--'.LIBNAME.'-');
 define('DEFAULT_PRIORITY', 3);
 
-class pp_mail extends pp_mime
+class mail extends mime
 {
   var $from;
   var $to;
@@ -44,9 +44,9 @@ class pp_mail extends pp_mime
   var $has_attachment;
   var $is_html;
 
-  function pp_mail()
+  function mail()
   {
-    $this->pp_mime();
+    $this->mime();
     $this->priority = DEFAULT_PRIORITY;
     $this->to = '';
     $this->cc = '';
@@ -82,7 +82,7 @@ class pp_mail extends pp_mime
     if(! strlen($this->body) ||
        ! strlen($this->from) ||
        ! strlen($this->to))
-      user_error("pp_mail::send : "._("Missing parameters"), E_USER_ERROR);
+      user_error("mail::send : "._("Missing parameters"), E_USER_ERROR);
     $this->headers  = "From: ".$this->from."\n";
     $this->headers .= "X-Mailer: ".LIBNAME." v".PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION."\n";
     $this->headers .= "X-Priority: ".$this->priority."\n";

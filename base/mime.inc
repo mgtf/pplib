@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mime.inc,v 1.10 2002/10/31 11:16:52 tieum Exp $
+// $Id: mime.inc,v 1.11 2003/08/28 15:22:44 mgf Exp $
 // !mime type class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -18,7 +18,7 @@
 //
 // none
 
-class pp_mime_el extends pp_class
+class mime_el extends _stdclass
 {
   var $mime_type;
   var $mime_subtype;
@@ -30,9 +30,9 @@ class pp_mime_el extends pp_class
   var $comment_end;
   var $return_char;
 
-  function pp_mime_el()
+  function mime_el()
   {
-    $this->pp_class();
+    $this->_stdclass();
     $this->mime_type = -1;
     $this->mime_subtype = -1;
     $this->mime_extentions = -1;
@@ -62,13 +62,13 @@ class pp_mime_el extends pp_class
 
 };
 
-class pp_mime extends pp_mime_el
+class mime extends mime_el
 {
   var $mimes;
 
-  function pp_mime()
+  function mime()
   {
-    $this->pp_mime_el();
+    $this->mime_el();
     // $mime_type, $mime_subtype, $mime_extentions, $tag_start, $tag_stop, $blank_char, $comment_start, $comment_end)
     $this->add_mime('text', 'html', array('html', 'shtml', 'htm'), '{', '}', '&nbsp;', '<!--', '-->', '<br>');
     $this->add_mime('text', 'xhtml', array('xhtml'), '{', '}', '&nbsp;', '<!--', '-->', '<br />');
@@ -90,10 +90,10 @@ class pp_mime extends pp_mime_el
   function add_mime($mime_type, $mime_subtype, $mime_extentions, $tag_start = -1, 
                     $tag_stop = -1, $blank_char = -1, $comment_start = -1, $comment_end = -1, $return_char = "\n")
   {
-    new_($new_mime, 'pp_mime_el');
+    new_($new_mime, 'mime_el');
     if($new_mime->set_mime_el($mime_type, $mime_subtype, $mime_extentions, $tag_start, 
 			      $tag_stop, $blank_char, $comment_start, $comment_end, $return_char) == -1 )
-      user_error("pp_mime::add_mime : "._("can't add mime type"), E_USER_ERROR);
+      user_error("mime::add_mime : "._("can't add mime type"), E_USER_ERROR);
     $this->mimes[] = $new_mime;
   }
 
@@ -127,7 +127,7 @@ class pp_mime extends pp_mime_el
 	return 1;
       }
     }
-    user_error("pp_mime::set_mime : "._("this mime type is not supported"), E_USER_ERROR);
+    user_error("mime::set_mime : "._("this mime type is not supported"), E_USER_ERROR);
   }
 
 };

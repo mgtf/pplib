@@ -1,18 +1,18 @@
 <?
 
 ////
-// $Id: i18n.inc,v 1.4 2003/08/22 15:16:49 mgf Exp $
+// $Id: i18n.inc,v 1.5 2003/08/28 15:22:44 mgf Exp $
 // !i18n
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 
-class pp_i18n extends pp_class
+class i18n extends _stdclass
 {
   var $language;
 
-  function pp_i18n()
+  function i18n()
   {
-    $this->pp_class();
+    $this->_stdclass();
     if(defined('LANGUAGE'))
       $this->language = LANGUAGE;
     else
@@ -26,9 +26,9 @@ class pp_i18n extends pp_class
     chdir(LIBPATH);
     putenv('LC_ALL=' . $this->language);
     if (@setlocale(LC_ALL, $this->language) == NULL)
-      user_error("pp_i18n::set_language : invalid language '".$this->language."'", E_USER_ERROR);
-    bindtextdomain('pp_lib', 'locale');
-    textdomain('pp_lib');
+      user_error("i18n::set_language : invalid language '".$this->language."'", E_USER_ERROR);
+    bindtextdomain('lib', 'locale');
+    textdomain('lib');
     return 1;
   }
 };

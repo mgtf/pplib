@@ -1,27 +1,27 @@
 <?
 
 ////
-// $Id: xml_expat.inc,v 1.6 2002/09/18 11:58:45 tieum Exp $
+// $Id: xml_expat.inc,v 1.7 2003/08/28 15:22:45 mgf Exp $
 // !xml parser class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
 
-class pp_xml_expat extends pp_template
+class xml_expat extends template
 {
   var $parser;
   var $env;
   var $buffer;
   var $level;
 
-  function pp_xml_expat()
+  function xml_expat()
   {
-    $this->pp_template();
+    $this->template();
     $this->buffer = '';
     $this->level = 0;
     $this->parser = xml_parser_create();
     if(! is_resource($this->parser))
-      user_error("pp_xml_expat::pp_xml_expat : "._("Can't create XML parser"), E_USER_ERROR);
+      user_error("xml_expat::xml_expat : "._("Can't create XML parser"), E_USER_ERROR);
     xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
     // xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);
     xml_set_element_handler($this->parser, "h_start_el", "h_end_el");
@@ -38,7 +38,7 @@ class pp_xml_expat extends pp_template
     xml_set_object($this->parser, &$this);
     if( (xml_parse($this->parser, $data)) == FALSE )
     {
-      $err = "pp_xml_expat::parse_xml_stream : "._("XML parse error")."<br>".
+      $err = "xml_expat::parse_xml_stream : "._("XML parse error")."<br>".
 	     xml_error_string(xml_get_error_code($this->parser))."<br>".
 	      _("line").' :'.xml_get_current_line_number($this->parser);
       user_error($err, E_USER_ERROR);

@@ -1,7 +1,7 @@
 <?php
 
 ////
-// $Id: microtime.inc,v 1.3 2002/09/18 11:58:45 tieum Exp $
+// $Id: microtime.inc,v 1.4 2003/08/28 15:22:44 mgf Exp $
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
@@ -11,15 +11,15 @@
 //         $timer->stop(FOO);
 //         echo $timer->elapsed(FOO);
 
-class pp_microtime extends pp_class {
+class microtime extends class {
 
     var $t_start;
     var $t_stop;
     var $t_elapsed;
 
-    function pp_microtime()
+    function microtime()
     {
-      $this->pp_class();
+      $this->class();
       $t_start = 0; 
       $t_stop = 0;
       $t_elapsed = 0;

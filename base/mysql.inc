@@ -1,14 +1,14 @@
 <?
 
 ////
-// $Id: mysql.inc,v 1.21 2003/06/08 20:33:41 mgf Exp $
+// $Id: mysql.inc,v 1.22 2003/08/28 15:22:44 mgf Exp $
 // !mysql abstraction layer
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //  
 // public methods :
 //
-// pp_db($query = "")
+// db($query = "")
 // link_id() 
 // query_id() 
 // connect($database = "", $host = "", $user = "", $password = "") 
@@ -38,7 +38,10 @@
 // DBPWD
 //
 
-class pp_db extends pp_class {
+// XXX - for compatibility 
+class pp_db extends db { };
+
+class db extends _stdclass {
 
   /* public: connection parameters */
   var $host;
@@ -58,14 +61,14 @@ class pp_db extends pp_class {
   var $query_id = 0;
 
   /* public: constructor */
-  function pp_db($query = "") 
+  function db($query = "") 
   {
-    $this->pp_class();
+    $this->_stdclass();
     if((! defined("DBHOST") )||
        (! defined("DBDB") )||
        (! defined("DBUSER") ) ||
        (! defined("DBPWD")) )
-      user_error("pp_db::pp_db : "._("db access was not configured"), E_USER_ERROR);
+      user_error("db::db : "._("db access was not configured"), E_USER_ERROR);
     $this->host = DBHOST;
     $this->database = DBDB;
     $this->user     = DBUSER;
@@ -117,9 +120,9 @@ class pp_db extends pp_class {
     if ( 0 == $this->link_id ) {
       $this->link_id = @mysql_pconnect($host, $user, $password);
       if (!$this->link_id)
-	user_error("pp_db::connect : "._("can't connect to")." '$host'", E_USER_ERROR);
+	user_error("db::connect : "._("can't connect to")." '$host'", E_USER_ERROR);
       if (! @mysql_select_db($database,$this->link_id)) {
-	user_error("pp_db::connect : "._("cannot use database")." ".$this->database, E_USER_ERROR);
+	user_error("db::connect : "._("cannot use database")." ".$this->database, E_USER_ERROR);
       }
     }
 
@@ -149,7 +152,7 @@ class pp_db extends pp_class {
     $error = mysql_error();
     if (! $this->query_id)
       user_error(
-	  "pp_db::query : "._("invalid sql").": ".$query."\n".
+	  "db::query : "._("invalid sql").": ".$query."\n".
 	  $error."(".$errno.")", E_USER_ERROR);
     else
       return $this->query_id;
@@ -165,7 +168,7 @@ class pp_db extends pp_class {
   function next_record($type = MYSQL_ASSOC) 
   {
     if (!$this->query_id)
-      user_error("pp_db::next_record : "._("next_record called with no query pending"), E_USER_ERROR);
+      user_error("db::next_record : "._("next_record called with no query pending"), E_USER_ERROR);
     $this->record = @mysql_fetch_array($this->query_id, $type);
     $this->row   += 1;
     $stat = is_array($this->record);
@@ -181,7 +184,7 @@ class pp_db extends pp_class {
     if ($status)
       $this->row = $pos;
     else {
-      user_error("pp_db::seek : seek($pos) failed: result has ".$this->num_rows()." rows", E_USER_ERROR);
+      user_error("db::seek : seek($pos) failed: result has ".$this->num_rows()." rows", E_USER_ERROR);
 
       /* half assed attempt to save the day,
        * but do not consider this documented or even
@@ -214,7 +217,7 @@ class pp_db extends pp_class {
     }
     $res = @mysql_query($query, $this->link_id);
     if (!$res) {
-      user_error("pp_db::lock : lock($table, $mode) failed.", E_USER_ERROR);
+      user_error("db::lock : lock($table, $mode) failed.", E_USER_ERROR);
       return 0;
     }
     return $res;
@@ -225,7 +228,7 @@ class pp_db extends pp_class {
 
     $res = @mysql_query("unlock tables");
     if (!$res) {
-      user_error("pp_db::unlock : unlock failed.", E_USER_ERROR);
+      user_error("db::unlock : unlock failed.", E_USER_ERROR);
       return 0;
     }
     return $res;

@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: user.inc,v 1.3 2002/09/18 11:58:45 tieum Exp $
+// $Id: user.inc,v 1.4 2003/08/28 15:22:45 mgf Exp $
 // !user class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -17,7 +17,7 @@
 // none
 
 
-class pp_user extends pp_class
+class user extends _stdclass
 {
   var $user_id;
   var $user_login;
@@ -25,19 +25,19 @@ class pp_user extends pp_class
   var $tpl;
   var $db;
 
-  function pp_user()
+  function user()
   {
-    $this->pp_class();
+    $this->class();
     $this->user_id = -1;
     $this->user_login = -1;
     $this->user_password = -1;
-    new_($this->tpl, 'pp_template');
-    new_($this->db, 'pp_db');
+    new_($this->tpl, 'template');
+    new_($this->db, 'db');
   }
 
   function create_table($drop_if_exists = FALSE)
   {
-    new_($this->db, 'pp_mysql');
+    new_($this->db, 'mysql');
     if($drop_if_exist != FALSE)
       $this->db->query('DROP TABLE IF EXISTS user');
     $this->db->query("

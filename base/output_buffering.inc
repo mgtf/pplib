@@ -1,23 +1,23 @@
 <?
 
 ////
-// $Id: output_buffering.inc,v 1.19 2003/08/27 11:25:29 mgf Exp $
+// $Id: output_buffering.inc,v 1.20 2003/08/28 15:22:44 mgf Exp $
 // !ouput buffering
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 
-class pp_output_buffering extends pp_class {
+class output_buffering extends _stdclass {
   var $data;
   var $output_callback;
   var $compression;
   var $do_compression;
   var $do_caching;
 
-  function pp_output_buffering($my_output_callback = -1) {
-    $this->pp_class();
+  function output_buffering($my_output_callback = -1) {
+    $this->_stdclass();
     if($my_output_callback == -1)
       user_error(
-	  "pp_output_buffering::pp_output_buffering : ".
+	  "output_buffering::output_buffering : ".
 	  _("no output callback function defined"), E_USER_ERROR
 	  );
     $this->data = '';

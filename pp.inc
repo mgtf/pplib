@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.89 2003/08/22 15:16:47 mgf Exp $
+//  $Id: pp.inc,v 1.90 2003/08/28 15:22:43 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -31,48 +31,50 @@
 //  AUTO_STRIPSLASHES
 
 // do not modify below
-include('conf/pplib.conf');
 define('LIBNAME', 'ocms');
+define('SYSLOG_PREFIX', '[ '.LIBNAME.' ]');
+define('SERVER_ADMIN', $_SERVER['SERVER_ADMIN']);
+define('MAGIC_MIME_FILE', '/usr/share/misc/file/magic.mime');
 define('LIBPATH', dirname(__FILE__).'/');
 define('MAJOR_VERSION', '3');
-define('MINOR_VERSION', '4');
+define('MINOR_VERSION', '4a');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
 
 // all classes extend this one :
-require_once('base/pp_class.inc');
+require_once('base/class.inc');
 
 if(! defined('DEVEL_MODE'))
-  define('DEVEL_MODE', FALSE);
-if(DEVEL_MODE)
-{
-  require_once('base/pp_microtime.inc');
-  $timer = new pp_microtime;
+  define('DEVEL_MODE', false);
+if(DEVEL_MODE) {
+  require_once('base/microtime.inc');
+  $timer = new microtime;
   $timer->start('full_page_parse_time');
 }
 
-require_once('base/pp_error.inc');
-require_once('base/pp_output_buffering.inc');
-require_once('base/pp_i18n.inc');
-require_once('base/pp_sniff.inc');
-require_once('base/pp_tree.inc');
-require_once('base/pp_mime.inc');
-require_once('base/pp_header.inc');
-require_once('base/pp_file.inc');
-require_once('base/pp_cache.inc');
-require_once('base/pp_template.inc');
-require_once('base/pp_mysql.inc');
-require_once('base/pp_string.inc');
-require_once('base/pp_user.inc');
-require_once('base/pp_form.inc');
-require_once('base/pp_session.inc');
-require_once('base/pp_xml_expat.inc');
-require_once('base/pp_image.inc');
-require_once('base/pp_ttf_text.inc');
-require_once('base/pp_mail.inc');
-require_once('list/pp_list.inc');
+require_once('base/error.inc');
+require_once('base/output_buffering.inc');
+require_once('base/i18n.inc');
+require_once('base/sniff.inc');
+require_once('base/tree.inc');
+require_once('base/mime.inc');
+require_once('base/header.inc');
+require_once('base/file.inc');
+require_once('base/cache.inc');
+require_once('base/cache_http_request.inc');
+require_once('base/template.inc');
+require_once('base/mysql.inc');
+require_once('base/string.inc');
+require_once('base/user.inc');
+require_once('base/form.inc');
+require_once('base/session.inc');
+require_once('base/xml_expat.inc');
+require_once('base/image.inc');
+require_once('base/ttf_text.inc');
+require_once('base/mail.inc');
+// require_once('list/list.inc');
 
-class pp extends pp_class {
+class pp extends _stdclass {
   var $version;
   var $string;
   var $db;
@@ -94,20 +96,19 @@ class pp extends pp_class {
   var $compress_data;
 
   function pp() {
-    $this->pp_class();
-    new_($this->ob, 'pp_output_buffering', 'my_output_callback');
-    new_($this->tpl, 'pp_template');
-    new_($this->string, 'pp_string');
-    new_($this->db, 'pp_db');
-    new_($this->form, 'pp_form');
-    new_($this->list, 'pp_list');
-    new_($this->file, 'pp_file');
-    new_($this->i18n, 'pp_i18n');
-    new_($this->session, 'pp_session');
-    new_($this->image, 'pp_image');
-    new_($this->ttf, 'pp_ttf_text');
-    new_($this->header, 'pp_header');
-    new_($this->mail, 'pp_mail');
+    $this->_stdclass();
+    new_($this->ob, 'output_buffering', 'my_output_callback');
+    new_($this->tpl, 'template');
+    new_($this->string, 'string');
+    new_($this->db, 'db');
+    new_($this->form, 'form');
+    new_($this->file, 'file');
+    new_($this->i18n, 'i18n');
+    new_($this->session, 'session');
+    new_($this->image, 'image');
+    new_($this->ttf, 'ttf_text');
+    new_($this->header, 'header');
+    new_($this->mail, 'mail');
     $this->version = MAJOR_VERSION.'.'.MINOR_VERSION;
     $this->no_parse = FALSE;
     $this->header_str = '';
@@ -119,8 +120,8 @@ class pp extends pp_class {
 };
 
 function my_shutdown_function() {
-  // XXX cleanup, call destructor there ..
-  // system("rm -f /path/to/cache/*");
+  global $pp;
+  $pp->tpl->cache->garbagecollection();
   return;
 }
 
@@ -155,7 +156,7 @@ function my_output_callback($buffer) {
       $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
       break;
     case 'xhtml':
-      $str = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n".$str;
+      $str = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">'."\n".$str;
       break;
     case 'xml':
       $str = '<?xml version="1.0"?>'."\n".$str;

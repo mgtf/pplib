@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: form.inc,v 1.6 2002/09/18 11:58:44 tieum Exp $
+// $Id: form.inc,v 1.7 2003/08/28 15:22:44 mgf Exp $
 // !form class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -20,7 +20,7 @@
 // none
 
 
-class pp_form extends pp_class
+class form extends _stdclass
 {
   var $name;
   var $num_fields;
@@ -34,9 +34,9 @@ class pp_form extends pp_class
 
   // enctype="multipart/form-data"
 
-  function pp_form()
+  function form()
   {
-    $this->pp_class();
+    $this->_stdclass();
     $this->method = 'POST';
     $this->has_file = 0;
     $this->data = '';
@@ -123,7 +123,7 @@ class pp_form extends pp_class
 	$data = $this->before.'&nbsp;'.$this->after;
 	break;
       default:
-	user_error("pp_form::add_field : no type specified", E_USER_ERROR);
+	user_error("form::add_field : no type specified", E_USER_ERROR);
     }
     $this->data .= $data;
   }

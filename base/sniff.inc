@@ -1,21 +1,21 @@
 <?
 
 //// 
-// $Id: sniff.inc,v 1.3 2002/09/18 11:58:45 tieum Exp $
+// $Id: sniff.inc,v 1.4 2003/08/28 15:22:44 mgf Exp $
 // !sniff client browser
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
 
-class pp_sniff extends pp_class
+class sniff extends _stdclass
 {
 
   var $platform;
   var $browser;
   
-  function pp_sniff()
+  function sniff()
   {
-    $this->pp_class();
+    $this->class();
     $this->platform = -1;
     $this->browser = -1;
     $this->browser_version = -1;

@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: string.inc,v 1.3 2002/10/28 15:10:19 tieum Exp $
+// $Id: string.inc,v 1.4 2003/08/28 15:22:44 mgf Exp $
 // !string util class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -19,32 +19,27 @@
 // none
 //
 
-class pp_string extends pp_class
-{
-  function pp_string()
-  {
-    $this->pp_class();
+class string extends _stdclass {
+  function string() {
+    $this->_stdclass();
   }
 
   ////
   // !private function
-  function cut_text($str, $size, $end_string = '...')
-  {
+  function cut_text($str, $size, $end_string = '...') {
     $length = strlen($str);
     if ($length < $size)
       return $str;
     return substr($str, 0, ($size - strlen($end_string)) ).$end_string;
   }
 
-  function remove_accent($str)
-  {
+  function remove_accent($str) {
     return strtr(
 	$str, 
 	"¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ", 
 	"YuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy"
 	);
   }
-
 };
 
 ?>

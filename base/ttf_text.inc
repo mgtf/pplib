@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: ttf_text.inc,v 1.13 2002/09/18 11:58:45 tieum Exp $
+// $Id: ttf_text.inc,v 1.14 2003/08/28 15:22:45 mgf Exp $
 // !class to create dynamic image from truetype font.
 // Paramètres:
 // text    	: texte à afficher
@@ -21,7 +21,7 @@
 //
 // TT_PATH
 
-class pp_ttf_text extends pp_image
+class ttf_text extends image
 {
   var $text;
   var $color;
@@ -43,9 +43,9 @@ class pp_ttf_text extends pp_image
   var $txt_xsize;
   var $txt_ysize;
 
-  function pp_ttf_text()
+  function ttf_text()
   {
-    $this->pp_image();
+    $this->image();
     // very important not to use truecolor image:
     $this->truecolor = FALSE;
     $this->txt_xsize = -1;
@@ -81,15 +81,15 @@ class pp_ttf_text extends pp_image
   {
     if($this->fonts_path == -1)
       user_error(
-	  "pp_ttf_text::create_ttf_text : ".
+	  "ttf_text::create_ttf_text : ".
 	  _("please set")." TTF_PATH", E_USER_ERROR);
     $font = $this->fonts_path . $this->font;
     if(! file_exists($font))
       user_error(
-	  "pp_ttf_text::create_ttf_text : ".
+	  "ttf_text::create_ttf_text : ".
 	  _("font file")." '".$font."' "._("does not exist"), E_USER_ERROR);
     if(strlen($this->text) < 1)
-      user_error("pp_ttf_text::create_ttf_text : "._("no text")." !", E_USER_ERROR);
+      user_error("ttf_text::create_ttf_text : "._("no text")." !", E_USER_ERROR);
     $pos = $this->ttf_text_get_size();
     if($this->force_xpos != -1)
       $pos[0] = $this->force_xpos;
@@ -104,7 +104,7 @@ class pp_ttf_text extends pp_image
     {
       if($this->antialias == TRUE)
 	user_error(
-	    "pp_ttf_text::create_ttf_text : ".
+	    "ttf_text::create_ttf_text : ".
 	    _("using both transparent background and antialiasing produce poor quality images !"), E_USER_ERROR);
       $back = imagecolortransparent($this->image, 
 	                            $this->image_allocate_color("000000") );

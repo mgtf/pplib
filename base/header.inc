@@ -1,18 +1,18 @@
 <? 
 ////
-// $Id: header.inc,v 1.3 2002/09/18 11:58:44 tieum Exp $
+// $Id: header.inc,v 1.4 2003/08/28 15:22:44 mgf Exp $
 // ! headers
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 
 
-class pp_header extends pp_mime
+class header extends mime
 {
   var $headers;
 
-  function pp_header()
+  function header()
   {
-    $this->pp_mime();
+    $this->mime();
     $this->headers = array();
   }
 

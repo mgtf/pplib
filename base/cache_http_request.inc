@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache_http_request.inc,v 1.2 2003/08/28 14:48:19 mgf Exp $
+//  $Id: cache_http_request.inc,v 1.3 2003/08/28 15:22:44 mgf Exp $
 //  !http request caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -20,11 +20,11 @@
 //  CACHEFILE_PREFIX
 //  CACHEFILE_MAXLIFETIME
 
-class pp_cache_http_request extends pp_cache {
+class cache_http_request extends cache {
   var $cache_path;
 
-  function pp_cache_http_request() {
-    $this->pp_cache();
+  function cache_http_request() {
+    $this->cache();
   }
 
   function get_context($id) {

@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.11 2003/08/28 14:48:19 mgf Exp $
+//  $Id: cache.inc,v 1.12 2003/08/28 15:22:44 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -27,11 +27,11 @@ if(! defined('CACHEFILE_MAXLIFETIME')) {
   define('CACHEFILE_MAXLIFETIME', 3600);
 }
 
-class pp_cache extends pp_file {
+class cache extends file {
   var $cache_path;
 
-  function pp_cache() {
-    $this->pp_file();
+  function cache() {
+    $this->file();
     if(defined('CACHE_PATH'))
       $this->cache_path = CACHE_PATH;
     else

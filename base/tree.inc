@@ -1,22 +1,22 @@
 <?
 
 ////
-// $Id: tree.inc,v 1.2 2002/09/18 11:58:45 tieum Exp $
+// $Id: tree.inc,v 1.3 2003/08/28 15:22:45 mgf Exp $
 // !class to deal with tree
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
 
-class pp_tree_node extends pp_class
+class tree_node extends _stdclass
 {
   var $node_name;
   var $node_id;
   var $node_id_father;
   var $node_id_sons;
   
-  function pp_tree_node()
+  function tree_node()
   {
-    $this->pp_class();
+    $this->class();
     $this->node_name = -1;
     $this->node_id = -1;
     $this->node_id_father = -1;
@@ -24,14 +24,14 @@ class pp_tree_node extends pp_class
   }
 };
 
-class pp_tree extends pp_class
+class tree extends _stdclass
 {
   var $tree;
   var $nb_nodes;
 
-  function pp_tree()
+  function tree()
   {
-    $this->pp_class();
+    $this->class();
     $this->tree = array();
     $this->nb_nodes = 0;
   }
@@ -42,7 +42,7 @@ class pp_tree extends pp_class
     $pp->ob->suspend();
     print_r($this->tree);
     echo '<br>@@@@@@@@@@@@@@@@@@@@<br>';
-    $n = new pp_tree_node();
+    $n = new tree_node();
     $n = $this->tree[0];
     print_r($n);
     echo '<br>@@@@@@@@@@@@@@@@@@@@<br>';
@@ -52,7 +52,7 @@ class pp_tree extends pp_class
 
   function tree_add_node($name, $id_father = -1)
   {
-    $node = new pp_tree_node();
+    $node = new tree_node();
     $id = $this->nb_nodes++;
     $node->node_name = $name;
     $node->node_id = $id;
@@ -60,7 +60,7 @@ class pp_tree extends pp_class
     $this->tree[$id] =& $node;
     if($id_father != 1)
     {
-      $father = new pp_tree_node;
+      $father = new tree_node;
       $father = & $this->tree[$id_father];
       $father->node_id_sons[] = $id;
     }

@@ -1,16 +1,16 @@
 <?
 
 ////
-// $Id: serialize.inc,v 1.2 2002/09/18 11:58:45 tieum Exp $
+// $Id: serialize.inc,v 1.3 2003/08/28 15:22:44 mgf Exp $
 // !DOES NOTHING !
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 
-class pp_serialize extends pp_class
+class serialize extends class
 {
-  function pp_serialize()
+  function serialize()
   {
-    $this->pp_class();
+    $this->class();
   }
 };
 
