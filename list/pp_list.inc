@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.22 2002/02/06 14:55:09 tieum Exp $
+//  $Id: pp_list.inc,v 1.23 2002/02/08 16:09:38 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -443,7 +443,7 @@ class pp_list extends pp_template
       if($this->add_wrapper != -1 && function_exists($this->add_wrapper))
       {
         $wrapper = $this->add_wrapper;
-        $wrapper();
+        $wrapper($add->insert_id());
       }
       return (1);
     }
