@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.37 2002/05/22 10:22:01 tieum Exp $
+//  $Id: pp_template.inc,v 1.38 2002/05/22 10:33:20 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -48,7 +48,7 @@
 //  DEVEL_MODE
 //  SYSLOG
 //
-//  tag prédéfinis :
+// tags prédéfinis :
 //
 // {if cond='' then='' else=''}
 // {include name='' type=''}
@@ -619,34 +619,34 @@ class pp_template extends pp_file
   {
     $date = $tag['options']['data'];
     $type = array_key_exists('type', $tag['options']) ? $tag['options']['type'] : 1;
-    $langue = array_key_exists('langue', $tag['options']) ? $tag['options']['langue'] : 1;
+    $langue = ( defined('LANGUAGE') && LANGUAGE == 'fr_FR' ) ? 1 : 0;
     $mois = substr($date, 5, 2);
     $annee = substr($date, 0, 4);
     $jour = substr($date, -2);
     if ($type == "2")
     {
-      $nom_jour[0] = ($langue == 2) ? "Dimanche" : "Sunday";
-      $nom_jour[1] = ($langue == 2) ? "Lundi" : "Monday";
-      $nom_jour[2] = ($langue == 2) ? "Mardi" : "Tuesday";
-      $nom_jour[3] = ($langue == 2) ? "Mercredi" : "Wednesday";
-      $nom_jour[4] = ($langue == 2) ? "Jeudi" : "Thursday";
-      $nom_jour[5] = ($langue == 2) ? "Vendredi" : "Friday";
-      $nom_jour[6] = ($langue == 2) ? "Samedi" : "Saturday";
-      $nom_mois[1] = ($langue == 2) ? "janvier" : "January";
-      $nom_mois[2] = ($langue == 2) ? "f&eacute;vrier" : "February";
-      $nom_mois[3] = ($langue == 2) ? "mars" : "March";
-      $nom_mois[4] = ($langue == 2) ? "avril" : "April";
-      $nom_mois[5] = ($langue == 2) ? "mai" : "May";
-      $nom_mois[6] = ($langue == 2) ? "juin" : "June";
-      $nom_mois[7] = ($langue == 2) ? "juillet" : "July";
-      $nom_mois[8] = ($langue == 2) ? "ao&ucirc;t" : "August";
-      $nom_mois[9] = ($langue == 2) ? "septembre" : "September";
-      $nom_mois[10] = ($langue == 2) ? "octobre" : "October";
-      $nom_mois[11] = ($langue == 2) ? "novembre" : "November";
-      $nom_mois[12] = ($langue == 2) ? "d&eacute;cembre" : "December";
+      $nom_jour[0] = $langue ? "Dimanche" : "Sunday";
+      $nom_jour[1] = $langue ? "Lundi" : "Monday";
+      $nom_jour[2] = $langue ? "Mardi" : "Tuesday";
+      $nom_jour[3] = $langue ? "Mercredi" : "Wednesday";
+      $nom_jour[4] = $langue ? "Jeudi" : "Thursday";
+      $nom_jour[5] = $langue ? "Vendredi" : "Friday";
+      $nom_jour[6] = $langue ? "Samedi" : "Saturday";
+      $nom_mois[1] = $langue ? "janvier" : "January";
+      $nom_mois[2] = $langue ? "f&eacute;vrier" : "February";
+      $nom_mois[3] = $langue ? "mars" : "March";
+      $nom_mois[4] = $langue ? "avril" : "April";
+      $nom_mois[5] = $langue ? "mai" : "May";
+      $nom_mois[6] = $langue ? "juin" : "June";
+      $nom_mois[7] = $langue ? "juillet" : "July";
+      $nom_mois[8] = $langue ? "ao&ucirc;t" : "August";
+      $nom_mois[9] = $langue ? "septembre" : "September";
+      $nom_mois[10] = $langue ? "octobre" : "October";
+      $nom_mois[11] = $langue ? "novembre" : "November";
+      $nom_mois[12] = $langue ? "d&eacute;cembre" : "December";
 
-      $jour_semaine = $nom_jour[date("w",mktime(0,0,0,$mois,$jour,$annee))];
-      $mois = $nom_mois[(int)$mois];
+      $jour_semaine = $nom_jour[date("w", mktime(0, 0, 0, $mois, $jour, $annee))];
+      $mois = $nom_mois[ (int) $mois];
       return $jour_semaine." ".$jour." ".$mois." ".$annee;
     }
     return "$jour/$mois/$annee";
