@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.96 2003/09/02 10:06:59 mgf Exp $
+//  $Id: pp.inc,v 1.97 2003/09/02 10:07:31 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -36,7 +36,7 @@ define('SERVER_ADMIN', $_SERVER['SERVER_ADMIN']);
 define('MAGIC_MIME_FILE', '/usr/share/misc/file/magic.mime');
 define('LIBPATH', dirname(__FILE__).'/');
 define('MAJOR_VERSION', '3');
-define('MINOR_VERSION', '4a');
+define('MINOR_VERSION', '4b');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
 
