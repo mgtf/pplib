@@ -1,11 +1,10 @@
 <?
 
-// $Id: mail.inc,v 1.8 2002/07/11 17:53:28 tieum Exp $
+// $Id: mail.inc,v 1.9 2002/07/15 10:13:26 tieum Exp $
 
 class pp_mail extends pp_mime
 {
   var $from;
-  var $from_name;
   var $to;
   var $subject;
   var $priority;
@@ -19,7 +18,6 @@ class pp_mail extends pp_mime
   {
     $this->pp_mime();
     $this->priority = 1;
-    $this->from_name = '';
     $this->message = '';
     $this->subject = _("no subject").'.';
     $this->content_type = '';
@@ -34,9 +32,7 @@ class pp_mail extends pp_mime
        ! strlen($this->from) ||
        ! strlen($this->to))
       user_error("pp_mail::send : "._("Missing parameters"), E_USER_ERROR);
-    if(! strlen($this->from_name))
-      $this->from_name = $this->from;
-    $headers  = "From: '".$this->from_name."' <".$this->from.">\n";
+    $headers  = "From: ".$this->from."\n";
     $headers .= "X-Mailer: pplib v".PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION."\n";
     $headers .= "X-Priority: ".$this->priority."\n";
     $headers .= "Return-Path: ".GENERAL_WEBMASTER_MAIL."\n";
