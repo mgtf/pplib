@@ -1,5 +1,5 @@
 <?
-// $Id: image.inc,v 1.9 2002/02/13 11:21:27 tieum Exp $
+// $Id: image.inc,v 1.10 2002/02/13 12:02:53 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -114,6 +114,17 @@ class pp_image extends pp_file
     $this->colors_total = imagecolorstotal($this->image);
   }
 
+  function myimagecreatefromgif()
+  {
+    global $pp;
+    $pp->ob->suspend();
+    system("/usr/bin/gif2png -d -O ".$this->filename);
+    system("mv ".$this->filename.'.png '.$this->filename);
+    $pp->ob->resume();
+    $this->mime_subtype = 'png';
+    return imagecreatefrompng($this->filename);
+  }
+
   function image_create_from_file()
   {
     if($this->mime_subtype == -1)
@@ -129,19 +140,18 @@ class pp_image extends pp_file
     switch($this->mime_subtype)
     {
       case 'jpg':
-	$create_func = 'imagecreatefromjpeg';
+	$tmp_img = imagecreatefromjpeg($this->filename);
 	$this->truecolor = 1;
 	break;
       case 'gif':
-	$create_func = 'imagecreatefromgif';
+	$tmp_img = $this->myimagecreatefromgif($this->filename);
 	break;
       case 'png':
-	$create_func = 'imagecreatefrompng';
+	$tmp_img = imagecreatefrompng($this->filename);
 	break;
       default:
 	return -1;
     }
-    $tmp_img = $create_func($this->filename);
     if(! is_resource($tmp_img) )
       $this->error('pp_file::image_create_from_file : '.
 	           _("can't create image from")." '".$this->filename."'");
@@ -150,6 +160,8 @@ class pp_image extends pp_file
     $this->set_mime($this->mime_subtype);
     $this->image_create();
     imagecopy($this->image, $tmp_img, 0, 0, 0, 0, $this->xsize, $this->ysize);
+    if(! is_resource($this->image) )
+      $this->error(_("can't create image from")." '".$this->filename."'");
     imagedestroy($tmp_img);
     $this->image_update_infos();
     $this->image_get_data();
