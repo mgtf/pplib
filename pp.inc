@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.9 2002/01/23 08:10:47 tieum Exp $
+//  $Id: pp.inc,v 1.10 2002/01/31 12:33:10 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -98,7 +98,7 @@ class pp extends pp_class
 
 };
 
-function my_output_callback($buffer)
+function my_output_callback($str)
 {
   global $pp, $timer;
 
@@ -109,16 +109,13 @@ function my_output_callback($buffer)
 
   if(MAINTENANCE_MODE == 1)
   {
-    if($pp->tpl->mime_subtype == 'html' && $this->no_parse == FALSE)
+    if($pp->tpl->mime_subtype == 'html')
       return _("This site is currently in a maintenance state.").
 	     '<br>'.
 	     _("Please come back later.");
     else
       return '';
   }
-  if($pp->no_parse == TRUE)
-    return $buffer;
-  $str = $pp->tpl->parse_template($buffer);
   $str = $pp->tpl->comment_start.
          " Proportail v".
          $pp->version.
@@ -142,9 +139,21 @@ function my_output_callback($buffer)
       $str .= _("page generated on ").$elapsed.' sec '.
 	      '(pplib version : '.$pp->version.')'."\n";
   }
+
+  $str = $str.$pp->footer_str;
+
+  if($pp->no_parse == TRUE)
+  {
+    if(AUTO_STRIPSLASHES)
+      return stripslashes($str);
+    else
+      return $str;
+  }
+
+  $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
-  return $str.$pp->footer_str;
+  return $str;
 }
 
 function my_shutdown_function()
