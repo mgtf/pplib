@@ -1,5 +1,5 @@
 <?
-// $Id: image.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: image.inc,v 1.2 2002/01/22 11:21:21 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -167,8 +167,6 @@ class pp_image extends pp_file
   {
     if(! array_key_exists($this->mime_subtype, $this->formats))
       $this->error("'".$this->mime_subtype."' "._("format is not supported"));
-    if(strlen($this->data) > 0)
-      return $this->data;
     global $pp;
     $pp->ob->suspend();
     $f = $this->formats[$this->mime_subtype];
