@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.55 2002/03/27 11:21:40 tieum Exp $
+//  $Id: pp.inc,v 1.56 2002/03/27 11:29:47 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -65,8 +65,8 @@ require_once('base/pp_xml_expat.inc');
 require_once('base/pp_image.inc');
 require_once('base/pp_ttf_text.inc');
 require_once('base/pp_wddx.inc');
+require_once('base/pp_mail.inc');
 require_once('list/pp_list.inc');
-require_once('list/pp_mail.inc');
 
 class pp extends pp_class
 {
