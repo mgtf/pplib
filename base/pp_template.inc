@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.60 2002/08/09 10:47:59 tieum Exp $
+//  $Id: pp_template.inc,v 1.61 2002/09/11 14:14:28 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -473,11 +473,14 @@ class pp_template extends pp_file
       while(list($k, $s) = each($v))
 	$v[$k] = addslashes($s);
       //
-      $this->add_tag_array($v);
-      $this->add_tag_array(array('dynbloc_ite' => $ite++));
-      $str .= $this->parse_template($bloc);
-      $this->del_tag_array($v);
-      $this->del_tag_array(array('dynbloc_ite'));
+      // here we copy data from $pp->tpl to be sure this
+      // will not modify tag outside the dynbloc tag.
+      $tpl = $this;
+      $tpl->add_tag_array($v);
+      $tpl->add_tag_array(array('dynbloc_ite' => $ite++));
+      $str .= $tpl->parse_template($bloc);
+      $tpl->del_tag_array($v);
+      $tpl->del_tag_array(array('dynbloc_ite'));
     }
     if (strlen($id))
       unset($this->dynbloc_data[$id]);
