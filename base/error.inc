@@ -1,5 +1,5 @@
 <?
-// $Id: error.inc,v 1.7 2002/01/23 09:55:21 tieum Exp $
+// $Id: error.inc,v 1.8 2002/02/23 13:42:22 tieum Exp $
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
@@ -7,7 +7,7 @@ else
   error_reporting(E_ALL ^ E_NOTICE);
 set_error_handler('my_error_handler');
 
-function my_error_handler($errno, $errstr, $errfile, $errline)
+function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
 {
   switch($errno)
   {
@@ -18,7 +18,7 @@ function my_error_handler($errno, $errstr, $errfile, $errline)
       global $pp;
       // if an error occurs before $pp exists, just quit :
       if(! is_object($pp))
-	die("-- error --\n".__FILE__.' : '. __LINE__);
+	die("-- error --\n".$errstr."\n".__FILE__.' : '. __LINE__);
       $pp->ob->suspend();
       echo '<table align=center border=0 cellspacing=0 cellpadding=5>'.
 	   '<tr><td width="10" align=center><img src="/icons/error.png"><br><font size=2 color="#9C0000">'._("error").'</font></th>'.
