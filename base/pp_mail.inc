@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_mail.inc,v 1.19 2003/08/27 11:25:29 mgf Exp $
+// $Id: pp_mail.inc,v 1.20 2003/08/28 15:06:44 mgf Exp $
 // !send complex email with attachments
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -86,7 +86,7 @@ class pp_mail extends pp_mime
     $this->headers  = "From: ".$this->from."\n";
     $this->headers .= "X-Mailer: ".LIBNAME." v".PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION."\n";
     $this->headers .= "X-Priority: ".$this->priority."\n";
-    $this->headers .= "Return-Path: ".GENERAL_WEBMASTER_MAIL."\n";
+    $this->headers .= "Return-Path: ".SERVER_ADMIN."\n";
     if($this->is_html || $this->has_attachment)
       $this->headers .= "MIME-Version: 1.0\n";
     if($this->is_html && ! $this->has_attachment)
