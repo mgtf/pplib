@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-07-11 19:13+0200\n"
+"POT-Creation-Date: 2002-07-11 15:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,22 +141,21 @@ msgstr "impossible de créer l'image"
 msgid "format is not supported"
 msgstr "n'est pas supporté"
 
-#: base/pp_mail.inc:24
+#: base/pp_mail.inc:20
 #, fuzzy
 msgid "no subject"
 msgstr "pas de sujet"
 
-#: base/pp_mail.inc:36
+#: base/pp_mail.inc:28
 msgid "Missing parameters"
 msgstr "Paramètres manquants"
 
-#: base/pp_mime.inc:90
+#: base/pp_mime.inc:88
 msgid "can't add mime type"
 msgstr "impossible d'ajouter le type mime"
 
-#: base/pp_mime.inc:123
-#, fuzzy
-msgid "this mime type is not supported"
+#: base/pp_mime.inc:111
+msgid "this format is not supported"
 msgstr "n'est pas supporté"
 
 #: base/pp_mysql.inc:64
