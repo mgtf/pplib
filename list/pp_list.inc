@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.20 2002/02/06 14:39:36 tieum Exp $
+//  $Id: pp_list.inc,v 1.21 2002/02/06 14:52:24 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -56,9 +56,14 @@ class pp_list extends pp_template
   var $upd_wrapper;
   var $add_wrapper;
 
-  // array like field_name => fonction_name.
-  // ex : $mylist->function_on_field = array('password' => 'PASSWORD');
+  // array like : field_name => fonction_name.
+  // ex : $mylist->function_on_field = array('password' => 'MD5');
+  // this will use SQL MD5 function with insert & updat query.
   var $function_on_field;
+  //
+
+  // to add additional 'where' clause when getting data
+  var $additional_where_clause;
   //
 
   function pp_list()
@@ -84,6 +89,7 @@ class pp_list extends pp_template
     $this->add_wrapper = -1;
     $this->needed_fields = -1;
     $this->function_on_field = -1;
+    $this->additional_where_clause = -1;
   }
 
   function parse_list()
@@ -478,9 +484,12 @@ class pp_list extends pp_template
 
   function get_where()
   {
-    return (($this->search_string) ? 
-	   ($this->current_search_field." LIKE '%".$this->search_string."%'") : 
-	   "1");
+    $where = '';
+    if($this->search_string)
+      $where .= $this->current_search_field." LIKE '%".$this->search_string."%'";
+    if($this->additional_where_clause != -1)
+      $where .= ' AND '.$this->additional_where_clause;
+    return (strlen($where)) ? $where : 1;
   }
 
 };
