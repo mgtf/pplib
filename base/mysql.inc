@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.11 2002/02/08 16:09:51 tieum Exp $
+//  $Id: mysql.inc,v 1.12 2002/04/04 09:29:11 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -49,10 +49,6 @@ class pp_db extends pp_class {
   var $record   = array();
   var $row;
 
-  /* public: current error number and error text */
-  var $errno    = 0;
-  var $error    = "";
-
   /* private: link and query handles */
   var $link_id  = 0;
   var $query_id = 0;
@@ -65,7 +61,7 @@ class pp_db extends pp_class {
        (! defined("DBDB") )||
        (! defined("DBUSER") ) ||
        (! defined("DBPWD")) )
-      $this->error("pp_db::pp_db : "._("db access was not configured"));
+      user_error("pp_db::pp_db : "._("db access was not configured"), E_USER_ERROR);
     $this->host = DBHOST;
     $this->database = DBDB;
     $this->user     = DBUSER;
@@ -90,7 +86,7 @@ class pp_db extends pp_class {
     if (strstr($where, 'LIMIT') === false)
       $query .= "LIMIT  1";
     if ($this->debug)
-      $this->warning($query);
+      user_error($query, E_USER_WARNING);
     $this->query($query);
     if (!$this->next_record())
       return -1;
@@ -116,9 +112,9 @@ class pp_db extends pp_class {
     if ( 0 == $this->link_id ) {
       $this->link_id = @mysql_pconnect($host, $user, $password);
       if (!$this->link_id)
-	$this->error("pp_db::connect : "._("can't connect to")." '$host'");
+	user_error("pp_db::connect : "._("can't connect to")." '$host'", E_USER_ERROR);
       if (! @mysql_select_db($database,$this->link_id)) {
-	$this->error("pp_db::connect : "._("cannot use database")." ".$this->database);
+	user_error("pp_db::connect : "._("cannot use database")." ".$this->database, E_USER_ERROR);
       }
     }
 
@@ -142,15 +138,14 @@ class pp_db extends pp_class {
       return 0;
     if ($this->query_id)
       $this->free();
-    // if ($this->debug)
-    //   $this->warning("pp_db::query : "._("query")." = '$query'");
     $this->query_id = @mysql_query($query,$this->link_id);
     $this->row   = 0;
-    $this->errno = mysql_errno();
-    $this->error = mysql_error();
-    if (!$this->query_id)
-      $this->error("pp_db::query : "._("invalid sql").": ".$query."\n".
-	            $this->error."(".$this->errno.")");
+    $errno = mysql_errno();
+    $error = mysql_error();
+    if (! $this->query_id)
+      user_error(
+	  "pp_db::query : "._("invalid sql").": ".$query."\n".
+	  $error."(".$errno.")", E_USER_ERROR);
     else
       return $this->query_id;
   }
@@ -165,14 +160,11 @@ class pp_db extends pp_class {
   function next_record() 
   {
     if (!$this->query_id)
-      $this->error("pp_db::next_record : "._("next_record called with no query pending"));
+      user_error("pp_db::next_record : "._("next_record called with no query pending"), E_USER_ERROR);
     $this->record = @mysql_fetch_array($this->query_id);
     $this->row   += 1;
-    $this->errno  = mysql_errno();
-    $this->error  = mysql_error();
-
     $stat = is_array($this->record);
-    if (!$stat && $this->auto_free) {
+    if (! $stat && $this->auto_free) {
       $this->free();
     }
     return $stat;
@@ -184,7 +176,7 @@ class pp_db extends pp_class {
     if ($status)
       $this->row = $pos;
     else {
-      $this->error("pp_db::seek : seek($pos) failed: result has ".$this->num_rows()." rows");
+      user_error("pp_db::seek : seek($pos) failed: result has ".$this->num_rows()." rows", E_USER_ERROR);
 
       /* half assed attempt to save the day,
        * but do not consider this documented or even
@@ -217,7 +209,7 @@ class pp_db extends pp_class {
     }
     $res = @mysql_query($query, $this->link_id);
     if (!$res) {
-      $this->error("pp_db::lock : lock($table, $mode) failed.");
+      user_error("pp_db::lock : lock($table, $mode) failed.", E_USER_ERROR);
       return 0;
     }
     return $res;
@@ -228,7 +220,7 @@ class pp_db extends pp_class {
 
     $res = @mysql_query("unlock tables");
     if (!$res) {
-      $this->error("pp_db::unlock : unlock failed.");
+      user_error("pp_db::unlock : unlock failed.", E_USER_ERROR);
       return 0;
     }
     return $res;

@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_mime.inc,v 1.2 2002/02/12 15:45:17 tieum Exp $
+//  $Id: pp_mime.inc,v 1.3 2002/04/04 09:29:11 tieum Exp $
 //  mime type class
 //
 //  public methods :
@@ -85,7 +85,7 @@ class pp_mime extends pp_mime_el
     new_($new_mime, 'pp_mime_el');
     if($new_mime->set_mime_el($mime_type, $mime_subtype, $mime_extentions, $tag_start, 
 			      $tag_stop, $blank_char, $comment_start, $comment_end) == -1 )
-      $this->error("pp_mime::add_mime : "._("can't add mime type"));
+      user_error("pp_mime::add_mime : "._("can't add mime type"), E_USER_ERROR);
     $this->mimes[] = $new_mime;
   }
 
@@ -108,7 +108,7 @@ class pp_mime extends pp_mime_el
 	return 1;
       }
     }
-    $this->error("pp_mime::get_mime : "._("this format is not supported"));
+    user_error("pp_mime::get_mime : "._("this format is not supported"), E_USER_ERROR);
   }
 
 };

@@ -1,6 +1,6 @@
 <?
 
-// $Id: xml_expat.inc,v 1.4 2002/02/15 15:27:39 tieum Exp $
+// $Id: xml_expat.inc,v 1.5 2002/04/04 09:29:11 tieum Exp $
 
 class pp_xml_expat extends pp_template
 {
@@ -16,7 +16,7 @@ class pp_xml_expat extends pp_template
     $this->level = 0;
     $this->parser = xml_parser_create();
     if(! is_resource($this->parser))
-      $this->error("pp_xml_expat::pp_xml_expat : "._("Can't create XML parser"));
+      user_error("pp_xml_expat::pp_xml_expat : "._("Can't create XML parser"), E_USER_ERROR);
     xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
     // xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);
     xml_set_element_handler($this->parser, "h_start_el", "h_end_el");
@@ -36,7 +36,7 @@ class pp_xml_expat extends pp_template
       $err = "pp_xml_expat::parse_xml_stream : "._("XML parse error")."<br>".
 	     xml_error_string(xml_get_error_code($this->parser))."<br>".
 	      _("line").' :'.xml_get_current_line_number($this->parser);
-      $this->error($err);
+      user_error($err, E_USER_ERROR);
     }
     return strlen($this->buffer);
   }

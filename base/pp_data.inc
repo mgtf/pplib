@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_data.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+//  $Id: pp_data.inc,v 1.2 2002/04/04 09:29:11 tieum Exp $
 //  data class
 //
 //  public methods :
@@ -81,7 +81,7 @@ class pp_data extends pp_file
   function data_store()
   {
     if(! $this->storage_path)
-      $this->error("pp_data::store : "._("constant STORAGE_PATH not set"));
+      user_error("pp_data::store : "._("constant STORAGE_PATH not set"), E_USER_ERROR);
     new_($this->db, 'pp_db');
     $this->get_data_size();
     switch($this->storage_type)
@@ -99,7 +99,7 @@ class pp_data extends pp_file
 	$this->db->query("INSERT INTO data SET storage_type = '1'");
 	$id = @mysql_insert_id();
 	if($id <= 0)
-	  $this->error("pp_data::store : "._("can't get last insert id"));
+	  user_error("pp_data::store : "._("can't get last insert id"), E_USER_ERROR);
 	$this->filename = $this->storage_path.$id;
 	$this->write();
 	return ($id >= 0) ? $id : -1;
@@ -110,7 +110,7 @@ class pp_data extends pp_file
   function get_data_size()
   {
     if(! $datasize = strlen($this->data))
-      $this->error("pp_data::store : "._("no data to store"));
+      user_error("pp_data::store : "._("no data to store"), E_USER_ERROR);
     if( $datasize < 2^8 )
     {
       $this->data_size = 1;
@@ -132,7 +132,7 @@ class pp_data extends pp_file
       $this->data_field = 'longblobfield';
     }
     else
-      $this->error("data::store : "._("data size too big"));
+      user_error("data::store : "._("data size too big"), E_USER_ERROR);
   }
 
   function data_update($id, $data)

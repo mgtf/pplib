@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: user.inc,v 1.1 2002/01/15 15:22:12 tieum Exp $
+//  $Id: user.inc,v 1.2 2002/04/04 09:29:11 tieum Exp $
 //  user class
 //
 //  public methods :
@@ -52,7 +52,7 @@ class pp_user extends pp_class
   function add()
   {
     if($this->user_login == -1 || $this->user_password == -1)
-      $this->error("user::add : login or password empty or not set");
+      user_error("user::add : login or password empty or not set", E_USER_ERROR);
     $this->db->query("
 	INSERT 
 	INTO user 
@@ -66,7 +66,7 @@ class pp_user extends pp_class
   function remove()
   {
     if($this->user_id == -1)
-      $this->error("user::remove : please specify 'user_id' to remove");
+      user_error("user::remove : please specify 'user_id' to remove", E_USER_ERROR);
     $this->db->query("
 	DELETE 
 	FROM user
@@ -77,7 +77,7 @@ class pp_user extends pp_class
   function select()
   {
     if(! $user_id)
-      $this->error("user::select : please specify 'user_id'");
+      user_error("user::select : please specify 'user_id'", E_USER_ERROR);
     $this->db->query("
 	SELECT user_login, user_password
 	FROM user
@@ -95,7 +95,7 @@ class pp_user extends pp_class
   function get_id()
   {
     if($this->user_login == -1 || $this->user_password == -1)
-      $this->error("user::add : login or password empty or not set");
+      user_error("user::add : login or password empty or not set", E_USER_ERROR);
     $this->db->query("
 	SELECT user_id
 	FROM user

@@ -1,5 +1,5 @@
 <?
-// $Id: pp_ttf_text.inc,v 1.11 2002/03/05 13:31:21 tieum Exp $
+// $Id: pp_ttf_text.inc,v 1.12 2002/04/04 09:29:11 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -78,15 +78,16 @@ class pp_ttf_text extends pp_image
   function create_ttf_text()
   {
     if($this->fonts_path == -1)
-      $this->error("pp_ttf_text::create_ttf_text : ".
-		   _("please set")." TTF_PATH");
+      user_error(
+	  "pp_ttf_text::create_ttf_text : ".
+	  _("please set")." TTF_PATH", E_USER_ERROR);
     $font = $this->fonts_path . $this->font;
     if(! file_exists($font))
-      $this->error("pp_ttf_text::create_ttf_text : ".
-	           _("font file")." '".$font."' "._("does not exist"));
+      user_error(
+	  "pp_ttf_text::create_ttf_text : ".
+	  _("font file")." '".$font."' "._("does not exist"), E_USER_ERROR);
     if(strlen($this->text) < 1)
-      $this->error("pp_ttf_text::create_ttf_text : ".
-		   _("no text")." !");
+      user_error("pp_ttf_text::create_ttf_text : "._("no text")." !", E_USER_ERROR);
     $pos = $this->ttf_text_get_size();
     if($this->force_xpos != -1)
       $pos[0] = $this->force_xpos;
@@ -100,8 +101,9 @@ class pp_ttf_text extends pp_image
     if ($this->bgcolor == 'trans')
     {
       if($this->antialias == TRUE)
-	$this->error("pp_ttf_text::create_ttf_text : ".
-	             _("using both transparent background and antialiasing produce poor quality images !"));
+	user_error(
+	    "pp_ttf_text::create_ttf_text : ".
+	    _("using both transparent background and antialiasing produce poor quality images !"), E_USER_ERROR);
       $back = imagecolortransparent($this->image, 
 	                            $this->image_allocate_color("000000") );
     }

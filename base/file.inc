@@ -1,5 +1,5 @@
 <?
-// $Id: file.inc,v 1.9 2002/02/22 10:45:52 tieum Exp $
+// $Id: file.inc,v 1.10 2002/04/04 09:29:11 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -28,50 +28,53 @@ class pp_file extends pp_mime
     if( file_exists($this->filename))
       unlink($this->filename);
     else
-      $this->error('pp_file::unlink : '._("file")." '".$this->filename."' "._("does not exist"));
+      user_error('pp_file::unlink : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
   }
 
   function write($force = 0, $lock = 1)
   {
     if($this->data == -1 || $this->filename == -1 || strlen($this->filename) < 1)
-      $this->error("pp_file::write : "._("data or filename empty"));
+      user_error("pp_file::write : "._("data or filename empty"), E_USER_ERROR);
     $p = $this->split_filename();
     $path = $p[0];
     $filename = $p[1];
     if( file_exists($this->filename) && !$force)
-      $this->error("pp_file::write : "._("file")." '".$filename."' ".
-	           _("already exist, use pp_file->write(1) to force overwrite"));
+      user_error(
+	  "pp_file::write : "._("file")." '".$filename."' ".
+	  _("already exist, use pp_file->write(1) to force overwrite"), E_USER_ERROR);
     if(! is_writable($path) )
-      $this->error("pp_file::write : "._("directory")." '".$path."' ".
-	           _("is not writeable"));
+      user_error(
+	  "pp_file::write : "._("directory")." '".$path."' ".
+	  _("is not writeable"), E_USER_ERROR);
     $this->fd = @fopen($this->filename, "w");
     if($lock)
       $this->ex_lock();
     if($this->fd == FALSE)
-      $this->error("pp_file::write : "._("can't open")." '".$this->filename."'");
+      user_error("pp_file::write : "._("can't open")." '".$this->filename."'", E_USER_ERROR);
     // using set_magic_quotes_runtime does _not_ work.
     // set_magic_quotes_runtime(0);
     if( @fwrite($this->fd, $this->data) == -1)
-      $this->error("pp_file::write : "._("can't write")." '".$this->filename."'");
+      user_error("pp_file::write : "._("can't write")." '".$this->filename."'", E_USER_ERROR);
     // set_magic_quotes_runtime(get_magic_quotes_gpc());
     if($lock)
       $this->unlock();
     if( @fclose($this->fd) == FALSE )
-      $this->error("pp_file::write : "._("can't close")." '".$this->filename."'");
+      user_error("pp_file::write : "._("can't close")." '".$this->filename."'", E_USER_ERROR);
     return strlen($this->data);
   }
 
   function read($lock = 1)
   {
     if($this->filename == -1 || strlen($this->filename) < 1)
-      $this->error("pp_file::read : no file to read");
+      user_error("pp_file::read : no file to read", E_USER_ERROR);
     if(! @file_exists($this->filename))
-      $this->error("pp_file::read : "._("file")." '".$this->filename."' ".
-	            _("does not exist"));
+      user_error(
+	  "pp_file::read : "._("file")." '".$this->filename."' ".
+	  _("does not exist"), E_USER_ERROR);
     if(! @is_readable($this->filename) )
-      $this->error("pp_file::read : '".$this->filename."' "._("is not readable"));
+      user_error("pp_file::read : '".$this->filename."' "._("is not readable"), E_USER_ERROR);
     if( ($this->fd = @fopen ($this->filename, "r")) == FALSE)
-      $this->error("pp_file::read : "._("can't open")." '".$this->filename."'");
+      user_error("pp_file::read : "._("can't open")." '".$this->filename."'", E_USER_ERROR);
     if($lock)
       $this->sh_lock();
     // using set_magic_quotes_runtime does _not_ work.
@@ -81,7 +84,7 @@ class pp_file extends pp_mime
     if($lock)
       $this->unlock();
     if ( @fclose($this->fd) == FALSE )
-      $this->error("pp_file::read : "._("can't close")." ".$this->filename."'");
+      user_error("pp_file::read : "._("can't close")." ".$this->filename."'", E_USER_ERROR);
     return $this->data;
   }
 
@@ -89,20 +92,24 @@ class pp_file extends pp_mime
   function sh_lock()
   {
     if( flock($this->fd, LOCK_SH) == FALSE)
-      $this->error("pp_file::lock : "._("can't get shared lock on file ").$this->filename);
+      user_error(
+	  "pp_file::lock : "._("can't get shared lock on file ").
+	  $this->filename, E_USER_ERROR);
   }
 
   // exclusive lock
   function ex_lock()
   {
     if( flock($this->fd, LOCK_EX) == FALSE)
-      $this->error("pp_file::lock : "._("can't get exclusive lock on file ").$this->filename);
+      user_error(
+	  "pp_file::lock : "._("can't get exclusive lock on file ").
+	  $this->filename, E_USER_ERROR);
   }
 
   function unlock()
   {
     if( flock($this->fd, LOCK_UN) == FALSE)
-      $this->error("pp_file::lock : "._("can't unlock file ").$this->filename);
+      user_error("pp_file::lock : "._("can't unlock file ").$this->filename, E_USER_ERROR);
   }
 };
 

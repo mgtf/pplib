@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_form.inc,v 1.4 2002/02/19 18:41:50 tieum Exp $
+//  $Id: pp_form.inc,v 1.5 2002/04/04 09:29:11 tieum Exp $
 //  form class
 //
 //  public methods :
@@ -121,7 +121,7 @@ class pp_form extends pp_class
 	$data = $this->before.'&nbsp;'.$this->after;
 	break;
       default:
-	$this->error("pp_form::add_field : no type specified");
+	user_error("pp_form::add_field : no type specified", E_USER_ERROR);
     }
     $this->data .= $data;
   }

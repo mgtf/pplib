@@ -1,5 +1,5 @@
 <?
-// $Id: pp_output_buffering.inc,v 1.13 2002/03/18 12:01:34 tieum Exp $
+// $Id: pp_output_buffering.inc,v 1.14 2002/04/04 09:29:11 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -13,9 +13,9 @@ class pp_output_buffering extends pp_class
   {
     $this->pp_class();
     if($my_output_callback == -1)
-      $this->error(
+      user_error(
 	  "pp_output_buffering::pp_output_buffering : ".
-	  _("no output callback function defined")
+	  _("no output callback function defined"), E_USER_ERROR
 	  );
     $this->data = '';
     $this->output_callback = $my_output_callback;

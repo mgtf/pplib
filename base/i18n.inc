@@ -1,6 +1,6 @@
 <?
 
-// $Id: i18n.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: i18n.inc,v 1.2 2002/04/04 09:29:11 tieum Exp $
 
 class pp_i18n extends pp_class
 {
@@ -22,7 +22,7 @@ class pp_i18n extends pp_class
     chdir(PP_LIB_PATH);
     putenv('LC_ALL=' . $this->language);
     if (@setlocale(LC_ALL, $this->language) == NULL)
-      $this->error("pp_i18n::set_language : invalid language '".$this->language."'");
+      user_error("pp_i18n::set_language : invalid language '".$this->language."'", E_USER_ERROR);
     bindtextdomain('pp_lib', 'locale');
     textdomain('pp_lib');
     return 1;

@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.11 2002/02/13 14:16:30 tieum Exp $
+// $Id: pp_image.inc,v 1.12 2002/04/04 09:29:11 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -54,9 +54,9 @@ class pp_image extends pp_file
     else
     {
       if(strstr($w, '%'))
-	$this->error(_("can't use '%' with another arg"));
+	user_error(_("can't use '%' with another arg"), E_USER_ERROR);
       if($w == 'p' && $h == 'p')
-	$this->error(_("you must specify at least one size"));
+	user_error(_("you must specify at least one size"), E_USER_ERROR);
       $ratio = ($this->xsize / $this->ysize);
       $h = ($h == 'p') ? (int) ($w / $ratio) : $h;
       $w = ($w == 'p') ? (int) ($h * $ratio) : $w;
@@ -68,7 +68,7 @@ class pp_image extends pp_file
     $tmp->truecolor = 1;
     $tmp->image_create();
     if(! is_resource($tmp->image) )
-      $this->error('pp_image::image_resize : '._("can't create temp image"));
+      user_error('pp_image::image_resize : '._("can't create temp image"), E_USER_ERROR);
     imagecopyresampled($tmp->image, $this->image, 0, 0, 0, 0, 
 	               $w, $h, $this->xsize, $this->ysize);
     $this = $tmp;
@@ -100,9 +100,9 @@ class pp_image extends pp_file
   function image_convert($format)
   {
     if($format == $this->format)
-      $this->warning("pp_image::image_convert : "._("image is already a")." .".$format);
+      user_error("pp_image::image_convert : "._("image is already a")." .".$format, E_USER_WARNING);
     if(! array_key_exists($format, $this->formats))
-      $this->error("pp_image::image_convert : "._("format")." ".$format." "._("is not supported"));
+      user_error("pp_image::image_convert : "._("format")." ".$format." "._("is not supported"), E_USER_ERROR);
     $f = $this->format.'2'.$format;
     $this->$f();
   }
@@ -144,8 +144,9 @@ class pp_image extends pp_file
       if(array_key_exists(1, $ext))
 	$ext = $ext[1];
       else
-	$this->error('pp_file::image_create_from_file : '.
-	              _("image")." '".$this->filename."' "._("has no extention"));
+	user_error(
+	    'pp_file::image_create_from_file : '.
+	    _("image")." '".$this->filename."' "._("has no extention"), E_USER_ERROR);
       $this->mime_subtype = $ext;
     }
     switch($this->mime_subtype)
@@ -165,15 +166,16 @@ class pp_image extends pp_file
 	return -1;
     }
     if(! is_resource($tmp_img) )
-      $this->error('pp_file::image_create_from_file : '.
-	           _("can't create image from")." '".$this->filename."'");
+      user_error(
+	  'pp_file::image_create_from_file : '.
+	  _("can't create image from")." '".$this->filename."'", E_USER_ERROR);
     $this->xsize = ImageSX($tmp_img);
     $this->ysize = ImageSY($tmp_img);
     $this->set_mime($this->mime_subtype);
     $this->image_create();
     imagecopy($this->image, $tmp_img, 0, 0, 0, 0, $this->xsize, $this->ysize);
     if(! is_resource($this->image) )
-      $this->error(_("can't create image from")." '".$this->filename."'");
+      user_error(_("can't create image from")." '".$this->filename."'", E_USER_ERROR);
     imagedestroy($tmp_img);
     $this->image_update_infos();
     $this->image_get_data();
@@ -192,7 +194,7 @@ class pp_image extends pp_file
     else
       $this->image = imagecreate($this->xsize, $this->ysize);
     if(! is_resource($this->image))
-      $this->error("pp_image::image_create : "._("can't create image"));
+      user_error("pp_image::image_create : "._("can't create image"), E_USER_ERROR);
     if($this->interlace)
       imageinterlace($this->image, TRUE);
     $this->image_update_infos();
@@ -233,7 +235,7 @@ class pp_image extends pp_file
   function image_get_data()
   {
     if(! array_key_exists($this->mime_subtype, $this->formats))
-      $this->error("'".$this->mime_subtype."' "._("format is not supported"));
+      user_error("'".$this->mime_subtype."' "._("format is not supported"), E_USER_ERROR);
     global $pp;
     $pp->ob->suspend();
     $f = $this->formats[$this->mime_subtype];

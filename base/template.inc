@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.32 2002/03/19 18:28:35 tieum Exp $
+//  $Id: template.inc,v 1.33 2002/04/04 09:29:11 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -118,13 +118,13 @@ class pp_template extends pp_file
   function add_tag($name, $action, $options = array())
   {
     if( ! function_exists($action) && ! method_exists($this, $action))
-      $this->error("pp_template::add_tag : "._("function")." '".$action."' "._("does not exist"));
+      user_error("pp_template::add_tag : "._("function")." '".$action."' "._("does not exist"), E_USER_ERROR);
     if( (! strlen($name)) || (! strlen($action)) )
     {
       if(! strlen($name))
-	$this->error("pp_template::add_tag : \$name "._("is not defined").", action = '$action'");
+	user_error("pp_template::add_tag : \$name "._("is not defined").", action = '$action'", E_USER_ERROR);
       else
-	$this->error("pp_template::add_tag : \$action "._("is not defined").", name = '$name'");
+	user_error("pp_template::add_tag : \$action "._("is not defined").", name = '$name'", E_USER_ERROR);
     }
     $this->del_tag($name);
     $this->tags[$name]['action'] = $action;
@@ -135,7 +135,7 @@ class pp_template extends pp_file
   function add_tag_array($array)
   {
     if(! is_array($array))
-      $this->error("pp_template::add_tag_array : "._("arg is not an array"));
+      user_error("pp_template::add_tag_array : "._("arg is not an array"), E_USER_ERROR);
     while (list($key, $value) = each($array))
     {
       if( $this->add_tag($key, 'template_echo', array("text" => $value)) == -1 )
@@ -159,7 +159,7 @@ class pp_template extends pp_file
   {
     if(! is_array($array))
     {
-      $this->error("pp_template::del_tag_array : "._("arg is not an array"));
+      user_error("pp_template::del_tag_array : "._("arg is not an array"), E_USER_ERROR);
       return (-1);
     }
     while (list($key, $value) = each($array))
@@ -172,7 +172,7 @@ class pp_template extends pp_file
   function parse_template_file($filename)
   {
     if(! strlen($filename))
-      $this->error("pp_template::parse_template_file : "._("no file to read"));
+      user_error("pp_template::parse_template_file : "._("no file to read"), E_USER_ERROR);
     $this->filename = $filename;
     $this->read();
     return ($this->parse_template($this->data));
@@ -199,9 +199,9 @@ class pp_template extends pp_file
   function parse_template_to_file($str, $filename, $force = 0)
   {
     if(! strlen($filename))
-      $this->error("pp_template::parse_template_to_file : "._("no file to write"));
+      user_error("pp_template::parse_template_to_file : "._("no file to write"), E_USER_ERROR);
     if(! strlen($str))
-      $this->error("pp_template::parse_template_to_file : "._("no data to write"));
+      user_error("pp_template::parse_template_to_file : "._("no data to write"), E_USER_ERROR);
     $this->filename = $filename;
     $this->parse_template($str);
     return $this->write($force);
@@ -232,8 +232,8 @@ class pp_template extends pp_file
     {
       $this->parse_iteration++;
       if ($this->parse_iteration >= $this->timeout)
-	$this->error('pp_template::do_parse_template : '.
-	             _("template timeout")." ("._("max iteration").' = '.$this->timeout.')');
+	user_error('pp_template::do_parse_template : '.
+	           _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
       $end = $this->find_end($remaining, $begin);
       $before = substr($remaining, 0, $begin);
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
@@ -333,7 +333,7 @@ class pp_template extends pp_file
   {
     $regexp = " *([^ ]+) *(.*)\\".$this->tag_stop;
     if (!ereg($regexp, $tag_str, $tb))
-      return $this->error('pp_template::parse_tag : '._("template error"));
+      return user_error('pp_template::parse_tag : '._("template error"), E_USER_ERROR);
     if (array_key_exists($tb[1], $this->tags))
       $tag = $this->tags[$tb[1]];
     else
@@ -386,7 +386,7 @@ class pp_template extends pp_file
     } 
 
     if (!$tag)
-      return $this->error("pp_template::parse_tag : "._("template error"));
+      return user_error("pp_template::parse_tag : "._("template error"), E_USER_ERROR);
 
     $f = $tag['action'];
 
@@ -395,7 +395,8 @@ class pp_template extends pp_file
     elseif(function_exists($f))
        return $f($tag);
     else
-      return $this->error("pp_template::parse_tag : "._("function")." '".$tag[action]."' "._("does not exist"));
+      return user_error("pp_template::parse_tag : "._("function")." '".
+	                $tag[action]."' "._("does not exist"), E_USER_ERROR);
   }
 
   ////
@@ -414,8 +415,8 @@ class pp_template extends pp_file
     if(array_key_exists('type', $tag['options']))
       $type = $tag['options']['type'];
     if ($name == '')
-      return $this->error("pp_template::template_include : "._("you must specify template name").",\n".
-			  _("correct syntax is")." : {include name=\"filename\" type=\"type\"}");
+      return user_error("pp_template::template_include : "._("you must specify template name").",\n".
+			_("correct syntax is")." : {include name=\"filename\" type=\"type\"}", E_USER_ERROR);
     switch ($type)
     {
       case 'raw':
@@ -424,18 +425,18 @@ class pp_template extends pp_file
       default:  
 	$file = $this->inc_path."$name".'.inc';
 	if (!file_exists($file))
-	  return $this->error("No such include file: $file");
+	  return user_error(_("no such include file")." : $file", E_USER_ERROR);
 	include_once($file);
 	$function = 'template_'.$name;
         if(! function_exists($function))
-          return $this->error("pp_template::template_include : ".
-                               _("function")." : 'template_$name()' ".
-                               _("does not exist"));
+          return user_error("pp_template::template_include : ".
+			    _("function")." : 'template_$name()' ".
+			    _("does not exist"), E_USER_ERROR);
         $s = $function($tag);
 	if ($s)
 	 return ($this->parse_template($s));
 	else
-	  return $this->error(_("invalid include file").": $include_rep/$name");
+	  return user_error(_("invalid include file").": $include_rep/$name", E_USER_ERROR);
     }
   }
 
@@ -465,7 +466,7 @@ class pp_template extends pp_file
     $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
     if (strlen($id))
       if(! array_key_exists($id, $this->dynbloc_data))
-	$this->error("pp_template::template_dynbloc : dynbloc_data['$id'] "._("not set")." !");
+	user_error("pp_template::template_dynbloc : dynbloc_data['$id'] "._("not set")." !", E_USER_ERROR);
       else
 	$data = $this->dynbloc_data[$id];
     else
@@ -473,11 +474,10 @@ class pp_template extends pp_file
     if(array_key_exists('bloc', $tag['options']))
       $bloc = $tag['options']['bloc'];
     else
-      $this->error("pp_template::template_dynbloc : ".
-	           _("you must specify `bloc` arg in dynbloc tag"));
+      user_error("pp_template::template_dynbloc : ".
+		 _("you must specify `bloc` arg in dynbloc tag"), E_USER_ERROR);
     if(! is_array($data))
       $data = array();
-      // $this->error("pp_template::template_dynbloc : "._("dynbloc_data is not an array"));
     foreach($data as $v)
     {
       $this->add_tag_array($v);

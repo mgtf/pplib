@@ -1,5 +1,5 @@
 <?
-// $Id: pp_wddx.inc,v 1.2 2002/02/08 10:05:24 tieum Exp $
+// $Id: pp_wddx.inc,v 1.3 2002/04/04 09:29:11 tieum Exp $
 
 class pp_wddx extends pp_data
 {
@@ -17,7 +17,7 @@ class pp_wddx extends pp_data
   {
     $this->wddx_id = wddx_packet_start('proportail content');
     if($this->wddx_id == -1)
-      $this->error('article::article_serialize : can\'t create wddx packet');
+      user_error('article::article_serialize : can\'t create wddx packet', E_USER_ERROR);
     $data = $this->wddx_items;
     wddx_add_vars($this->wddx_id, 'data');
     unset($data);
@@ -27,7 +27,7 @@ class pp_wddx extends pp_data
   function wddx_deserialize_()
   {
     if($this->data == -1)
-      $this->error('pp_wddx::wddx_deserialize : no data');
+      user_error('pp_wddx::wddx_deserialize : no data', E_USER_ERROR);
     $data = wddx_deserialize($this->data);
     return $data;
   }

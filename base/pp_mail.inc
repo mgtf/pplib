@@ -1,6 +1,6 @@
 <?
 
-// $Id: pp_mail.inc,v 1.1 2002/03/27 11:20:38 tieum Exp $
+// $Id: pp_mail.inc,v 1.2 2002/04/04 09:29:11 tieum Exp $
 
 class pp_mail extends pp_class
 {
@@ -22,7 +22,7 @@ class pp_mail extends pp_class
     if(! strlen($this->message) ||
        ! strlen($this->from) ||
        ! strlen($this->to))
-      $this->error("pp_mail::send : "._("Missing parameters"));
+      user_error("pp_mail::send : "._("Missing parameters"), E_USER_ERROR);
     $domain_name = DOMAIN;
     $headers  = "From: ".$this->from."\n";
     $headers .= "X-Mailer: pplib v".PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION."\n";
