@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.83 2002/10/31 11:16:51 tieum Exp $
+//  $Id: pp.inc,v 1.84 2002/10/31 11:31:40 tieum Exp $
 //  !pplib main class, define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -170,9 +170,9 @@ function my_output_callback($buffer)
     $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
     if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
       $str .= 
-	$pp->tpl->return_char.'<div align="center"><font size="1" face="Verdana">'.
+	$pp->tpl->return_char.'<div style="text-align: center; font-size: 9px; font-family: Verdana">'.
 	_("page generated on ").$elapsed.' sec '.
-	'(pplib v'.$pp->version.')</font></div>';
+	'(pplib v'.$pp->version.')</div>';
     else
       $str .= 
 	_("page generated on ").$elapsed.' sec '.
