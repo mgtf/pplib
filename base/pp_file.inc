@@ -1,5 +1,38 @@
 <?
-// $Id: pp_file.inc,v 1.12 2002/09/18 11:30:00 tieum Exp $
+
+////
+//  $Id: pp_file.inc,v 1.13 2002/09/18 11:39:41 tieum Exp $
+//  files I/O class
+//
+//  public methods :
+//
+//  exists()
+//  unlink()
+//  write()
+//  read()
+//  get_mime()
+//
+//  private methods :
+//
+//  sh_lock()
+//  ex_lock()
+//  unlock()
+//  split_filename()
+//
+//  consts :
+//
+//  none
+
+  pp_file()
+  split_filename()
+  exists()
+  unlink()
+  write($force = 0, $lock = 1)
+  read($lock = 1)
+  sh_lock()
+  ex_lock()
+  unlock()
+  get_mime()
 
 class pp_file extends pp_mime
 {
