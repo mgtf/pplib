@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.50 2002/07/18 09:46:13 tieum Exp $
+//  $Id: template.inc,v 1.51 2002/07/18 09:48:43 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -120,9 +120,9 @@ class pp_template extends pp_file
   }
 
   ////
-  // ajoute le tag $name à la liste de tags extistant,
+  // !ajoute le tag $name à la liste de tags extistant.
   // le parseur execute $action() lorsque le tag est rencontré
-  // par le parseur.
+  // par celui-ci.
   function add_tag($name, $action, $options = array())
   {
     if( ! function_exists($action) && ! method_exists($this, $action))
@@ -141,10 +141,10 @@ class pp_template extends pp_file
   }
 
   ////
-  // ajoute un tableau associatif de tags, 
-  // de la forme : array('nom_du_tag' => 'valeur_de_remplaceement' ..)
+  // !ajoute un tableau associatif de tags.
+  // la tableau est de la forme : array('nom_du_tag' => 'valeur_de_remplaceement' ..)
   // le parseur remplace le tag par sa valeur lorsque le tag est rencontré
-  // par le parseur.
+  // par celui-ci.
   function add_tag_array($array)
   {
     if(! is_array($array))
@@ -158,14 +158,14 @@ class pp_template extends pp_file
   }
 
   ////
-  // renvoi TRUE si le tag $tagname est défini, FALSE sinon.
+  // !renvoi TRUE si le tag $tagname est défini, FALSE sinon.
   function tag_exists($tagname)
   {
     return array_key_exists($tagname, $this->tags);
   }
 
   ////
-  // retire le tag $name de la liste des tags connus.
+  // !retire le tag $name de la liste des tags connus.
   function del_tag($name)
   {
     if(isset($this->tags))
@@ -173,7 +173,7 @@ class pp_template extends pp_file
   }
 
   ////
-  // retire le tableau associatif de tags $array de la liste des tags connus.
+  // !retire le tableau associatif de tags $array de la liste des tags connus.
   function del_tag_array($array)
   {
     if(! is_array($array))
@@ -485,6 +485,8 @@ class pp_template extends pp_file
     }
   }
 
+  ////
+  // !private function
   function tag_if($tag)
   {
     $opt = $tag['options'];
