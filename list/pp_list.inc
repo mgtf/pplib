@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.5 2002/01/23 11:45:34 tieum Exp $
+//  $Id: pp_list.inc,v 1.7 2002/01/23 14:18:12 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -73,7 +73,7 @@ class pp_list extends pp_template
 
   function parse_list()
   {
-    global $HTTP_POST_VARS;
+    global $HTTP_POST_VARS, $HTTP_GET_VARS;
     if(! strlen($this->sql_fields) )
       $this->error("parse_list::parse_list : you must specify sql fields");
     if(! strlen($this->sql_table) )
@@ -105,6 +105,8 @@ class pp_list extends pp_template
       $want_save = $HTTP_POST_VARS[$this->id.'_want_save'];
     else
       $want_save = -1;
+    if(array_key_exists($this->id.'_want_save', $HTTP_GET_VARS))
+      $want_save = $HTTP_GET_VARS[$this->id.'_want_save'];
     if(is_array($listdel) && $want_save)
       $this->del_data($listdel);
     if(is_array($listadd) && $want_save)
@@ -117,6 +119,7 @@ class pp_list extends pp_template
     $this->get_vars();
     $this->set_tags();
     $this->get_data();
+    $this->add_tag_array(array('confirm_mesg' => _("Do you confirm modifications ?")));
     $str = $this->parse_template_file(PP_LIB_PATH."list/list.js");
     $str .= $this->parse_template_file($this->tpl);
     return $str;
@@ -150,6 +153,7 @@ class pp_list extends pp_template
 
   function set_tags()
   {
+    $self = $this->parse_template('{self}');
     $this->add_tag_array(array($this->id.'_search_string' => $this->search_string,
 			       $this->id.'_current_search_field' => $this->current_search_field,
 			       $this->id.'_max_elements' => $this->max_elements,
@@ -162,12 +166,13 @@ class pp_list extends pp_template
 			       $this->id.'_list_submit_add' => '
 			       <input type=image src="icons/add.gif" alt="'.
 			       _("add").
-			       '" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
+			       '" onclick="document.'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
 			       $this->id.'_list_submit' => '
+			       <a href="javascript:confirm_del()"><img src="icons/save.gif"></a>
 			       <input type=image src="icons/save.gif" alt="'.
 			       _("save modification").
-			       '" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
-			       <font size=1><input type=image src="icons/invert.gif" alt="'.
+			       '" onclick="document.'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
+			       <font size=1><img src="icons/invert.gif" alt="'.
 			       _("invert selection").
 			       '" onclick="javascript:invertsel(\''.$this->id.'\')"></font>
     '));
@@ -239,7 +244,7 @@ class pp_list extends pp_template
       }
       foreach($fl as $f)
       {
-	$list_check_update = 'onChange="document.list'.$this->id.'.'.$this->id.'_was_updated'.$k.'.value =\'1\'"';
+	$list_check_update = 'onChange="document.'.$this->id.'.'.$this->id.'_was_updated'.$k.'.value =\'1\'"';
 	$data[$i][$this->id.'_bgcolor'] = $this->bg_line[($i % 2)];
 	$data[$i][$this->id.'_id_list'] = $k;
 	$data[$i][$this->id.'_list_check_update'] = $list_check_update;
@@ -399,15 +404,15 @@ class pp_list extends pp_template
     $f->add_field('hidden', $this->id.'_want_page');
     if($this->current_page)
       $f->add_field('submit', '[Précédent]', 
-		    'onclick="document.list'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page - 1).'\'"');
+		    'onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page - 1).'\'"');
     for ($i = 0; $i < $nbp; $i++)
       if($i == $this->current_page)
 	$f->add_field('button', ' '.$i.' ');
       else
-	$f->add_field('submit', ' '.$i.' ', 'onclick="document.list'.$this->id.'.'.$this->id.'_want_page.value =\''.$i.'\'"');
+	$f->add_field('submit', ' '.$i.' ', 'onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.$i.'\'"');
     if(($nbp - 1) > $this->current_page)
       $f->add_field('submit', '[Suivant]',
-		    'onclick="document.list'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page + 1).'\'"');
+		    'onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page + 1).'\'"');
     $res .= $f->data;
     $res .='<b>Total : '.$nb.'</b></nobr>';
     $res .= '</nobr>';
