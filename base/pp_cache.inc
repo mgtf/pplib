@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_cache.inc,v 1.10 2003/08/28 13:49:36 mgf Exp $
+//  $Id: pp_cache.inc,v 1.11 2003/08/28 14:48:19 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -42,11 +42,11 @@ class pp_cache extends pp_file {
   }
 
   function get_context($id) {
-    return CACHEFILE_PREFIX.md5($id);
+    return md5($id);
   }
 
   function is_expired($id, $max_age) {
-    $file = $this->cache_path.$this->get_context($id);
+    $file = $this->cache_path.CACHEFILE_PREFIX.$this->get_context($id);
     clearstatcache();
     return (! file_exists($file) || ((time() - fileatime($file)) > $max_age));
   }
@@ -55,7 +55,7 @@ class pp_cache extends pp_file {
     if(! $this->is_expired($id, $max_age))
       return $this->load($id);
     else {
-      $this->filename = $this->cache_path.$this->get_context($id);
+      $this->filename = $this->cache_path.CACHEFILE_PREFIX.$this->get_context($id);
       if($this->exists())
 	$this->unlink();
       return false;
@@ -64,13 +64,13 @@ class pp_cache extends pp_file {
 
   function save($id, $data) {
     $data = serialize($data);
-    $this->filename = $this->cache_path.$this->get_context($id);
+    $this->filename = $this->cache_path.CACHEFILE_PREFIX.$this->get_context($id);
     $this->data =& $data;
     $this->write(true);
   }
   
   function load($id) {
-    $this->filename = $this->cache_path.$this->get_context($id);
+    $this->filename = $this->cache_path.CACHEFILE_PREFIX.$this->get_context($id);
     if($this->exists()) {
       $this->read();
       return unserialize($this->data);

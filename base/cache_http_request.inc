@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache_http_request.inc,v 1.1 2003/08/28 13:46:07 mgf Exp $
+//  $Id: cache_http_request.inc,v 1.2 2003/08/28 14:48:19 mgf Exp $
 //  !http request caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -30,13 +30,12 @@ class pp_cache_http_request extends pp_cache {
   function get_context($id) {
     static $context = array();
     if(isset($context[$id]))
-      return CACHEFILE_PREFIX.$context[$id];
+      return $context[$id];
     $get = isset($_GET) ? serialize($_GET) : '';
     $post = isset($_POST) ? serialize($_POST) : '';
     $cookie = isset($_COOKIE) ? serialize($_COOKIE) : '';
     $session = isset($_SESSION) ? serialize($_SESSION) : '';
-    $context[$id] = md5($get.$post.$cookie.$session.$id);
-    return CACHEFILE_PREFIX.$context[$id];
+    return ($context[$id] = md5($get.$post.$cookie.$session.$id));
   }
 };
 
