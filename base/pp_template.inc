@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.2 2002/01/18 14:07:09 tieum Exp $
+//  $Id: pp_template.inc,v 1.3 2002/01/18 14:15:55 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -86,6 +86,7 @@ class pp_template extends pp_file
     $this->add_tag('if', 'template_if');
     $this->add_tag('replace', 'template_replace');
     $this->add_tag('debug', 'template_debug');
+    $this->add_tag('trans', 'template_translate');
   }
 
   function add_tag($name, $action, $options = array())
@@ -479,6 +480,16 @@ class pp_template extends pp_file
       default:
 	return $opt[in];
     }
+  }
+
+  ////
+  // !private function
+  function template_translate($tag)
+  {
+    $opt = $tag[options];
+    $txt = $opt[data];
+    eval('$txt = _("'.$txt.'");');
+    return $txt;
   }
 
   ////
