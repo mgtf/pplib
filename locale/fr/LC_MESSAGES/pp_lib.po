@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-16 12:43+0100\n"
+"POT-Creation-Date: 2002-01-17 16:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,21 +43,21 @@ msgstr "pas de données à enregistrer"
 msgid "data size too big"
 msgstr "taille des données trop importante"
 
-#: base/pp_error.inc:21
+#: base/pp_error.inc:24
 msgid "error"
 msgstr "erreur"
 
-#: base/pp_error.inc:24 base/pp_error.inc:40 base/pp_file.inc:41
+#: base/pp_error.inc:27 base/pp_error.inc:43 base/pp_file.inc:41
 #: base/pp_file.inc:64
 msgid "file"
 msgstr "fichier"
 
-#: base/pp_error.inc:24 base/pp_error.inc:40 base/pp_xml_expat.inc:42
+#: base/pp_error.inc:27 base/pp_error.inc:43 base/pp_xml_expat.inc:42
 #, fuzzy
 msgid "line"
 msgstr "ligne"
 
-#: base/pp_error.inc:37
+#: base/pp_error.inc:40
 msgid "warning"
 msgstr "attention"
 
@@ -168,7 +168,7 @@ msgstr "requete"
 
 #: base/pp_mysql.inc:158
 msgid "invalid sql"
-msgstr "sql invalides"
+msgstr "requete sql invalide"
 
 #: base/pp_mysql.inc:168
 msgid "next_record called with no query pending"

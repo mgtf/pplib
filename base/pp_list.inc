@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+//  $Id: pp_list.inc,v 1.2 2002/01/18 10:23:03 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -357,7 +357,8 @@ class pp_list extends pp_template
   function compteur()
   {
     global $HTTP_POST_VARS;
-    $nb = sql_get("COUNT(".$this->sql_key.")" , $this->sql_table, $this->get_where());
+    new_($db, 'pp_db');
+    $nb = $db->get("COUNT(".$this->sql_key.")" , $this->sql_table, $this->get_where());
     $res = '<nobr>';
     if(! $nb)
       return;

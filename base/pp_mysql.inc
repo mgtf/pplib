@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_mysql.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+//  $Id: pp_mysql.inc,v 1.2 2002/01/18 10:23:03 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -77,7 +77,7 @@ class pp_db extends pp_class {
 
   function get($field, $table, $where)
   {
-    $row = $this->sql_get_row($field, $table, $where, $debug);
+    $row = $this->get_row($field, $table, $where, $debug);
     if (!$row)
       return -1;
     return ($row[0]);
