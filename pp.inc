@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.54 2002/03/26 10:45:27 tieum Exp $
+//  $Id: pp.inc,v 1.55 2002/03/27 11:21:40 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -32,6 +32,7 @@ define('PP_MINOR_VERSION', '2');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
 define('RUSAGE_BOTH', -2);
+define('GENERAL_WEBMASTER_MAIL', 'tieum@boo.taktile.com');
 
 // all classes extend this one :
 require_once('base/pp_class.inc');
@@ -65,6 +66,7 @@ require_once('base/pp_image.inc');
 require_once('base/pp_ttf_text.inc');
 require_once('base/pp_wddx.inc');
 require_once('list/pp_list.inc');
+require_once('list/pp_mail.inc');
 
 class pp extends pp_class
 {
@@ -82,6 +84,7 @@ class pp extends pp_class
   var $ttf;
   var $ob;
   var $header;
+  var $mail;
 
   var $header_str;
   var $footer_str;
@@ -104,6 +107,7 @@ class pp extends pp_class
     new_($this->image, 'pp_image');
     new_($this->ttf, 'pp_ttf_text');
     new_($this->header, 'pp_header');
+    new_($this->mail, 'pp_mail');
     $this->version = PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION;
     $this->no_parse = FALSE;
     $this->header_str = '';
