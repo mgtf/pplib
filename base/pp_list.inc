@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.3 2002/01/18 11:45:22 tieum Exp $
+//  $Id: pp_list.inc,v 1.4 2002/01/18 13:24:39 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -115,7 +115,7 @@ class pp_list extends pp_template
     $this->get_vars();
     $this->set_tags();
     $this->get_data();
-    $str = ($this->current_environment[name] == 'html') ? $this->parse_template_file("list.js") : '';
+    $str = ($this->mime_subtype == 'html') ? $this->parse_template_file("list.js") : '';
     $str .= $this->parse_template_file($this->tpl);
     return $str;
   }
@@ -234,8 +234,8 @@ class pp_list extends pp_template
 	$data[$i][$this->id.'_id_list'] = $k;
 	$data[$i][$this->id.'_list_check_update'] = $list_check_update;
 	$data[$i][$this->id.'_list_del'] = '<input type="checkbox" name="'.$this->id.'_listdel['.$k.']">';
-	$data[$i][$this->id.'_'.$f] = ($sql->Record[$f]) ? 
-	                stripslashes( strtr($sql->Record[$f], array('"' => '')) )
+	$data[$i][$this->id.'_'.$f] = ($sql->record[$f]) ? 
+	                stripslashes( strtr($sql->record[$f], array('"' => '')) )
 			: '';
       }
       $i++;
