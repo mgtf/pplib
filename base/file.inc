@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: file.inc,v 1.14 2002/09/18 11:58:44 tieum Exp $
+// $Id: file.inc,v 1.15 2002/09/23 09:28:14 tieum Exp $
 // !files I/O class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -24,17 +24,6 @@
 // consts :
 //
 // none
-
-  pp_file()
-  split_filename()
-  exists()
-  unlink()
-  write($force = 0, $lock = 1)
-  read($lock = 1)
-  sh_lock()
-  ex_lock()
-  unlock()
-  get_mime()
 
 class pp_file extends pp_mime
 {
