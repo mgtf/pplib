@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.40 2002/02/28 11:39:56 tieum Exp $
+//  $Id: pp.inc,v 1.41 2002/02/28 16:01:03 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -79,8 +79,8 @@ class pp extends pp_class
   function pp()
   {
     $this->pp_class();
-    register_shutdown_function(array(& $this, 'my_shutdown_function'));
-    new_($this->ob, 'pp_output_buffering', array(& $this, 'my_output_callback'));
+    register_shutdown_function(array($this, 'my_shutdown_function'));
+    new_($this->ob, 'pp_output_buffering', 'my_output_callback');
     new_($this->tpl, 'pp_template');
     new_($this->string, 'pp_string');
     new_($this->db, 'pp_db');
@@ -107,60 +107,60 @@ class pp extends pp_class
     // system("rm -f /home/tieum/public_html/proportail3/cache/*");
     return;
   }
-
-  function my_output_callback($buffer)
-  {
-    global $timer;
-
-    $str = $buffer;
-
-    if($this->no_parse == TRUE)
-      return $str;
-
-    if(MAINTENANCE_MODE == 1)
-    {
-      if($this->tpl->mime_subtype == 'html')
-	return _("This site is currently in a maintenance state.").
-	  '<br>'.
-	  _("Please come back later.");
-      else
-	return '';
-    }
-    $str = $this->tpl->comment_start.
-      " pplib v".
-      $this->version.
-      " - ".
-      date("D M d Y").
-      $this->tpl->comment_end.
-      "\n".
-      $this->header_str.
-      $str;
-    if($this->tpl->mime_subtype == 'html')
-      $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
-    if(DEVEL_MODE)
-    {
-      $timer->stop('full_page_parse_time');
-      $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
-      if($this->tpl->mime_subtype == 'html')
-	$str .= '
-	  <font size=1 face=verdana><center>'.
-	  _("page generated on ").$elapsed.' sec '.
-	  '(pplib version : '.$pp->version.')</center></font>';
-      else
-	$str .= 
-	  _("page generated on ").$elapsed.' sec '.
-	  '(pplib version : '.$pp->version.')'."\n";
-    }
-    $str = $str.$this->footer_str;
-    $str = $this->tpl->parse_template($str);
-    if(AUTO_STRIPSLASHES)
-      $str = stripslashes($str);
-    $this->ob->compress_send_headers();
-    $str = $this->ob->compress($str);
-    $this->header->header_send();
-    return $str;
-  }
 };
+
+function my_output_callback($buffer)
+{
+  global $timer, $pp;
+
+  $str = $buffer;
+
+  if($pp->no_parse == TRUE)
+    return $str;
+
+  if(MAINTENANCE_MODE == 1)
+  {
+    if($pp->tpl->mime_subtype == 'html')
+      return _("pp site is currently in a maintenance state.").
+	'<br>'.
+	_("Please come back later.");
+    else
+      return '';
+  }
+  $str = $pp->tpl->comment_start.
+    " pplib v".
+    $pp->version.
+    " - ".
+    date("D M d Y").
+    $pp->tpl->comment_end.
+    "\n".
+    $pp->header_str.
+    $str;
+  if($pp->tpl->mime_subtype == 'html')
+    $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
+  if(DEVEL_MODE)
+  {
+    $timer->stop('full_page_parse_time');
+    $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
+    if($pp->tpl->mime_subtype == 'html')
+      $str .= '
+	<font size=1 face=verdana><center>'.
+	_("page generated on ").$elapsed.' sec '.
+	'(pplib version : '.$pp->version.')</center></font>';
+    else
+      $str .= 
+	_("page generated on ").$elapsed.' sec '.
+	'(pplib version : '.$pp->version.')'."\n";
+  }
+  $str = $str.$pp->footer_str;
+  $str = $pp->tpl->parse_template($str);
+  if(AUTO_STRIPSLASHES)
+    $str = stripslashes($str);
+  $pp->ob->compress_send_headers();
+  $str = $pp->ob->compress($str);
+  $pp->header->header_send();
+  return $str;
+}
 
 $pp = new pp;
 
