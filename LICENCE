@@ -17,18 +17,18 @@ AVANT D'INSTALLER ET D'UTILISER LA LIBRAIRIE.
 
 Si, pour une raison quelconque, l'un des termes de cet accord ne peut 
 s'appliquer à vous (par exemple du fait de votre réglementation locale), 
-vous n'êtes pas autorisé à utiliser le logiciel. 
+vous n'êtes pas autorisé à utiliser la librairie. 
 Pour cela, veuillez requérir par écrit auprès de Taktile un accord spécifique.
 
 II. Conditions d'utilisation de la librairie
 
 Sur acceptation des termes du présent accord, Taktile vous accorde une licence 
-non exclusive d'utilisation du logiciel dans les conditions d'exploitation suivantes :
+non exclusive d'utilisation de la librairie dans les conditions d'exploitation suivantes :
 
 * Chaque licence n'est valable que pour une seule application 
   (une seule localisation géographique).
 * Pour une application donnée, chaque licence vous permet 
-  d'installer le logiciel sur un unique serveur.
+  d'installer la librairie sur un unique serveur.
 * L'utilisation de cette librairie est limité au développement de l'application 
   pour laquelle Taktile vous à fournit cette librairie. Elle ne peut en aucun cas
   être utilisée pour d'autre développement que cette application.
@@ -88,5 +88,5 @@ Pour tout litige d'ordre commercial concernant cette licence,
 attribution de juridiction est faite au Tribunal de Commerce de Nanterre, France.
 
 Pour tout autre litige, de quelque nature que ce soit, 
-concernant cette licence ou le logiciel lui-même, attribution de juridiction 
+concernant cette licence ou la librairie elle-même, attribution de juridiction 
 est faite aux tribunaux de Paris, France.
