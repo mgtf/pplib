@@ -1,5 +1,5 @@
 <?
-// $Id: pp_output_buffering.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: pp_output_buffering.inc,v 1.2 2002/01/25 14:53:44 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -34,7 +34,7 @@ class pp_output_buffering extends pp_class
   function suspend()
   {
     $this->data = ob_get_contents();
-    ob_end_clean();
+    $this->clean();
     ob_start();
   }
 
