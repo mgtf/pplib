@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.97 2003/11/08 11:50:36 mgf Exp $
+// $Id: template.inc,v 1.98 2003/11/12 13:19:19 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -243,10 +243,9 @@ class template extends file {
 	user_error('template::parse_template : '.
 	    _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
       $end = $this->find_end($remaining, $begin);
-      $before = substr($remaining, 0, $begin);
+      $result .= substr($remaining, 0, $begin);
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
       $remaining = substr($remaining, $end);
-      $result .= $before;
       if(substr($tag_string, 0, 7) == 'dynbloc')
 	$result .= $this->parse_tag($tag_string);
       else
@@ -283,8 +282,9 @@ class template extends file {
   // !private function
   function find_end($str, $begin = 0) {
     static $c = array();
-    if(isset($c[$str][$begin])) {
-      return $c[$str][$begin];
+    $k = md5(serialize(array($str, $begin)));
+    if(isset($c[$k])) {
+      return $c[$k];
     }
     $nb = 1;
     for ($i = $begin + 1; $nb && (strlen($str) > $i); $i++) {
@@ -300,7 +300,7 @@ class template extends file {
       }
     }
     $r = $nb ? false : $i;
-    $c[$str][$begin] = $r;
+    $c[$k] = $r;
     return $r;
   }
 
@@ -310,18 +310,19 @@ class template extends file {
   // at $str[1] and where $char in not escaped
   function find_char($str, $char) {
     static $c = array();
-    if(isset($c[$str][$char])) {
-      return $c[$str][$char];
+    $k = md5(serialize(array($str, $char)));
+    if(isset($c[$k])) {
+      return $c[$k];
     }
     $l = strlen($str);
     $r = false;
     for ($i = 1; $i < $l; $i++) {
       if (($str[$i] == $char) && ($str[$i - 1] != '\\')) {
-	$c[$str][$char] = $i;
+	$c[$k] = $i;
         return $i;
       }
     }
-    $c[$str][$char] = false;
+    $c[$k] = false;
     return false;
   }
 
@@ -387,10 +388,11 @@ class template extends file {
     }
     $f =& $tag['action'];
 
-    if(method_exists($this, $f))
+    if(method_exists($this, $f)) {
       return $this->$f($tag);
-    elseif(function_exists($f))
+    } elseif(function_exists($f)) {
       return $f($tag);
+    }
     else
       return user_error("template::parse_tag : "._("function or method")." '".
 	  $tag['action']."' "._("does not exist"), E_USER_ERROR);
@@ -485,9 +487,24 @@ class template extends file {
     new_($tpl, 'template');
     foreach($data as $v) {
       $v['dynbloc_ite'] = $ite++;
+      $tpl->tags =& $this->tags;
       $tpl->add_tag_array($v);
-      $str .= $tpl->parse_template($bloc);
+      //
+      // this allow us to use str_replace for 
+      // simple tag wich are just like {tag} -> value
+      $_bloc = $bloc;
+      foreach($tpl->tags as $tag) {
+        if($tag['action'] == 'template_echo') {
+	  $_b = $_bloc;
+	  $_bloc =
+	    str_replace(
+		$this->tag_start.$tag['name'].$this->tag_stop,
+		$tag['options']['text'], $_bloc);
+	}
+      }
+      $str .= $tpl->parse_template($_bloc);
       $tpl->del_tag_array($v);
+      unset($data[$ite - 1]);
     }
     unset($tpl);
     if (strlen($id))
