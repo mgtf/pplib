@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.98 2003/09/02 10:23:00 mgf Exp $
+//  $Id: pp.inc,v 1.99 2003/09/04 13:42:26 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -63,7 +63,6 @@ require_once('base/template.inc');
 require_once('base/mysql.inc');
 require_once('base/string.inc');
 require_once('base/user.inc');
-require_once('base/form.inc');
 require_once('base/session.inc');
 require_once('base/image.inc');
 require_once('base/ttf_text.inc');
@@ -73,7 +72,6 @@ class pp extends _stdclass {
   var $version;
   var $string;
   var $db;
-  var $form;
   var $tpl;
   var $file;
   var $i18n;
@@ -95,7 +93,6 @@ class pp extends _stdclass {
     new_($this->tpl, 'template');
     new_($this->string, 'string');
     new_($this->db, 'db');
-    new_($this->form, 'form');
     new_($this->file, 'file');
     new_($this->i18n, 'i18n');
     new_($this->session, 'session');

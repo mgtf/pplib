@@ -1,18 +1,16 @@
 <?
 
 ////
-// $Id: session.inc,v 1.6 2003/08/28 15:22:44 mgf Exp $
+// $Id: session.inc,v 1.7 2003/09/04 13:43:15 mgf Exp $
 // !session class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
 
 class session extends _stdclass {
-  var $session_name;
 
   function session() {
     $this->_stdclass();
-    return;
   }
 
   function destroy() {

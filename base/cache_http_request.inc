@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache_http_request.inc,v 1.5 2003/09/02 10:06:40 mgf Exp $
+//  $Id: cache_http_request.inc,v 1.6 2003/09/04 13:41:32 mgf Exp $
 //  !http request caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -26,23 +26,24 @@ class cache_http_request extends cache {
 
   function cache_http_request() {
     $this->cache();
-    $this->context = 15;
+    $this->context = 
+      __CACHE_CONTEXT_GET +
+      __CACHE_CONTEXT_POST +
+      __CACHE_CONTEXT_COOKIE +
+      __CACHE_CONTEXT_SESSION;
   }
 
   function get_context($id) {
-    static $context = array();
-    if(isset($context[$id]))
-      return $context[$id];
-    $get = $post = $cookie = $session = '';
-    if($this->context & __CACHE_CONTEXT_GET)
-      $get = isset($_GET) ? serialize($_GET) : '';
-    if($this->context & __CACHE_CONTEXT_POST)
-      $post = isset($_POST) ? serialize($_POST) : '';
-    if($this->context & __CACHE_CONTEXT_COOKIE)
-      $cookie = isset($_COOKIE) ? serialize($_COOKIE) : '';
-    if($this->context & __CACHE_CONTEXT_SESSION)
+    $x[] = $id;
+    if(($this->context & __CACHE_CONTEXT_GET) && isset($_GET))
+      $x[] = $_GET;
+    if(($this->context & __CACHE_CONTEXT_POST) && isset($_POST))
+      $x[] = $_POST;
+    if(($this->context & __CACHE_CONTEXT_COOKIE) && isset($_COOKIE))
+      $x[] = $_COOKIE;
+    if(($this->context & __CACHE_CONTEXT_SESSION) && isset($_SESSION))
       $session = isset($_SESSION) ? serialize($_SESSION) : '';
-    return ($context[$id] = md5($get.$post.$cookie.$session.serialize($id)));
+    return md5(serialize($x));
   }
 };
 

@@ -1,13 +1,13 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.16 2003/09/02 15:06:36 mgf Exp $
+//  $Id: cache.inc,v 1.18 2003/09/04 13:47:21 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
 //
 //  public methods :
-//  get($id, $max_age = CACHE_DEFAULT_MAX_AGE)
+//  get($id, $max_age = CACHEFILE_MAXAGE)
 //  save($id, $data) {
 //  
 //  private methods :
@@ -37,8 +37,8 @@ class cache extends file {
       $this->cache_path = CACHE_PATH;
     else
       user_error(_("please define CACHE_PATH"), E_USER_ERROR);
-    if(! defined('CACHE_DEFAULT_MAX_AGE')) {
-      define('CACHE_DEFAULT_MAX_AGE', (DEVEL_MODE ? 0 : 3600));
+    if(! defined('CACHEFILE_MAXAGE')) {
+      define('CACHEFILE_MAXAGE', (DEVEL_MODE ? 0 : 3600));
     }
   }
 
@@ -52,7 +52,7 @@ class cache extends file {
     return (! file_exists($file) || ((time() - fileatime($file)) > $max_age));
   }
 
-  function get($id, $max_age = CACHE_DEFAULT_MAX_AGE) {
+  function get($id, $max_age = CACHEFILE_MAXAGE) {
     if(! $this->is_expired($id, $max_age))
       return $this->load($id);
     else {
@@ -84,6 +84,7 @@ class cache extends file {
     static $already_run = false;
     if($already_run)
       return;
+    $already_run = true;
     srand((double) microtime() * 1000000);
     // run only 2% of times.
     if(rand(1, 100) > 2)
@@ -96,7 +97,6 @@ class cache extends file {
       if(file_exists($file) && ((time() - filemtime($file)) > CACHEFILE_MAXLIFETIME))
 	unlink($file);
     }
-    $already_run = true;
   }
 };
 
