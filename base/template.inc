@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.100 2003/11/12 14:36:33 mgf Exp $
+// $Id: template.inc,v 1.101 2003/11/12 14:48:07 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -242,7 +242,7 @@ class template extends file {
       if ($this->parse_iteration >= $this->timeout)
 	user_error('template::parse_template : '.
 	    _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
-      $end = $this->find_end($remaining, $begin);
+      $end = icms_tpl_find_end($remaining, $begin);
       $result .= substr($remaining, 0, $begin);
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
       $remaining = substr($remaining, $end);
@@ -275,61 +275,7 @@ class template extends file {
       return false;
     if($str[0] == $this->tag_start)
       return 0;
-    return $this->find_char($str, $this->tag_start);
-  }
-
-  ////
-  // !private function
-  function find_end($str, $begin = 0) {
-    if(function_exists('icms_tpl_find_end')) {
-      return icms_tpl_find_end($str, $begin);
-    }
-    static $c = array();
-    $k = md5(serialize(array($str, $begin)));
-    if(isset($c[$k])) {
-      return $c[$k];
-    }
-    $nb = 1;
-    for ($i = $begin + 1; $nb && (strlen($str) > $i); $i++) {
-      switch ($str[$i]) {
-        case $this->tag_start:
-          if($str[$i - 1] != '\\')
-            $nb++;
-          break;
-        case $this->tag_stop:
-          if($str[$i - 1] != '\\')
-            $nb--;
-          break;
-      }
-    }
-    $r = $nb ? false : $i;
-    $c[$k] = $r;
-    return $r;
-  }
-
-  ////
-  // !private function
-  // return the first occurence of $char in $str, starting
-  // at $str[1] and where $char in not escaped
-  function find_char($str, $char) {
-    if(function_exists('icms_tpl_find_char')) {
-      return icms_tpl_find_char($str, $char);
-    }
-    static $c = array();
-    $k = md5(serialize(array($str, $char)));
-    if(isset($c[$k])) {
-      return $c[$k];
-    }
-    $l = strlen($str);
-    $r = false;
-    for ($i = 1; $i < $l; $i++) {
-      if (($str[$i] == $char) && ($str[$i - 1] != '\\')) {
-        $c[$k] = $i;
-        return $i;
-      }
-    }
-    $c[$k] = false;
-    return false;
+    return icms_tpl_find_char($str, $this->tag_start);
   }
 
   ////
@@ -360,12 +306,12 @@ class template extends file {
 	case '"':
 	case "'":
 	case "`":
-	  $end =& $this->find_char($other, $other[0]);
+	  $end =& icms_tpl_find_char($other, $other[0]);
 	  $par =& substr($other, 1, $end - 1);
 	  $param =& substr($other, $end);
 	  break;
 	case $this->tag_start:
-	  $end =& $this->find_end($other);
+	  $end =& icms_tpl_find_end($other);
 	  $par =& substr($other, 0, $end);
 	  $param =& substr($other, $end);
 	  break;
