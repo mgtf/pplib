@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.12 2002/01/22 16:38:53 tieum Exp $
+//  $Id: pp_list.inc,v 1.13 2002/01/22 16:45:22 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -62,7 +62,7 @@ class pp_list extends pp_template
     else
       $this->max_elements = 10;
     $this->search = '';
-    $this->bg_line = array( 0 => '#CEDEEF',
+    $this->bg_line = array( 0 => '#DEEEFF',
 			    1 => '#FFFFFF');
     $this->message_del = '[ suppression effectuée ]';
     $this->message_add = '[ ajout effectué ]';
@@ -160,9 +160,9 @@ class pp_list extends pp_template
 			       $this->id.'_want_page' => 0,
 			       $this->id.'_want_save' => 0,
 			       $this->id.'_list_submit_add' => '
-			       <input type=image src="icons/add.png" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
+			       <input type=image src="icons/add.png" alt="'._("add").'" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
 			       $this->id.'_list_submit' => '
-			       <input type=submit value="enregistrer" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
+			       <input type=image src="icons/save.png" alt="'._("save modification").'" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
 			       <font size=1><input type="button" value="inverser la séléction" onclick="javascript:invertsel(\''.$this->id.'\')"></font>
     '));
     $this->add_tag($this->id.'_list_hidden_fields', 'hidden_fields');
