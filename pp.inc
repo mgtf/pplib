@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.14 2002/01/31 14:35:36 tieum Exp $
+//  $Id: pp.inc,v 1.15 2002/02/01 11:13:32 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -27,6 +27,8 @@ define('LOCK_SLEEP_TIME', '1000000');
 // all classes extend this one :
 require_once('base/pp_class.inc');
 
+if(! defined('DEVEL_MODE'))
+  define('DEVEL_MODE', FALSE);
 if(DEVEL_MODE)
 {
   require_once('base/pp_microtime.inc');
