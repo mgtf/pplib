@@ -1,5 +1,5 @@
 <?
-// $Id: pp_ttf_text.inc,v 1.5 2002/02/25 11:50:42 tieum Exp $
+// $Id: pp_ttf_text.inc,v 1.6 2002/02/25 12:53:49 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -34,6 +34,8 @@ class pp_ttf_text extends pp_image
   var $antialias;
   var $align;
   var $valign;
+  var $force_txt_xsize;
+  var $force_txt_ysize;
 
   // private vars :
   var $txt_xsize;
@@ -67,6 +69,8 @@ class pp_ttf_text extends pp_image
     $this->shadow_decal = 3;
     $this->mime_subtype = 'png';
     $this->mime_type = 'image';
+    $this->force_txt_xsize = -1;
+    $this->force_txt_ysize = -1;
   }
 
   function create_ttf_text()
@@ -107,7 +111,7 @@ class pp_ttf_text extends pp_image
     }
     imagettftext($this->image, $this->size, 
 		 $this->angle, $pos[0], $pos[1], 
-		 $fore, $font, $this->text);
+		 $fore, $font, $this->text.'          azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN');
   }
 
   function ttf_text_get_size()
@@ -120,10 +124,14 @@ class pp_ttf_text extends pp_image
     $bottom = max($sz[1], $sz[3], $sz[5], $sz[7]);
     $this->txt_xsize = $right - $left;
     $this->txt_ysize = $bottom - $top;
+    if($this->force_txt_xsize != -1)
+      $this->txt_xsize = $this->force_txt_xsize;
+    if($this->force_txt_ysize != -1)
+      $this->txt_ysize = $this->force_txt_ysize;
     // si la taille n'est pas specifié ou qu'elle 
     // ne suffit pas pour afficher tout le texte :
     if($this->xsize == -1 || $this->xsize < ($this->txt_xsize + 2 * $this->margin))
-      $this->xsize = $this->txt_xsize + 2 * $this->margin;
+      $this->xsize = $this->txt_xsize + 2 * $this->margin + 2;
     if($this->ysize == -1 || $this->ysize < ($this->txt_ysize + 2 * $this->margin))
       $this->ysize = $this->txt_ysize + 2 * $this->margin;
     if ($this->align == 'right')
@@ -138,7 +146,7 @@ class pp_ttf_text extends pp_image
       $py = (int) (-$top);
     else
       $py = (int) (-$top + ($this->ysize - $this->txt_ysize) / 2);
-    return array($px, $py);
+    return array($px - 1, $py);
   }
 };
 
