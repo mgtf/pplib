@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: file.inc,v 1.15 2002/09/23 09:28:14 tieum Exp $
+// $Id: file.inc,v 1.16 2002/10/16 12:01:30 tieum Exp $
 // !files I/O class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -106,10 +106,7 @@ class pp_file extends pp_mime
       user_error("pp_file::read : "._("can't open")." '".$this->filename."'", E_USER_ERROR);
     if($lock)
       $this->sh_lock();
-    // using set_magic_quotes_runtime does _not_ work.
-    // set_magic_quotes_runtime(0);
     $this->data = @fread($this->fd, filesize ($this->filename));
-    // set_magic_quotes_runtime(get_magic_quotes_gpc());
     if($lock)
       $this->unlock();
     if ( @fclose($this->fd) == FALSE )
