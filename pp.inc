@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.84 2002/10/31 11:31:40 tieum Exp $
+//  $Id: pp.inc,v 1.85 2002/11/19 15:01:42 tieum Exp $
 //  !pplib main class, define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -180,6 +180,8 @@ function my_output_callback($buffer)
   }
   $str = $str.$pp->footer_str;
   $str = $pp->tpl->parse_template($str);
+  // XXX - this break javascript since some javascript code 
+  // should need to escape `'' also
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
   // XXX - this reduce about 13% datasize send
