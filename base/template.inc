@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.68 2003/08/07 12:57:35 mgf Exp $
+// $Id: template.inc,v 1.69 2003/08/07 15:56:32 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -144,12 +144,10 @@ class pp_template extends pp_file {
   function add_tag_array($array) {
     if(! is_array($array))
       user_error("pp_template::add_tag_array : "._("arg is not an array"), E_USER_ERROR);
-    while (list($key, $value) = each($array))
-    {
+    while (list($key, $value) = each($array)) {
       if( $this->add_tag($key, 'template_echo', array("text" => $value)) == -1 )
-	return (-1);
+	return -1;
     }
-    return (1);
   }
 
   ////
@@ -168,22 +166,18 @@ class pp_template extends pp_file {
   ////
   // !retire le tableau associatif de tags $array de la liste des tags connus.
   function del_tag_array($array) {
-    if(! is_array($array))
-    {
+    if(! is_array($array)) {
       user_error("pp_template::del_tag_array : "._("arg is not an array"), E_USER_ERROR);
-      return (-1);
+      return -1;
     }
     while (list($key, $value) = each($array))
       $this->del_tag($key);
-    return (1);
   }
 
   ////
   // !lit le contenu de $filename, execute parse_template() et renvoie la chaine parsee
   function parse_template_file($filename) {
-    if(! strlen($filename))
-      user_error("pp_template::parse_template_file : "._("no file to read"), E_USER_ERROR);
-    $this->filename = $filename;
+    $this->filename =& $filename;
     $this->read();
     return ($this->parse_template($this->data));
   }
@@ -195,7 +189,7 @@ class pp_template extends pp_file {
       user_error("pp_template::parse_template_to_file : "._("no file to write"), E_USER_ERROR);
     if(! strlen($str))
       user_error("pp_template::parse_template_to_file : "._("no data to write"), E_USER_ERROR);
-    $this->filename = $filename;
+    $this->filename =& $filename;
     $this->parse_template($str);
     return $this->write($force);
   }
@@ -227,7 +221,6 @@ class pp_template extends pp_file {
     $result = '';
     $remaining = $str;
     for ($this->parse_iteration = 0; !($begin === false); $begin = $this->find_begin($remaining)) {
-      $this->parse_iteration++;
       if ($this->parse_iteration >= $this->timeout)
 	user_error('pp_template::parse_template : '.
 	    _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
@@ -235,16 +228,12 @@ class pp_template extends pp_file {
       $before = substr($remaining, 0, $begin);
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
       $remaining = substr($remaining, $end);
-      $result .= $before;
-      // XXX - à tester, permet de mettre des tags dans le champ bloc des blocs dynamiques 
-      if(substr($tag_string, 0, 7) == 'dynbloc')
-	$result .= $this->parse_tag($tag_string);
-      else
-	$result .= $this->parse_tag($this->parse_template($tag_string));
+      $result .= $before.$this->parse_tag($tag_string);
+      $this->parse_iteration++;
     }
     $result .= $remaining;
     $this->parse_iteration = 0;
-    // translate the string : 
+    // translate string like [@string to translate]
     return preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $result);
   }
 
@@ -297,7 +286,7 @@ class pp_template extends pp_file {
 	break;
       }
     }
-     $res[$str][$char] = $r;
+    $res[$str][$char] = $r;
     return $r;
   }
 
@@ -314,41 +303,41 @@ class pp_template extends pp_file {
     $param = $tb[2];
     $regexp = " *([^ =]+) *= *(.*)";
     while (strlen($param) > 0) {
-      if (!ereg($regexp, $param, $tb))
+      if(! ereg($regexp, $param, $tb))
 	break;
-      $name = $tb[1];
-      $other = $tb[2];
+      $name =& $tb[1];
+      $other =& $tb[2];
       switch ($other[0]) {
 	case '"':
 	case "'":
 	case "`":
-	  $end = $this->find_char($other, $other[0]);
-	  $par = substr($other, 1, $end - 1);
-	  $param = substr($other, $end);
+	  $end =& $this->find_char($other, $other[0]);
+	  $par =& substr($other, 1, $end - 1);
+	  $param =& substr($other, $end);
 	  break;
 	case $this->tag_start:
-	  $end = $this->find_end($other);
-	  $par = substr($other, 0, $end);
-	  $param = substr($other, $end);
+	  $end =& $this->find_end($other);
+	  $par =& substr($other, 0, $end);
+	  $param =& substr($other, $end);
 	  break;
 	default:
-	  $end = strpos($other, ' ');
+	  $end =& strpos($other, ' ');
 	  if ($end === false) {
-	    $par = $other;
+	    $par =& $other;
 	    $param = '';
 	  } else {
-	    $par = substr($other, 0, $end);
-	    $param = substr($other, $end);
+	    $par =& substr($other, 0, $end);
+	    $param =& substr($other, $end);
 	  }
 	  break;
       }
-      $tag['options'][$name] = $par;
+      $tag['options'][$name] =& $par;
     } 
 
     if (!$tag)
       return user_error("pp_template::parse_tag : "._("template error"), E_USER_ERROR);
 
-    $f = $tag['action'];
+    $f =& $tag['action'];
 
     if(method_exists($this, $f))
       return $this->$f($tag);
@@ -356,7 +345,7 @@ class pp_template extends pp_file {
       return $f($tag);
     else
       return user_error("pp_template::parse_tag : "._("function")." '".
-	  $tag[action]."' "._("does not exist"), E_USER_ERROR);
+	  $tag['action']."' "._("does not exist"), E_USER_ERROR);
   }
 
   ////
@@ -463,8 +452,8 @@ class pp_template extends pp_file {
   ////
   // !private function
   function tag_replace($tag) {
-    $opt = $tag[options];
-    switch ($opt[mode]) {
+    $opt = $tag['options'];
+    switch ($opt['mode']) {
       case 'str':
 	return str_replace($opt['what'], $opt['by'], $opt['in']);
       case 'posix':
