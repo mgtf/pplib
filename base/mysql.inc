@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.12 2002/04/04 09:29:11 tieum Exp $
+//  $Id: mysql.inc,v 1.13 2002/06/07 10:15:37 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -88,7 +88,7 @@ class pp_db extends pp_class {
     if ($this->debug)
       user_error($query, E_USER_WARNING);
     $this->query($query);
-    if (!$this->next_record())
+    if (!$this->next_record(MYSQL_NUM))
       return -1;
     $row = $this->record;
     $this->free();
@@ -138,7 +138,7 @@ class pp_db extends pp_class {
       return 0;
     if ($this->query_id)
       $this->free();
-    $this->query_id = @mysql_query($query,$this->link_id);
+    $this->query_id = @mysql_query($query, $this->link_id);
     $this->row   = 0;
     $errno = mysql_errno();
     $error = mysql_error();
@@ -157,11 +157,11 @@ class pp_db extends pp_class {
   }
 
   /* public: walk result set */
-  function next_record() 
+  function next_record($type = MYSQL_ASSOC) 
   {
     if (!$this->query_id)
       user_error("pp_db::next_record : "._("next_record called with no query pending"), E_USER_ERROR);
-    $this->record = @mysql_fetch_array($this->query_id);
+    $this->record = @mysql_fetch_array($this->query_id, $type);
     $this->row   += 1;
     $stat = is_array($this->record);
     if (! $stat && $this->auto_free) {
