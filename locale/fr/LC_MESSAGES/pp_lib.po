@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-05-14 18:19+0200\n"
+"POT-Creation-Date: 2002-06-06 11:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,12 +26,12 @@ msgstr "vous essayez de créer un objet de la classe"
 msgid "but it is already an object from the class"
 msgstr "vous essayez de créer un objet de la classe"
 
-#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:42
 #: base/pp_file.inc:31 base/pp_file.inc:43 base/pp_file.inc:72
 msgid "file"
 msgstr "fichier"
 
-#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:42
 #: base/pp_xml_expat.inc:38
 msgid "line"
 msgstr "ligne"
@@ -40,12 +40,12 @@ msgstr "ligne"
 msgid "error"
 msgstr "erreur"
 
-#: base/pp_error.inc:39
+#: base/pp_error.inc:40
 msgid "warning"
 msgstr "attention"
 
-#: base/pp_file.inc:31 base/pp_file.inc:73 base/pp_template.inc:121
-#: base/pp_template.inc:399 base/pp_template.inc:434 base/pp_ttf_text.inc:88
+#: base/pp_file.inc:31 base/pp_file.inc:73 base/pp_template.inc:123
+#: base/pp_template.inc:409 base/pp_template.inc:453 base/pp_ttf_text.inc:88
 msgid "does not exist"
 msgstr "n'existe pas"
 
@@ -177,74 +177,74 @@ msgstr "next_record appelé sans requete"
 msgid "no output callback function defined"
 msgstr "aucune fonction de callback définie"
 
-#: base/pp_template.inc:121 base/pp_template.inc:398 base/pp_template.inc:433
+#: base/pp_template.inc:123 base/pp_template.inc:408 base/pp_template.inc:452
 msgid "function"
 msgstr "fonction"
 
-#: base/pp_template.inc:125 base/pp_template.inc:127
+#: base/pp_template.inc:127 base/pp_template.inc:129
 msgid "is not defined"
 msgstr "n'est pas défini"
 
-#: base/pp_template.inc:138 base/pp_template.inc:162
+#: base/pp_template.inc:140 base/pp_template.inc:164
 msgid "arg is not an array"
 msgstr "arg n'est pas un tableau"
 
-#: base/pp_template.inc:175
+#: base/pp_template.inc:177
 msgid "no file to read"
 msgstr "pas de fichier à lire"
 
-#: base/pp_template.inc:202
+#: base/pp_template.inc:204
 msgid "no file to write"
 msgstr "pas de fichier ou ecrire"
 
-#: base/pp_template.inc:204
+#: base/pp_template.inc:206
 msgid "no data to write"
 msgstr "pas de données à ecrire"
 
-#: base/pp_template.inc:236
+#: base/pp_template.inc:238
 msgid "template timeout"
 msgstr "template timeout"
 
-#: base/pp_template.inc:236
+#: base/pp_template.inc:238
 msgid "max iteration"
 msgstr "itération max"
 
-#: base/pp_template.inc:336 base/pp_template.inc:389
+#: base/pp_template.inc:346 base/pp_template.inc:399
 msgid "template error"
 msgstr "erreur de traitement du gabarit"
 
-#: base/pp_template.inc:418
+#: base/pp_template.inc:437
 msgid "you must specify template name"
 msgstr "vous devez spécifier au moins une taille"
 
-#: base/pp_template.inc:419
+#: base/pp_template.inc:438
 msgid "correct syntax is"
 msgstr "la syntaxe correct est"
 
-#: base/pp_template.inc:428
+#: base/pp_template.inc:447
 #, fuzzy
 msgid "no such include file"
 msgstr "fichier à inclure invalide"
 
-#: base/pp_template.inc:439
+#: base/pp_template.inc:458
 msgid "invalid include file"
 msgstr "fichier à inclure invalide"
 
-#: base/pp_template.inc:469
+#: base/pp_template.inc:488
 #, fuzzy
 msgid "not set"
-msgstr "pas de texte"
+msgstr "indefini"
 
-#: base/pp_template.inc:478
+#: base/pp_template.inc:497
 #, fuzzy
 msgid "you must specify `bloc` arg in dynbloc tag"
 msgstr "vous devez spécifier au moins une taille"
 
-#: base/pp_template.inc:552
+#: base/pp_template.inc:572
 msgid "value"
 msgstr "valeur"
 
-#: base/pp_template.inc:555
+#: base/pp_template.inc:575
 msgid "action"
 msgstr "action"
 
