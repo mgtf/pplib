@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.44 2002/03/05 13:31:20 tieum Exp $
+//  $Id: pp.inc,v 1.45 2002/03/05 14:04:59 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -80,7 +80,6 @@ class pp extends pp_class
   function pp()
   {
     $this->pp_class();
-    register_shutdown_function(array($this, 'my_shutdown_function'));
     new_($this->ob, 'pp_output_buffering', 'my_output_callback');
     new_($this->tpl, 'pp_template');
     new_($this->string, 'pp_string');
@@ -102,14 +101,14 @@ class pp extends pp_class
     $this->compress_data = FALSE;
     ob_implicit_flush(false);
   }
-
-  function my_shutdown_function()
-  {
-    // XXX cleanup, call destructor there ..
-    // system("rm -f /home/tieum/public_html/proportail3/cache/*");
-    return;
-  }
 };
+
+function my_shutdown_function()
+{
+  // XXX cleanup, call destructor there ..
+  // system("rm -f /home/tieum/public_html/proportail3/cache/*");
+  return;
+}
 
 function my_output_callback($buffer)
 {
@@ -168,6 +167,7 @@ function my_output_callback($buffer)
   return $str;
 }
 
+register_shutdown_function('my_shutdown_function');
 $pp = new pp;
 
 ?>
