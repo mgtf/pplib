@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.23 2002/02/08 16:09:38 tieum Exp $
+//  $Id: pp_list.inc,v 1.24 2002/02/11 10:51:03 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -55,6 +55,7 @@ class pp_list extends pp_template
   var $del_wrapper;
   var $upd_wrapper;
   var $add_wrapper;
+  var $get_wrapper;
 
   // array like : field_name => fonction_name.
   // ex : $mylist->function_on_field = array('password' => 'MD5');
@@ -87,6 +88,7 @@ class pp_list extends pp_template
     $this->del_wrapper = -1;
     $this->upd_wrapper = -1;
     $this->add_wrapper = -1;
+    $this->get_wrapper = -1;
     $this->needed_fields = -1;
     $this->function_on_field = -1;
     $this->additional_where_clause = -1;
@@ -280,6 +282,13 @@ class pp_list extends pp_template
 	$data[$i][$this->id.'_'.$f] = ($sql->record[$f]) ? 
 	                stripslashes( strtr($sql->record[$f], array('"' => '')) )
 			: '';
+      }
+      if($this->get_wrapper != -1)
+      {
+	$func = $this->get_wrapper;
+	$d = $func($k);
+	while(list($k, $v) = each($d))
+	  $data[$i][$k] = $v;
       }
       $i++;
     }
