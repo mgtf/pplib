@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_mysql.inc,v 1.2 2002/01/18 10:23:03 tieum Exp $
+//  $Id: pp_mysql.inc,v 1.3 2002/01/18 15:14:28 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -44,7 +44,6 @@ class pp_db extends pp_class {
 
   /* public: configuration parameters */
   var $auto_free     = 0;     ## Set to 1 for automatic mysql_free_result()
-  var $debug         = 0;     ## Set to 1 for debugging messages.
   var $seq_Table     = "db_sequence";
 
   /* public: result array and current row number */
@@ -73,11 +72,12 @@ class pp_db extends pp_class {
     $this->user     = DBUSER;
     $this->password = DBPWD;
     $this->query($query);
+    $this->debug = 0;
   }
 
   function get($field, $table, $where)
   {
-    $row = $this->get_row($field, $table, $where, $debug);
+    $row = $this->get_row($field, $table, $where);
     if (!$row)
       return -1;
     return ($row[0]);
@@ -90,7 +90,7 @@ class pp_db extends pp_class {
 	      WHERE  $where ";
     if (strstr($where, 'LIMIT') === false)
       $query .= "LIMIT  1";
-    if ($debug)
+    if ($this->debug)
       $this->warning($query);
     $this->query($query);
     if (!$this->next_record())
