@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.81 2003/08/29 13:04:42 mgf Exp $
+// $Id: template.inc,v 1.82 2003/08/29 13:52:32 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -479,10 +479,14 @@ class template extends file {
     if(! is_array($data))
       $data = array();
     foreach($data as $v) {
-      $v['dynbloc_ite'] = $ite++;
-      $this->add_tag_array($v);
-      $str .= $this->parse_template($bloc);
-      $this->del_tag_array($v);
+      // here we copy data from $pp->tpl to be sure this
+      // will not modify tag outside the dynbloc tag.
+      $tpl = $this;
+      $tpl->add_tag_array($v);
+      $tpl->add_tag_array(array('dynbloc_ite' => $ite++));
+      $str .= $tpl->parse_template($bloc);
+      $tpl->del_tag_array($v);
+      $tpl->del_tag_array(array('dynbloc_ite'));
     }
     if (strlen($id))
       unset($this->dynbloc_data[$id]);
