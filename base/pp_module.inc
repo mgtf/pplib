@@ -1,5 +1,5 @@
 <?
-// $Id: pp_module.inc,v 1.2 2002/02/20 18:00:13 tieum Exp $
+// $Id: pp_module.inc,v 1.3 2002/02/20 18:42:09 tieum Exp $
 //
 // conf file syntax :
 // module_key<tab>file_to_include
@@ -27,14 +27,15 @@ class pp_module extends pp_file
       $this->module_list = $_SESSION['modules_list'];
       foreach($_SESSION['modules_list'] as $module)
       {
-	include_once(BASE_PATH.'/modules/'.$module);
+	include_once(BASE_PATH.'/modules/'.$module['module_file']);
 	if(DEBUG && SYSLOG)
-	  $this->syslog('-- loading module '.$module.' (session) --');
+	  $this->syslog('-- loading module '.$module['module_name'].' (session) --');
       }
       return;
     }
     $this->filename = $this->module_conf_file;
     $this->read();
+    $i = 0;
     foreach(split("\n", $this->data) as $line)
       if(strlen($line))
 	if($line[0] != '#')
@@ -42,11 +43,14 @@ class pp_module extends pp_file
 	  $data = split("\t", $line);
 	  if($data[0] == $this->module_key)
 	  {
-	    $module = $data[1];
-	    $_SESSION['modules_list'][] = $module;
-	    include_once($this->module_path.'/'.$module);
+	    $module_file = $data[1];
+	    $module_name = $data[2];
+	    $_SESSION['modules_list'][$i]['module_file'] = $module_file;
+	    $_SESSION['modules_list'][$i]['module_name'] = $module_name;
+	    $i++;
+	    include_once($this->module_path.'/'.$module_file);
 	    if(DEBUG && SYSLOG)
-	      $this->syslog('-- loading module '.$module.' --');
+	      $this->syslog('-- loading module '.$module_name.' --');
 	  }
 	}
     $this->module_list = $_SESSION['modules_list'];
