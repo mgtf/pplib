@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.38 2002/02/28 11:34:16 tieum Exp $
+//  $Id: pp.inc,v 1.39 2002/02/28 11:39:47 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -126,7 +126,6 @@ class pp extends pp_class
       else
 	return '';
     }
-    $this->tpl->mime_subtype = 'html';
     $str = $this->tpl->comment_start.
       " pplib v".
       $this->version.
