@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.16 2002/01/28 13:20:29 tieum Exp $
+//  $Id: pp_list.inc,v 1.17 2002/01/30 14:51:15 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -49,6 +49,7 @@ class pp_list extends pp_template
   var $current_order_field;
   var $order_fields;
   var $order;                 // e.g. DESC/ASC
+  var $needed_fields;
   var $current_page;
   // wrappers :
   var $del_wrapper;
@@ -76,6 +77,7 @@ class pp_list extends pp_template
     $this->del_wrapper = -1;
     $this->upd_wrapper = -1;
     $this->add_wrapper = -1;
+    $this->needed_fields = -1;
   }
 
   function parse_list()
@@ -392,6 +394,14 @@ class pp_list extends pp_template
     foreach( (explode(',', strtr($this->sql_fields, array(' ' => '')))) as $f)
       if(! strstr($f, '(') )
       {
+	// test if at least one needed field is empty :
+	if($this->needed_fields != -1)
+	{
+	  foreach( (explode(',', strtr($this->needed_fields, array(' ' => '')))) as $nf)
+	    if($f == $nf && strlen($listadd[$this->sql_table.'_'.$f]) == 0)
+	      return (0);
+	}
+	//
 	$data = addslashes($listadd[$this->sql_table.'_'.$f]);
 	$do_query += strlen($data);
 	$q .= ', '.$f.' = \''.$data.'\'';
