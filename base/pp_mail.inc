@@ -1,8 +1,8 @@
 <?
 
-// $Id: pp_mail.inc,v 1.5 2002/07/11 15:09:01 tieum Exp $
+// $Id: pp_mail.inc,v 1.6 2002/07/11 15:15:08 tieum Exp $
 
-class pp_mail extends pp_file
+class pp_mail extends pp_mime
 {
   var $from;
   var $from_name;
@@ -17,7 +17,7 @@ class pp_mail extends pp_file
 
   function pp_mail()
   {
-    $this->pp_class();
+    $this->pp_mime();
     $this->priority = 1;
     $this->from_name = '';
     $this->message = '';
@@ -65,7 +65,7 @@ class pp_mail extends pp_file
       {
 	$this->message .= 
 	  "\n--$boundary\n".
-	  "Content-Type: application/".$data['type'].";\n".
+	  "Content-Type: ".$data['type'].";\n".
 	  "\tname=\"$name\";\n\n".
 	  $data['data']."\n\n";
       }
