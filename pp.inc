@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.61 2002/04/11 11:08:30 tieum Exp $
+//  $Id: pp.inc,v 1.62 2002/04/11 11:20:08 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -165,32 +165,30 @@ function my_output_callback($buffer)
       $str .= 
 	_("page generated on ").$elapsed.' sec '.
 	'(pplib version : '.$pp->version.')'."\n";
-    foreach(get_rusage(1) as $rusage)
-      $str .= $rusage.' | ';
   }
   $str = $str.$pp->footer_str;
   $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
-  if($pp->compress_data && $pp->ob->get_compression != 0)
+  if($pp->compress_data && $pp->ob->get_compression() != 0)
   {
     $pp->ob->compress_add_headers();
     $str = $pp->ob->compress($str);
-    $pp->header->header_add("X-Powered-By: pplib ".$pp->version);
   }
+  $pp->header->header_add("X-Powered-By: pplib ".$pp->version);
   $pp->header->header_send();
   return $str;
 }
-
-function get_rusage($dump = 0)
-{ 
-  static $rusage;
-  if($dump)
-    return $rusage;
-  $dat = getrusage();
-  $rusage[] = $dat['ru_utime.tv_sec'] + $dat['ru_stime.tv_sec'].'/'.$dat['ru_oublock'];
-  flush();
-}
+//
+// function get_rusage($dump = 0)
+// {
+//   static $rusage;
+//   if($dump)
+//     return $rusage;
+//   $dat = getrusage();
+//   $rusage[] = $dat['ru_utime.tv_sec'] + $dat['ru_stime.tv_sec'].'/'.$dat['ru_oublock'];
+//   flush();
+// }
 
 register_shutdown_function('my_shutdown_function');
 $pp = new pp;
