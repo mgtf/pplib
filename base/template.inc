@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.30 2002/03/18 13:14:04 tieum Exp $
+//  $Id: template.inc,v 1.31 2002/03/18 14:27:52 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -101,6 +101,7 @@ class pp_template extends pp_file
     //
     $this->parse_iteration = 0;
     $this->dynbloc_data = '';
+    // predefined tags :
     $this->add_tag('include', 'template_include');
     $this->add_tag('dynbloc', 'template_dynbloc');
     $this->add_tag('if', 'template_if');
@@ -463,7 +464,10 @@ class pp_template extends pp_file
     $str = '';
     $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
     if (strlen($id))
-      $data = $this->dynbloc_data[$id];
+      if(! array_key_exists($id, $this->dynbloc_data))
+	$this->error("pp_template::template_dynbloc : dynbloc_data['$id'] "._("not set")." !");
+      else
+	$data = $this->dynbloc_data[$id];
     else
       $data = $this->dynbloc_data;
     if(array_key_exists('bloc', $tag['options']))
@@ -472,7 +476,7 @@ class pp_template extends pp_file
       $this->error("pp_template::template_dynbloc : ".
 	           _("you must specify `bloc` arg in dynbloc tag"));
     if(! is_array($data))
-      $this->error("pp_template::template_dynbloc : "._("dynbloc_data is not an array"), __FILE__, __LINE__);
+      $this->error("pp_template::template_dynbloc : "._("dynbloc_data is not an array"));
     foreach($data as $v)
     {
       $this->add_tag_array($v);
@@ -481,7 +485,10 @@ class pp_template extends pp_file
       $this->del_tag_array($v);
       $this->del_tag_array(array('dynbloc_ite'));
     }
-    $this->dynbloc_data = NULL;
+    if (strlen($id))
+      $this->dynbloc_data[$id] = '';
+    else
+      $this->dynbloc_data = '';
     return $str;
   }
 
