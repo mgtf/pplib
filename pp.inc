@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.90 2003/08/28 15:22:43 mgf Exp $
+//  $Id: pp.inc,v 1.91 2003/08/29 08:38:24 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -110,12 +110,12 @@ class pp extends _stdclass {
     new_($this->header, 'header');
     new_($this->mail, 'mail');
     $this->version = MAJOR_VERSION.'.'.MINOR_VERSION;
-    $this->no_parse = FALSE;
+    $this->no_parse = false;
     $this->header_str = '';
     $this->footer_str = '';
     $this->ob->start();
-    $this->compress_data = FALSE;
-    ob_implicit_flush(FALSE);
+    $this->compress_data = false;
+    ob_implicit_flush(false);
   }
 };
 

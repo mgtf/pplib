@@ -1,7 +1,0 @@
-<?
-
-define('PP_SYSLOG_PREFIX', '[ PPLIB ]');
-define('GENERAL_WEBMASTER_MAIL', 'webmaster@taktile.com');
-define('MAGIC_MIME_FILE', '/usr/share/misc/file/magic.mime');
-
-?>
