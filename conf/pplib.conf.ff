@@ -1,7 +1,8 @@
 <?
 
 define('PP_LIB_PATH', '/usr/lib/pplib/');
-define('PP_SYSLOG_NAME', '[ PPLIB ]');
+define('PP_SYSLOG_PREFIX', '[ PPLIB ]');
 define('GENERAL_WEBMASTER_MAIL', 'tieum@boo.taktile.com');
+define('MAGIC_MIME_FILE', '/usr/share/misc/magic.mime');
 
 ?>

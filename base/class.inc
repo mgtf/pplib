@@ -1,6 +1,6 @@
 <?
 
-// $Id: class.inc,v 1.11 2002/05/14 15:32:18 tieum Exp $
+// $Id: class.inc,v 1.12 2002/09/17 14:15:07 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // I don't even know if it's really usefull
 
@@ -52,7 +52,7 @@ class pp_class extends stdclass
 
   function syslog($errstr, $priority = LOG_ERR)
   {
-    openlog(PP_SYSLOG_NAME, LOG_PID | LOG_PERROR, LOG_LOCAL0);
+    openlog(PP_SYSLOG_PREFIX, LOG_PID | LOG_PERROR, LOG_LOCAL0);
     syslog($priority, $errstr);
     closelog();
   }
