@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.80 2002/10/28 14:17:39 tieum Exp $
+//  $Id: pp.inc,v 1.81 2002/10/28 14:22:26 tieum Exp $
 //  !pplib main class, define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -137,7 +137,7 @@ function my_output_callback($buffer)
   {
     if($pp->tpl->mime_subtype == 'html')
       return 
-	_("pp site is currently in a maintenance state").
+	_("this application is currently in a maintenance state").
 	'<br>'.
 	_("Please come back later");
     else
@@ -152,8 +152,15 @@ function my_output_callback($buffer)
     "\n".
     $pp->header_str.
     $str;
-  if($pp->tpl->mime_subtype == 'html')
-    $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
+  switch($pp->tpl->mime_subtype)
+  {
+    case 'html':
+      $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
+      break;
+    case 'xml':
+      $str = '<?xml version="1.0"?>'."\n".$str;
+      break;
+  }
   if(DEVEL_MODE)
   {
     $timer->stop('full_page_parse_time');
