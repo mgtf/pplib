@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.22 2002/02/20 13:53:05 tieum Exp $
+//  $Id: pp.inc,v 1.23 2002/02/20 15:21:05 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -37,6 +37,7 @@ if(DEVEL_MODE)
 require_once('base/pp_error.inc');
 require_once('base/pp_output_buffering.inc');
 require_once('base/pp_i18n.inc');
+require_once('base/pp_sniff.inc');
 require_once('base/pp_tree.inc');
 require_once('base/pp_mime.inc');
 require_once('base/pp_header.inc');
