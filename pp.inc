@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.42 2002/02/28 16:05:38 tieum Exp $
+//  $Id: pp.inc,v 1.43 2002/03/04 15:31:11 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -75,6 +75,7 @@ class pp extends pp_class
   var $header_str;
   var $footer_str;
   var $no_parse;
+  var $compress_data;
 
   function pp()
   {
@@ -98,6 +99,7 @@ class pp extends pp_class
     $this->header_str = '';
     $this->footer_str = '';
     $this->ob->start();
+    $this->compress_data = FALSE;
     ob_implicit_flush(false);
   }
 
@@ -156,9 +158,12 @@ function my_output_callback($buffer)
   $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
-  $pp->ob->compress_send_headers();
-  $str = $pp->ob->compress($str);
-  $pp->header->header_add("X-Powered-By: pplib ".$pp->version);
+  if($pp->compress_data)
+  {
+    $pp->ob->compress_send_headers();
+    $str = $pp->ob->compress($str);
+    $pp->header->header_add("X-Powered-By: pplib ".$pp->version);
+  }
   $pp->header->header_send();
   return $str;
 }
