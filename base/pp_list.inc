@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.7 2002/01/21 15:10:14 tieum Exp $
+//  $Id: pp_list.inc,v 1.8 2002/01/21 15:25:18 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -231,7 +231,7 @@ class pp_list extends pp_template
       }
       foreach($fl as $f)
       {
-	$list_check_update = 'onChange="document.list'.$this->id.'.'.$this->id.'_was_updated'.$k.'.value =\'1\'"';
+	$list_check_update = 'onChange="document.'.$this->id.'.'.'was_updated'.$k.'.value =\'1\'"';
 	$data[$i][$this->id.'_bgcolor'] = $this->bg_line[($i % 2)];
 	$data[$i][$this->id.'_id_list'] = $k;
 	$data[$i][$this->id.'_list_check_update'] = $list_check_update;
