@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.66 2002/04/12 15:48:06 tieum Exp $
+//  $Id: pp.inc,v 1.68 2002/04/12 16:25:26 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -50,7 +50,7 @@ require_once('base/pp_tree.inc');
 require_once('base/pp_mime.inc');
 require_once('base/pp_header.inc');
 require_once('base/pp_file.inc');
-require_once('base/pp_data.inc');
+require_once('base/pp_cache.inc');
 require_once('base/pp_template.inc');
 require_once('base/pp_mysql.inc');
 require_once('base/pp_string.inc');
@@ -60,7 +60,6 @@ require_once('base/pp_session.inc');
 require_once('base/pp_xml_expat.inc');
 require_once('base/pp_image.inc');
 require_once('base/pp_ttf_text.inc');
-require_once('base/pp_wddx.inc');
 require_once('base/pp_mail.inc');
 require_once('list/pp_list.inc');
 
@@ -72,7 +71,6 @@ class pp extends pp_class
   var $form;
   var $tpl;
   var $list;
-  var $data;
   var $file;
   var $i18n;
   var $session;
@@ -96,7 +94,6 @@ class pp extends pp_class
     new_($this->db, 'pp_db');
     new_($this->form, 'pp_form');
     new_($this->list, 'pp_list');
-    new_($this->data, 'pp_data');
     new_($this->file, 'pp_file');
     new_($this->i18n, 'pp_i18n');
     new_($this->session, 'pp_session');
