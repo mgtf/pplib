@@ -1,8 +1,8 @@
 <?
 
-// $Id: pp_class.inc,v 1.10 2002/04/04 09:35:59 tieum Exp $
+// $Id: pp_class.inc,v 1.11 2002/05/14 15:32:18 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
-// don't know if it's really usefull
+// I don't even know if it's really usefull
 
 function new_(&$object, $classname, $arg = '')
 {
