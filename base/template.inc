@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.102 2003/11/13 17:11:45 mgf Exp $
+// $Id: template.inc,v 1.103 2003/11/13 18:01:09 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -124,10 +124,6 @@ class template extends file {
   // le parseur execute $action() lorsque le tag est rencontré
   // par celui-ci.
   function add_tag($name, $action, $options = array()) {
-    if( ! function_exists($action) && ! method_exists($this, $action))
-      user_error(
-	  "template::add_tag : "._("function").
-	  " '".$action."' "._("does not exist"), E_USER_ERROR);
     if( (! strlen($name)) || (! strlen($action)) ) {
       if(! strlen($name))
 	user_error(
@@ -232,12 +228,12 @@ class template extends file {
   function parse_template($str) {
     // translate strings which are like : [@string to translate]
     $str = preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $str);
-    $begin = $this->find_begin($str);
+    $begin = icms_tpl_find_begin($str);
     if ($begin === false)
       return($str);
     $result = '';
     $remaining =& $str;
-    for ($this->parse_iteration = 0; $begin !== false; $begin = $this->find_begin($remaining)) {
+    for ($this->parse_iteration = 0; $begin !== false; $begin = icms_tpl_find_begin($remaining)) {
       // XXX - à tester, le message ne s'affiche pas.
       if ($this->parse_iteration >= $this->timeout)
 	user_error('template::parse_template : '.
@@ -265,17 +261,6 @@ class template extends file {
     $str = str_replace('\\\\', '\\', $str[1]);
     $str = _($str);
     return str_replace('\\', '\\\\', $str);
-  }
-
-  ////
-  // !private function
-  function find_begin($str) {
-    $len = strlen($str);
-    if(! $len)
-      return false;
-    if($str[0] == $this->tag_start)
-      return 0;
-    return icms_tpl_find_char($str, $this->tag_start);
   }
 
   ////
