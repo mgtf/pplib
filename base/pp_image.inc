@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.4 2002/02/12 11:50:48 tieum Exp $
+// $Id: pp_image.inc,v 1.5 2002/02/12 14:33:22 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -114,9 +114,12 @@ class pp_image extends pp_file
 
   function image_create_from_file()
   {
-    $ext = split('\.', basename($this->filename)); 
-    $ext = $ext[1];
-    $this->mime_subtype = $ext;
+    if($this->mime_subtype == -1)
+    {
+      $ext = split('\.', basename($this->filename)); 
+      $ext = $ext[1];
+      $this->mime_subtype = $ext;
+    }
     switch($this->mime_subtype)
     {
       case 'jpg':

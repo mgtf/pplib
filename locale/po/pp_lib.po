@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-01 11:55+0100\n"
+"POT-Creation-Date: 2002-02-12 15:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,8 +46,8 @@ msgstr ""
 msgid "error"
 msgstr ""
 
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:34
-#: base/pp_file.inc:58
+#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:31
+#: base/pp_file.inc:42 base/pp_file.inc:66
 msgid "file"
 msgstr ""
 
@@ -59,52 +59,52 @@ msgstr ""
 msgid "warning"
 msgstr ""
 
-#: base/pp_file.inc:29
-msgid "data or filename empty"
-msgstr ""
-
-#: base/pp_file.inc:35
-msgid "already exist, use pp_file->write(1) to force overwrite"
-msgstr ""
-
-#: base/pp_file.inc:37
-msgid "directory"
-msgstr ""
-
-#: base/pp_file.inc:38
-msgid "is not writeable"
-msgstr ""
-
-#: base/pp_file.inc:43 base/pp_file.inc:63
-msgid "can't open"
-msgstr ""
-
-#: base/pp_file.inc:45
-msgid "can't write"
-msgstr ""
-
-#: base/pp_file.inc:49 base/pp_file.inc:70
-msgid "can't close"
-msgstr ""
-
-#: base/pp_file.inc:59 base/pp_template.inc:96 base/pp_template.inc:373
-#: base/pp_template.inc:406
+#: base/pp_file.inc:31 base/pp_file.inc:67 base/pp_template.inc:96
+#: base/pp_template.inc:373 base/pp_template.inc:406
 msgid "does not exist"
 msgstr ""
 
-#: base/pp_file.inc:61
+#: base/pp_file.inc:37
+msgid "data or filename empty"
+msgstr ""
+
+#: base/pp_file.inc:43
+msgid "already exist, use pp_file->write(1) to force overwrite"
+msgstr ""
+
+#: base/pp_file.inc:45
+msgid "directory"
+msgstr ""
+
+#: base/pp_file.inc:46
+msgid "is not writeable"
+msgstr ""
+
+#: base/pp_file.inc:51 base/pp_file.inc:71
+msgid "can't open"
+msgstr ""
+
+#: base/pp_file.inc:53
+msgid "can't write"
+msgstr ""
+
+#: base/pp_file.inc:57 base/pp_file.inc:78
+msgid "can't close"
+msgstr ""
+
+#: base/pp_file.inc:69
 msgid "is not readable"
 msgstr ""
 
-#: base/pp_file.inc:78
+#: base/pp_file.inc:86
 msgid "can't get shared lock on file "
 msgstr ""
 
-#: base/pp_file.inc:85
+#: base/pp_file.inc:93
 msgid "can't get exclusive lock on file "
 msgstr ""
 
-#: base/pp_file.inc:91
+#: base/pp_file.inc:99
 msgid "can't unlock file "
 msgstr ""
 
@@ -128,15 +128,15 @@ msgstr ""
 msgid "is not supported"
 msgstr ""
 
-#: base/pp_image.inc:149
+#: base/pp_image.inc:152
 msgid "no image size"
 msgstr ""
 
-#: base/pp_image.inc:159
+#: base/pp_image.inc:162
 msgid "can't create image"
 msgstr ""
 
-#: base/pp_image.inc:200
+#: base/pp_image.inc:203
 msgid "format is not supported"
 msgstr ""
 
@@ -148,23 +148,23 @@ msgstr ""
 msgid "this format is not supported"
 msgstr ""
 
-#: base/pp_mysql.inc:69
+#: base/pp_mysql.inc:68
 msgid "db access was not configured"
 msgstr ""
 
-#: base/pp_mysql.inc:120
+#: base/pp_mysql.inc:119
 msgid "can't connect to"
 msgstr ""
 
-#: base/pp_mysql.inc:122
+#: base/pp_mysql.inc:121
 msgid "cannot use database"
 msgstr ""
 
-#: base/pp_mysql.inc:153
+#: base/pp_mysql.inc:152
 msgid "invalid sql"
 msgstr ""
 
-#: base/pp_mysql.inc:162
+#: base/pp_mysql.inc:168
 msgid "next_record called with no query pending"
 msgstr ""
 
@@ -258,58 +258,58 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:113
+#: pp.inc:114
 msgid "This site is currently in a maintenance state."
 msgstr ""
 
-#: pp.inc:115
+#: pp.inc:116
 msgid "Please come back later."
 msgstr ""
 
-#: pp.inc:136 pp.inc:139
+#: pp.inc:137 pp.inc:140
 msgid "page generated on "
 msgstr ""
 
-#: list/pp_list.inc:140
+#: list/pp_list.inc:148
 msgid "Do you confirm modifications ?"
 msgstr ""
 
-#: list/pp_list.inc:191
+#: list/pp_list.inc:199
 msgid "invert selection"
 msgstr ""
 
-#: list/pp_list.inc:282
+#: list/pp_list.inc:297
 msgid "Search"
 msgstr ""
 
-#: list/pp_list.inc:284
+#: list/pp_list.inc:299
 msgid "into"
 msgstr ""
 
-#: list/pp_list.inc:304
+#: list/pp_list.inc:319
 msgid "displaying"
 msgstr ""
 
-#: list/pp_list.inc:311
+#: list/pp_list.inc:326
 msgid "elements per page."
 msgstr ""
 
-#: list/pp_list.inc:311
+#: list/pp_list.inc:326
 msgid "Sort by"
 msgstr ""
 
-#: list/pp_list.inc:330
+#: list/pp_list.inc:345
 msgid "order"
 msgstr ""
 
-#: list/pp_list.inc:332
+#: list/pp_list.inc:347
 msgid "ascendent"
 msgstr ""
 
-#: list/pp_list.inc:333
+#: list/pp_list.inc:348
 msgid "descendent"
 msgstr ""
 
-#: list/pp_list.inc:436
+#: list/pp_list.inc:475
 msgid "Total"
 msgstr ""

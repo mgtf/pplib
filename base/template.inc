@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.9 2002/01/24 16:31:14 tieum Exp $
+//  $Id: template.inc,v 1.10 2002/02/12 14:33:22 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -521,7 +521,7 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_debug($tag = NULL)
+  function template_debug()
   {
     $s = '';
     if($this->mime_subtype != 'html')
