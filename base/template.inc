@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.99 2003/11/12 14:11:57 mgf Exp $
+// $Id: template.inc,v 1.100 2003/11/12 14:36:33 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -282,8 +282,7 @@ class template extends file {
   // !private function
   function find_end($str, $begin = 0) {
     if(function_exists('icms_tpl_find_end')) {
-      $end = icms_tpl_find_end($str, $begin);
-      return ($end == -1) ? false : $end;
+      return icms_tpl_find_end($str, $begin);
     }
     static $c = array();
     $k = md5(serialize(array($str, $begin)));
@@ -314,8 +313,7 @@ class template extends file {
   // at $str[1] and where $char in not escaped
   function find_char($str, $char) {
     if(function_exists('icms_tpl_find_char')) {
-      $pos = icms_tpl_find_char($str, $char);
-      return ($pos == -1) ? false : $pos;
+      return icms_tpl_find_char($str, $char);
     }
     static $c = array();
     $k = md5(serialize(array($str, $char)));
