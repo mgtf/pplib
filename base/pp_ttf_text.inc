@@ -1,5 +1,5 @@
 <?
-// $Id: pp_ttf_text.inc,v 1.8 2002/02/25 13:19:07 tieum Exp $
+// $Id: pp_ttf_text.inc,v 1.9 2002/02/25 13:20:26 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -72,7 +72,7 @@ class pp_ttf_text extends pp_image
     $this->force_xpos = -1;
     $this->force_ypos = -1;
     $this->force_xsize = -1;
-    $this->force_usze = -1;
+    $this->force_ysize = -1;
   }
 
   function create_ttf_text()
