@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.33 2002/02/26 17:13:27 tieum Exp $
+//  $Id: pp.inc,v 1.34 2002/02/27 17:37:09 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -99,7 +99,6 @@ class pp extends pp_class
     $this->no_parse = FALSE;
     $this->header_str = '';
     $this->footer_str = '';
-
     $this->ob->start();
     ob_implicit_flush(false);
   }
@@ -162,6 +161,8 @@ class pp extends pp_class
     $str = $pp->tpl->parse_template($str);
     if(AUTO_STRIPSLASHES)
       $str = stripslashes($str);
+    $this->ob->compress_send_headers();
+    $str = $this->ob->compress($str);
     return $str;
   }
 };

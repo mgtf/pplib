@@ -1,5 +1,5 @@
 <?
-// $Id: pp_output_buffering.inc,v 1.3 2002/02/26 12:47:44 tieum Exp $
+// $Id: pp_output_buffering.inc,v 1.5 2002/02/27 17:40:40 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -51,7 +51,7 @@ class pp_output_buffering extends pp_class
     $tmp = ob_get_contents();
     $this->clean();
     $this->start();
-    print $this->data;
+    print($this->data);
     $this->data = '';
     return $tmp;
   }
@@ -66,30 +66,31 @@ class pp_output_buffering extends pp_class
     return '';
   }
 
-  function printcontent($content = '') 
+  function compress_send_headers() 
   {
     global $HTTP_SERVER_VARS;
-    if ($content == '')
-      $content = & $this->data;
+    $this->get_compression();
     if ($this->do_compression && $this->do_caching) 
     {
-      $etag = 'PPLIB-Cache-' . md5(substr($content, -40));
+      $etag = 'PPLIB-cache-' . md5(substr($this->data, -40));
       header("ETag: $etag");
-      if (strstr(stripslashes($HTTP_SERVER_VARS['HTTP_IF_NONE_MATCH']), $etag)) 
+      if (strstr(stripslashes($HTTP_SERVER_VARS['HTTP_IF_NONE_MATCH']), $etag))
+        header('HTTP/1.0 304');
+      else
       {
-	// not modified
-	header('HTTP/1.0 304');
-	return;
-      } 
-      else 
-      {
-	// client accepts some encoding - send headers & data
 	header("Content-Encoding: ".$this->compression);
-	header('Vary: Accept-Encoding');
-	print "\x1f\x8b\x08\x00\x00\x00\x00\x00";
+        header('Vary: Accept-Encoding');
       }
     }
-    print $content;
+  }
+
+  function compress($data)
+  {
+    $len = strlen($data);
+    $crc = crc32($data);
+    $data_compress = gzcompress($data, 9);
+    $data_compress = substr($data_compress, 0, strlen($data_compress) - 4) . pack('V', $crc) . pack('V', $len);
+    return "\x1f\x8b\x08\x00\x00\x00\x00\x00".$data_compress;
   }
 };
 
