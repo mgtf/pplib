@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.41 2002/06/06 09:29:18 tieum Exp $
+//  $Id: template.inc,v 1.42 2002/06/06 17:03:47 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -253,7 +253,10 @@ class pp_template extends pp_file
   function find_begin($str)
   {
     $len = strlen($str);
-    for ($i = 0; $i < $len; $i++)
+    // XXX - faut-il initialiser $i à 0 ou à 1 ?
+    // si $i = 0, il faudrait remplacer $str[$i - 1] par
+    // quelque chose comme $str[$i - ($i ? 1 : 0)]
+    for ($i = 1; $i < $len; $i++)
       if($str[$i] == $this->tag_start && $str[$i - 1] != '\\')
 	return $i;
     return FALSE;
