@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.17 2003/09/04 13:43:53 mgf Exp $
+//  $Id: cache.inc,v 1.19 2003/09/08 16:21:47 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -84,11 +84,12 @@ class cache extends file {
     static $already_run = false;
     if($already_run)
       return;
+    $already_run = true;
     srand((double) microtime() * 1000000);
     // run only 2% of times.
     if(rand(1, 100) > 2)
       return;
-    $cmd = "find ".$this->cache_path." -type f -name '".CACHEFILE_PREFIX."*' -print";
+    $cmd = "find ".CACHE_PATH." -type f -name '".CACHEFILE_PREFIX."*' -print";
     $a = `$cmd`;
     $files = explode("\n", $a);
     clearstatcache();
@@ -96,7 +97,6 @@ class cache extends file {
       if(file_exists($file) && ((time() - filemtime($file)) > CACHEFILE_MAXLIFETIME))
 	unlink($file);
     }
-    $already_run = true;
   }
 };
 
