@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.16 2002/07/23 10:45:19 tieum Exp $
+//  $Id: mysql.inc,v 1.17 2002/08/07 15:07:07 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -78,7 +78,7 @@ class pp_db extends pp_class {
     return ($row[0]);
   }
 
-  function get_row($fields, $table, $where)
+  function get_row($fields, $table, $where, $type = MYSQL_NUM)
   {
     $query = "SELECT $fields
 	      FROM   $table
@@ -89,7 +89,7 @@ class pp_db extends pp_class {
       user_error($query, E_USER_WARNING);
     $this->query($query);
     // here we need a MYSQL_NUM type array
-    if (!$this->next_record(MYSQL_NUM))
+    if (!$this->next_record($type))
       return -1;
     $row = $this->record;
     $this->free();
