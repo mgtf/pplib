@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_mysql.inc,v 1.7 2002/01/23 11:31:11 tieum Exp $
+//  $Id: pp_mysql.inc,v 1.8 2002/01/30 13:14:17 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -150,7 +150,8 @@ class pp_db extends pp_class {
     $this->errno = mysql_errno();
     $this->error = mysql_error();
     if (!$this->query_id)
-      $this->error("pp_db::query : "._("invalid sql").": ".$query);
+      $this->error("pp_db::query : "._("invalid sql").": ".$query."\n".
+	            $this->error."(".$this->errno.")");
     else
       return $this->query_id;
   }
