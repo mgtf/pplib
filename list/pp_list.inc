@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.30 2002/03/07 09:57:22 tieum Exp $
+//  $Id: pp_list.inc,v 1.31 2002/03/20 14:15:36 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -476,16 +476,18 @@ class pp_list extends pp_template
     new_($f, 'pp_form');
     $f->add_field('hidden', $this->id.'_want_page');
     if($this->current_page)
-      $f->add_field('submit', '[Précédent]', 
-		    'onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page - 1).'\'"');
+      $f->data .= 
+	'<input type="image" src="/icons/previous.gif" 
+	  onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page - 1).'\'">';
     for ($i = 0; $i < $nbp; $i++)
       if($i == $this->current_page)
 	$f->add_field('button', ' '.$i.' ');
       else
 	$f->add_field('submit', ' '.$i.' ', 'onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.$i.'\'"');
     if(($nbp - 1) > $this->current_page)
-      $f->add_field('submit', '[Suivant]',
-		    'onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page + 1).'\'"');
+      $f->data .= 
+	'<input type="image" src="/icons/next.gif" 
+	  onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page + 1).'\'">';
     $res .= $f->data;
     $res .='<b>Total : '.$nb.'</b></nobr>';
     $res .= '</nobr>';
