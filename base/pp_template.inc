@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.44 2002/06/12 09:30:43 tieum Exp $
+//  $Id: pp_template.inc,v 1.45 2002/06/13 15:06:35 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -368,17 +368,17 @@ class pp_template extends pp_file
       {
 	case '"':
 	  $end = $this->dquote_end($other);
-	  $par = stripslashes(substr($other, 1, $end - 1));
+	  $par = substr($other, 1, $end - 1);
 	  $param = substr($other, $end);
 	  break;
 	  case "'":
 	    $end = $this->squote_end($other);
-	  $par = stripslashes(substr($other, 1, $end - 1));
+	  $par = substr($other, 1, $end - 1);
 	  $param = substr($other, $end);
 	  break;
 	  case "`":
 	    $end = $this->bquote_end($other);
-	  $par = stripslashes(substr($other, 1, $end - 1));
+	  $par = substr($other, 1, $end - 1);
 	  $param = substr($other, $end);
 	  break;
 	case $this->tag_start:

@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.70 2002/06/13 09:39:58 tieum Exp $
+//  $Id: pp.inc,v 1.71 2002/06/13 15:06:33 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -166,6 +166,7 @@ function my_output_callback($buffer)
   $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
+  $str = stripslashes($str);
   if($pp->compress_data && ($pp->ob->get_compression() != 'none') )
   {
     $pp->ob->compress_add_headers();
