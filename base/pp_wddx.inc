@@ -1,5 +1,5 @@
 <?
-// $Id: pp_wddx.inc,v 1.1 2002/02/07 15:42:27 tieum Exp $
+// $Id: pp_wddx.inc,v 1.2 2002/02/08 10:05:24 tieum Exp $
 
 class pp_wddx extends pp_data
 {
@@ -13,7 +13,7 @@ class pp_wddx extends pp_data
     $this->wddx_items = array();
   }
 
-  function wddx_serialize()
+  function wddx_serialize_()
   {
     $this->wddx_id = wddx_packet_start('proportail content');
     if($this->wddx_id == -1)
@@ -24,7 +24,7 @@ class pp_wddx extends pp_data
     $this->data = wddx_packet_end($this->wddx_id);
   }
 
-  function wddx_deserialize()
+  function wddx_deserialize_()
   {
     if($this->data == -1)
       $this->error('pp_wddx::wddx_deserialize : no data');
