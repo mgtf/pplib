@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_template.inc,v 1.71 2003/08/07 18:19:15 mgf Exp $
+// $Id: pp_template.inc,v 1.72 2003/08/08 09:46:41 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -273,13 +273,15 @@ class pp_template extends pp_file {
 
   ////
   // !private function
+  // return the first occurence of $char in $str, starting
+  // at $str[1] and where $char in not escaped
   function find_char($str, $char) {
     $l = strlen($str);
     $r = false;
     for ($i = 1; $i < $l; $i++) {
       if (($str[$i] == $char) && ($str[$i - 1] != '\\')) {
-	$r = $i;
-	break;
+        $r = $i;
+        break;
       }
     }
     return $r;
