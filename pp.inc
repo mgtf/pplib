@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.68 2002/04/12 16:25:26 tieum Exp $
+//  $Id: pp.inc,v 1.67 2002/04/12 16:24:48 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -71,6 +71,7 @@ class pp extends pp_class
   var $form;
   var $tpl;
   var $list;
+  var $data;
   var $file;
   var $i18n;
   var $session;
@@ -94,6 +95,7 @@ class pp extends pp_class
     new_($this->db, 'pp_db');
     new_($this->form, 'pp_form');
     new_($this->list, 'pp_list');
+    new_($this->data, 'pp_data');
     new_($this->file, 'pp_file');
     new_($this->i18n, 'pp_i18n');
     new_($this->session, 'pp_session');
