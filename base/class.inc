@@ -1,6 +1,6 @@
 <?
 
-// $Id: class.inc,v 1.9 2002/04/04 09:29:52 tieum Exp $
+// $Id: class.inc,v 1.10 2002/04/04 09:35:59 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // don't know if it's really usefull
 
@@ -55,6 +55,23 @@ class pp_class extends stdclass
     openlog(PP_SYSLOG_NAME, LOG_PID | LOG_PERROR, LOG_LOCAL0);
     syslog($priority, $errstr);
     closelog();
+  }
+
+  function error($errstr, $file = -1, $line = -1)
+  {
+    if($file != -1 && $line != -1)
+      $errstr .= "\n"._("file")." : $file\n"._("line")." : $line";
+    if($this->syslog)
+      $this->syslog($errstr);
+    user_error($errstr, E_USER_ERROR);
+  }
+
+  function warning($errstr)
+  {
+    if($this->syslog)
+      $this->syslog($errstr, LOG_WARNING);
+    if($this->debug)
+      user_error($errstr, E_USER_WARNING);
   }
 };
 
