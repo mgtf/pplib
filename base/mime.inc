@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mime.inc,v 1.3 2002/04/04 09:29:11 tieum Exp $
+//  $Id: mime.inc,v 1.4 2002/06/11 16:39:00 tieum Exp $
 //  mime type class
 //
 //  public methods :
@@ -20,7 +20,7 @@ class pp_mime_el extends pp_class
 {
   var $mime_type;
   var $mime_subtype;
-  var $mime_extentionss;
+  var $mime_extentions;
   var $tag_start;
   var $tag_stop;
   var $blank_char;
