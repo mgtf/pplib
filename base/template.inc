@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.63 2003/05/24 18:34:49 mgf Exp $
+// $Id: template.inc,v 1.64 2003/07/07 13:49:40 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -239,8 +239,16 @@ class pp_template extends pp_file
 
   ////
   // !private function
+  function translate($str) {
+    return _(stripslashes($str[1]));
+  }
+
+  ////
+  // !private function
   function do_parse_template($str)
   {/*{{{*/
+    // translate the string : 
+    $str = preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $str);
     $begin = $this->find_begin($str);
     if ($begin === false)
       return ($str);
