@@ -1,5 +1,5 @@
 <?
-// $Id: file.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: file.inc,v 1.2 2002/01/18 14:02:25 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -57,7 +57,6 @@ class pp_file extends pp_mime
 
   function read()
   {
-    $this->wait_for_lock();
     if($this->filename == -1 || strlen($this->filename) < 1)
       $this->error("pp_file::read : no file to read");
     if(! @file_exists($this->filename))
@@ -65,11 +64,13 @@ class pp_file extends pp_mime
 	            _("does not exist"));
     if(! @is_readable($this->filename) )
       $this->error("pp_file::read : '".$this->filename."' "._("is not readable"));
+    $this->lock();
     if( ($fd = @fopen ($this->filename, "r")) == FALSE)
       $this->error("pp_file::read : "._("can't open")." '".$this->filename."'");
-    if( $this->data = @fread ($fd, filesize ($this->filename)) )
+    $this->data = @fread ($fd, filesize ($this->filename));
     if ( @fclose($fd) == FALSE )
       $this->error("pp_file::read : "._("can't close")." ".$this->filename."'");
+    $this->unlock();
     return $this->data;
   }
 

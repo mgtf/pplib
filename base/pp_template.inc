@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.1 2002/01/15 15:22:12 tieum Exp $
+//  $Id: pp_template.inc,v 1.2 2002/01/18 14:07:09 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -442,7 +442,7 @@ class pp_template extends pp_file
   {
     $ite = 0;
     $str = '';
-    $id = key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
+    $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
     if (strlen($id))
       $data = $this->dynbloc_data[$id];
     else
