@@ -1,13 +1,20 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.45 2002/03/05 14:04:59 tieum Exp $
-//  pplib main class
+//  $Id: pp.inc,v 1.46 2002/03/07 09:55:55 tieum Exp $
+//  !pplib main class, define pp object
+//
+//  properties :
+//  
+//  no_parse : set it to FALSE for not to parse output
+//             before send it back to the browser
+//  header_str, footer_str : header/footer add to the output.
+//  compress_data : whether we should use output compression or not.
 //
 //  public methods :
+//  none
 //
 //  private methods :
-//
 //  none
 //
 //  consts :
@@ -16,6 +23,7 @@
 //  PP_MINOR_VERSION
 //  PP_LIB_PATH
 //  PP_SYSLOG_NAME
+//
 
 define('PP_LIB_PATH', '/home/tieum/sfp/pplib');
 define('PP_SYSLOG_NAME', '[ PPLIB ]');

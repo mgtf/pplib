@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.26 2002/03/05 15:08:33 tieum Exp $
+//  $Id: pp_template.inc,v 1.27 2002/03/07 09:55:56 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -33,6 +33,9 @@
 //  template_dynbloc($tag)
 //  template_replace($tag)
 //  template_debug($tag)
+//  template_uppercase($tag)
+//  template_ua_mozilla($tag)
+//  template_ua_msie($tag)
 //
 //  consts : 
 //
@@ -40,7 +43,9 @@
 //  INC_PATH
 //  TPL_PATH
 //  DEBUG
-// 
+//  DEVEL_MODE
+//  SYSLOG
+//
 //  tag prédéfinis :
 //
 // {if cond='' then='' else=''}
@@ -50,6 +55,8 @@
 // {replace mode='' what='' by='' in=''}
 // {uppercase data=''}
 // {self}
+// {ua_mozilla}
+// {ua_msie}
 
 class pp_template extends pp_file
 {
@@ -456,7 +463,8 @@ class pp_template extends pp_file
     if(array_key_exists('bloc', $tag['options']))
       $bloc = $tag['options']['bloc'];
     else
-      $this->error(_("you must specify `bloc` arg in dynbloc tag"));
+      $this->error("pp_template::template_dynbloc : ".
+	           _("you must specify `bloc` arg in dynbloc tag"));
     if(! is_array($data))
       return '';
     while( list($k, $v) = each($data) )
