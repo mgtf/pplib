@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_mime.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+//  $Id: pp_mime.inc,v 1.2 2002/02/12 15:45:17 tieum Exp $
 //  mime type class
 //
 //  public methods :
@@ -109,7 +109,6 @@ class pp_mime extends pp_mime_el
       }
     }
     $this->error("pp_mime::get_mime : "._("this format is not supported"));
-    return -1;
   }
 
 };

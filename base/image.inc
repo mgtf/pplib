@@ -1,5 +1,5 @@
 <?
-// $Id: image.inc,v 1.5 2002/02/12 14:33:22 tieum Exp $
+// $Id: image.inc,v 1.6 2002/02/12 15:45:17 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -117,7 +117,11 @@ class pp_image extends pp_file
     if($this->mime_subtype == -1)
     {
       $ext = split('\.', basename($this->filename)); 
-      $ext = $ext[1];
+      if(array_key_exists(1, $ext))
+	$ext = $ext[1];
+      else
+	$this->error('pp_file::image_create_from_file : '.
+	              _("image")."'".$this->filename."'"._("has no extention"));
       $this->mime_subtype = $ext;
     }
     switch($this->mime_subtype)
