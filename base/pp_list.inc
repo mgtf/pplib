@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.5 2002/01/18 13:54:46 tieum Exp $
+//  $Id: pp_list.inc,v 1.6 2002/01/18 15:49:10 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -80,6 +80,8 @@ class pp_list extends pp_template
       $this->error("parse_list::parse_list : you must specify sql table");
     if(! strlen($this->sql_key) )
       $this->error("parse_list::parse_list : you must specify primary key");
+    if(! strlen($this->search_fields) )
+      $this->error("parse_list::parse_list : you must specify search field");
     if(! isset($this->order_fields) )
       $this->order_fields = $this->sql_key;
     // actions : 

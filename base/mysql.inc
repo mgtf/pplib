@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.3 2002/01/18 15:14:28 tieum Exp $
+//  $Id: mysql.inc,v 1.4 2002/01/18 15:49:10 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -95,7 +95,7 @@ class pp_db extends pp_class {
     $this->query($query);
     if (!$this->next_record())
       return -1;
-    $row = $this->Record;
+    $row = $this->record;
     $this->free();
     if (!$row)
       return -1;
