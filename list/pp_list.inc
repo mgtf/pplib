@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.13 2002/01/24 11:19:06 tieum Exp $
+//  $Id: pp_list.inc,v 1.14 2002/01/25 15:34:42 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -118,10 +118,19 @@ class pp_list extends pp_template
       $this->del_data($listdel);
     if(is_array($listadd) && $want_save)
       $this->add_data($listadd);
+    $updated = 0;
     if(is_array($list_ids) && $want_save)
       foreach($list_ids as $i)
 	if($HTTP_POST_VARS[$this->id.'_was_updated'.$i])
+	{
 	  $this->upd_data($i);
+	  $update = 1;
+	}
+    if($updated == 1 && $this->upd_wrapper != -1 && function_exists($this->upd_wrapper))
+    {
+      $wrapper = $this->upd_wrapper;
+      $wrapper();
+    }
     //
     $this->get_vars();
     $this->set_tags($want_save);
@@ -340,11 +349,6 @@ class pp_list extends pp_template
     $q .= ' WHERE '.$this->sql_key.' = '.$id;
     new_($up, 'pp_db', $q);
     $this->message .= $this->message_upd;
-    if($this->upd_wrapper != -1 && function_exists($this->upd_wrapper))
-    {
-      $wrapper = $this->upd_wrapper;
-      $wrapper();
-    }
   }
 
   function del_data($listdel)
