@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mime.inc,v 1.5 2002/07/11 15:09:01 tieum Exp $
+//  $Id: mime.inc,v 1.6 2002/07/11 17:13:47 tieum Exp $
 //  mime type class
 //
 //  public methods :
@@ -71,6 +71,7 @@ class pp_mime extends pp_mime_el
     $this->add_mime('text', 'tex', array('tex'), '[', ']', '~', ' % ', "\n");
     $this->add_mime('application', 'pdf', array('pdf'));
     $this->add_mime('image', 'jpeg', array('jpeg', 'jpg', 'jpe'));
+    $this->add_mime('image', 'gif', array('gif'));
     $this->add_mime('image', 'png', array('png'));
     $this->add_mime('image', 'tiff', array('tiff', 'tif'));
     $this->add_mime('video', 'mpeg', array('mpeg', 'mpg', 'mpe'));

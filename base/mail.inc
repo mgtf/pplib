@@ -1,6 +1,6 @@
 <?
 
-// $Id: mail.inc,v 1.6 2002/07/11 15:15:08 tieum Exp $
+// $Id: mail.inc,v 1.7 2002/07/11 17:13:47 tieum Exp $
 
 class pp_mail extends pp_mime
 {
@@ -46,7 +46,7 @@ class pp_mail extends pp_mime
       $headers .= "Content-Type: text/html; charset=iso-8859-1\n";
     if($this->has_attachment)
     {
-      $boundary = 'pplib'.PP_MAJOR_VERSION.PP_MINOR_VERSION.'-'.md5(uniqid(rand()));
+      $boundary = 'pplib'.PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION.'-'.md5(uniqid(rand()));
       $headers .= 
 	"Content-Type: multipart/mixed;\n".
 	"\tboundary=\"$boundary\";\n".
@@ -60,7 +60,7 @@ class pp_mail extends pp_mime
 	).
 	"Content-Transfer-Encoding: 7bit\n\n".
 	$this->message."\n";
-      //
+      // add attachments : 
       while(list($name, $data) = each($this->attachment_data))
       {
 	$this->message .= 
