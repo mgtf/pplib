@@ -1,6 +1,19 @@
-% $Id: classes.tex,v 1.3 2002/03/25 12:34:17 tieum Exp $
+% $Id: classes.tex,v 1.4 2002/03/25 12:46:47 tieum Exp $
 \textcolor{section}{\section{Description des classes}}
   Les classes sont accessibles via l'objet \$pp, vous pouvez toutefois créer des nouveaux objets directement.
+  \textcolor{subsection}{\subsection{Classe pp}}
+  Cette classe permet d'acceder à toutes les autres classes de la librairie.
+  L'inclusion de pp.inc crée l'objet \$pp par lequel vous acceder à toutes les methodes de la librairie.
+  \begin{vars_def}
+    \vars{header\_str}{Chaine de caractère ajoutée au tout debut des données renvoyé par le parseur}
+    \vars{footer\_str}{Chaine de caractère ajoutée à la fin des données renvoyé par le parseur}
+    \vars{no\_parse}{Demande au parseur de renvoyer les données tel quel, sans les parser.
+                     Cela peut être utiliser pour envoyé des données binaires au client en étant sur que le parseur 
+                     ne les modifiera pas (par exemple les données d'une image Gif)}
+    \vars{compress\_data}{Flag qui permet de contrôler la compression en gzip/x-gzip du code HTML avant l'envoi au client.
+                          Si compress\_data = TRUE, les données ne sont compressées que si le browser du client supporte 
+                          le compression.}
+  \end{vars_def}
   \textcolor{subsection}{\subsection{Classe pp\_template}}
   Cette classe implémente un parseur permettant d'exécuter des remplacements de chaînes. 
   la source peut provenir d'un fichier HTML ou non, ou d'une chaîne de caractères. 
