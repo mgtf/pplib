@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.20 2002/02/20 15:19:57 tieum Exp $
+//  $Id: pp_template.inc,v 1.21 2002/02/23 15:52:33 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -395,16 +395,16 @@ class pp_template extends pp_file
   // !private function
   function template_include($tag)
   {
-    $name = $tag[options][name];
-    $type = $tag[options][type];
+    $name = $tag['options']['name'];
+    $type = $tag['options']['type'];
     if ($name == '')
       return $this->error("pp_template::template_include : "._("you must specify template name").",\n".
 			  _("correct syntax is")." : {include name=\"filename\" type=\"type\"}");
     switch ($type)
     {
-      case raw:
+      case 'raw':
 	return ($this->parse_template_file($this->tpl_path.$name.'.html'));
-      case php:
+      case 'php':
       default:  
 	$file = $this->inc_path."$name".'.inc';
 	if (!file_exists($file))
