@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_mail.inc,v 1.18 2002/09/18 11:58:45 tieum Exp $
+// $Id: pp_mail.inc,v 1.19 2003/08/27 11:25:29 mgf Exp $
 // !send complex email with attachments
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -26,7 +26,7 @@
 // BOUNDARY_PREFIX
 // DEFAULT_PRIORITY
 
-define('BOUNDARY_PREFIX', '--pplib-');
+define('BOUNDARY_PREFIX', '--'.LIBNAME.'-');
 define('DEFAULT_PRIORITY', 3);
 
 class pp_mail extends pp_mime
@@ -84,7 +84,7 @@ class pp_mail extends pp_mime
        ! strlen($this->to))
       user_error("pp_mail::send : "._("Missing parameters"), E_USER_ERROR);
     $this->headers  = "From: ".$this->from."\n";
-    $this->headers .= "X-Mailer: pplib v".PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION."\n";
+    $this->headers .= "X-Mailer: ".LIBNAME." v".PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION."\n";
     $this->headers .= "X-Priority: ".$this->priority."\n";
     $this->headers .= "Return-Path: ".GENERAL_WEBMASTER_MAIL."\n";
     if($this->is_html || $this->has_attachment)
@@ -111,7 +111,9 @@ class pp_mail extends pp_mime
 
   ////
   // !public
-  function add_notification($mail) { $this->headers .= "Disposition-Notification-To: $mail\n"; }
+  function add_notification($mail) { 
+    $this->headers .= "Disposition-Notification-To: $mail\n"; 
+  }
 
   ////
   // !public
