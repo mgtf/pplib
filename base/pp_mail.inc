@@ -1,6 +1,6 @@
 <?
 
-// $Id: pp_mail.inc,v 1.10 2002/07/16 10:29:46 tieum Exp $
+// $Id: pp_mail.inc,v 1.11 2002/07/17 10:05:46 tieum Exp $
 // !pp_mail.inc - send complex email with attachments.
 //
 // public methods : 
@@ -69,8 +69,8 @@ class pp_mail extends pp_mime
     if($this->has_attachment)
       $this->construct_attachment();
     $this->construct_recipient_list();
-    $this->construct_copy_to_recipient()
-    $this->construct_blink_copy_to_recipient()
+    $this->construct_copy_to_recipient();
+    $this->construct_blink_copy_to_recipient();
     mail($this->to, $this->subject, $this->body, $this->headers);
   }
 
