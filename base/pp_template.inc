@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.45 2002/06/13 15:06:35 tieum Exp $
+//  $Id: pp_template.inc,v 1.46 2002/06/26 15:23:21 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -552,10 +552,9 @@ class pp_template extends pp_file
   // !private function
   function tag_self($tag)
   {
-    global $HTTP_GET_VARS;
     $self = '?';
-    reset($HTTP_GET_VARS);
-    while(list($k, $v) = each($HTTP_GET_VARS))
+    reset($_GET);
+    while(list($k, $v) = each($_GET))
       if($v != NULL)
 	$self .= '&'.$k.'='.urlencode($v);
     return $self;
