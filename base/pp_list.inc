@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.11 2002/01/22 16:16:37 tieum Exp $
+//  $Id: pp_list.inc,v 1.12 2002/01/22 16:38:53 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -159,6 +159,8 @@ class pp_list extends pp_template
 			       'id' => $this->id,
 			       $this->id.'_want_page' => 0,
 			       $this->id.'_want_save' => 0,
+			       $this->id.'_list_submit_add' => '
+			       <input type=image src="icons/add.png" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
 			       $this->id.'_list_submit' => '
 			       <input type=submit value="enregistrer" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
 			       <font size=1><input type="button" value="inverser la séléction" onclick="javascript:invertsel(\''.$this->id.'\')"></font>
