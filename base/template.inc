@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.3 2002/01/18 14:15:55 tieum Exp $
+//  $Id: template.inc,v 1.4 2002/01/18 14:18:12 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -486,8 +486,8 @@ class pp_template extends pp_file
   // !private function
   function template_translate($tag)
   {
-    $opt = $tag[options];
-    $txt = $opt[data];
+    $opt = $tag['options'];
+    $txt = $opt['data'];
     eval('$txt = _("'.$txt.'");');
     return $txt;
   }
