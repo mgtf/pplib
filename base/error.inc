@@ -1,12 +1,11 @@
 <?
 
 ////
-// $Id: error.inc,v 1.16 2003/08/27 11:54:02 mgf Exp $
+// $Id: error.inc,v 1.17 2003/08/29 13:08:28 mgf Exp $
 // !error handling
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
-
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
@@ -14,10 +13,8 @@ else
   error_reporting(E_ALL ^ E_NOTICE);
 set_error_handler('my_error_handler');
 
-function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
-{
-  switch($errno)
-  {
+function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
+  switch($errno) {
     case E_ERROR:
     case E_PARSE:
     case E_USER_ERROR:
