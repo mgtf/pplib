@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.29 2002/03/15 12:11:36 tieum Exp $
+//  $Id: template.inc,v 1.30 2002/03/18 13:14:04 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -472,7 +472,7 @@ class pp_template extends pp_file
       $this->error("pp_template::template_dynbloc : ".
 	           _("you must specify `bloc` arg in dynbloc tag"));
     if(! is_array($data))
-      return '';
+      $this->error("pp_template::template_dynbloc : "._("dynbloc_data is not an array"), __FILE__, __LINE__);
     foreach($data as $v)
     {
       $this->add_tag_array($v);

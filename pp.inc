@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.49 2002/03/18 12:01:33 tieum Exp $
+//  $Id: pp.inc,v 1.50 2002/03/18 13:14:03 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -47,34 +47,24 @@ if(DEVEL_MODE)
 
 require_once('base/pp_error.inc');
 require_once('base/pp_output_buffering.inc');
-echo get_rusage();
 require_once('base/pp_i18n.inc');
 require_once('base/pp_sniff.inc');
-echo get_rusage();
 require_once('base/pp_tree.inc');
 require_once('base/pp_mime.inc');
-echo get_rusage();
 require_once('base/pp_header.inc');
 require_once('base/pp_file.inc');
-echo get_rusage();
 require_once('base/pp_data.inc');
 require_once('base/pp_template.inc');
-echo get_rusage();
 require_once('base/pp_mysql.inc');
 require_once('base/pp_string.inc');
-echo get_rusage();
 require_once('base/pp_user.inc');
 require_once('base/pp_form.inc');
-echo get_rusage();
 require_once('base/pp_session.inc');
 require_once('base/pp_xml_expat.inc');
-echo get_rusage();
 require_once('base/pp_image.inc');
 require_once('base/pp_ttf_text.inc');
-echo get_rusage();
 require_once('base/pp_wddx.inc');
 require_once('list/pp_list.inc');
-echo get_rusage();
 
 class pp extends pp_class
 {
