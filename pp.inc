@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.8 2002/01/23 08:04:52 tieum Exp $
+//  $Id: pp.inc,v 1.9 2002/01/23 08:10:47 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -17,7 +17,6 @@
 //  PP_LIB_PATH
 //  PP_LOG_NAME
 
-// XXX PP_LIB_PATH use by i18n : 
 define('PP_LIB_PATH', '/home/tieum/pplight/pplib/');
 define('PP_LOG_NAME', 'pplib');
 define('PP_MAJOR_VERSION', '3');
