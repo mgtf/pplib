@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.14 2002/01/25 15:34:42 tieum Exp $
+//  $Id: pp_list.inc,v 1.15 2002/01/28 10:20:28 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -124,7 +124,7 @@ class pp_list extends pp_template
 	if($HTTP_POST_VARS[$this->id.'_was_updated'.$i])
 	{
 	  $this->upd_data($i);
-	  $update = 1;
+	  $updated = 1;
 	}
     if($updated == 1 && $this->upd_wrapper != -1 && function_exists($this->upd_wrapper))
     {
