@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_mail.inc,v 1.15 2002/08/08 13:45:12 tieum Exp $
+// $Id: pp_mail.inc,v 1.16 2002/08/08 14:02:03 tieum Exp $
 // !pp_mail.inc - send complex email with attachments.
 //
 // public methods : 
@@ -67,6 +67,7 @@ class pp_mail extends pp_mime
       return FALSE;
     // then, check mail server
     // XXX - not finished yet.
+    return TRUE;
   }
 
   ////
