@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.8 2002/01/21 15:25:18 tieum Exp $
+//  $Id: pp_list.inc,v 1.9 2002/01/21 15:51:22 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -111,7 +111,7 @@ class pp_list extends pp_template
       $this->add_data($listadd);
     if(is_array($list_ids) && $want_save)
       foreach($list_ids as $i)
-	if($HTTP_POST_VARS[$id.'_was_updated'.$i])
+	if($HTTP_POST_VARS[$this->id.'_was_updated'.$i])
 	  $this->upd_data($i);
     //
     $this->get_vars();
@@ -231,7 +231,7 @@ class pp_list extends pp_template
       }
       foreach($fl as $f)
       {
-	$list_check_update = 'onChange="document.'.$this->id.'.'.'was_updated'.$k.'.value =\'1\'"';
+	$list_check_update = 'onChange="document.list'.$this->id.'.'.$this->id.'_was_updated'.$k.'.value =\'1\'"';
 	$data[$i][$this->id.'_bgcolor'] = $this->bg_line[($i % 2)];
 	$data[$i][$this->id.'_id_list'] = $k;
 	$data[$i][$this->id.'_list_check_update'] = $list_check_update;
@@ -321,7 +321,6 @@ class pp_list extends pp_template
       }
     $q .= ' WHERE '.$this->sql_key.' = '.$id;
     new_($up, 'pp_db', $q);
-    $up->free();
     $this->message .= $this->message_upd;
   }
 
