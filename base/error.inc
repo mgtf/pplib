@@ -1,5 +1,5 @@
 <?
-// $Id: error.inc,v 1.13 2002/04/04 08:56:24 tieum Exp $
+// $Id: error.inc,v 1.14 2002/05/14 16:24:58 tieum Exp $
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
@@ -19,16 +19,17 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
       // if an error occurs before $pp exists, just quit :
       if(! is_object($pp))
 	die("-- "._("error")." --\n".$errstr."\n".__FILE__.' : '. __LINE__);
-      $pp->ob->suspend();
+      // $pp->ob->suspend();
       echo '<table align=center border=0 cellspacing=0 cellpadding=5>'.
 	   '<tr><td width="10" align="center"><img src="/icons/error.gif"><br><font size=2 color="#9C0000">'._("error").'</font></th>'.
            '<td><font size=2>'.nl2br($errstr).'</font>'.
 	   '<br><font size=1>'._("file").' : '.$errfile.'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
 	   '</table><br>';
-      $errstr = $pp->ob->resume();
-      $pp->ob->clean();
-      die($errstr);
+      // $errstr = $pp->ob->resume();
+      // $pp->ob->clean();
+      // die($errstr);
+      die();
       break;
     case E_WARNING:
     case E_NOTICE:
