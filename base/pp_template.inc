@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.51 2002/07/18 09:48:43 tieum Exp $
+//  $Id: pp_template.inc,v 1.52 2002/07/22 12:00:31 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -26,7 +26,6 @@
 //  dquote_end($str)
 //  squote_end($str)
 //  bquote_end($str)
-//  brace_end($str)
 //  parse_tag($tag_str)
 //  tag_include($tag)
 //  tag_if($tag)
@@ -342,29 +341,6 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function brace_end($str)
-  {
-    $len = strlen($str);
-    $nb = 1;
-    for ($i = 1; ($i < $len) && ($nb); $i++)
-    {
-      switch ($str[$i])
-      {
-	case $this->tag_start:
-	  if($str[$i - 1] != '\\')
-	    $nb++;
-	  break;
-	case $this->tag_stop:
-	  if($str[$i - 1] != '\\')
-	    $nb--;
-	  break;
-      }
-    }
-    return ($i);
-  }
-
-  ////
-  // !private function
   function parse_tag($tag_str)
   {
     $regexp = " *([^ ]+) *(.*)\\".$this->tag_stop;
@@ -400,7 +376,7 @@ class pp_template extends pp_file
 	  $param = substr($other, $end);
 	  break;
 	case $this->tag_start:
-	  $end = $this->brace_end($other);
+	  $end = $this->find_end($other);
 	  $par = substr($other, 0, $end);
 	  $param = substr($other, $end);
 	  break;
