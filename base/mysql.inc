@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mysql.inc,v 1.22 2003/08/28 15:22:44 mgf Exp $
+// $Id: mysql.inc,v 1.23 2004/01/27 02:29:07 mgf Exp $
 // !mysql abstraction layer
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -87,6 +87,7 @@ class db extends _stdclass {
 
   function get_row($fields, $table, $where, $type = MYSQL_NUM)
   {
+    $save = $this;
     $query = "SELECT $fields
 	      FROM   $table
 	      WHERE  $where ";
@@ -96,10 +97,12 @@ class db extends _stdclass {
       user_error($query, E_USER_WARNING);
     $this->query($query);
     // here we need a MYSQL_NUM type array
-    if (!$this->next_record($type))
+    if (!$this->next_record($type)) {
+      $this = $save;
       return -1;
+    }
     $row = $this->record;
-    $this->free();
+    $this = $save;
     if (!$row)
       return -1;
     return ($row);
