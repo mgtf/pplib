@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.31 2002/02/26 12:53:26 tieum Exp $
+//  $Id: pp.inc,v 1.32 2002/02/26 13:27:36 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -80,7 +80,7 @@ class pp extends pp_class
 
   function pp()
   {
-    register_shutdown_function(array($this,'my_shutdown_function'));
+    register_shutdown_function(array($this, 'my_shutdown_function'));
     $this->pp_class();
     new_($this->ob, 'pp_output_buffering', array($this, 'my_output_callback'));
     new_($this->tpl, 'pp_template');

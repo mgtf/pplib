@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.21 2002/02/23 15:52:33 tieum Exp $
+//  $Id: pp_template.inc,v 1.22 2002/02/26 13:27:09 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -396,7 +396,9 @@ class pp_template extends pp_file
   function template_include($tag)
   {
     $name = $tag['options']['name'];
-    $type = $tag['options']['type'];
+    $type = '';
+    if(array_key_exists('type', $tag['options']))
+      $type = $tag['options']['type'];
     if ($name == '')
       return $this->error("pp_template::template_include : "._("you must specify template name").",\n".
 			  _("correct syntax is")." : {include name=\"filename\" type=\"type\"}");
@@ -415,10 +417,10 @@ class pp_template extends pp_file
 	  return $this->error("pp_template::template_include : ".
 	                       _("function")." : 'template_$name()' ".
 			       _("does not exist"));
-	$s = 'return template_'.$name.'($tag, $tags);';
+	$s = 'return template_'.$name.'($tag);';
 	$s = eval($s);
 	if ($s)
-	 return ($this->parse_template($s, $tags));
+	 return ($this->parse_template($s));
 	else
 	  return $this->error(_("invalid include file").": $include_rep/$name");
     }
