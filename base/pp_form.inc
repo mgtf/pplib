@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_form.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+//  $Id: pp_form.inc,v 1.2 2002/02/15 13:12:29 tieum Exp $
 //  form class
 //
 //  public methods :
@@ -40,6 +40,7 @@ class pp_form extends pp_class
     $this->data = '';
     $this->before = '';
     $this->after = '';
+    $this->action = '';
   }
 
   function add_field($type, $name, $options = '', $value = '', $img_src = '')

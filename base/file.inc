@@ -1,5 +1,5 @@
 <?
-// $Id: file.inc,v 1.6 2002/02/08 16:29:15 tieum Exp $
+// $Id: file.inc,v 1.7 2002/02/15 13:12:29 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -71,7 +71,9 @@ class pp_file extends pp_mime
       $this->error("pp_file::read : "._("can't open")." '".$this->filename."'");
     if($lock)
       $this->sh_lock();
+    set_magic_quotes_runtime(0);
     $this->data = @fread ($this->fd, filesize ($this->filename));
+    set_magic_quotes_runtime(get_magic_quotes_gpc());
     if($lock)
       $this->unlock();
     if ( @fclose($this->fd) == FALSE )
