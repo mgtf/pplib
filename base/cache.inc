@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.18 2003/09/04 13:47:21 mgf Exp $
+//  $Id: cache.inc,v 1.17 2003/09/04 13:43:53 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -84,7 +84,6 @@ class cache extends file {
     static $already_run = false;
     if($already_run)
       return;
-    $already_run = true;
     srand((double) microtime() * 1000000);
     // run only 2% of times.
     if(rand(1, 100) > 2)
@@ -97,6 +96,7 @@ class cache extends file {
       if(file_exists($file) && ((time() - filemtime($file)) > CACHEFILE_MAXLIFETIME))
 	unlink($file);
     }
+    $already_run = true;
   }
 };
 
