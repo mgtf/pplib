@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.8 2002/01/30 13:14:17 tieum Exp $
+//  $Id: mysql.inc,v 1.9 2002/02/06 13:30:02 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -157,10 +157,10 @@ class pp_db extends pp_class {
   }
 
   /* public: walk result set */
-  function next_record() {
+  function next_record() 
+  {
     if (!$this->query_id)
       $this->error("pp_db::next_record : "._("next_record called with no query pending"));
-
     $this->record = @mysql_fetch_array($this->query_id);
     $this->row   += 1;
     $this->errno  = mysql_errno();
