@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.97 2003/09/02 10:07:31 mgf Exp $
+//  $Id: pp.inc,v 1.98 2003/09/02 10:23:00 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -163,10 +163,11 @@ function my_output_callback($buffer) {
   $str .= $pp->footer_str;
   $str = $pp->tpl->parse_template($str);
   $str = stripslashes($str);
-  if($pp->compress_data && (output_buffering::get_compression() != 'none') ) {
-    output_buffering::compress_add_headers();
-    $str = output_buffering::compress($str);
-  }
+  // XXX - bug here, see jbvnews popup
+  // if($pp->compress_data && (output_buffering::get_compression() != 'none') ) {
+  //   output_buffering::compress_add_headers();
+  //   $str = output_buffering::compress($str);
+  // }
   header::header_add("X-Powered-By: ".LIBNAME." ".$pp->version);
   header::header_send();
   return $str;

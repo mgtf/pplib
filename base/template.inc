@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.87 2003/09/02 10:16:57 mgf Exp $
+// $Id: template.inc,v 1.88 2003/09/02 10:23:01 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -81,7 +81,7 @@ class template extends file {
     if(defined('TEMPLATE_TIMEOUT'))
       $this->timeout = TEMPLATE_TIMEOUT;
     else
-      $this->timeout = 2000;
+      $this->timeout = 5000;
     if(defined('INC_PATH'))
       $this->inc_path = INC_PATH;
     else
