@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.49 2002/07/05 09:11:11 tieum Exp $
+//  $Id: pp_template.inc,v 1.50 2002/07/18 09:46:13 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -119,6 +119,10 @@ class pp_template extends pp_file
     $this->add_tag('hrdate', 'tag_hrdate');
   }
 
+  ////
+  // ajoute le tag $name à la liste de tags extistant,
+  // le parseur execute $action() lorsque le tag est rencontré
+  // par le parseur.
   function add_tag($name, $action, $options = array())
   {
     if( ! function_exists($action) && ! method_exists($this, $action))
@@ -136,6 +140,11 @@ class pp_template extends pp_file
     $this->tags[$name]['options'] = $options;
   }
 
+  ////
+  // ajoute un tableau associatif de tags, 
+  // de la forme : array('nom_du_tag' => 'valeur_de_remplaceement' ..)
+  // le parseur remplace le tag par sa valeur lorsque le tag est rencontré
+  // par le parseur.
   function add_tag_array($array)
   {
     if(! is_array($array))
@@ -148,17 +157,23 @@ class pp_template extends pp_file
     return (1);
   }
 
+  ////
+  // renvoi TRUE si le tag $tagname est défini, FALSE sinon.
   function tag_exists($tagname)
   {
     return array_key_exists($tagname, $this->tags);
   }
 
+  ////
+  // retire le tag $name de la liste des tags connus.
   function del_tag($name)
   {
     if(isset($this->tags))
       unset($this->tags[$name]);
   }
 
+  ////
+  // retire le tableau associatif de tags $array de la liste des tags connus.
   function del_tag_array($array)
   {
     if(! is_array($array))
@@ -224,6 +239,7 @@ class pp_template extends pp_file
   ///////// PRIVATE FUNCTIONS ///////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
 
+  ////
   // !private function
   function do_parse_template($str)
   {
@@ -638,6 +654,8 @@ class pp_template extends pp_file
     }
   }
 
+  ////
+  // !private function
   function tag_hrdate($tag)
   {
     $date = $tag['options']['data'];
@@ -677,6 +695,8 @@ class pp_template extends pp_file
     return "$jour/$mois/$annee";
   }
 
+  ////
+  // !private function
   function tag_br($tag) { return nl2br($tag['options']['data']); }
 };
 
