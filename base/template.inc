@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.47 2002/06/27 17:13:15 tieum Exp $
+//  $Id: template.inc,v 1.48 2002/06/28 11:09:49 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -514,9 +514,9 @@ class pp_template extends pp_file
       $this->del_tag_array(array('dynbloc_ite'));
     }
     if (strlen($id))
-      $this->dynbloc_data[$id] = '';
+      unset($this->dynbloc_data[$id]);
     else
-      $this->dynbloc_data = '';
+      unset($this->dynbloc_data);
     return $str;
   }
 
@@ -650,7 +650,7 @@ class pp_template extends pp_file
     $mois = substr($date, 5, 2);
     $annee = substr($date, 0, 4);
     $jour = substr($date, -2);
-    if ($type == "2")
+    if ($type == 2)
     {
       $nom_jour[0] = $langue ? "Dimanche" : "Sunday";
       $nom_jour[1] = $langue ? "Lundi" : "Monday";
@@ -676,6 +676,8 @@ class pp_template extends pp_file
       $mois = $nom_mois[ (int) $mois];
       return $jour_semaine." ".$jour." ".$mois." ".$annee;
     }
+    if($type == 3)
+      $annee = substr($annee, 2, 2);
     return "$jour/$mois/$annee";
   }
 };
