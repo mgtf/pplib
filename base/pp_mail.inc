@@ -1,6 +1,7 @@
 <?
 
-// $Id: pp_mail.inc,v 1.12 2002/07/18 08:52:01 tieum Exp $
+////
+// $Id: pp_mail.inc,v 1.13 2002/07/18 08:52:45 tieum Exp $
 // !pp_mail.inc - send complex email with attachments.
 //
 // public methods : 
