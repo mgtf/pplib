@@ -1,0 +1,318 @@
+\textcolor{section}{\section{Memento des méthodes}}
+~\\
+
+
+pp\_cache
+~\\
+pp\_cache()
+~\\
+cache(\$data)
+~\\
+new\_(\&\$object, \$classname, \$arg = '')
+~\\
+
+pp\_class
+~\\
+pp\_class()
+~\\
+syslog(\$errstr, \$priority = LOG\_ERR)
+~\\
+error(\$errstr, \$file = -1, \$line = -1)
+~\\
+warning(\$errstr)
+~\\
+my\_error\_handler(\$errno, \$errstr, \$errfile, \$errline, \$errcontext)
+~\\
+
+pp\_file
+~\\
+pp\_file()
+~\\
+split\_filename()
+~\\
+unlink()
+~\\
+write(\$force = 0, \$lock = 1)
+~\\
+read(\$lock = 1)
+~\\
+sh\_lock()
+~\\
+ex\_lock()
+~\\
+unlock()
+~\\
+
+pp\_form
+~\\
+pp\_form()
+~\\
+add\_field(\$type, \$name, \$options = '', \$value = '', \$img\_src = '')
+~\\
+parse\_form(\$options = '')
+~\\
+
+pp\_header
+~\\
+pp\_header()
+~\\
+header\_add(\$header\_str = '')
+~\\
+header\_send()
+~\\
+
+pp\_i18n
+~\\
+pp\_i18n()
+~\\
+set\_language()
+~\\
+
+pp\_image
+~\\
+pp\_image()
+~\\
+image\_resize(\$w = 'p', \$h = 'p')
+~\\
+image\_to\_file(\$filename, \$force = 0)
+~\\
+image\_allocate\_color(\$color)
+~\\
+image\_free()
+~\\
+image\_convert(\$format)
+~\\
+image\_update\_infos()
+~\\
+myimagecreatefromgif()
+~\\
+myimagecreatefromjpeg()
+~\\
+image\_create\_from\_file()
+~\\
+image\_create()
+~\\
+image\_get\_data()
+~\\
+
+pp\_mail
+~\\
+pp\_mail()
+~\\
+send()
+~\\
+
+pp\_microtime
+~\\
+pp\_microtime()
+~\\
+microtime\_()
+~\\
+start(\$name = 'default') 
+~\\
+stop(\$name = 'default')  
+~\\
+elapsed(\$name = 'default') 
+~\\
+
+pp\_mime\_el
+~\\
+pp\_mime\_el()
+~\\
+set\_mime\_el(\$mime\_type, \$mime\_subtype, \$mime\_extentions, \$tag\_start = -1, 
+~\\
+pp\_mime()
+~\\
+add\_mime(\$mime\_type, \$mime\_subtype, \$mime\_extentions, \$tag\_start = -1, 
+~\\
+set\_mime(\$ext)
+~\\
+
+pp\_db
+~\\
+pp\_db(\$query = "") 
+~\\
+get(\$field, \$table, \$where)
+~\\
+get\_row(\$fields, \$table, \$where)
+~\\
+connect(\$database = "", \$host = "", \$user = "", \$password = "")
+~\\
+free() 
+~\\
+query(\$query) 
+~\\
+insert\_id()
+~\\
+next\_record() 
+~\\
+seek(\$pos = 0)
+~\\
+lock(\$table, \$mode="write")
+~\\
+unlock()
+~\\
+affected\_rows()
+~\\
+num\_rows()
+~\\
+num\_fields()
+~\\
+table\_names()
+~\\
+
+pp\_output\_buffering
+~\\
+pp\_output\_buffering(\$my\_output\_callback = -1)
+~\\
+start()
+~\\
+stop()
+~\\
+clean()
+~\\
+suspend()
+~\\
+resume()
+~\\
+get\_compression()
+~\\
+compress\_add\_headers() 
+~\\
+compress(\$data)
+~\\
+
+pp\_session
+~\\
+pp\_session()
+~\\
+destroy()
+~\\
+
+pp\_sniff
+~\\
+pp\_sniff()
+~\\
+browser\_get\_agent() 
+~\\
+browser\_get\_platform() 
+~\\
+
+pp\_string
+~\\
+pp\_string()
+~\\
+cut\_text(\$text, \$size, \$end\_string = '...')
+~\\
+
+pp\_template
+~\\
+pp\_template()
+~\\
+add\_tag(\$name, \$action, \$options = array())
+~\\
+add\_tag\_array(\$array)
+~\\
+tag\_exists(\$tagname)
+~\\
+del\_tag(\$name)
+~\\
+del\_tag\_array(\$array)
+~\\
+parse\_template\_file(\$filename)
+~\\
+parse\_template(\$str)
+~\\
+parse\_template\_to\_file(\$str, \$filename, \$force = 0)
+~\\
+parse\_template\_file\_to\_file(\$file\_src, \$file\_dest, \$force = 0)
+~\\
+do\_parse\_template(\$str)
+~\\
+find\_begin(\$str)
+~\\
+find\_end(\$str, \$begin = 0)
+~\\
+dquote\_end(\$str)
+~\\
+squote\_end(\$str)
+~\\
+bquote\_end(\$str)
+~\\
+brace\_end(\$str)
+~\\
+parse\_tag(\$tag\_str)
+~\\
+template\_echo(\$tag)
+~\\
+template\_include(\$tag)
+~\\
+template\_if(\$tag)
+~\\
+template\_dynbloc(\$tag)
+~\\
+template\_replace(\$tag)
+~\\
+template\_uppercase(\$tag)
+~\\
+template\_self(\$tag)
+~\\
+template\_debug()
+~\\
+template\_urlencode(\$tag)
+~\\
+template\_urldecode(\$tag)
+~\\
+template\_ua\_mozilla()
+~\\
+template\_ua\_msie()
+~\\
+
+pp\_ttf\_text
+~\\
+pp\_ttf\_text()
+~\\
+create\_ttf\_text()
+~\\
+ttf\_text\_get\_size()
+~\\
+
+pp\_user
+~\\
+pp\_user()
+~\\
+create\_table(\$drop\_if\_exists = FALSE)
+~\\
+add()
+~\\
+remove()
+~\\
+select()
+~\\
+get\_id()
+~\\
+
+pp\_xml\_expat
+~\\
+pp\_xml\_expat()
+~\\
+parse(\$data)
+~\\
+free()
+~\\
+h\_start\_el(\$parser, \$name, \$attrs)
+~\\
+h\_end\_el(\$parser, \$name)
+~\\
+h\_char\_data(\$parser, \$data)
+~\\
+h\_pi(\$parser, \$target, \$data)
+~\\
+h\_default(\$parser, \$data)
+~\\
+h\_unparsed\_entity\_decl(\$parser, \$data)
+~\\
+h\_notation\_decl(\$parser, \$notationname, \$base, \$systemid, \$publicid)
+~\\
+h\_external\_entity\_ref(\$parser, \$openentitynames, \$base, \$systemid, \$publicid)
+~\\
