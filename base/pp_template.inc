@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_template.inc,v 1.70 2003/08/07 18:12:21 mgf Exp $
+// $Id: pp_template.inc,v 1.71 2003/08/07 18:19:15 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -254,11 +254,7 @@ class pp_template extends pp_file {
 
   ////
   // !private function
-  function find_end($str, $begin = 0)
-  {/*{{{*/
-    static $res = array();
-    if(isset($res[$str][$begin])) 
-      return $res[$str][$begin];
+  function find_end($str, $begin = 0) {
     $nb = 1;
     for ($i = $begin + 1; $nb && isset($str[$i]); $i++) {
       switch ($str[$i]) {
@@ -272,16 +268,12 @@ class pp_template extends pp_file {
 	  break;
       }
     }
-    $res[$str][$begin] = $nb ? false : $i;
-    return $res[$str][$begin];
-  }/*}}}*/
+    return $nb ? false : $i;
+  }
 
   ////
   // !private function
   function find_char($str, $char) {
-    static $res = array();
-    if(isset($res[$str][$char]))
-      return $res[$str][$char];
     $l = strlen($str);
     $r = false;
     for ($i = 1; $i < $l; $i++) {
@@ -290,7 +282,6 @@ class pp_template extends pp_file {
 	break;
       }
     }
-    $res[$str][$char] = $r;
     return $r;
   }
 
