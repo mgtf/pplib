@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-23 15:22+0100\n"
+"POT-Creation-Date: 2002-01-23 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -271,45 +271,41 @@ msgid "add"
 msgstr ""
 
 #: list/pp_list.inc:173
-msgid "save modification"
-msgstr ""
-
-#: list/pp_list.inc:176
 msgid "invert selection"
 msgstr ""
 
-#: list/pp_list.inc:266
+#: list/pp_list.inc:263
 msgid "Search"
 msgstr ""
 
-#: list/pp_list.inc:268
+#: list/pp_list.inc:265
 msgid "into"
 msgstr ""
 
-#: list/pp_list.inc:288
+#: list/pp_list.inc:285
 msgid "displaying"
 msgstr ""
 
-#: list/pp_list.inc:295
+#: list/pp_list.inc:292
 msgid "elements per page."
 msgstr ""
 
-#: list/pp_list.inc:295
+#: list/pp_list.inc:292
 msgid "Sort by"
 msgstr ""
 
-#: list/pp_list.inc:314
+#: list/pp_list.inc:311
 msgid "order"
 msgstr ""
 
-#: list/pp_list.inc:316
+#: list/pp_list.inc:313
 msgid "ascendent"
 msgstr ""
 
-#: list/pp_list.inc:317
+#: list/pp_list.inc:314
 msgid "descendent"
 msgstr ""
 
-#: list/pp_list.inc:402
+#: list/pp_list.inc:399
 msgid "Total"
 msgstr ""

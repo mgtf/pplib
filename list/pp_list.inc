@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.8 2002/01/23 14:24:29 tieum Exp $
+//  $Id: pp_list.inc,v 1.9 2002/01/24 10:12:28 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -54,7 +54,7 @@ class pp_list extends pp_template
   function pp_list()
   {
     $this->pp_template();
-    $this->tpl = 'please_define_a_template.html';
+    $this->tpl = 'please_define_a_template';
     $this->order = 'ASC';
     $this->current_page = 0;
     if(defined('LIST_MAX_ELEMENTS'))
@@ -68,7 +68,7 @@ class pp_list extends pp_template
     $this->message_add = '[ ajout effectué ]';
     $this->message_upd = '[ modification effectuée ]';
     $this->message = '';
-    $this->id = 'wow';
+    $this->id = 'please_change_list_id';
   }
 
   function parse_list()
@@ -117,7 +117,7 @@ class pp_list extends pp_template
 	  $this->upd_data($i);
     //
     $this->get_vars();
-    $this->set_tags();
+    $this->set_tags($want_save);
     $this->get_data();
     $this->add_tag_array(array('confirm_mesg' => _("Do you confirm modifications ?") ));
     $str = $this->parse_template_file(PP_LIB_PATH."list/list.js");
@@ -151,9 +151,11 @@ class pp_list extends pp_template
     $this->start = $this->current_page * $this->max_elements;
   }
 
-  function set_tags()
+  function set_tags($want_save)
   {
     $self = $this->parse_template('{self}');
+    if(strlen($this->message) < 1 && $want_save == 1)
+      $this->message = '[ aucune modification effectuée ]';
     $this->add_tag_array(array($this->id.'_search_string' => $this->search_string,
 			       $this->id.'_current_search_field' => $this->current_search_field,
 			       $this->id.'_max_elements' => $this->max_elements,
@@ -163,15 +165,9 @@ class pp_list extends pp_template
 			       'id' => $this->id,
 			       $this->id.'_want_page' => 0,
 			       $this->id.'_want_save' => 0,
-			       $this->id.'_list_submit_add' => '
-			       <input type=image src="icons/add.gif" alt="'.
-			       _("add").
-			       '" onclick="document.'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
+			       $this->id.'_list_submit_add' => '<a href="javascript:confirm_del()"><img src="icons/save.gif"></a>',
 			       $this->id.'_list_submit' => '
 			       <a href="javascript:confirm_del()"><img src="icons/save.gif"></a>
-			       <input type=image src="icons/save.gif" alt="'.
-			       _("save modification").
-			       '" onclick="document.'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
 			       <font size=1><img src="icons/invert.gif" alt="'.
 			       _("invert selection").
 			       '" onclick="javascript:invertsel(\''.$this->id.'\')"></font>
