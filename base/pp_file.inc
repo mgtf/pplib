@@ -1,10 +1,11 @@
 <?
-// $Id: pp_file.inc,v 1.2 2002/01/18 14:02:25 tieum Exp $
+// $Id: pp_file.inc,v 1.3 2002/01/28 16:04:59 tieum Exp $
 
 class pp_file extends pp_mime
 {
   var $filename;
   var $data;
+  var $fd;
 
   function pp_file()
   {
@@ -13,12 +14,6 @@ class pp_file extends pp_mime
     $this->data = -1;
     return 1;
   }
-
-  // function _pp_file()
-  // {
-  //
-  //
-  // }
 
   function split_filename()
   {
@@ -30,8 +25,6 @@ class pp_file extends pp_mime
 
   function write($force = 0, $lock = 1)
   {
-    if($lock)
-      $this->lock();
     if($this->data == -1 || $this->filename == -1 || strlen($this->filename) < 1)
       $this->error("pp_file::write : "._("data or filename empty"));
     $p = $this->split_filename();
@@ -43,19 +36,21 @@ class pp_file extends pp_mime
     if(! is_writable($path) )
       $this->error("pp_file::write : "._("directory")." '".$path."' ".
 	           _("is not writeable"));
-    $fd = @fopen($this->filename, "w");
-    if($fd == FALSE)
+    $this->fd = @fopen($this->filename, "w");
+    if($lock)
+      $this->ex_lock();
+    if($this->fd == FALSE)
       $this->error("pp_file::write : "._("can't open")." '".$this->filename."'");
-    if( @fwrite($fd, $this->data) == -1)
+    if( @fwrite($this->fd, $this->data) == -1)
       $this->error("pp_file::write : "._("can't write")." '".$this->filename."'");
-    if( @fclose($fd) == FALSE )
-      $this->error("pp_file::write : "._("can't close")." '".$this->filename."'");
     if($lock)
       $this->unlock();
+    if( @fclose($this->fd) == FALSE )
+      $this->error("pp_file::write : "._("can't close")." '".$this->filename."'");
     return strlen($this->data);
   }
 
-  function read()
+  function read($lock = 1)
   {
     if($this->filename == -1 || strlen($this->filename) < 1)
       $this->error("pp_file::read : no file to read");
@@ -64,54 +59,79 @@ class pp_file extends pp_mime
 	            _("does not exist"));
     if(! @is_readable($this->filename) )
       $this->error("pp_file::read : '".$this->filename."' "._("is not readable"));
-    $this->lock();
-    if( ($fd = @fopen ($this->filename, "r")) == FALSE)
+    if( ($this->fd = @fopen ($this->filename, "r")) == FALSE)
       $this->error("pp_file::read : "._("can't open")." '".$this->filename."'");
-    $this->data = @fread ($fd, filesize ($this->filename));
-    if ( @fclose($fd) == FALSE )
+    if($lock)
+      $this->sh_lock();
+    $this->data = @fread ($this->fd, filesize ($this->filename));
+    if($lock)
+      $this->unlock();
+    if ( @fclose($this->fd) == FALSE )
       $this->error("pp_file::read : "._("can't close")." ".$this->filename."'");
-    $this->unlock();
     return $this->data;
   }
 
-  function lock()
+  // shared lock
+  function sh_lock()
   {
-    $this->wait_for_lock();
-    $lockfile = $this->get_lock_filename();
-    if( @touch($lockfile) == FALSE )
-      $this->error("pp_file::lock : "._("can't create lock file").": $lockfile");
+    if( flock($this->fd, LOCK_SH) == FALSE)
+      $this->error("pp_file::lock : "._("can't get shared lock on file ").$this->filename);
+  }
+
+  // exclusive lock
+  function ex_lock()
+  {
+    if( flock($this->fd, LOCK_EX) == FALSE)
+      $this->error("pp_file::lock : "._("can't get exclusive lock on file ").$this->filename);
   }
 
   function unlock()
   {
-    $lockfile = $this->get_lock_filename();
-    if($this->is_lock())
-      @unlink($lockfile);
+    if( flock($this->fd, LOCK_UN) == FALSE)
+      $this->error("pp_file::lock : "._("can't unlock file ").$this->filename);
   }
 
-  function get_lock_filename()
-  {
-    $p = $this->split_filename();
-    return $p[0].'.'.$p[1];
-  }
-
-  function is_lock()
-  {
-    $lockfile = $this->get_lock_filename();
-    return file_exists($lockfile);
-  }
-
-  function wait_for_lock()
-  {
-    if(! $this->is_lock())
-      return;
-    $lockfile = $this->get_lock_filename();
-    while(file_exists($lockfile))
-    {
-      usleep(LOCK_SLEEP_TIME);
-      clearstatcache();
-    }
-  }
+  // this implement a simple lock system,
+  // but php4 flock() function is a better (and simpler) implementation
+  //
+  // function lock()
+  // {
+  //   $this->wait_for_lock();
+  //   $lockfile = $this->get_lock_filename();
+  //   if( @touch($lockfile) == FALSE )
+  //     $this->error("pp_file::lock : "._("can't create lock file").": $lockfile");
+  // }
+  //
+  // function unlock()
+  // {
+  //   $lockfile = $this->get_lock_filename();
+  //   if($this->is_lock())
+  //     @unlink($lockfile);
+  // }
+  //
+  // function get_lock_filename()
+  // {
+  //   $p = $this->split_filename();
+  //   return $p[0].'.'.$p[1];
+  // }
+  //
+  // function is_lock()
+  // {
+  //   $lockfile = $this->get_lock_filename();
+  //   return file_exists($lockfile);
+  // }
+  //
+  // function wait_for_lock()
+  // {
+  //   if(! $this->is_lock())
+  //     return;
+  //   $lockfile = $this->get_lock_filename();
+  //   while(file_exists($lockfile))
+  //   {
+  //     usleep(LOCK_SLEEP_TIME);
+  //     clearstatcache();
+  //   }
+  // }
   
 };
 
