@@ -1,5 +1,5 @@
 <?
-// $Id: pp_ttf_text.inc,v 1.2 2002/02/18 16:56:15 tieum Exp $
+// $Id: pp_ttf_text.inc,v 1.3 2002/02/18 17:02:38 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -50,11 +50,9 @@ class pp_ttf_text extends pp_image
       $this->font = TTF_DEFAULT;
     else
       $this->font = 'arial.ttf';
+    $this->fonts_path = -1;
     if(defined('TTF_PATH'))
       $this->fonts_path = TTF_PATH;
-    else
-      $this->error("pp_ttf_text::pp_ttf_test : ".
-		   _("please set")." TTF_PATH");
     $this->margin = 0;
     $this->antialias = TRUE;
     $this->width = -1;
@@ -71,6 +69,9 @@ class pp_ttf_text extends pp_image
 
   function create_ttf_text()
   {
+    if($this->fonts_path == -1)
+      $this->error("pp_ttf_text::create_ttf_text : ".
+		   _("please set")." TTF_PATH");
     $font = $this->fonts_path . $this->font;
     if(! file_exists($font))
       $this->error("pp_ttf_text::create_ttf_text : ".
