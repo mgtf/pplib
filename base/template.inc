@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.53 2002/07/22 12:05:50 tieum Exp $
+//  $Id: template.inc,v 1.54 2002/07/22 12:27:38 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -255,7 +255,7 @@ class pp_template extends pp_file
       $tag_string = substr($remaining, $begin + 1, $end - $begin - 1);
       $remaining = substr($remaining, $end);
       $result .= $before;
-      // XXX - à tester, permet de mettre des tags dans le champ bloc des dynamic bloc
+      // XXX - à tester, permet de mettre des tags dans le champ bloc des blocs dynamiques 
       if(substr($tag_string, 0, 7) == 'dynbloc')
 	$result .= $this->parse_tag($tag_string);
       else
@@ -283,9 +283,8 @@ class pp_template extends pp_file
   // !private function
   function find_end($str, $begin = 0)
   {
-    $len = strlen($str);
     $nb = 1;
-    for ($i = $begin + 1; ($nb) && ($i < $len); $i++)
+    for ($i = $begin + 1; $nb && isset($str[$i]); $i++)
     {
       switch ($str[$i])
       {
@@ -299,39 +298,17 @@ class pp_template extends pp_file
 	  break;
       }
     }
-    if ($nb < 0)
-      return 0;
-    return ($i);
+    return $nb ? FALSE : $i;
   }
 
   ////
   // !private function
-  function dquote_end($str)
+  function find_char($str, $char)
   {
-    $len = strlen($str);
-    for ($i = 1; $i < $len; $i++)
-      if (($str[$i] == '"') && ($str[$i - 1] != '\\'))
+    for ($i = 1; isset($str[$i]); $i++)
+      if (($str[$i] == $char) && ($str[$i - 1] != '\\'))
 	return ($i);
-  }
-
-  ////
-  // !private function
-  function squote_end($str)
-  {
-    $len = strlen($str);
-    for ($i = 1; $i < $len; $i++)
-      if (($str[$i] == "'") && ($str[$i - 1] != '\\'))
-	return ($i);
-  }
-
-  ////
-  // !private function
-  function bquote_end($str)
-  {
-    $len = strlen($str);
-    for ($i = 1; $i < $len; $i++)
-      if (($str[$i] == "`") && ($str[$i - 1] != '\\'))
-	return ($i);
+    return FALSE;
   }
 
   ////
@@ -356,17 +333,9 @@ class pp_template extends pp_file
       switch ($other[0])
       {
 	case '"':
-	  $end = $this->dquote_end($other);
-	  $par = substr($other, 1, $end - 1);
-	  $param = substr($other, $end);
-	  break;
-	  case "'":
-	    $end = $this->squote_end($other);
-	  $par = substr($other, 1, $end - 1);
-	  $param = substr($other, $end);
-	  break;
-	  case "`":
-	    $end = $this->bquote_end($other);
+	case "'":
+	case "`":
+	  $end = $this->find_char($other, $other[0]);
 	  $par = substr($other, 1, $end - 1);
 	  $param = substr($other, $end);
 	  break;
@@ -419,7 +388,7 @@ class pp_template extends pp_file
   // !private function
   function template_echo($tag)
   {
-    return ($tag['options']['text']);
+    return $tag['options']['text'];
   }
 
   ////
