@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.17 2002/02/07 17:03:59 tieum Exp $
+//  $Id: pp.inc,v 1.18 2002/02/13 10:56:24 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -105,6 +105,9 @@ function my_output_callback($buffer)
 
   $str = $buffer;
 
+  if($pp->no_parse == TRUE)
+    return $str;
+
   // continue only if $pp is define at this time.
   if(! is_object($pp))
     return "-- output error --\n";
@@ -141,8 +144,7 @@ function my_output_callback($buffer)
 	      '(pplib version : '.$pp->version.')'."\n";
   }
   $str = $str.$pp->footer_str;
-  if($pp->no_parse != TRUE)
-    $str = $pp->tpl->parse_template($str);
+  $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
   return $str;
