@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.99 2003/09/04 13:42:26 mgf Exp $
+//  $Id: pp.inc,v 1.100 2003/09/04 13:46:26 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -111,7 +111,7 @@ class pp extends _stdclass {
 };
 
 function my_shutdown_function() {
-  cache_http_request::garbagecollection();
+  cache::garbagecollection();
 }
 
 function my_output_callback($buffer) {
@@ -148,7 +148,7 @@ function my_output_callback($buffer) {
     $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
     if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
       $str .= 
-	'<div style="text-align: center; font-size: 9px; font-family: Verdana">'.
+	"\n".'<div style="text-align: center; font-size: 9px; font-family: Verdana">'.
 	$pp->tpl->return_char.
 	_("page generated on ").$elapsed.' sec '.
 	'('.LIBNAME.' v'.$pp->version.')</div>';
