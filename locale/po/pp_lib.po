@@ -1,12 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-07-11 19:13+0200\n"
+"POT-Creation-Date: 2002-12-02 12:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,276 +15,278 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: base/pp_class.inc:14
+#: base/pp_class.inc:18
 msgid "is not the name of an existing class"
 msgstr ""
 
-#: base/pp_class.inc:28
+#: base/pp_class.inc:32
 msgid "you are trying to create an object from the class"
 msgstr ""
 
-#: base/pp_class.inc:29
+#: base/pp_class.inc:33
 msgid "but it is already an object from the class"
 msgstr ""
 
-#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:42
-#: base/pp_file.inc:31 base/pp_file.inc:43 base/pp_file.inc:72
+#: base/pp_class.inc:67 base/pp_error.inc:33 base/pp_error.inc:49
+#: base/pp_file.inc:60 base/pp_file.inc:72 base/pp_file.inc:101
+#: base/pp_file.inc:144
 msgid "file"
 msgstr ""
 
-#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:42
-#: base/pp_xml_expat.inc:38
+#: base/pp_class.inc:67 base/pp_error.inc:33 base/pp_error.inc:49
+#: base/pp_xml_expat.inc:43
 msgid "line"
 msgstr ""
 
-#: base/pp_error.inc:21 base/pp_error.inc:24
+#: base/pp_error.inc:28 base/pp_error.inc:31
 msgid "error"
 msgstr ""
 
-#: base/pp_error.inc:40
+#: base/pp_error.inc:47
 msgid "warning"
 msgstr ""
 
-#: base/pp_file.inc:31 base/pp_file.inc:73 base/pp_template.inc:125
-#: base/pp_template.inc:419 base/pp_template.inc:463 base/pp_ttf_text.inc:88
+#: base/pp_file.inc:60 base/pp_file.inc:102 base/pp_file.inc:144
+#: base/pp_template.inc:130 base/pp_template.inc:379 base/pp_template.inc:423
+#: base/pp_ttf_text.inc:90
 msgid "does not exist"
 msgstr ""
 
-#: base/pp_file.inc:37
+#: base/pp_file.inc:66
 msgid "data or filename empty"
 msgstr ""
 
-#: base/pp_file.inc:44
+#: base/pp_file.inc:73
 msgid "already exist, use pp_file->write(1) to force overwrite"
 msgstr ""
 
-#: base/pp_file.inc:47
+#: base/pp_file.inc:76
 msgid "directory"
 msgstr ""
 
-#: base/pp_file.inc:48
+#: base/pp_file.inc:77
 msgid "is not writeable"
 msgstr ""
 
-#: base/pp_file.inc:53 base/pp_file.inc:77
+#: base/pp_file.inc:82 base/pp_file.inc:106
 msgid "can't open"
 msgstr ""
 
-#: base/pp_file.inc:57
+#: base/pp_file.inc:86
 msgid "can't write"
 msgstr ""
 
-#: base/pp_file.inc:62 base/pp_file.inc:87
+#: base/pp_file.inc:91 base/pp_file.inc:113
 msgid "can't close"
 msgstr ""
 
-#: base/pp_file.inc:75
+#: base/pp_file.inc:104
 msgid "is not readable"
 msgstr ""
 
-#: base/pp_file.inc:96
+#: base/pp_file.inc:122
 msgid "can't get shared lock on file "
 msgstr ""
 
-#: base/pp_file.inc:105
+#: base/pp_file.inc:131
 msgid "can't get exclusive lock on file "
 msgstr ""
 
-#: base/pp_file.inc:112
+#: base/pp_file.inc:138
 msgid "can't unlock file "
 msgstr ""
 
-#: base/pp_image.inc:57
+#: base/pp_image.inc:63
 msgid "can't use '%' with another arg"
 msgstr ""
 
-#: base/pp_image.inc:59
+#: base/pp_image.inc:65
 msgid "you must specify at least one size"
 msgstr ""
 
-#: base/pp_image.inc:71
+#: base/pp_image.inc:77
 msgid "can't create temp image"
 msgstr ""
 
-#: base/pp_image.inc:103
+#: base/pp_image.inc:109
 msgid "image is already a"
 msgstr ""
 
-#: base/pp_image.inc:105
+#: base/pp_image.inc:111
 msgid "format"
 msgstr ""
 
-#: base/pp_image.inc:105
+#: base/pp_image.inc:111
 msgid "is not supported"
 msgstr ""
 
-#: base/pp_image.inc:149
+#: base/pp_image.inc:155
 msgid "image"
 msgstr ""
 
-#: base/pp_image.inc:149
+#: base/pp_image.inc:155
 msgid "has no extention"
 msgstr ""
 
-#: base/pp_image.inc:171 base/pp_image.inc:178
+#: base/pp_image.inc:177 base/pp_image.inc:184
 msgid "can't create image from"
 msgstr ""
 
-#: base/pp_image.inc:187
+#: base/pp_image.inc:193
 msgid "no image size"
 msgstr ""
 
-#: base/pp_image.inc:197
+#: base/pp_image.inc:203
 msgid "can't create image"
 msgstr ""
 
-#: base/pp_image.inc:238
+#: base/pp_image.inc:244
 msgid "format is not supported"
 msgstr ""
 
-#: base/pp_mail.inc:24
+#: base/pp_mail.inc:55
 msgid "no subject"
 msgstr ""
 
-#: base/pp_mail.inc:36
+#: base/pp_mail.inc:85
 msgid "Missing parameters"
 msgstr ""
 
-#: base/pp_mime.inc:90
+#: base/pp_mime.inc:96
 msgid "can't add mime type"
 msgstr ""
 
-#: base/pp_mime.inc:123
+#: base/pp_mime.inc:130
 msgid "this mime type is not supported"
 msgstr ""
 
-#: base/pp_mysql.inc:64
+#: base/pp_mysql.inc:66
 msgid "db access was not configured"
 msgstr ""
 
-#: base/pp_mysql.inc:116
+#: base/pp_mysql.inc:118
 msgid "can't connect to"
 msgstr ""
 
-#: base/pp_mysql.inc:118
+#: base/pp_mysql.inc:120
 msgid "cannot use database"
 msgstr ""
 
-#: base/pp_mysql.inc:148
+#: base/pp_mysql.inc:150
 msgid "invalid sql"
 msgstr ""
 
-#: base/pp_mysql.inc:164
+#: base/pp_mysql.inc:166
 msgid "next_record called with no query pending"
 msgstr ""
 
-#: base/pp_output_buffering.inc:18
+#: base/pp_output_buffering.inc:23
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:125 base/pp_template.inc:418 base/pp_template.inc:462
+#: base/pp_template.inc:130 base/pp_template.inc:378 base/pp_template.inc:422
 msgid "function"
 msgstr ""
 
-#: base/pp_template.inc:129 base/pp_template.inc:131
+#: base/pp_template.inc:134 base/pp_template.inc:136
 msgid "is not defined"
 msgstr ""
 
-#: base/pp_template.inc:142 base/pp_template.inc:166
+#: base/pp_template.inc:152 base/pp_template.inc:182
 msgid "arg is not an array"
 msgstr ""
 
-#: base/pp_template.inc:179
+#: base/pp_template.inc:195
 msgid "no file to read"
 msgstr ""
 
-#: base/pp_template.inc:206
+#: base/pp_template.inc:219
 msgid "no file to write"
 msgstr ""
 
-#: base/pp_template.inc:208
+#: base/pp_template.inc:221
 msgid "no data to write"
 msgstr ""
 
-#: base/pp_template.inc:240
+#: base/pp_template.inc:254
 msgid "template timeout"
 msgstr ""
 
-#: base/pp_template.inc:240
+#: base/pp_template.inc:254
 msgid "max iteration"
 msgstr ""
 
-#: base/pp_template.inc:356 base/pp_template.inc:409
+#: base/pp_template.inc:324 base/pp_template.inc:369
 msgid "template error"
 msgstr ""
 
-#: base/pp_template.inc:447
+#: base/pp_template.inc:407
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:448
+#: base/pp_template.inc:408
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:457
+#: base/pp_template.inc:417
 msgid "no such include file"
 msgstr ""
 
-#: base/pp_template.inc:468
+#: base/pp_template.inc:428
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:498 base/pp_template.inc:579
+#: base/pp_template.inc:460 base/pp_template.inc:548
 msgid "not set"
 msgstr ""
 
-#: base/pp_template.inc:507
+#: base/pp_template.inc:469
 msgid "you must specify `bloc` arg in dynbloc tag"
 msgstr ""
 
-#: base/pp_template.inc:581
+#: base/pp_template.inc:550
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:584
+#: base/pp_template.inc:553
 msgid "action"
 msgstr ""
 
-#: base/pp_ttf_text.inc:83
+#: base/pp_ttf_text.inc:85
 msgid "please set"
 msgstr ""
 
-#: base/pp_ttf_text.inc:88
+#: base/pp_ttf_text.inc:90
 msgid "font file"
 msgstr ""
 
-#: base/pp_ttf_text.inc:90
+#: base/pp_ttf_text.inc:92
 msgid "no text"
 msgstr ""
 
-#: base/pp_ttf_text.inc:106
+#: base/pp_ttf_text.inc:108
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
 "images !"
 msgstr ""
 
-#: base/pp_xml_expat.inc:19
+#: base/pp_xml_expat.inc:24
 msgid "Can't create XML parser"
 msgstr ""
 
-#: base/pp_xml_expat.inc:36
+#: base/pp_xml_expat.inc:41
 msgid "XML parse error"
 msgstr ""
 
 #: pp.inc:140
-msgid "pp site is currently in a maintenance state"
+msgid "this application is currently in a maintenance state"
 msgstr ""
 
 #: pp.inc:142
 msgid "Please come back later"
 msgstr ""
 
-#: pp.inc:164 pp.inc:168
+#: pp.inc:174 pp.inc:178
 msgid "page generated on "
 msgstr ""
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-10-10 11:47+0200\n"
+"POT-Creation-Date: 2002-12-02 12:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "vous essayez de crer un objet de la classe"
 
 #: base/pp_class.inc:67 base/pp_error.inc:33 base/pp_error.inc:49
 #: base/pp_file.inc:60 base/pp_file.inc:72 base/pp_file.inc:101
-#: base/pp_file.inc:153
+#: base/pp_file.inc:144
 msgid "file"
 msgstr "fichier"
 
@@ -45,7 +45,7 @@ msgstr "erreur"
 msgid "warning"
 msgstr "attention"
 
-#: base/pp_file.inc:60 base/pp_file.inc:102 base/pp_file.inc:153
+#: base/pp_file.inc:60 base/pp_file.inc:102 base/pp_file.inc:144
 #: base/pp_template.inc:130 base/pp_template.inc:379 base/pp_template.inc:423
 #: base/pp_ttf_text.inc:90
 msgid "does not exist"
@@ -75,7 +75,7 @@ msgstr "impossible de se connecter"
 msgid "can't write"
 msgstr "impossible de crer l'image"
 
-#: base/pp_file.inc:91 base/pp_file.inc:116
+#: base/pp_file.inc:91 base/pp_file.inc:113
 msgid "can't close"
 msgstr "impossible de se connecter"
 
@@ -83,15 +83,15 @@ msgstr "impossible de se connecter"
 msgid "is not readable"
 msgstr "n'est pas autoris en lecture"
 
-#: base/pp_file.inc:125
+#: base/pp_file.inc:122
 msgid "can't get shared lock on file "
 msgstr "impossible de crer l'image"
 
-#: base/pp_file.inc:134
+#: base/pp_file.inc:131
 msgid "can't get exclusive lock on file "
 msgstr "impossible de crer l'image"
 
-#: base/pp_file.inc:141
+#: base/pp_file.inc:138
 msgid "can't unlock file "
 msgstr "impossible de crer l'image"
 
@@ -152,11 +152,11 @@ msgstr "pas de sujet"
 msgid "Missing parameters"
 msgstr "Paramtres manquants"
 
-#: base/pp_mime.inc:93
+#: base/pp_mime.inc:96
 msgid "can't add mime type"
 msgstr "impossible d'ajouter le type mime"
 
-#: base/pp_mime.inc:126
+#: base/pp_mime.inc:130
 #, fuzzy
 msgid "this mime type is not supported"
 msgstr "n'est pas support"
@@ -284,16 +284,17 @@ msgid "XML parse error"
 msgstr "XML erreur"
 
 #: pp.inc:140
-msgid "pp site is currently in a maintenance state"
+#, fuzzy
+msgid "this application is currently in a maintenance state"
 msgstr "Ce site est actuellement en tat de maintenance"
 
 #: pp.inc:142
 msgid "Please come back later"
 msgstr "Veuillez vous reconnecter ulterieurement"
 
-#: pp.inc:164 pp.inc:168
+#: pp.inc:174 pp.inc:178
 msgid "page generated on "
-msgstr "page gnre en "
+msgstr "page générée en "
 
 #: list/pp_list.inc:148
 msgid "Do you confirm modifications ?"
