@@ -1,8 +1,7 @@
 **************************************************************
 *                                                            *
-* PPLIB - This library provide base classes for PHP.         *
-* Copyright (C) 1999-2002 taktile 			     *
-* Contact : <pplib@taktile.com> 			     *
+* pplib - This library provide base classes for PHP.         *
+* Copyright (C) 2001 taktile - contact : <pplib@taktile.com> *
 * just include pp.inc to use this library.                   *
 *                                                            *
 **************************************************************
