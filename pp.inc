@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.21 2002/02/18 16:56:13 tieum Exp $
+//  $Id: pp.inc,v 1.22 2002/02/20 13:53:05 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -31,7 +31,7 @@ if(DEVEL_MODE)
 {
   require_once('base/pp_microtime.inc');
   $timer = new pp_microtime;
-  $timer->start();
+  $timer->start('full_page_parse_time');
 }
 
 require_once('base/pp_error.inc');
@@ -135,8 +135,8 @@ function my_output_callback($buffer)
     $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
   if(DEVEL_MODE)
   {
-    $timer->stop();
-    $elapsed = round($timer->elapsed(), 3);
+    $timer->stop('full_page_parse_time');
+    $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
     if($pp->tpl->mime_subtype == 'html')
       $str .= '<font size=1 face=verdana><center>'.
 	      _("page generated on ").$elapsed.' sec '.

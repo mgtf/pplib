@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.16 2002/02/19 14:55:54 tieum Exp $
+//  $Id: template.inc,v 1.17 2002/02/20 13:53:07 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -97,6 +97,7 @@ class pp_template extends pp_file
     $this->add_tag('debug', 'template_debug');
     $this->add_tag('uppercase', 'template_uppercase');
     $this->add_tag('self', 'template_self');
+    $this->add_tag('browser', 'template_browser');
   }
 
   function add_tag($name, $action, $options = array())
@@ -536,6 +537,20 @@ class pp_template extends pp_file
 	    </th></tr>'.
            $s.
 	   '</table><br>';
+  }
+
+  ////
+  // !private function
+  // return 1 if browser is MSIE, 0 else
+  function template_browser()
+  {
+    $browser = get_browser();
+    die($browser->browser);
+    global $HTTP_USER_AGENT;
+    $browser = $HTTP_USER_AGENT;
+    $browser = split(' ', $browser);
+    $browser = $browser['0'];
+    echo $browser;
   }
 
 };

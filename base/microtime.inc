@@ -1,6 +1,6 @@
 <?php
 
-// $Id: microtime.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: microtime.inc,v 1.2 2002/02/20 13:53:07 tieum Exp $
 // example:
 //         $timer = new c_Timer;
 //         $timer->start();
@@ -27,22 +27,22 @@ class pp_microtime extends pp_class {
       return ((float)$usec + (float)$sec); 
     } 
 	
-    function start() 
+    function start($name = 'default') 
     { 
-      $this->t_start = $this->microtime_(); 
+      $this->t_start[$name] = $this->microtime_(); 
     }
     
-    function stop()  
+    function stop($name = 'default')  
     { 
-      $this->t_stop  = $this->microtime_(); 
+      $this->t_stop[$name]  = $this->microtime_(); 
     }
 
-    function elapsed() 
+    function elapsed($name = 'default') 
     {
       if ($this->t_elapsed != 0)
-	return $this->t_elapsed;
+	return $this->t_elapsed[$name];
       else
-	return ($this->t_elapsed = ($this->t_stop - $this->t_start));
+	return ($this->t_elapsed[$name] = ($this->t_stop[$name] - $this->t_start[$name]));
     }
 };
 
