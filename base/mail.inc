@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mail.inc,v 1.20 2003/08/28 15:22:44 mgf Exp $
+// $Id: mail.inc,v 1.21 2003/09/03 09:07:12 mgf Exp $
 // !send complex email with attachments
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -84,9 +84,9 @@ class mail extends mime
        ! strlen($this->to))
       user_error("mail::send : "._("Missing parameters"), E_USER_ERROR);
     $this->headers  = "From: ".$this->from."\n";
-    $this->headers .= "X-Mailer: ".LIBNAME." v".PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION."\n";
+    $this->headers .= "X-Mailer: ".LIBNAME." v".MAJOR_VERSION.'.'.MINOR_VERSION."\n";
     $this->headers .= "X-Priority: ".$this->priority."\n";
-    $this->headers .= "Return-Path: ".GENERAL_WEBMASTER_MAIL."\n";
+    $this->headers .= "Return-Path: ".SERVER_ADMIN."\n";
     if($this->is_html || $this->has_attachment)
       $this->headers .= "MIME-Version: 1.0\n";
     if($this->is_html && ! $this->has_attachment)
