@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_mysql.inc,v 1.19 2003/06/08 19:43:06 mgf Exp $
+// $Id: pp_mysql.inc,v 1.20 2003/06/08 19:51:03 mgf Exp $
 // !mysql abstraction layer
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -258,12 +258,19 @@ class pp_db extends pp_class {
     return $return;
   }
 
+  function begin() {
+    @mysql_query('SET AUTOCOMMIT=0', $this->link_id);
+    @mysql_query('BEGIN', $this->link_id);
+  }
+
   function commit() {
     @mysql_query('COMMIT', $this->link_id);
+    @mysql_query('SET AUTOCOMMIT=1', $this->link_id);
   }
 
   function rollback() {
     @mysql_query('ROLLBACK', $this->link_id);
+    @mysql_query('SET AUTOCOMMIT=1', $this->link_id);
   }
 };
 
