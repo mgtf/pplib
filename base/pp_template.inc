@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_template.inc,v 1.73 2003/08/19 19:31:39 mgf Exp $
+// $Id: pp_template.inc,v 1.74 2003/08/19 19:32:32 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -417,11 +417,11 @@ class pp_template extends pp_file {
     $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
     if (strlen($id)) {
       if(! isset($this->dynbloc_data[$id]))
-	$pp->tpl->dynbloc_data[$id] = array();
+	$this->dynbloc_data[$id] = array();
       $data = $this->dynbloc_data[$id];
     } else {
       if(! isset($this->dynbloc_data))
-	$pp->tpl->dynbloc_data = array();
+	$this->dynbloc_data = array();
       $data = $this->dynbloc_data;
     }
     if(array_key_exists('bloc', $tag['options']))
