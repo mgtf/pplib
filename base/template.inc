@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.58 2002/07/31 10:53:59 tieum Exp $
+//  $Id: template.inc,v 1.59 2002/07/31 11:46:15 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -470,9 +470,8 @@ class pp_template extends pp_file
     foreach($data as $v)
     {
       // XXX - must this be there ?
-      while(list($k, $v_) = each($v))
-	$t[$k] = addslashes($v_);
-      $v = $t;
+      while(list($k, $s) = each($v))
+	$v[$k] = addslashes($s);
       //
       $this->add_tag_array($v);
       $this->add_tag_array(array('dynbloc_ite' => $ite++));
