@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.38 2002/05/22 10:33:20 tieum Exp $
+//  $Id: pp_template.inc,v 1.39 2002/06/06 09:24:57 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -252,7 +252,11 @@ class pp_template extends pp_file
   // !private function
   function find_begin($str)
   {
-    return (strpos($str, $this->tag_start));
+    $len = strlen($str);
+    for ($i = 0; $i < $len; $i++)
+      if($str[$i] == $this->tag_start && $str[$i - 1] != '\\')
+	return $i;
+    return FALSE;
   }
 
   ////
@@ -266,10 +270,12 @@ class pp_template extends pp_file
       switch ($str[$i])
       {
 	case $this->tag_start:
-	  $nb++;
+	  if($str[$i - 1] != '\\')
+	    $nb++;
 	  break;
 	case $this->tag_stop:
-	  $nb--;
+	  if($str[$i - 1] != '\\')
+	    $nb--;
 	  break;
       }
     }
@@ -319,10 +325,12 @@ class pp_template extends pp_file
       switch ($str[$i])
       {
 	case $this->tag_start:
-	  $nb++;
+	  if($str[$i - 1] != '\\')
+	    $nb++;
 	  break;
 	case $this->tag_stop:
-	  $nb--;
+	  if($str[$i - 1] != '\\')
+	    $nb--;
 	  break;
       }
     }
@@ -399,6 +407,15 @@ class pp_template extends pp_file
     else
       return user_error("pp_template::parse_tag : "._("function")." '".
 	  $tag[action]."' "._("does not exist"), E_USER_ERROR);
+  }
+
+  ////
+  // !private function
+  function escape_tags($string)
+  {
+    $string = ereg_replace('{', '\{', $string);
+    $string = ereg_replace('}', '\}', $string);
+    return $string;
   }
 
   ////
@@ -551,17 +568,20 @@ class pp_template extends pp_file
 	new_($string, 'pp_string');
 	$value = $string->cut_text($v['options']['text'], 50);
 	$value = strlen($value) ? $value : 'not set !';
+	$value = $this->escape_tags($value);
 	$value = '('._("value").' : <b>\''.(nl2br(htmlspecialchars($value))).'\'</b>)';
       }
       else
 	$value = '('._("action").' : <b>\''.$v['action'].'\'</b>)';
-      $s .= '<tr>
+      $s .= '
+	<tr>
 	<td>
 	<font size=1><b>'.$v['name'].'</b> '.$value.'</font>
 	</td>
 	</tr>';
     }
-    return '<table align=center border=1 cellspacing=0 cellpadding=2>
+    return '
+      <table align=center border=1 cellspacing=0 cellpadding=2>
       <tr><th bgcolor="FFCCCC">
       <font size=1 color="red">template debug</font>
       </th></tr>'.
