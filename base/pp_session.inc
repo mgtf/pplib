@@ -1,6 +1,6 @@
 <?
 //
-// $Id: pp_session.inc,v 1.1 2002/01/15 15:22:12 tieum Exp $
+// $Id: pp_session.inc,v 1.2 2002/04/12 15:48:08 tieum Exp $
 // session class
 
 class pp_session extends pp_class
@@ -12,7 +12,6 @@ class pp_session extends pp_class
     $this->pp_class();
     // session_name($this->session_name);
     return;
-
   }
 
   function destroy()
@@ -22,6 +21,6 @@ class pp_session extends pp_class
     setcookie(session_name(), "", 0, $p["path"], $p["domain"]); 
     header("Location: ?");
   }
-}
+};
 
 ?>

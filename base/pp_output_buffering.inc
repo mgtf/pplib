@@ -1,5 +1,5 @@
 <?
-// $Id: pp_output_buffering.inc,v 1.15 2002/04/12 10:51:28 tieum Exp $
+// $Id: pp_output_buffering.inc,v 1.16 2002/04/12 15:48:08 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -58,18 +58,20 @@ class pp_output_buffering extends pp_class
 
   function get_compression()
   {
+    if(array_key_exists('__ua_compression', $_SESSION))
+      return ($this->compression = $_SESSION['__ua_compression']);
     $accept_encoding = $GLOBALS['HTTP_ACCEPT_ENCODING'];
     if (strpos($accept_encoding, 'x-gzip') !== false)
-      return ($this->compression = 'x-gzip');
+      return ($_SESSION['__ua_compression'] = $this->compression = 'x-gzip');
     if (strpos($accept_encoding, 'gzip') !== false)
-      return ($this->compression = 'gzip');
-    return 'none';
+      return ($_SESSION['__ua_compression'] = $this->compression = 'gzip');
+    return ($_SESSION['__ua_compression'] = $this->compression = 'none');
   }
 
   function compress_add_headers() 
   {
     global $HTTP_SERVER_VARS, $pp;
-    $etag = 'PPLIB-cache-' . md5(substr($this->data, -40));
+    $etag = 'PPLIB-cache-' . md5($this->data);
     $pp->header->header_add("ETag: $etag");
     if (strstr(stripslashes($HTTP_SERVER_VARS['HTTP_IF_NONE_MATCH']), $etag))
       $pp->header->header_add("HTTP/1.0 304");

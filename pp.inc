@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.65 2002/04/12 10:59:47 tieum Exp $
+//  $Id: pp.inc,v 1.66 2002/04/12 15:48:06 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -159,11 +159,11 @@ function my_output_callback($buffer)
       $str .= 
 	'<br><div align="center"><font size="1" face="Verdana">'.
 	_("page generated on ").$elapsed.' sec '.
-	'(pplib version : '.$pp->version.')</font></div>';
+	'(pplib v'.$pp->version.')</font></div>';
     else
       $str .= 
 	_("page generated on ").$elapsed.' sec '.
-	'(pplib version : '.$pp->version.')'."\n";
+	'(pplib v'.$pp->version.')'."\n";
   }
   $str = $str.$pp->footer_str;
   $str = $pp->tpl->parse_template($str);
