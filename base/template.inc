@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.66 2003/08/07 12:31:19 mgf Exp $
+// $Id: template.inc,v 1.67 2003/08/07 12:39:29 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -64,8 +64,7 @@
 // {urldecode data=''}
 // {hrdate data='' type=''}
 
-class pp_template extends pp_file
-{
+class pp_template extends pp_file {
   var $tags;
   var $timeout;
   var $debug;
@@ -74,8 +73,7 @@ class pp_template extends pp_file
   var $parse_iteration;
   var $dynbloc_data;
 
-  function pp_template()
-  {/*{{{*/
+  function pp_template() {
     $this->pp_file();
     $this->set_mime('html');
     if(defined('TEMPLATE_TIMEOUT'))
@@ -117,18 +115,16 @@ class pp_template extends pp_file
     $this->add_tag('urldecode', 'tag_urldecode');
     $this->add_tag('br', 'tag_br');
     $this->add_tag('hrdate', 'tag_hrdate');
-  }/*}}}*/
+  }
 
   ////
   // !ajoute le tag $name à la liste de tags extistant.
   // le parseur execute $action() lorsque le tag est rencontré
   // par celui-ci.
-  function add_tag($name, $action, $options = array())
-  {/*{{{*/
+  function add_tag($name, $action, $options = array()) {
     if( ! function_exists($action) && ! method_exists($this, $action))
       user_error("pp_template::add_tag : "._("function")." '".$action."' "._("does not exist"), E_USER_ERROR);
-    if( (! strlen($name)) || (! strlen($action)) )
-    {
+    if( (! strlen($name)) || (! strlen($action)) ) {
       if(! strlen($name))
 	user_error("pp_template::add_tag : \$name "._("is not defined").", action = '$action'", E_USER_ERROR);
       else
@@ -138,15 +134,14 @@ class pp_template extends pp_file
     $this->tags[$name]['action'] = $action;
     $this->tags[$name]['name'] = $name;
     $this->tags[$name]['options'] = $options;
-  }/*}}}*/
+  }
 
   ////
   // !ajoute un tableau associatif de tags.
   // la tableau est de la forme : array('nom_du_tag' => 'valeur_de_remplaceement' ..)
   // le parseur remplace le tag par sa valeur lorsque le tag est rencontré
   // par celui-ci.
-  function add_tag_array($array)
-  {/*{{{*/
+  function add_tag_array($array) {
     if(! is_array($array))
       user_error("pp_template::add_tag_array : "._("arg is not an array"), E_USER_ERROR);
     while (list($key, $value) = each($array))
@@ -155,27 +150,24 @@ class pp_template extends pp_file
 	return (-1);
     }
     return (1);
-  }/*}}}*/
+  }
 
   ////
-  // !renvoi TRUE si le tag $tagname est défini, FALSE sinon.
-  function tag_exists($tagname)
-  {/*{{{*/
+  // !renvoi true si le tag $tagname est défini, false sinon.
+  function tag_exists($tagname) {
     return array_key_exists($tagname, $this->tags);
-  }/*}}}*/
+  }
 
   ////
   // !retire le tag $name de la liste des tags connus.
-  function del_tag($name)
-  {/*{{{*/
+  function del_tag($name) {
     if(isset($this->tags))
       unset($this->tags[$name]);
-  }/*}}}*/
+  }
 
   ////
   // !retire le tableau associatif de tags $array de la liste des tags connus.
-  function del_tag_array($array)
-  {/*{{{*/
+  function del_tag_array($array) {
     if(! is_array($array))
     {
       user_error("pp_template::del_tag_array : "._("arg is not an array"), E_USER_ERROR);
@@ -184,23 +176,21 @@ class pp_template extends pp_file
     while (list($key, $value) = each($array))
       $this->del_tag($key);
     return (1);
-  }/*}}}*/
+  }
 
   ////
   // !lit le contenu de $filename, execute parse_template() et renvoie la chaine parsee
-  function parse_template_file($filename)
-  {/*{{{*/
+  function parse_template_file($filename) {
     if(! strlen($filename))
       user_error("pp_template::parse_template_file : "._("no file to read"), E_USER_ERROR);
     $this->filename = $filename;
     $this->read();
     return ($this->parse_template($this->data));
-  }/*}}}*/
+  }
 
   ////
   // !parse la chaine entrée en parametre et l'ecris dans le fichier
-  function parse_template_to_file($str, $filename, $force = 0)
-  {/*{{{*/
+  function parse_template_to_file($str, $filename, $force = 0) {
     if(! strlen($filename))
       user_error("pp_template::parse_template_to_file : "._("no file to write"), E_USER_ERROR);
     if(! strlen($str))
@@ -208,16 +198,15 @@ class pp_template extends pp_file
     $this->filename = $filename;
     $this->parse_template($str);
     return $this->write($force);
-  }/*}}}*/
+  }
 
   ////
   // !parse le fichier entré $file_src et l'ecris dans $file_dest
-  function parse_template_file_to_file($file_src, $file_dest, $force = 0)
-  {/*{{{*/
+  function parse_template_file_to_file($file_src, $file_dest, $force = 0) {
     return $this->parse_template_to_file($this->parse_template_file($file_src), 
 	$file_dest, 
 	$force);
-  }/*}}}*/
+  }
 
   ///////////////////////////////////////////////////////////////////////////////
   ///////// PRIVATE FUNCTIONS ///////////////////////////////////////////////////
@@ -231,15 +220,13 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function parse_template($str)
-  {/*{{{*/
+  function parse_template($str) {
     $begin = $this->find_begin($str);
     if ($begin === false)
       return ($str);
     $result = '';
     $remaining = $str;
-    for ($this->parse_iteration = 0; !($begin === false); $begin = $this->find_begin($remaining))
-    {
+    for ($this->parse_iteration = 0; !($begin === false); $begin = $this->find_begin($remaining)) {
       $this->parse_iteration++;
       if ($this->parse_iteration >= $this->timeout)
 	user_error('pp_template::parse_template : '.
@@ -259,12 +246,11 @@ class pp_template extends pp_file
     $this->parse_iteration = 0;
     // translate the string : 
     return preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $result);
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function find_begin($str)
-  {/*{{{*/
+  function find_begin($str) {
     $len = strlen($str);
     if(! $len)
       return FALSE;
@@ -274,17 +260,14 @@ class pp_template extends pp_file
       if($str[$i] == $this->tag_start && $str[$i - 1] != '\\')
 	return $i;
     return FALSE;
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function find_end($str, $begin = 0)
-  {/*{{{*/
+  function find_end($str, $begin = 0) {
     $nb = 1;
-    for ($i = $begin + 1; $nb && isset($str[$i]); $i++)
-    {
-      switch ($str[$i])
-      {
+    for ($i = $begin + 1; $nb && isset($str[$i]); $i++) {
+      switch ($str[$i]) {
 	case $this->tag_start:
 	  if($str[$i - 1] != '\\')
 	    $nb++;
@@ -296,22 +279,20 @@ class pp_template extends pp_file
       }
     }
     return $nb ? FALSE : $i;
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function find_char($str, $char)
-  {/*{{{*/
+  function find_char($str, $char) {
     for ($i = 1; isset($str[$i]); $i++)
       if (($str[$i] == $char) && ($str[$i - 1] != '\\'))
 	return ($i);
     return FALSE;
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function parse_tag($tag_str)
-  {/*{{{*/
+  function parse_tag($tag_str) {
     $regexp = " *([^ ]+) *(.*)\\".$this->tag_stop;
     if (!ereg($regexp, $tag_str, $tb))
       return user_error('pp_template::parse_tag : '._("template error"), E_USER_ERROR);
@@ -321,14 +302,12 @@ class pp_template extends pp_file
       return $this->tag_start.$tag_str;
     $param = $tb[2];
     $regexp = " *([^ =]+) *= *(.*)";
-    while (strlen($param) > 0)
-    {
+    while (strlen($param) > 0) {
       if (!ereg($regexp, $param, $tb))
 	break;
       $name = $tb[1];
       $other = $tb[2];
-      switch ($other[0])
-      {
+      switch ($other[0]) {
 	case '"':
 	case "'":
 	case "`":
@@ -343,13 +322,10 @@ class pp_template extends pp_file
 	  break;
 	default:
 	  $end = strpos($other, ' ');
-	  if ($end === false)
-	  {
+	  if ($end === false) {
 	    $par = $other;
 	    $param = '';
-	  }
-	  else
-	  {
+	  } else {
 	    $par = substr($other, 0, $end);
 	    $param = substr($other, $end);
 	  }
@@ -370,28 +346,25 @@ class pp_template extends pp_file
     else
       return user_error("pp_template::parse_tag : "._("function")." '".
 	  $tag[action]."' "._("does not exist"), E_USER_ERROR);
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function escape_tags($string)
-  {/*{{{*/
+  function escape_tags($string) {
     $string = ereg_replace($this->tag_start, '\\'.$this->tag_start, $string);
     $string = ereg_replace($this->tag_stop, '\\'.$this->tag_stop, $string);
     return $string;
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function template_echo($tag)
-  {/*{{{*/
+  function template_echo($tag) {
     return $tag['options']['text'];
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_include($tag)
-  {/*{{{*/
+  function tag_include($tag) {
     $name = $tag['options']['name'];
     $type = '';
     if(array_key_exists('type', $tag['options']))
@@ -399,8 +372,7 @@ class pp_template extends pp_file
     if ($name == '')
       return user_error("pp_template::tag_include : "._("you must specify template name").",\n".
 	  _("correct syntax is")." : {include name=\"filename\" type=\"type\"}", E_USER_ERROR);
-    switch ($type)
-    {
+    switch ($type) {
       case 'raw':
 	return ($this->parse_template_file($this->tpl_path.$name.'.html'));
       case 'php':
@@ -420,12 +392,11 @@ class pp_template extends pp_file
 	else
 	  return user_error(_("invalid include file").": $file", E_USER_ERROR);
     }
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_if($tag)
-  {/*{{{*/
+  function tag_if($tag) {
     $opt = $tag['options'];
     if (($opt['cond'] == '') || 
 	($opt['cond'] == 'false') || 
@@ -439,12 +410,11 @@ class pp_template extends pp_file
     }
     else
       return array_key_exists('then', $opt) ? $opt['then'] : '';
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_dynbloc($tag)
-  {/*{{{*/
+  function tag_dynbloc($tag) {
     $ite = 0;
     $str = '';
     $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
@@ -462,12 +432,7 @@ class pp_template extends pp_file
 	  _("you must specify `bloc` arg in dynbloc tag"), E_USER_ERROR);
     if(! is_array($data))
       $data = array();
-    foreach($data as $v)
-    {
-      // XXX - must this be there ?
-      while(list($k, $s) = each($v))
-	$v[$k] = addslashes($s);
-      //
+    foreach($data as $v) {
       // here we copy data from $pp->tpl to be sure this
       // will not modify tag outside the dynbloc tag.
       $tpl = $this;
@@ -482,15 +447,13 @@ class pp_template extends pp_file
     else
       unset($this->dynbloc_data);
     return $str;
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_replace($tag)
-  {/*{{{*/
+  function tag_replace($tag) {
     $opt = $tag[options];
-    switch ($opt[mode])
-    {
+    switch ($opt[mode]) {
       case 'str':
 	return str_replace($opt['what'], $opt['by'], $opt['in']);
       case 'posix':
@@ -501,49 +464,45 @@ class pp_template extends pp_file
       default:
 	return $opt['in'];
     }
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_uppercase($tag)
-  {/*{{{*/
+  function tag_uppercase($tag) {
     $opt = $tag['options'];
     $txt = $opt['data'];
     return strtoupper($txt);
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_self($tag)
-  {/*{{{*/
+  function tag_self($tag) {
     $self = '?';
     reset($_GET);
     while(list($k, $v) = each($_GET))
       if($v != NULL)
 	$self .= '&'.$k.'='.urlencode($v);
     return $self;
-  }/*}}}*/
+  }
 
   ////
   // !private function
   function tag_debug()
-  {/*{{{*/
+  {
     $s = '';
     if($this->mime_subtype != 'html' && $this->mime_subtype != 'xhtml')
       return -1;
-    foreach($this->tags as $v)
-    {
+    foreach($this->tags as $v) {
       unset($value);
-      if($v['action'] == 'template_echo')
-      {
+      if($v['action'] == 'template_echo') {
 	new_($string, 'pp_string');
 	$value = $string->cut_text($v['options']['text'], 50);
 	$value = strlen($value) ? $value : _("not set").' !';
 	$value = $this->escape_tags($value);
 	$value = '('._("value").' : <b>`'.(nl2br(htmlentities($value))).'`</b>)';
-      }
-      else
+      } else {
 	$value = '('._("action").' : <b>`'.(nl2br(htmlentities($v['action']))).'`</b>)';
+      }
       $s .= '
 	<tr>
 	<td>
@@ -558,7 +517,7 @@ class pp_template extends pp_file
       </th></tr>'.
       $s.
       '</table><br>';
-  }/*}}}*/
+  }
 
   ////
   // !private function
@@ -570,48 +529,42 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function tag_ua_mozilla()
-  {/*{{{*/
-    if(array_key_exists('browser', (array) $_SESSION))
+  function tag_ua_mozilla() {
+    if(array_key_exists('browser', (array) $_SESSION)) {
       return ($_SESSION['browser'] == 'mozilla') ? 1 : 0;
-    else
-    {
+    } else {
       new_($agent, 'pp_sniff');
       $this->add_tag_array(
 	  array('ua_mozilla' => ($agent->browser == 'mozilla') ? 1 : 0)
 	  );
       return ($agent->browser == 'mozilla') ? 1 : 0;
     }
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_ua_msie()
-  {/*{{{*/
-    if(array_key_exists('browser', (array) $_SESSION))
+  function tag_ua_msie() {
+    if(array_key_exists('browser', (array) $_SESSION)) {
       return ($_SESSION['browser'] == 'msie') ? 1 : 0;
-    else
-    {
+    } else {
       new_($agent, 'pp_sniff');
       $this->add_tag_array(
 	  array('ua_msie' => ($agent->browser == 'msie') ? 1 : 0)
 	  );
       return ($agent->browser == 'msie') ? 1 : 0;
     }
-  }/*}}}*/
+  }
 
   ////
   // !private function
-  function tag_hrdate($tag)
-  {/*{{{*/
+  function tag_hrdate($tag) {
     $date = $tag['options']['data'];
     $type = array_key_exists('type', $tag['options']) ? $tag['options']['type'] : 1;
     $langue = ( defined('LANGUAGE') && LANGUAGE == 'fr_FR' ) ? 1 : 0;
     $mois = substr($date, 5, 2);
     $annee = substr($date, 0, 4);
     $jour = substr($date, -2);
-    if ($type == 2)
-    {
+    if ($type == 2) {
       $nom_jour[0] = $langue ? "Dimanche" : "Sunday";
       $nom_jour[1] = $langue ? "Lundi" : "Monday";
       $nom_jour[2] = $langue ? "Mardi" : "Tuesday";
@@ -639,7 +592,7 @@ class pp_template extends pp_file
     if($type == 3)
       $annee = substr($annee, 2, 2);
     return "$jour/$mois/$annee";
-  }/*}}}*/
+  }
 
   ////
   // !private function
