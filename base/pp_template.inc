@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.15 2002/02/19 14:29:17 tieum Exp $
+//  $Id: pp_template.inc,v 1.16 2002/02/19 14:55:54 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -497,11 +497,9 @@ class pp_template extends pp_file
   // !private function
   function template_self($tag)
   {
-    static $self = '';
-    if($self != '')
-      return $self;
-    $self = '?';
     global $HTTP_GET_VARS;
+    $self = '?';
+    reset($HTTP_GET_VARS);
     while(list($k, $v) = each($HTTP_GET_VARS))
       $self .= '&'.$k.'='.$v;
     return $self;
