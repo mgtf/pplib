@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-04-04 10:58+0200\n"
+"POT-Creation-Date: 2002-05-14 18:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,42 +14,26 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: base/pp_class.inc:13
+#: base/pp_class.inc:14
 msgid "is not the name of an existing class"
 msgstr ""
 
-#: base/pp_class.inc:26
+#: base/pp_class.inc:28
 msgid "you are trying to create an object from the class"
 msgstr ""
 
-#: base/pp_class.inc:27
+#: base/pp_class.inc:29
 msgid "but it is already an object from the class"
 msgstr ""
 
-#: base/pp_class.inc:61 base/pp_error.inc:26 base/pp_error.inc:41
-#: base/pp_file.inc:31 base/pp_file.inc:42 base/pp_file.inc:69
+#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_file.inc:31 base/pp_file.inc:43 base/pp_file.inc:72
 msgid "file"
 msgstr ""
 
-#: base/pp_class.inc:61 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:41
 #: base/pp_xml_expat.inc:38
 msgid "line"
-msgstr ""
-
-#: base/pp_data.inc:84
-msgid "constant STORAGE_PATH not set"
-msgstr ""
-
-#: base/pp_data.inc:102
-msgid "can't get last insert id"
-msgstr ""
-
-#: base/pp_data.inc:113
-msgid "no data to store"
-msgstr ""
-
-#: base/pp_data.inc:135
-msgid "data size too big"
 msgstr ""
 
 #: base/pp_error.inc:21 base/pp_error.inc:24
@@ -60,8 +44,8 @@ msgstr ""
 msgid "warning"
 msgstr ""
 
-#: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:121
-#: base/pp_template.inc:398 base/pp_template.inc:433 base/pp_ttf_text.inc:86
+#: base/pp_file.inc:31 base/pp_file.inc:73 base/pp_template.inc:121
+#: base/pp_template.inc:399 base/pp_template.inc:434 base/pp_ttf_text.inc:88
 msgid "does not exist"
 msgstr ""
 
@@ -69,43 +53,43 @@ msgstr ""
 msgid "data or filename empty"
 msgstr ""
 
-#: base/pp_file.inc:43
+#: base/pp_file.inc:44
 msgid "already exist, use pp_file->write(1) to force overwrite"
 msgstr ""
 
-#: base/pp_file.inc:45
+#: base/pp_file.inc:47
 msgid "directory"
 msgstr ""
 
-#: base/pp_file.inc:46
+#: base/pp_file.inc:48
 msgid "is not writeable"
 msgstr ""
 
-#: base/pp_file.inc:51 base/pp_file.inc:74
+#: base/pp_file.inc:53 base/pp_file.inc:77
 msgid "can't open"
 msgstr ""
 
-#: base/pp_file.inc:55
+#: base/pp_file.inc:57
 msgid "can't write"
 msgstr ""
 
-#: base/pp_file.inc:60 base/pp_file.inc:84
+#: base/pp_file.inc:62 base/pp_file.inc:87
 msgid "can't close"
 msgstr ""
 
-#: base/pp_file.inc:72
+#: base/pp_file.inc:75
 msgid "is not readable"
 msgstr ""
 
-#: base/pp_file.inc:92
+#: base/pp_file.inc:96
 msgid "can't get shared lock on file "
 msgstr ""
 
-#: base/pp_file.inc:99
+#: base/pp_file.inc:105
 msgid "can't get exclusive lock on file "
 msgstr ""
 
-#: base/pp_file.inc:105
+#: base/pp_file.inc:112
 msgid "can't unlock file "
 msgstr ""
 
@@ -133,27 +117,27 @@ msgstr ""
 msgid "is not supported"
 msgstr ""
 
-#: base/pp_image.inc:148
+#: base/pp_image.inc:149
 msgid "image"
 msgstr ""
 
-#: base/pp_image.inc:148
+#: base/pp_image.inc:149
 msgid "has no extention"
 msgstr ""
 
-#: base/pp_image.inc:169 base/pp_image.inc:176
+#: base/pp_image.inc:171 base/pp_image.inc:178
 msgid "can't create image from"
 msgstr ""
 
-#: base/pp_image.inc:185
+#: base/pp_image.inc:187
 msgid "no image size"
 msgstr ""
 
-#: base/pp_image.inc:195
+#: base/pp_image.inc:197
 msgid "can't create image"
 msgstr ""
 
-#: base/pp_image.inc:236
+#: base/pp_image.inc:238
 msgid "format is not supported"
 msgstr ""
 
@@ -169,23 +153,23 @@ msgstr ""
 msgid "this format is not supported"
 msgstr ""
 
-#: base/pp_mysql.inc:68
+#: base/pp_mysql.inc:64
 msgid "db access was not configured"
 msgstr ""
 
-#: base/pp_mysql.inc:119
+#: base/pp_mysql.inc:115
 msgid "can't connect to"
 msgstr ""
 
-#: base/pp_mysql.inc:121
+#: base/pp_mysql.inc:117
 msgid "cannot use database"
 msgstr ""
 
-#: base/pp_mysql.inc:152
+#: base/pp_mysql.inc:147
 msgid "invalid sql"
 msgstr ""
 
-#: base/pp_mysql.inc:168
+#: base/pp_mysql.inc:163
 msgid "next_record called with no query pending"
 msgstr ""
 
@@ -193,7 +177,7 @@ msgstr ""
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:121 base/pp_template.inc:398 base/pp_template.inc:432
+#: base/pp_template.inc:121 base/pp_template.inc:398 base/pp_template.inc:433
 msgid "function"
 msgstr ""
 
@@ -229,23 +213,27 @@ msgstr ""
 msgid "template error"
 msgstr ""
 
-#: base/pp_template.inc:417
+#: base/pp_template.inc:418
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:418
+#: base/pp_template.inc:419
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:438
+#: base/pp_template.inc:428
+msgid "no such include file"
+msgstr ""
+
+#: base/pp_template.inc:439
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:468
+#: base/pp_template.inc:469
 msgid "not set"
 msgstr ""
 
-#: base/pp_template.inc:477
+#: base/pp_template.inc:478
 msgid "you must specify `bloc` arg in dynbloc tag"
 msgstr ""
 
@@ -257,19 +245,19 @@ msgstr ""
 msgid "action"
 msgstr ""
 
-#: base/pp_ttf_text.inc:82
+#: base/pp_ttf_text.inc:83
 msgid "please set"
 msgstr ""
 
-#: base/pp_ttf_text.inc:86
+#: base/pp_ttf_text.inc:88
 msgid "font file"
 msgstr ""
 
-#: base/pp_ttf_text.inc:89
+#: base/pp_ttf_text.inc:90
 msgid "no text"
 msgstr ""
 
-#: base/pp_ttf_text.inc:104
+#: base/pp_ttf_text.inc:106
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
 "images !"
@@ -283,15 +271,15 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:137
+#: pp.inc:134
 msgid "pp site is currently in a maintenance state"
 msgstr ""
 
-#: pp.inc:139
+#: pp.inc:136
 msgid "Please come back later"
 msgstr ""
 
-#: pp.inc:161 pp.inc:165
+#: pp.inc:158 pp.inc:162
 msgid "page generated on "
 msgstr ""
 
