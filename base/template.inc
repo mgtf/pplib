@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.23 2002/02/26 13:44:55 tieum Exp $
+//  $Id: template.inc,v 1.24 2002/03/04 16:39:47 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -504,7 +504,8 @@ class pp_template extends pp_file
     $self = '?';
     reset($HTTP_GET_VARS);
     while(list($k, $v) = each($HTTP_GET_VARS))
-      $self .= '&'.$k.'='.$v;
+      if($v != NULL)
+	$self .= '&'.$k.'='.$v;
     return $self;
   }
 
