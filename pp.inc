@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.19 2002/02/14 12:13:26 tieum Exp $
+//  $Id: pp.inc,v 1.20 2002/02/18 10:49:23 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -121,7 +121,7 @@ function my_output_callback($buffer)
       return '';
   }
   $str = $pp->tpl->comment_start.
-         " Proportail v".
+         " pplib v".
          $pp->version.
          " - ".
          date("D M d Y").
