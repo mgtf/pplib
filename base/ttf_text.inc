@@ -1,5 +1,5 @@
 <?
-// $Id: ttf_text.inc,v 1.3 2002/02/18 17:02:38 tieum Exp $
+// $Id: ttf_text.inc,v 1.4 2002/02/18 17:47:08 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -42,6 +42,8 @@ class pp_ttf_text extends pp_image
   function pp_ttf_text()
   {
     $this->pp_image();
+    // very important not to use truecolor image:
+    $this->truecolor = FALSE;
     $this->txt_xsize = -1;
     $this->txt_ysize = -1;
     $this->size = 24;
