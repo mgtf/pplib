@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.43 2002/03/04 15:31:11 tieum Exp $
+//  $Id: pp.inc,v 1.44 2002/03/05 13:31:20 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -123,9 +123,9 @@ function my_output_callback($buffer)
   if(MAINTENANCE_MODE == 1)
   {
     if($pp->tpl->mime_subtype == 'html')
-      return _("pp site is currently in a maintenance state.").
+      return _("pp site is currently in a maintenance state").
 	'<br>'.
-	_("Please come back later.");
+	_("Please come back later");
     else
       return '';
   }

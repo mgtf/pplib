@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.28 2002/02/28 17:48:36 tieum Exp $
+//  $Id: pp_list.inc,v 1.29 2002/03/05 13:27:19 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -323,7 +323,7 @@ class pp_list extends pp_template
 		       ($choice == $this->max_elements) ? 'SELECTED' : '', $choice);
     $form->add_field("end_select", "");
     // classer par :
-    $form->data .= '<font class="list">'._("elements per page.").'<br>'._("Sort by").' </font>';
+    $form->data .= '<font class="list">'._("elements per page").'.<br>'._("Sort by").' </font>';
     $form->add_field("select", $this->id."_current_order_field", "onChange=document.".$this->id."_list_search.submit()");
     foreach( (explode(',', $this->order_fields)) as $f)
     {

@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.24 2002/03/04 16:39:47 tieum Exp $
+//  $Id: pp_template.inc,v 1.25 2002/03/05 13:31:21 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -158,7 +158,7 @@ class pp_template extends pp_file
   function parse_template_file($filename)
   {
     if(! strlen($filename))
-      $this->error("pp_template::parse_template_file : "._("no file to read."));
+      $this->error("pp_template::parse_template_file : "._("no file to read"));
     $this->filename = $filename;
     $this->read();
     return ($this->parse_template($this->data));
@@ -185,9 +185,9 @@ class pp_template extends pp_file
   function parse_template_to_file($str, $filename, $force = 0)
   {
     if(! strlen($filename))
-      $this->error("pp_template::parse_template_to_file : "._("no file to write."));
+      $this->error("pp_template::parse_template_to_file : "._("no file to write"));
     if(! strlen($str))
-      $this->error("pp_template::parse_template_to_file : "._("no data to write."));
+      $this->error("pp_template::parse_template_to_file : "._("no data to write"));
     $this->filename = $filename;
     $this->parse_template($str);
     return $this->write($force);
