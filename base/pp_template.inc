@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_template.inc,v 1.64 2003/07/07 13:49:40 mgf Exp $
+// $Id: pp_template.inc,v 1.65 2003/07/07 19:40:01 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -240,7 +240,7 @@ class pp_template extends pp_file
   ////
   // !private function
   function translate($str) {
-    return _(stripslashes($str[1]));
+    return _($str[1]);
   }
 
   ////
