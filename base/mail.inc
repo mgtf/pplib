@@ -1,21 +1,27 @@
 <?
 
-// $Id: mail.inc,v 1.11 2002/07/17 10:05:46 tieum Exp $
+// $Id: mail.inc,v 1.12 2002/07/18 08:52:01 tieum Exp $
 // !pp_mail.inc - send complex email with attachments.
 //
 // public methods : 
 //
 // send()
 // add_attachment($name, $data, $ext = '')
+// add_notification($mail) { $this->headers .= "Disposition-Notification-To: $mail\n"; }
+// add_recipient($mail) { $this->to[] = $mail; }
+// add_copy_to_recipient($mail) { $this->cc[] = $mail; }
+// add_blink_copy_to_recipient($mail) { $this->bcc[] = $mail; }
 //
 // private methods : 
 //
-// add_attachment()
+// construct_attachment()
 // construct_recipient_list()
+// construct_copy_to_recipient()
 //
 // consts :
 //
 // BOUNDARY_PREFIX
+// DEFAULT_PRIORITY
 
 define('BOUNDARY_PREFIX', '--pplib-');
 define('DEFAULT_PRIORITY', 3);
@@ -88,9 +94,12 @@ class pp_mail extends pp_mime
 
   // public
   function add_recipient($mail) { $this->to[] = $mail; }
-  function add_copy_to_recipient($mail) { $this->cc[] = $mail; }
-  function add_blink_copy_to_recipient($mail) { $this->bcc[] = $mail; }
 
+  // public
+  function add_copy_to_recipient($mail) { $this->cc[] = $mail; }
+
+  // public
+  function add_blink_copy_to_recipient($mail) { $this->bcc[] = $mail; }
 
   // private
   function construct_recipient_list()
@@ -100,6 +109,7 @@ class pp_mail extends pp_mime
     $this->to = implode(', ', $this->to);
   }
 
+  // private
   function construct_copy_to_recipient()
   {
     if(! is_array($this->cc))
@@ -111,6 +121,7 @@ class pp_mail extends pp_mime
       $this->headers .= 'Cc: '.implode(', ', $this->cc);
   }
 
+  // private
   function construct_blink_copy_to_recipient()
   {
     if(! is_array($this->bcc))
