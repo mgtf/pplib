@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-17 16:14+0100\n"
+"POT-Creation-Date: 2002-01-18 11:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -253,14 +253,14 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:109
+#: pp.inc:114
 msgid "This site is currently in a maintenance state."
 msgstr ""
 
-#: pp.inc:111
+#: pp.inc:116
 msgid "Please come back later."
 msgstr ""
 
-#: pp.inc:134 pp.inc:137
+#: pp.inc:140 pp.inc:143
 msgid "page generated on "
 msgstr ""
