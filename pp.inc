@@ -1,8 +1,8 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.100 2003/09/04 13:46:26 mgf Exp $
-//  !ocms main class, it define pp object
+//  $Id: pp.inc,v 1.101 2003/09/04 13:48:36 mgf Exp $
+//  !icms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
 //
@@ -30,7 +30,7 @@
 //  MAINTENANCE_MODE
 
 // do not modify below
-define('LIBNAME', 'ocms');
+define('LIBNAME', 'icms');
 define('SYSLOG_PREFIX', '[ '.LIBNAME.' ]');
 define('SERVER_ADMIN', $_SERVER['SERVER_ADMIN']);
 define('MAGIC_MIME_FILE', '/usr/share/misc/file/magic.mime');
