@@ -1,5 +1,5 @@
 <?
-// $Id: pp_error.inc,v 1.11 2002/03/20 16:14:51 tieum Exp $
+// $Id: pp_error.inc,v 1.12 2002/03/20 16:47:55 tieum Exp $
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
@@ -35,8 +35,8 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
     case E_USER_NOTICE:
     case E_USER_WARNING:
     case E_CORE_WARNING:
-      echo '<table align="center" border="1" cellspacing="0" cellpadding="5">'.
-	   '<tr><td width="15" align="center"><img src="/icons/warning.gif"><br><font size=2 color="#FFD600">'._("warning").'</font></th>'.
+      echo '<table align="center" border="0" cellspacing="0" cellpadding="5">'.
+	   '<tr><td width="15" align="center"><img src="/icons/warning.gif"><br><font size=2 color="#0040BD">'._("warning").'</font></th>'.
            '<td><font size=2>'.nl2br($errstr).'</font>'.
 	   '<br><font size=1>'._("file").' : '.$errfile.'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
