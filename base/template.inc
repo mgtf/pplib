@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.12 2002/02/15 15:22:36 tieum Exp $
+//  $Id: template.inc,v 1.13 2002/02/19 13:36:49 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -40,6 +40,15 @@
 //  INC_PATH
 //  TPL_PATH
 //  DEBUG
+// 
+//  tag prédéfinis :
+//
+// {if cond='' then='' else=''}
+// {include name='' type=''}
+// {dynbloc bloc=''}
+// {debug}
+// {replace mode='' what='' by='' in=''}
+// {uppercase data=''}
 //
 
 class pp_template extends pp_file
@@ -86,7 +95,7 @@ class pp_template extends pp_file
     $this->add_tag('if', 'template_if');
     $this->add_tag('replace', 'template_replace');
     $this->add_tag('debug', 'template_debug');
-    $this->add_tag('trans', 'template_translate');
+    $this->add_tag('uppercase', 'template_uppercase');
     $this->add_tag('self', 'template_self');
   }
 
@@ -477,12 +486,11 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_translate($tag)
+  function template_uppercase($tag)
   {
     $opt = $tag['options'];
     $txt = $opt['data'];
-    eval('$txt = _("'.$txt.'");');
-    return $txt;
+    return strtoupper($txt);
   }
 
   ////
