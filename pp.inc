@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.32 2002/02/26 13:27:36 tieum Exp $
+//  $Id: pp.inc,v 1.33 2002/02/26 17:13:27 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -20,7 +20,7 @@
 define('PP_LIB_PATH', '/home/tieum/pplight/pplib/');
 define('PP_SYSLOG_NAME', '[ PPLIB ]');
 define('PP_MAJOR_VERSION', '3');
-define('PP_MINOR_VERSION', '1a');
+define('PP_MINOR_VERSION', '1b');
 
 // all classes extend this one :
 require_once('base/pp_class.inc');
