@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: file.inc,v 1.17 2002/10/16 12:08:29 tieum Exp $
+// $Id: file.inc,v 1.18 2003/06/08 19:07:26 mgf Exp $
 // !files I/O class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -55,7 +55,7 @@ class pp_file extends pp_mime
   function unlink()
   {
     if($this->exists())
-      unlink($this->filename);
+      return unlink($this->filename);
     else
       user_error('pp_file::unlink : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
   }
