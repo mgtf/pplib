@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.12 2002/04/04 09:29:11 tieum Exp $
+// $Id: pp_image.inc,v 1.13 2002/05/02 16:00:06 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -8,7 +8,7 @@ class pp_image extends pp_file
   var $ysize;
   var $truecolor;
   var $alphablending;
-  // pour les images de type 'jpg'.
+  // pour les images de type 'jpg':
   var $quality;
   // si dither = 1 => image plus tachetée mais avec 
   // une meilleure approximation des couleurs.
