@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.42 2002/06/06 17:03:47 tieum Exp $
+//  $Id: template.inc,v 1.43 2002/06/07 10:31:44 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -28,16 +28,16 @@
 //  bquote_end($str)
 //  brace_end($str)
 //  parse_tag($tag_str)
-//  template_include($tag)
-//  template_if($tag)
-//  template_dynbloc($tag)
-//  template_replace($tag)
-//  template_debug($tag)
-//  template_uppercase($tag)
-//  template_ua_mozilla($tag)
-//  template_ua_msie($tag)
-//  template_urlencode($tag)
-//  template_urldecode($tag)
+//  tag_include($tag)
+//  tag_if($tag)
+//  tag_dynbloc($tag)
+//  tag_replace($tag)
+//  tag_debug($tag)
+//  tag_uppercase($tag)
+//  tag_ua_mozilla($tag)
+//  tag_ua_msie($tag)
+//  tag_urlencode($tag)
+//  tag_urldecode($tag)
 //
 //  consts : 
 //
@@ -103,18 +103,18 @@ class pp_template extends pp_file
     $this->parse_iteration = 0;
     $this->dynbloc_data = '';
     // predefined tags :
-    $this->add_tag('include', 'template_include');
-    $this->add_tag('dynbloc', 'template_dynbloc');
-    $this->add_tag('if', 'template_if');
-    $this->add_tag('replace', 'template_replace');
-    $this->add_tag('debug', 'template_debug');
-    $this->add_tag('uppercase', 'template_uppercase');
-    $this->add_tag('self', 'template_self');
-    $this->add_tag('ua_mozilla', 'template_ua_mozilla');
-    $this->add_tag('ua_msie', 'template_ua_msie');
-    $this->add_tag('urlencode', 'template_urlencode');
-    $this->add_tag('urldecode', 'template_urldecode');
-    $this->add_tag('hrdate', 'template_hrdate');
+    $this->add_tag('include', 'tag_include');
+    $this->add_tag('dynbloc', 'tag_dynbloc');
+    $this->add_tag('if', 'tag_if');
+    $this->add_tag('replace', 'tag_replace');
+    $this->add_tag('debug', 'tag_debug');
+    $this->add_tag('uppercase', 'tag_uppercase');
+    $this->add_tag('self', 'tag_self');
+    $this->add_tag('ua_mozilla', 'tag_ua_mozilla');
+    $this->add_tag('ua_msie', 'tag_ua_msie');
+    $this->add_tag('urlencode', 'tag_urlencode');
+    $this->add_tag('urldecode', 'tag_urldecode');
+    $this->add_tag('hrdate', 'tag_hrdate');
   }
 
   function add_tag($name, $action, $options = array())
@@ -253,9 +253,8 @@ class pp_template extends pp_file
   function find_begin($str)
   {
     $len = strlen($str);
-    // XXX - faut-il initialiser $i à 0 ou à 1 ?
-    // si $i = 0, il faudrait remplacer $str[$i - 1] par
-    // quelque chose comme $str[$i - ($i ? 1 : 0)]
+    if($str[0] == $this->tag_start)
+      return 0;
     for ($i = 1; $i < $len; $i++)
       if($str[$i] == $this->tag_start && $str[$i - 1] != '\\')
 	return $i;
@@ -416,8 +415,8 @@ class pp_template extends pp_file
   // !private function
   function escape_tags($string)
   {
-    $string = ereg_replace('{', '\{', $string);
-    $string = ereg_replace('}', '\}', $string);
+    $string = ereg_replace($this->tag_start, '\\'.$this->tag_start, $string);
+    $string = ereg_replace($this->tag_stop, '\\'.$this->tag_stop, $string);
     return $string;
   }
 
@@ -430,14 +429,14 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_include($tag)
+  function tag_include($tag)
   {
     $name = $tag['options']['name'];
     $type = '';
     if(array_key_exists('type', $tag['options']))
       $type = $tag['options']['type'];
     if ($name == '')
-      return user_error("pp_template::template_include : "._("you must specify template name").",\n".
+      return user_error("pp_template::tag_include : "._("you must specify template name").",\n".
 	  _("correct syntax is")." : {include name=\"filename\" type=\"type\"}", E_USER_ERROR);
     switch ($type)
     {
@@ -451,7 +450,7 @@ class pp_template extends pp_file
 	include_once($file);
 	$function = 'template_'.$name;
 	if(! function_exists($function))
-	  return user_error("pp_template::template_include : ".
+	  return user_error("pp_template::tag_include : ".
 	      _("function")." : 'template_$name()' ".
 	      _("does not exist"), E_USER_ERROR);
 	$s = $function($tag);
@@ -462,7 +461,7 @@ class pp_template extends pp_file
     }
   }
 
-  function template_if($tag)
+  function tag_if($tag)
   {
     $opt = $tag['options'];
     if (($opt['cond'] == '') || 
@@ -481,14 +480,14 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_dynbloc($tag)
+  function tag_dynbloc($tag)
   {
     $ite = 0;
     $str = '';
     $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
     if (strlen($id))
       if(! array_key_exists($id, $this->dynbloc_data))
-	user_error("pp_template::template_dynbloc : dynbloc_data['$id'] "._("not set")." !", E_USER_ERROR);
+	user_error("pp_template::tag_dynbloc : dynbloc_data['$id'] "._("not set")." !", E_USER_ERROR);
       else
 	$data = $this->dynbloc_data[$id];
     else
@@ -496,7 +495,7 @@ class pp_template extends pp_file
     if(array_key_exists('bloc', $tag['options']))
       $bloc = $tag['options']['bloc'];
     else
-      user_error("pp_template::template_dynbloc : ".
+      user_error("pp_template::tag_dynbloc : ".
 	  _("you must specify `bloc` arg in dynbloc tag"), E_USER_ERROR);
     if(! is_array($data))
       $data = array();
@@ -517,7 +516,7 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_replace($tag)
+  function tag_replace($tag)
   {
     $opt = $tag[options];
     switch ($opt[mode])
@@ -536,7 +535,7 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_uppercase($tag)
+  function tag_uppercase($tag)
   {
     $opt = $tag['options'];
     $txt = $opt['data'];
@@ -545,7 +544,7 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_self($tag)
+  function tag_self($tag)
   {
     global $HTTP_GET_VARS;
     $self = '?';
@@ -558,7 +557,7 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_debug()
+  function tag_debug()
   {
     $s = '';
     if($this->mime_subtype != 'html')
@@ -572,14 +571,14 @@ class pp_template extends pp_file
 	$value = $string->cut_text($v['options']['text'], 50);
 	$value = strlen($value) ? $value : _("not set").' !';
 	$value = $this->escape_tags($value);
-	$value = '('._("value").' : <b>\''.(nl2br(htmlspecialchars($value))).'\'</b>)';
+	$value = '('._("value").' : <b>`'.(nl2br(htmlentities($value))).'`</b>)';
       }
       else
-	$value = '('._("action").' : <b>\''.$v['action'].'\'</b>)';
+	$value = '('._("action").' : <b>`'.(nl2br(htmlentities($v['action']))).'`</b>)';
       $s .= '
 	<tr>
 	<td>
-	<font size=1><b>'.$v['name'].'</b> '.$value.'</font>
+	<font size=1><b>'.$v['name'].'</b> '.addslashes($value).'</font>
 	</td>
 	</tr>';
     }
@@ -594,21 +593,21 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_urlencode($tag)
+  function tag_urlencode($tag)
   {
     return urlencode($tag['options']['data']);
   }
 
   ////
   // !private function
-  function template_urldecode($tag)
+  function tag_urldecode($tag)
   {
     return urldecode($tag['options']['data']);
   }
 
   ////
   // !private function
-  function template_ua_mozilla()
+  function tag_ua_mozilla()
   {
     if(array_key_exists('browser', (array) $_SESSION))
       return ($_SESSION['browser'] == 'mozilla') ? 1 : 0;
@@ -624,7 +623,7 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function template_ua_msie()
+  function tag_ua_msie()
   {
     if(array_key_exists('browser', (array) $_SESSION))
       return ($_SESSION['browser'] == 'msie') ? 1 : 0;
@@ -638,7 +637,7 @@ class pp_template extends pp_file
     }
   }
 
-  function template_hrdate($tag)
+  function tag_hrdate($tag)
   {
     $date = $tag['options']['data'];
     $type = array_key_exists('type', $tag['options']) ? $tag['options']['type'] : 1;
