@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.3 2002/01/22 12:01:45 tieum Exp $
+// $Id: pp_image.inc,v 1.4 2002/02/12 11:50:48 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -112,9 +112,9 @@ class pp_image extends pp_file
     $this->colors_total = imagecolorstotal($this->image);
   }
 
-  function image_create_from_file($filename)
+  function image_create_from_file()
   {
-    $ext = split('\.', basename($filename)); 
+    $ext = split('\.', basename($this->filename)); 
     $ext = $ext[1];
     $this->mime_subtype = $ext;
     switch($this->mime_subtype)
@@ -132,7 +132,7 @@ class pp_image extends pp_file
       default:
 	return -1;
     }
-    $tmp_img = $create_func($filename);
+    $tmp_img = $create_func($this->filename);
     $this->xsize = ImageSX($tmp_img);
     $this->ysize = ImageSY($tmp_img);
     $this->set_mime($ext);
@@ -164,7 +164,7 @@ class pp_image extends pp_file
   }
 
   //
-  // A FINIR ...
+  // to be continued ..
   //
   // function image_mirror($axe = 'X')
   // {
