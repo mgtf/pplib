@@ -1,7 +1,8 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.72 2002/06/18 09:49:15 tieum Exp $
+//  $Id: pp.inc,v 1.73 2002/07/05 09:20:22 tieum Exp $
+//  Ce fichier est soumit à la licence d'utilisation 
 //  !pplib main class, define pp object
 //
 //  properties :
