@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-22 16:54+0100\n"
+"POT-Creation-Date: 2002-01-23 09:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,42 +130,6 @@ msgstr ""
 
 #: base/pp_image.inc:200
 msgid "format is not supported"
-msgstr ""
-
-#: base/pp_list.inc:253
-msgid "Search"
-msgstr ""
-
-#: base/pp_list.inc:255
-msgid "into"
-msgstr ""
-
-#: base/pp_list.inc:275
-msgid "displaying"
-msgstr ""
-
-#: base/pp_list.inc:282
-msgid "elements per page."
-msgstr ""
-
-#: base/pp_list.inc:282
-msgid "Sort by"
-msgstr ""
-
-#: base/pp_list.inc:301
-msgid "order"
-msgstr ""
-
-#: base/pp_list.inc:303
-msgid "ascendent"
-msgstr ""
-
-#: base/pp_list.inc:304
-msgid "descendent"
-msgstr ""
-
-#: base/pp_list.inc:387
-msgid "Total"
 msgstr ""
 
 #: base/pp_mime.inc:88
@@ -296,4 +260,40 @@ msgstr ""
 
 #: pp.inc:140 pp.inc:143
 msgid "page generated on "
+msgstr ""
+
+#: list/pp_list.inc:255
+msgid "Search"
+msgstr ""
+
+#: list/pp_list.inc:257
+msgid "into"
+msgstr ""
+
+#: list/pp_list.inc:277
+msgid "displaying"
+msgstr ""
+
+#: list/pp_list.inc:284
+msgid "elements per page."
+msgstr ""
+
+#: list/pp_list.inc:284
+msgid "Sort by"
+msgstr ""
+
+#: list/pp_list.inc:303
+msgid "order"
+msgstr ""
+
+#: list/pp_list.inc:305
+msgid "ascendent"
+msgstr ""
+
+#: list/pp_list.inc:306
+msgid "descendent"
+msgstr ""
+
+#: list/pp_list.inc:391
+msgid "Total"
 msgstr ""

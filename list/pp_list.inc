@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.13 2002/01/22 16:45:22 tieum Exp $
+//  $Id: pp_list.inc,v 1.2 2002/01/23 08:08:09 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -117,7 +117,7 @@ class pp_list extends pp_template
     $this->get_vars();
     $this->set_tags();
     $this->get_data();
-    $str = ($this->mime_subtype == 'html') ? $this->parse_template_file($this->tpl_path."list.js") : '';
+    $str = $this->parse_template_file("pplib/list/list.js");
     $str .= $this->parse_template_file($this->tpl);
     return $str;
   }
@@ -328,6 +328,7 @@ class pp_list extends pp_template
 
   function del_data($listdel)
   {
+    $tables = NULL;
     new_($del, 'pp_db');
     foreach( (explode(',', strtr($this->sql_fields, array(' ' => '')))) as $f)
       if( strstr($f, '(') )
@@ -356,6 +357,7 @@ class pp_list extends pp_template
 
   function add_data($listadd)
   {
+    $do_query = NULL;
     $q = 'INSERT INTO '.$this->sql_table.' SET '.$this->sql_key.' = \'\'';
     foreach( (explode(',', strtr($this->sql_fields, array(' ' => '')))) as $f)
       if(! strstr($f, '(') )
