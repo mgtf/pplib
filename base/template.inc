@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.65 2003/07/07 19:40:01 mgf Exp $
+// $Id: template.inc,v 1.66 2003/08/07 12:31:19 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -21,7 +21,6 @@
 // private methods :
 //
 // pp_template()
-// do_parse_template($str)
 // template_echo($tag)
 // find_begin($str)
 // find_end($str, $begin = 0)
@@ -199,19 +198,6 @@ class pp_template extends pp_file
   }/*}}}*/
 
   ////
-  // !parse la chaine entrée en parametre et renvoie la chaine parsee
-  function parse_template($str)
-  {/*{{{*/
-    $result = $this->do_parse_template($str);
-    while ($result != $str)
-    {
-      $str = $result;
-      $result = $this->do_parse_template($str);
-    }
-    return ($this->data = $result);
-  }/*}}}*/
-
-  ////
   // !parse la chaine entrée en parametre et l'ecris dans le fichier
   function parse_template_to_file($str, $filename, $force = 0)
   {/*{{{*/
@@ -245,10 +231,8 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function do_parse_template($str)
+  function parse_template($str)
   {/*{{{*/
-    // translate the string : 
-    $str = preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $str);
     $begin = $this->find_begin($str);
     if ($begin === false)
       return ($str);
@@ -258,7 +242,7 @@ class pp_template extends pp_file
     {
       $this->parse_iteration++;
       if ($this->parse_iteration >= $this->timeout)
-	user_error('pp_template::do_parse_template : '.
+	user_error('pp_template::parse_template : '.
 	    _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
       $end = $this->find_end($remaining, $begin);
       $before = substr($remaining, 0, $begin);
@@ -273,7 +257,8 @@ class pp_template extends pp_file
     }
     $result .= $remaining;
     $this->parse_iteration = 0;
-    return ($result);
+    // translate the string : 
+    return preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $result);
   }/*}}}*/
 
   ////
