@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-23 15:27+0100\n"
+"POT-Creation-Date: 2002-01-31 15:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,8 +46,8 @@ msgstr ""
 msgid "error"
 msgstr ""
 
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:41
-#: base/pp_file.inc:63
+#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:34
+#: base/pp_file.inc:58
 msgid "file"
 msgstr ""
 
@@ -59,45 +59,53 @@ msgstr ""
 msgid "warning"
 msgstr ""
 
-#: base/pp_file.inc:36
+#: base/pp_file.inc:29
 msgid "data or filename empty"
 msgstr ""
 
-#: base/pp_file.inc:42
+#: base/pp_file.inc:35
 msgid "already exist, use pp_file->write(1) to force overwrite"
 msgstr ""
 
-#: base/pp_file.inc:44
+#: base/pp_file.inc:37
 msgid "directory"
 msgstr ""
 
-#: base/pp_file.inc:45
+#: base/pp_file.inc:38
 msgid "is not writeable"
 msgstr ""
 
-#: base/pp_file.inc:48 base/pp_file.inc:69
+#: base/pp_file.inc:43 base/pp_file.inc:63
 msgid "can't open"
 msgstr ""
 
-#: base/pp_file.inc:50
+#: base/pp_file.inc:45
 msgid "can't write"
 msgstr ""
 
-#: base/pp_file.inc:52 base/pp_file.inc:72
+#: base/pp_file.inc:49 base/pp_file.inc:70
 msgid "can't close"
 msgstr ""
 
-#: base/pp_file.inc:64 base/pp_template.inc:96 base/pp_template.inc:373
+#: base/pp_file.inc:59 base/pp_template.inc:96 base/pp_template.inc:373
 #: base/pp_template.inc:406
 msgid "does not exist"
 msgstr ""
 
-#: base/pp_file.inc:66
+#: base/pp_file.inc:61
 msgid "is not readable"
 msgstr ""
 
-#: base/pp_file.inc:82
-msgid "can't create lock file"
+#: base/pp_file.inc:78
+msgid "can't get shared lock on file "
+msgstr ""
+
+#: base/pp_file.inc:85
+msgid "can't get exclusive lock on file "
+msgstr ""
+
+#: base/pp_file.inc:91
+msgid "can't unlock file "
 msgstr ""
 
 #: base/pp_image.inc:57
@@ -156,7 +164,7 @@ msgstr ""
 msgid "invalid sql"
 msgstr ""
 
-#: base/pp_mysql.inc:161
+#: base/pp_mysql.inc:162
 msgid "next_record called with no query pending"
 msgstr ""
 
@@ -212,11 +220,11 @@ msgstr ""
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:525
+#: base/pp_template.inc:537
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:528
+#: base/pp_template.inc:540
 msgid "action"
 msgstr ""
 
@@ -258,54 +266,50 @@ msgstr ""
 msgid "Please come back later."
 msgstr ""
 
-#: pp.inc:139 pp.inc:142
+#: pp.inc:136 pp.inc:139
 msgid "page generated on "
 msgstr ""
 
-#: list/pp_list.inc:122
+#: list/pp_list.inc:140
 msgid "Do you confirm modifications ?"
 msgstr ""
 
-#: list/pp_list.inc:168
-msgid "add"
-msgstr ""
-
-#: list/pp_list.inc:173
+#: list/pp_list.inc:191
 msgid "invert selection"
 msgstr ""
 
-#: list/pp_list.inc:263
+#: list/pp_list.inc:282
 msgid "Search"
 msgstr ""
 
-#: list/pp_list.inc:265
+#: list/pp_list.inc:284
 msgid "into"
 msgstr ""
 
-#: list/pp_list.inc:285
+#: list/pp_list.inc:304
 msgid "displaying"
 msgstr ""
 
-#: list/pp_list.inc:292
+#: list/pp_list.inc:311
 msgid "elements per page."
 msgstr ""
 
-#: list/pp_list.inc:292
+#: list/pp_list.inc:311
 msgid "Sort by"
 msgstr ""
 
-#: list/pp_list.inc:311
+#: list/pp_list.inc:330
 msgid "order"
 msgstr ""
 
-#: list/pp_list.inc:313
+#: list/pp_list.inc:332
 msgid "ascendent"
 msgstr ""
 
-#: list/pp_list.inc:314
+#: list/pp_list.inc:333
 msgid "descendent"
 msgstr ""
 
-#: list/pp_list.inc:399
+#: list/pp_list.inc:436
 msgid "Total"
 msgstr ""
