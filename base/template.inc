@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.62 2002/09/18 11:58:45 tieum Exp $
+// $Id: template.inc,v 1.63 2003/05/24 18:34:49 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -536,7 +536,7 @@ class pp_template extends pp_file
   function tag_debug()
   {/*{{{*/
     $s = '';
-    if($this->mime_subtype != 'html')
+    if($this->mime_subtype != 'html' && $this->mime_subtype != 'xhtml')
       return -1;
     foreach($this->tags as $v)
     {
