@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.72 2003/08/08 09:46:41 mgf Exp $
+// $Id: template.inc,v 1.73 2003/08/19 19:31:39 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -415,13 +415,15 @@ class pp_template extends pp_file {
     $ite = 0;
     $str = '';
     $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
-    if (strlen($id))
+    if (strlen($id)) {
       if(! isset($this->dynbloc_data[$id]))
-	user_error("pp_template::tag_dynbloc : dynbloc_data['$id'] "._("not set")." !", E_USER_ERROR);
-      else
-	$data = $this->dynbloc_data[$id];
-    else
+	$pp->tpl->dynbloc_data[$id] = array();
+      $data = $this->dynbloc_data[$id];
+    } else {
+      if(! isset($this->dynbloc_data))
+	$pp->tpl->dynbloc_data = array();
       $data = $this->dynbloc_data;
+    }
     if(array_key_exists('bloc', $tag['options']))
       $bloc = $tag['options']['bloc'];
     else
