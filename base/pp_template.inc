@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_template.inc,v 1.67 2003/08/07 12:39:29 mgf Exp $
+// $Id: pp_template.inc,v 1.68 2003/08/07 12:57:35 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -253,18 +253,19 @@ class pp_template extends pp_file {
   function find_begin($str) {
     $len = strlen($str);
     if(! $len)
-      return FALSE;
+      return false;
     if($str[0] == $this->tag_start)
       return 0;
-    for ($i = 1; $i < $len; $i++)
-      if($str[$i] == $this->tag_start && $str[$i - 1] != '\\')
-	return $i;
-    return FALSE;
+    return $this->find_char($str, $this->tag_start);
   }
 
   ////
   // !private function
-  function find_end($str, $begin = 0) {
+  function find_end($str, $begin = 0)
+  {/*{{{*/
+    static $res = array();
+    if(isset($res[$str][$begin])) 
+      return $res[$str][$begin];
     $nb = 1;
     for ($i = $begin + 1; $nb && isset($str[$i]); $i++) {
       switch ($str[$i]) {
@@ -278,16 +279,26 @@ class pp_template extends pp_file {
 	  break;
       }
     }
-    return $nb ? FALSE : $i;
-  }
+    $res[$str][$begin] = $nb ? false : $i;
+    return $res[$str][$begin];
+  }/*}}}*/
 
   ////
   // !private function
   function find_char($str, $char) {
-    for ($i = 1; isset($str[$i]); $i++)
-      if (($str[$i] == $char) && ($str[$i - 1] != '\\'))
-	return ($i);
-    return FALSE;
+    static $res = array();
+    if(isset($res[$str][$char]))
+      return $res[$str][$char];
+    $l = strlen($str);
+    $r = false;
+    for ($i = 1; $i < $l; $i++) {
+      if (($str[$i] == $char) && ($str[$i - 1] != '\\')) {
+	$r = $i;
+	break;
+      }
+    }
+     $res[$str][$char] = $r;
+    return $r;
   }
 
   ////
