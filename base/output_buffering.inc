@@ -1,5 +1,5 @@
 <?
-// $Id: output_buffering.inc,v 1.16 2002/04/12 15:48:08 tieum Exp $
+// $Id: output_buffering.inc,v 1.17 2002/07/22 12:44:15 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -61,9 +61,9 @@ class pp_output_buffering extends pp_class
     if(array_key_exists('__ua_compression', $_SESSION))
       return ($this->compression = $_SESSION['__ua_compression']);
     $accept_encoding = $GLOBALS['HTTP_ACCEPT_ENCODING'];
-    if (strpos($accept_encoding, 'x-gzip') !== false)
+    if (strpos($accept_encoding, 'x-gzip') !== FALSE)
       return ($_SESSION['__ua_compression'] = $this->compression = 'x-gzip');
-    if (strpos($accept_encoding, 'gzip') !== false)
+    if (strpos($accept_encoding, 'gzip') !== FALSE)
       return ($_SESSION['__ua_compression'] = $this->compression = 'gzip');
     return ($_SESSION['__ua_compression'] = $this->compression = 'none');
   }
