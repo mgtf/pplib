@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-13 12:22+0100\n"
+"POT-Creation-Date: 2002-02-18 18:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "erreur"
 msgid "file"
 msgstr "fichier"
 
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:42
+#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:38
 #, fuzzy
 msgid "line"
 msgstr "ligne"
@@ -94,7 +94,7 @@ msgstr "impossible de se connecter"
 msgid "can't write"
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:57 base/pp_file.inc:78
+#: base/pp_file.inc:57 base/pp_file.inc:80
 #, fuzzy
 msgid "can't close"
 msgstr "impossible de se connecter"
@@ -104,17 +104,17 @@ msgstr "impossible de se connecter"
 msgid "is not readable"
 msgstr "n'est pas supporté"
 
-#: base/pp_file.inc:86
+#: base/pp_file.inc:88
 #, fuzzy
 msgid "can't get shared lock on file "
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:93
+#: base/pp_file.inc:95
 #, fuzzy
 msgid "can't get exclusive lock on file "
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:99
+#: base/pp_file.inc:101
 #, fuzzy
 msgid "can't unlock file "
 msgstr "impossible de créer l'image"
@@ -144,28 +144,28 @@ msgstr "format"
 msgid "is not supported"
 msgstr "n'est pas supporté"
 
-#: base/pp_image.inc:126
+#: base/pp_image.inc:148
 msgid "image"
 msgstr "image"
 
-#: base/pp_image.inc:126
+#: base/pp_image.inc:148
 msgid "has no extention"
 msgstr "n'a pas d'extention"
 
-#: base/pp_image.inc:147
+#: base/pp_image.inc:169 base/pp_image.inc:176
 #, fuzzy
 msgid "can't create image from"
 msgstr "impossible de créer l'image"
 
-#: base/pp_image.inc:161
+#: base/pp_image.inc:185
 msgid "no image size"
 msgstr "pas de taille pour l'image"
 
-#: base/pp_image.inc:171
+#: base/pp_image.inc:195
 msgid "can't create image"
 msgstr "impossible de créer l'image"
 
-#: base/pp_image.inc:212
+#: base/pp_image.inc:236
 #, fuzzy
 msgid "format is not supported"
 msgstr "n'est pas supporté"
@@ -264,23 +264,23 @@ msgstr "valeur"
 msgid "action"
 msgstr "action"
 
-#: base/pp_ttf_text.inc:57
+#: base/pp_ttf_text.inc:74
 msgid "please set"
 msgstr "veuillez spécifier"
 
-#: base/pp_ttf_text.inc:77
+#: base/pp_ttf_text.inc:78
 msgid "font file"
 msgstr "fichier de police"
 
-#: base/pp_ttf_text.inc:77
+#: base/pp_ttf_text.inc:78
 msgid "does not exist."
 msgstr "n'existe pas."
 
-#: base/pp_ttf_text.inc:80
+#: base/pp_ttf_text.inc:81
 msgid "no text"
 msgstr "pas de texte"
 
-#: base/pp_ttf_text.inc:87
+#: base/pp_ttf_text.inc:88
 #, fuzzy
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
@@ -291,19 +291,19 @@ msgstr "Utiliser un fond transparent ET le blur produit des images de pauvre qua
 msgid "Can't create XML parser"
 msgstr "impossible de créer un nouveau parseur XML"
 
-#: base/pp_xml_expat.inc:40
+#: base/pp_xml_expat.inc:36
 msgid "XML parse error"
 msgstr "XML erreur"
 
-#: pp.inc:117
+#: pp.inc:119
 msgid "This site is currently in a maintenance state."
 msgstr "Ce site est actuellement en état de maintenance."
 
-#: pp.inc:119
+#: pp.inc:121
 msgid "Please come back later."
 msgstr "Veuillez vous reconnecter ulterieurement."
 
-#: pp.inc:140 pp.inc:143
+#: pp.inc:142 pp.inc:145
 msgid "page generated on "
 msgstr "page générée en "
 

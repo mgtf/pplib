@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-13 12:22+0100\n"
+"POT-Creation-Date: 2002-02-18 18:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,7 @@ msgstr ""
 msgid "file"
 msgstr ""
 
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:42
+#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:38
 msgid "line"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "can't write"
 msgstr ""
 
-#: base/pp_file.inc:57 base/pp_file.inc:78
+#: base/pp_file.inc:57 base/pp_file.inc:80
 msgid "can't close"
 msgstr ""
 
@@ -96,15 +96,15 @@ msgstr ""
 msgid "is not readable"
 msgstr ""
 
-#: base/pp_file.inc:86
+#: base/pp_file.inc:88
 msgid "can't get shared lock on file "
 msgstr ""
 
-#: base/pp_file.inc:93
+#: base/pp_file.inc:95
 msgid "can't get exclusive lock on file "
 msgstr ""
 
-#: base/pp_file.inc:99
+#: base/pp_file.inc:101
 msgid "can't unlock file "
 msgstr ""
 
@@ -132,27 +132,27 @@ msgstr ""
 msgid "is not supported"
 msgstr ""
 
-#: base/pp_image.inc:126
+#: base/pp_image.inc:148
 msgid "image"
 msgstr ""
 
-#: base/pp_image.inc:126
+#: base/pp_image.inc:148
 msgid "has no extention"
 msgstr ""
 
-#: base/pp_image.inc:147
+#: base/pp_image.inc:169 base/pp_image.inc:176
 msgid "can't create image from"
 msgstr ""
 
-#: base/pp_image.inc:161
+#: base/pp_image.inc:185
 msgid "no image size"
 msgstr ""
 
-#: base/pp_image.inc:171
+#: base/pp_image.inc:195
 msgid "can't create image"
 msgstr ""
 
-#: base/pp_image.inc:212
+#: base/pp_image.inc:236
 msgid "format is not supported"
 msgstr ""
 
@@ -244,23 +244,23 @@ msgstr ""
 msgid "action"
 msgstr ""
 
-#: base/pp_ttf_text.inc:57
+#: base/pp_ttf_text.inc:74
 msgid "please set"
 msgstr ""
 
-#: base/pp_ttf_text.inc:77
+#: base/pp_ttf_text.inc:78
 msgid "font file"
 msgstr ""
 
-#: base/pp_ttf_text.inc:77
+#: base/pp_ttf_text.inc:78
 msgid "does not exist."
 msgstr ""
 
-#: base/pp_ttf_text.inc:80
+#: base/pp_ttf_text.inc:81
 msgid "no text"
 msgstr ""
 
-#: base/pp_ttf_text.inc:87
+#: base/pp_ttf_text.inc:88
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
 "images !"
@@ -270,19 +270,19 @@ msgstr ""
 msgid "Can't create XML parser"
 msgstr ""
 
-#: base/pp_xml_expat.inc:40
+#: base/pp_xml_expat.inc:36
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:117
+#: pp.inc:119
 msgid "This site is currently in a maintenance state."
 msgstr ""
 
-#: pp.inc:119
+#: pp.inc:121
 msgid "Please come back later."
 msgstr ""
 
-#: pp.inc:140 pp.inc:143
+#: pp.inc:142 pp.inc:145
 msgid "page generated on "
 msgstr ""
 
