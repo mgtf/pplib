@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.84 2003/09/01 12:28:20 mgf Exp $
+// $Id: template.inc,v 1.85 2003/09/01 23:04:48 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -81,7 +81,7 @@ class template extends file {
     if(defined('TEMPLATE_TIMEOUT'))
       $this->timeout = TEMPLATE_TIMEOUT;
     else
-      $this->timeout = 800;
+      $this->timeout = 2000;
     if(defined('INC_PATH'))
       $this->inc_path = INC_PATH;
     else
@@ -231,6 +231,7 @@ class template extends file {
     $result = '';
     $remaining = $str;
     for ($this->parse_iteration = 0; !($begin === false); $begin = $this->find_begin($remaining)) {
+      // XXX - à tester, le message ne s'affiche pas.
       if ($this->parse_iteration >= $this->timeout)
 	user_error('template::parse_template : '.
 	    _("template timeout")." ("._("max iteration").' = '.$this->timeout.')', E_USER_ERROR);
