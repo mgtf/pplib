@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.10 2002/02/13 12:02:53 tieum Exp $
+// $Id: pp_image.inc,v 1.11 2002/02/13 14:16:30 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -125,6 +125,17 @@ class pp_image extends pp_file
     return imagecreatefrompng($this->filename);
   }
 
+ function myimagecreatefromjpeg()
+  {
+    global $pp;
+    $pp->ob->suspend();
+    system("/usr/bin/convert ".$this->filename." ".$this->filename.".png");
+    system("mv ".$this->filename.'.png '.$this->filename);
+    $pp->ob->resume();
+    $this->mime_subtype = 'png';
+    return imagecreatefrompng($this->filename);
+  }
+
   function image_create_from_file()
   {
     if($this->mime_subtype == -1)
@@ -140,7 +151,8 @@ class pp_image extends pp_file
     switch($this->mime_subtype)
     {
       case 'jpg':
-	$tmp_img = imagecreatefromjpeg($this->filename);
+      case 'jpeg':
+	$tmp_img = $this->myimagecreatefromjpeg($this->filename);
 	$this->truecolor = 1;
 	break;
       case 'gif':
