@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-18 18:03+0100\n"
+"POT-Creation-Date: 2002-02-20 19:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,8 +61,8 @@ msgstr "ligne"
 msgid "warning"
 msgstr "attention"
 
-#: base/pp_file.inc:31 base/pp_file.inc:67 base/pp_template.inc:96
-#: base/pp_template.inc:373 base/pp_template.inc:406
+#: base/pp_file.inc:31 base/pp_file.inc:67 base/pp_template.inc:107
+#: base/pp_template.inc:384 base/pp_template.inc:417
 #, fuzzy
 msgid "does not exist"
 msgstr "n'existe pas."
@@ -179,6 +179,10 @@ msgstr "impossible d'ajouter le type mime"
 msgid "this format is not supported"
 msgstr "n'est pas supporté"
 
+#: base/pp_module.inc:24 base/pp_ttf_text.inc:76
+msgid "please set"
+msgstr "veuillez spécifier"
+
 #: base/pp_mysql.inc:68
 msgid "db access was not configured"
 msgstr "l'accès à la base de données n'est pas configuré"
@@ -204,83 +208,79 @@ msgstr "next_record appelé sans requete"
 msgid "no output callback function defined"
 msgstr "aucune fonction de callback définie"
 
-#: base/pp_template.inc:96 base/pp_template.inc:373 base/pp_template.inc:405
+#: base/pp_template.inc:107 base/pp_template.inc:384 base/pp_template.inc:416
 #, fuzzy
 msgid "function"
 msgstr "fonction"
 
-#: base/pp_template.inc:100 base/pp_template.inc:102
+#: base/pp_template.inc:111 base/pp_template.inc:113
 #, fuzzy
 msgid "is not defined"
 msgstr "n'est pas défini"
 
-#: base/pp_template.inc:113 base/pp_template.inc:137
+#: base/pp_template.inc:124 base/pp_template.inc:148
 msgid "arg is not an array"
 msgstr "arg n'est pas un tableau"
 
-#: base/pp_template.inc:150
+#: base/pp_template.inc:161
 msgid "no file to read."
 msgstr "pas de fichier à lire"
 
-#: base/pp_template.inc:177
+#: base/pp_template.inc:188
 msgid "no file to write."
 msgstr "pas de fichier ou ecrire"
 
-#: base/pp_template.inc:179
+#: base/pp_template.inc:190
 msgid "no data to write."
 msgstr "pas de données à ecrire"
 
-#: base/pp_template.inc:211
+#: base/pp_template.inc:222
 msgid "template timeout"
 msgstr "template timeout"
 
-#: base/pp_template.inc:211
+#: base/pp_template.inc:222
 msgid "max iteration"
 msgstr "itération max"
 
-#: base/pp_template.inc:311 base/pp_template.inc:364
+#: base/pp_template.inc:322 base/pp_template.inc:375
 #, fuzzy
 msgid "template error"
 msgstr "XML erreur"
 
-#: base/pp_template.inc:390
+#: base/pp_template.inc:401
 #, fuzzy
 msgid "you must specify template name"
 msgstr "vous devez spécifier au moins une taille"
 
-#: base/pp_template.inc:391
+#: base/pp_template.inc:402
 msgid "correct syntax is"
 msgstr "la syntaxe correct est"
 
-#: base/pp_template.inc:412
+#: base/pp_template.inc:423
 msgid "invalid include file"
 msgstr "fichier à inclure invalide"
 
-#: base/pp_template.inc:514
+#: base/pp_template.inc:525
 msgid "value"
 msgstr "valeur"
 
-#: base/pp_template.inc:517
+#: base/pp_template.inc:528
 msgid "action"
 msgstr "action"
 
-#: base/pp_ttf_text.inc:74
-msgid "please set"
-msgstr "veuillez spécifier"
-
-#: base/pp_ttf_text.inc:78
+#: base/pp_ttf_text.inc:80
 msgid "font file"
 msgstr "fichier de police"
 
-#: base/pp_ttf_text.inc:78
+#: base/pp_ttf_text.inc:80
 msgid "does not exist."
 msgstr "n'existe pas."
 
-#: base/pp_ttf_text.inc:81
+#: base/pp_ttf_text.inc:83
 msgid "no text"
 msgstr "pas de texte"
 
-#: base/pp_ttf_text.inc:88
+#: base/pp_ttf_text.inc:90
 #, fuzzy
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
@@ -295,15 +295,15 @@ msgstr "impossible de créer un nouveau parseur XML"
 msgid "XML parse error"
 msgstr "XML erreur"
 
-#: pp.inc:119
+#: pp.inc:121
 msgid "This site is currently in a maintenance state."
 msgstr "Ce site est actuellement en état de maintenance."
 
-#: pp.inc:121
+#: pp.inc:123
 msgid "Please come back later."
 msgstr "Veuillez vous reconnecter ulterieurement."
 
-#: pp.inc:142 pp.inc:145
+#: pp.inc:144 pp.inc:147
 msgid "page generated on "
 msgstr "page générée en "
 

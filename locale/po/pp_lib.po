@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-18 18:03+0100\n"
+"POT-Creation-Date: 2002-02-20 19:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,8 +59,8 @@ msgstr ""
 msgid "warning"
 msgstr ""
 
-#: base/pp_file.inc:31 base/pp_file.inc:67 base/pp_template.inc:96
-#: base/pp_template.inc:373 base/pp_template.inc:406
+#: base/pp_file.inc:31 base/pp_file.inc:67 base/pp_template.inc:107
+#: base/pp_template.inc:384 base/pp_template.inc:417
 msgid "does not exist"
 msgstr ""
 
@@ -164,6 +164,10 @@ msgstr ""
 msgid "this format is not supported"
 msgstr ""
 
+#: base/pp_module.inc:24 base/pp_ttf_text.inc:76
+msgid "please set"
+msgstr ""
+
 #: base/pp_mysql.inc:68
 msgid "db access was not configured"
 msgstr ""
@@ -188,79 +192,75 @@ msgstr ""
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:96 base/pp_template.inc:373 base/pp_template.inc:405
+#: base/pp_template.inc:107 base/pp_template.inc:384 base/pp_template.inc:416
 msgid "function"
 msgstr ""
 
-#: base/pp_template.inc:100 base/pp_template.inc:102
+#: base/pp_template.inc:111 base/pp_template.inc:113
 msgid "is not defined"
 msgstr ""
 
-#: base/pp_template.inc:113 base/pp_template.inc:137
+#: base/pp_template.inc:124 base/pp_template.inc:148
 msgid "arg is not an array"
 msgstr ""
 
-#: base/pp_template.inc:150
+#: base/pp_template.inc:161
 msgid "no file to read."
 msgstr ""
 
-#: base/pp_template.inc:177
+#: base/pp_template.inc:188
 msgid "no file to write."
 msgstr ""
 
-#: base/pp_template.inc:179
+#: base/pp_template.inc:190
 msgid "no data to write."
 msgstr ""
 
-#: base/pp_template.inc:211
+#: base/pp_template.inc:222
 msgid "template timeout"
 msgstr ""
 
-#: base/pp_template.inc:211
+#: base/pp_template.inc:222
 msgid "max iteration"
 msgstr ""
 
-#: base/pp_template.inc:311 base/pp_template.inc:364
+#: base/pp_template.inc:322 base/pp_template.inc:375
 msgid "template error"
 msgstr ""
 
-#: base/pp_template.inc:390
+#: base/pp_template.inc:401
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:391
+#: base/pp_template.inc:402
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:412
+#: base/pp_template.inc:423
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:514
+#: base/pp_template.inc:525
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:517
+#: base/pp_template.inc:528
 msgid "action"
 msgstr ""
 
-#: base/pp_ttf_text.inc:74
-msgid "please set"
-msgstr ""
-
-#: base/pp_ttf_text.inc:78
+#: base/pp_ttf_text.inc:80
 msgid "font file"
 msgstr ""
 
-#: base/pp_ttf_text.inc:78
+#: base/pp_ttf_text.inc:80
 msgid "does not exist."
 msgstr ""
 
-#: base/pp_ttf_text.inc:81
+#: base/pp_ttf_text.inc:83
 msgid "no text"
 msgstr ""
 
-#: base/pp_ttf_text.inc:88
+#: base/pp_ttf_text.inc:90
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
 "images !"
@@ -274,15 +274,15 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:119
+#: pp.inc:121
 msgid "This site is currently in a maintenance state."
 msgstr ""
 
-#: pp.inc:121
+#: pp.inc:123
 msgid "Please come back later."
 msgstr ""
 
-#: pp.inc:142 pp.inc:145
+#: pp.inc:144 pp.inc:147
 msgid "page generated on "
 msgstr ""
 
