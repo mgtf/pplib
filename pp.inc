@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.82 2002/10/31 11:01:30 tieum Exp $
+//  $Id: pp.inc,v 1.83 2002/10/31 11:16:51 tieum Exp $
 //  !pplib main class, define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -135,10 +135,10 @@ function my_output_callback($buffer)
 
   if(MAINTENANCE_MODE == 1)
   {
-    if($pp->tpl->mime_subtype == 'html')
+    if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
       return 
 	_("this application is currently in a maintenance state").
-	'<br>'.
+	$pp->tpl->return_char.
 	_("Please come back later");
     else
       return '';
@@ -168,9 +168,9 @@ function my_output_callback($buffer)
   {
     $timer->stop('full_page_parse_time');
     $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
-    if($pp->tpl->mime_subtype == 'html')
+    if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
       $str .= 
-	'<br><div align="center"><font size="1" face="Verdana">'.
+	$pp->tpl->return_char.'<div align="center"><font size="1" face="Verdana">'.
 	_("page generated on ").$elapsed.' sec '.
 	'(pplib v'.$pp->version.')</font></div>';
     else
