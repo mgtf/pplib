@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.101 2003/11/12 14:48:07 mgf Exp $
+// $Id: template.inc,v 1.102 2003/11/13 17:11:45 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -439,7 +439,7 @@ class template extends file {
     new_($tpl, 'template');
     foreach($data as $v) {
       $v['dynbloc_ite'] = $ite++;
-      $tpl->tags =& $this->tags;
+      $tpl->tags = $this->tags;
       $tpl->add_tag_array($v);
       //
       // this allow us to use str_replace for 
