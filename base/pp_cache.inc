@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_cache.inc,v 1.9 2003/08/28 13:46:07 mgf Exp $
+//  $Id: pp_cache.inc,v 1.10 2003/08/28 13:49:36 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -87,7 +87,7 @@ class pp_cache extends pp_file {
     // run only 2% of times.
     if(rand(1, 100) > 2)
       return;
-    $this->syslog("http request garbagecollection called");
+    $this->syslog("cache garbagecollection called");
     $cmd = "find ".$this->cache_path." -type f -name '".CACHEFILE_PREFIX."*' -print";
     $a = `$cmd`;
     $files = explode("\n", $a);
