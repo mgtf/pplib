@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.94 2003/09/16 11:52:12 mgf Exp $
+// $Id: template.inc,v 1.95 2003/09/16 12:25:37 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -266,8 +266,9 @@ class template extends file {
   ////
   // !private function
   function translate($str) {
-    $str = str_replace("\n", "\\\n", $str[1]);
-    return _($str);
+    $str = str_replace('\\\\', '\\', $str[1]);
+    $str = _($str);
+    return str_replace('\\', '\\\\', $str);
   }
 
   ////
