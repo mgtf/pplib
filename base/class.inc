@@ -1,6 +1,6 @@
 <?
 
-// $Id: class.inc,v 1.2 2002/01/16 11:46:27 tieum Exp $
+// $Id: class.inc,v 1.3 2002/02/15 15:22:57 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // don't know if it's really usefull
 
@@ -48,25 +48,24 @@ class pp_class
       $this->syslog = SYSLOG;
   }
 
+  function syslog($errstr)
+  {
+    openlog(PP_LOG_NAME, LOG_PID | LOG_PERROR, LOG_LOCAL0);
+    syslog(LOG_ERR, $errstr);
+    closelog();
+  }
+
   function error($errstr)
   {
     if($this->syslog) 
-    {
-      openlog(PP_LOG_NAME, LOG_PID | LOG_PERROR, LOG_LOCAL0);
-      syslog(LOG_ERR, $errstr);
-      closelog();
-    }
+      $this->syslog($errstr);
     user_error($errstr, E_USER_ERROR);
   }
 
   function warning($errstr)
   {
     if($this->syslog) 
-    {
-      openlog(PP_LOG_NAME, LOG_PID | LOG_PERROR, LOG_LOCAL0);
-      syslog(LOG_ERR, $errstr);
-      closelog();
-    }
+      $this->syslog($errstr);
     if($this->debug)
       user_error($errstr, E_USER_WARNING);
   }
