@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.80 2003/08/28 15:22:44 mgf Exp $
+// $Id: template.inc,v 1.81 2003/08/29 13:04:42 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -461,32 +461,28 @@ class template extends file {
   function tag_dynbloc($tag) {
     $ite = 0;
     $str = '';
-    $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
+    $id = array_key_exists('id', $tag['options']) ? $tag['options']['id'] : '';
     if (strlen($id)) {
       if(! isset($this->dynbloc_data[$id]))
 	$this->dynbloc_data[$id] = array();
-      $data = $this->dynbloc_data[$id];
+      $data =& $this->dynbloc_data[$id];
     } else {
       if(! isset($this->dynbloc_data))
 	$this->dynbloc_data = array();
-      $data = $this->dynbloc_data;
+      $data =& $this->dynbloc_data;
     }
     if(array_key_exists('bloc', $tag['options']))
-      $bloc = $tag['options']['bloc'];
+      $bloc =& $tag['options']['bloc'];
     else
       user_error("template::tag_dynbloc : ".
 	  _("you must specify `bloc` arg in dynbloc tag"), E_USER_ERROR);
     if(! is_array($data))
       $data = array();
     foreach($data as $v) {
-      // here we copy data from $pp->tpl to be sure this
-      // will not modify tag outside the dynbloc tag.
-      $tpl = $this;
-      $tpl->add_tag_array($v);
-      $tpl->add_tag_array(array('dynbloc_ite' => $ite++));
-      $str .= $tpl->parse_template($bloc);
-      $tpl->del_tag_array($v);
-      $tpl->del_tag_array(array('dynbloc_ite'));
+      $v['dynbloc_ite'] = $ite++;
+      $this->add_tag_array($v);
+      $str .= $this->parse_template($bloc);
+      $this->del_tag_array($v);
     }
     if (strlen($id))
       unset($this->dynbloc_data[$id]);

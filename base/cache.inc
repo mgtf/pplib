@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.12 2003/08/28 15:22:44 mgf Exp $
+//  $Id: cache.inc,v 1.13 2003/08/29 13:04:42 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -24,7 +24,8 @@ if(! defined('CACHEFILE_PREFIX')) {
   define('CACHEFILE_PREFIX', 'cache_');
 }
 if(! defined('CACHEFILE_MAXLIFETIME')) {
-  define('CACHEFILE_MAXLIFETIME', 3600);
+  // Default to 1 day
+  define('CACHEFILE_MAXLIFETIME', 86400);
 }
 
 class cache extends file {
@@ -42,7 +43,7 @@ class cache extends file {
   }
 
   function get_context($id) {
-    return md5($id);
+    return md5(serialize($id));
   }
 
   function is_expired($id, $max_age) {
