@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.46 2002/06/26 15:23:21 tieum Exp $
+//  $Id: template.inc,v 1.47 2002/06/27 17:13:15 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -528,14 +528,14 @@ class pp_template extends pp_file
     switch ($opt[mode])
     {
       case 'str':
-	return str_replace($opt[what], $opt[by], $opt[in]);
+	return str_replace($opt['what'], $opt['by'], $opt['in']);
       case 'posix':
       case 'grep':
-	return ereg_replace($opt[what], $opt[by], $opt[in]);
+	return ereg_replace($opt['what'], $opt['by'], $opt['in']);
       case 'perl':
-	return preg_replace($opt[what], $opt[by], $opt[in]);
+	return preg_replace($opt['what'], $opt['by'], $opt['in']);
       default:
-	return $opt[in];
+	return $opt['in'];
     }
   }
 
