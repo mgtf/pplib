@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-03-05 14:31+0100\n"
+"POT-Creation-Date: 2002-03-08 11:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,8 +59,8 @@ msgstr ""
 msgid "warning"
 msgstr ""
 
-#: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:107
-#: base/pp_template.inc:384 base/pp_template.inc:419 base/pp_ttf_text.inc:86
+#: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:114
+#: base/pp_template.inc:391 base/pp_template.inc:426 base/pp_ttf_text.inc:86
 msgid "does not exist"
 msgstr ""
 
@@ -188,59 +188,63 @@ msgstr ""
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:107 base/pp_template.inc:384 base/pp_template.inc:418
+#: base/pp_template.inc:114 base/pp_template.inc:391 base/pp_template.inc:425
 msgid "function"
 msgstr ""
 
-#: base/pp_template.inc:111 base/pp_template.inc:113
+#: base/pp_template.inc:118 base/pp_template.inc:120
 msgid "is not defined"
 msgstr ""
 
-#: base/pp_template.inc:124 base/pp_template.inc:148
+#: base/pp_template.inc:131 base/pp_template.inc:155
 msgid "arg is not an array"
 msgstr ""
 
-#: base/pp_template.inc:161
+#: base/pp_template.inc:168
 msgid "no file to read"
 msgstr ""
 
-#: base/pp_template.inc:188
+#: base/pp_template.inc:195
 msgid "no file to write"
 msgstr ""
 
-#: base/pp_template.inc:190
+#: base/pp_template.inc:197
 msgid "no data to write"
 msgstr ""
 
-#: base/pp_template.inc:222
+#: base/pp_template.inc:229
 msgid "template timeout"
 msgstr ""
 
-#: base/pp_template.inc:222
+#: base/pp_template.inc:229
 msgid "max iteration"
 msgstr ""
 
-#: base/pp_template.inc:322 base/pp_template.inc:375
+#: base/pp_template.inc:329 base/pp_template.inc:382
 msgid "template error"
 msgstr ""
 
-#: base/pp_template.inc:403
+#: base/pp_template.inc:410
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:404
+#: base/pp_template.inc:411
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:424
+#: base/pp_template.inc:431
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:527
+#: base/pp_template.inc:467
+msgid "you must specify `bloc` arg in dynbloc tag"
+msgstr ""
+
+#: base/pp_template.inc:538
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:530
+#: base/pp_template.inc:541
 msgid "action"
 msgstr ""
 
@@ -270,15 +274,15 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:126
+#: pp.inc:133
 msgid "pp site is currently in a maintenance state"
 msgstr ""
 
-#: pp.inc:128
+#: pp.inc:135
 msgid "Please come back later"
 msgstr ""
 
-#: pp.inc:150 pp.inc:154
+#: pp.inc:157 pp.inc:161
 msgid "page generated on "
 msgstr ""
 
