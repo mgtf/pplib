@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.19 2002/02/20 14:46:29 tieum Exp $
+//  $Id: pp_template.inc,v 1.20 2002/02/20 15:19:57 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -97,7 +97,8 @@ class pp_template extends pp_file
     $this->add_tag('debug', 'template_debug');
     $this->add_tag('uppercase', 'template_uppercase');
     $this->add_tag('self', 'template_self');
-    $this->add_tag('browser', 'template_browser');
+    $this->add_tag('ua_mozilla', 'template_ua_mozilla');
+    $this->add_tag('ua_msie', 'template_ua_msie');
   }
 
   function add_tag($name, $action, $options = array())
@@ -541,13 +542,34 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  // return 1 if browser is MSIE, 0 else
-  function template_browser()
+  function template_ua_mozilla()
   {
-    new_($agent, 'pp_sniff');
-    $agent->browser_get_platform();
-    $agent->browser_get_agent();
-    die($agent->browser.$agent->browser_version.$agent->platform);
+    if(array_key_exists('browser', (array) $_SESSION))
+      return ($_SESSION['browser'] == 'mozilla') ? 1 : 0;
+    else
+    {
+      new_($agent, 'pp_sniff');
+      $this->add_tag_array(
+	  array('ua_mozilla' => ($agent->browser == 'mozilla') ? 1 : 0)
+      );
+      return ($agent->browser == 'mozilla') ? 1 : 0;
+    }
+  }
+
+  ////
+  // !private function
+  function template_ua_msie()
+  {
+    if(array_key_exists('browser', (array) $_SESSION))
+      return ($_SESSION['browser'] == 'msie') ? 1 : 0;
+    else
+    {
+      new_($agent, 'pp_sniff');
+      $this->add_tag_array(
+	  array('ua_msie' => ($agent->browser == 'msie') ? 1 : 0)
+      );
+      return ($agent->browser == 'msie') ? 1 : 0;
+    }
   }
 
 };
