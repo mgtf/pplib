@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.92 2003/09/12 13:57:52 mgf Exp $
+// $Id: template.inc,v 1.93 2003/09/12 14:14:11 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -185,9 +185,25 @@ class template extends file {
   ////
   // !lit le contenu de $filename, execute parse_template() et renvoie la chaine parsee
   function parse_template_file($filename, $cachetime = 0) {
+    if($cachetime) {
+      $c[] =& $filename;
+      $c[] =& $this->tags;
+      $c[] =& $this->dynbloc_data;
+      $md5 = md5(serialize($c));
+      unset($c);
+    }
+    if($cachetime && ($data = $this->cache->get($md5, $cachetime))) {
+      return $data;
+    }
+    unset($data);
     $this->filename =& $filename;
     $this->read();
-    return ($this->parse_template($this->data, $cachetime));
+    $result = $this->parse_template($this->data, $cachetime);
+    // cache data if necessary
+    if($cachetime) {
+      $this->cache->save($md5, $result);
+    }
+    return $result;
   }
 
   ////
@@ -214,19 +230,7 @@ class template extends file {
   // !private function
   // param : 
   //   str : string to parse.
-  //   cachetime : cache during this time (sec.)
-  function parse_template($str, $cachetime = 0) {
-    if($cachetime) {
-      $c[] =& $str;
-      $c[] =& $this->tags;
-      $c[] =& $this->dynbloc_data;
-      $md5 = md5(serialize($c));
-      unset($c);
-    }
-    if($cachetime && ($data = $this->cache->get($md5, $cachetime))) {
-      return $data;
-    }
-    unset($data);
+  function parse_template($str) {
     // translate strings which are like : [@string to translate]
     $str = preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $str);
     $begin = $this->find_begin($str);
@@ -252,10 +256,6 @@ class template extends file {
     }
     $result .= $remaining;
     $this->parse_iteration = 0;
-    // cache data if necessary
-    if($cachetime) {
-      $this->cache->save($md5, $result);
-    }
     return $result;
   }
 
