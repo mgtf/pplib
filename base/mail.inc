@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mail.inc,v 1.13 2002/07/18 08:52:45 tieum Exp $
+// $Id: mail.inc,v 1.14 2002/08/08 13:40:59 tieum Exp $
 // !pp_mail.inc - send complex email with attachments.
 //
 // public methods : 
@@ -58,7 +58,19 @@ class pp_mail extends pp_mime
     $this->attachment_data = array();
   }
 
-  // public
+  ////
+  // !public
+  function check_mail($mail)
+  {
+    // first, check syntax.
+    if(! eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $mail))
+      return FALSE;
+    // then, check mail server
+    // XXX - not finished yet.
+  }
+
+  ////
+  // !public
   function send()
   {
     if(! strlen($this->body) ||
@@ -81,7 +93,8 @@ class pp_mail extends pp_mime
     mail($this->to, $this->subject, $this->body, $this->headers);
   }
 
-  // public
+  ////
+  // !public
   function add_attachment($name, $data, $ext = '')
   {
     $this->has_attachment = TRUE;
@@ -90,19 +103,24 @@ class pp_mail extends pp_mime
 	'type' => $this->get_mime($ext));
   }
 
-  // public
+  ////
+  // !public
   function add_notification($mail) { $this->headers .= "Disposition-Notification-To: $mail\n"; }
 
-  // public
+  ////
+  // !public
   function add_recipient($mail) { $this->to[] = $mail; }
 
-  // public
+  ////
+  // !public
   function add_copy_to_recipient($mail) { $this->cc[] = $mail; }
 
-  // public
+  ////
+  // !public
   function add_blink_copy_to_recipient($mail) { $this->bcc[] = $mail; }
 
-  // private
+  ////
+  // !public
   function construct_recipient_list()
   {
     if(! is_array($this->to))
@@ -110,7 +128,8 @@ class pp_mail extends pp_mime
     $this->to = implode(', ', $this->to);
   }
 
-  // private
+  ////
+  // !private
   function construct_copy_to_recipient()
   {
     if(! is_array($this->cc))
@@ -122,7 +141,8 @@ class pp_mail extends pp_mime
       $this->headers .= 'Cc: '.implode(', ', $this->cc);
   }
 
-  // private
+  ////
+  // !private
   function construct_blink_copy_to_recipient()
   {
     if(! is_array($this->bcc))
@@ -134,7 +154,8 @@ class pp_mail extends pp_mime
       $this->headers .= 'Bcc: '.implode(', ', $this->bcc);
   }
  
-  // private
+  ////
+  // !private
   function construct_attachment()
   {
     $boundary = BOUNDARY_PREFIX.md5(uniqid(rand()));
