@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.27 2002/02/11 15:41:36 tieum Exp $
+//  $Id: pp_list.inc,v 1.28 2002/02/28 17:48:36 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -146,7 +146,7 @@ class pp_list extends pp_template
     $this->set_tags($want_save);
     $this->get_data();
     $this->add_tag_array(array('confirm_mesg' => _("Do you confirm modifications ?") ));
-    $str = $this->parse_template_file(PP_LIB_PATH."list/list.js");
+    $str = $this->parse_template_file(PP_LIB_PATH."/list/list.js");
     $str .= $this->parse_template_file($this->tpl);
     return $str;
   }
