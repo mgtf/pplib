@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.79 2002/09/18 12:03:52 tieum Exp $
+//  $Id: pp.inc,v 1.80 2002/10/28 14:17:39 tieum Exp $
 //  !pplib main class, define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -172,6 +172,14 @@ function my_output_callback($buffer)
   $str = $pp->tpl->parse_template($str);
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
+  // XXX - this reduce about 13% datasize send
+  if($pp->compress_data && ! DEVEL_MODE)
+  {
+    $str = str_replace("\n", "", $str);
+    $str = str_replace("\r", "", $str);
+    $str = str_replace("\t", " ", $str);
+    $str = preg_replace("/ ( )+/", " ", $str);
+  }
   if($pp->compress_data && ($pp->ob->get_compression() != 'none') )
   {
     $pp->ob->compress_add_headers();
