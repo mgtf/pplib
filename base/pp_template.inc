@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.33 2002/04/04 09:29:11 tieum Exp $
+//  $Id: pp_template.inc,v 1.34 2002/05/14 16:28:31 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -454,7 +454,7 @@ class pp_template extends pp_file
 	return '';
     }
     else
-      return $opt['then'];
+      return array_key_exists('then', $opt) ? $opt['then'] : ' ';
   }
 
   ////
