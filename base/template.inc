@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.4 2002/01/18 14:18:12 tieum Exp $
+//  $Id: template.inc,v 1.5 2002/01/18 15:30:24 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -91,6 +91,8 @@ class pp_template extends pp_file
 
   function add_tag($name, $action, $options = array())
   {
+    if( ! function_exists($action) && ! method_exists($this, $action))
+      $this->error("pp_template::add_tag : "._("function")." '".$action."' "._("does not exist"));
     if( (! strlen($name)) || (! strlen($action)) )
     {
       if(! strlen($name))
