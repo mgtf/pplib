@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.41 2002/02/28 16:01:03 tieum Exp $
+//  $Id: pp.inc,v 1.42 2002/02/28 16:05:38 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -158,6 +158,7 @@ function my_output_callback($buffer)
     $str = stripslashes($str);
   $pp->ob->compress_send_headers();
   $str = $pp->ob->compress($str);
+  $pp->header->header_add("X-Powered-By: pplib ".$pp->version);
   $pp->header->header_send();
   return $str;
 }
