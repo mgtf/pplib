@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.53 2002/03/21 15:09:11 tieum Exp $
+//  $Id: pp.inc,v 1.54 2002/03/26 10:45:27 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -156,9 +156,9 @@ function my_output_callback($buffer)
     $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
     if($pp->tpl->mime_subtype == 'html')
       $str .= '
-	<font size=1 face=verdana><center>'.
+	<br><div align="center"><font size="1" face="Verdana">'.
 	_("page generated on ").$elapsed.' sec '.
-	'(pplib version : '.$pp->version.')</center></font>';
+	'(pplib version : '.$pp->version.')</font></div>';
     else
       $str .= 
 	_("page generated on ").$elapsed.' sec '.
