@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.10 2002/02/06 14:39:34 tieum Exp $
+//  $Id: mysql.inc,v 1.11 2002/02/08 16:09:51 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -153,6 +153,12 @@ class pp_db extends pp_class {
 	            $this->error."(".$this->errno.")");
     else
       return $this->query_id;
+  }
+
+  /* public: get last insert id */
+  function insert_id()
+  {
+    return mysql_insert_id($this->link_id);
   }
 
   /* public: walk result set */
