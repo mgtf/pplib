@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.10 2002/01/24 10:35:14 tieum Exp $
+//  $Id: pp_list.inc,v 1.11 2002/01/24 10:36:11 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -217,6 +217,7 @@ class pp_list extends pp_template
 		 ORDER BY ".$this->current_order_field." ".$this->order."
 		 LIMIT  ".$this->start.", ".$this->max_elements); 
     $i = 0;
+    $data = NULL;
     while($sql->next_record())
     {
       $k = $sql->record[$this->sql_table.'_'.$this->sql_key];
