@@ -1,5 +1,5 @@
 <?
-// $Id: file.inc,v 1.4 2002/02/07 17:01:42 tieum Exp $
+// $Id: file.inc,v 1.5 2002/02/08 12:50:22 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -30,7 +30,7 @@ class pp_file extends pp_mime
     $p = $this->split_filename();
     $path = $p[0];
     $filename = $p[1];
-    if( file_exists($this->filename && !$force))
+    if( file_exists($this->filename) && !$force)
       $this->error("pp_file::write : "._("file")." '".$filename."' ".
 	           _("already exist, use pp_file->write(1) to force overwrite"));
     if(! is_writable($path) )
