@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.6 2002/02/12 15:45:17 tieum Exp $
+// $Id: pp_image.inc,v 1.7 2002/02/12 15:50:55 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -142,7 +142,7 @@ class pp_image extends pp_file
     $tmp_img = $create_func($this->filename);
     $this->xsize = ImageSX($tmp_img);
     $this->ysize = ImageSY($tmp_img);
-    $this->set_mime($ext);
+    $this->set_mime($this->mime_subtype);
     $this->image_create();
     imagecopy($this->image, $tmp_img, 0, 0, 0, 0, $this->xsize, $this->ysize);
     imagedestroy($tmp_img);
