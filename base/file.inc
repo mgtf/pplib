@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: file.inc,v 1.20 2003/08/28 15:22:44 mgf Exp $
+// $Id: file.inc,v 1.21 2003/09/02 10:06:40 mgf Exp $
 // !files I/O class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -52,7 +52,8 @@ class file extends mime {
     if($this->exists())
       return unlink($this->filename);
     else
-      user_error('file::unlink : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
+      user_error('file::unlink : '._("file")." '".$this->filename."' ".
+	  _("does not exist"), E_USER_ERROR);
   }
 
   function write($force = 0, $lock = 1) {
@@ -130,21 +131,20 @@ class file extends mime {
 
   function get_mime() {
     if(! $this->exists())
-      user_error('file::get_mime : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
-    // XXX - future solution (currently from php4 CVS) :
-    if(function_exists('mime_content_type'))
-    {
+      user_error('file::get_mime : '._("file")." '".$this->filename."' ".
+	  _("does not exist"), E_USER_ERROR);
+    // XXX - future solution (currently in php4 CVS) :
+    if(function_exists('mime_content_type')) {
       $mime = mime_content_type($this->filename);
       $mime = split('/', $mime[1]);
       $this->mime_type = substr($mime[0], 1);
       $this->mime_subtype = $mime[1];
       return;
     }
-    // XXX - my own solution :)
-    global $pp;
-    $pp->ob->suspend();
+    // my own solution :)
+    output_buffering::suspend();
     system('/usr/bin/file -i '.$this->filename);
-    $mime = $pp->ob->resume();
+    $mime = output_buffering::resume();
     $mime = split(':', $mime);
     $mime = split('/', $mime[1]);
     $this->mime_type = substr($mime[0], 1);

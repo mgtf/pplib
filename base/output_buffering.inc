@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: output_buffering.inc,v 1.20 2003/08/28 15:22:44 mgf Exp $
+// $Id: output_buffering.inc,v 1.21 2003/09/02 10:06:40 mgf Exp $
 // !ouput buffering
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -66,14 +66,13 @@ class output_buffering extends _stdclass {
   }
 
   function compress_add_headers() {
-    global $HTTP_SERVER_VARS, $pp;
     $etag = LIBNAME.'-cache-' . md5($this->data);
-    $pp->header->header_add("ETag: $etag");
-    if (strstr(stripslashes($HTTP_SERVER_VARS['HTTP_IF_NONE_MATCH']), $etag)) {
-      $pp->header->header_add("HTTP/1.0 304");
+    header::header_add("ETag: $etag");
+    if (strstr(stripslashes($_SERVER['HTTP_IF_NONE_MATCH']), $etag)) {
+      header::header_add("HTTP/1.0 304");
     } else {
-      $pp->header->header_add("Content-Encoding: ".$this->compression);
-      $pp->header->header_add("Vary: Accept-Encoding");
+      header::header_add("Content-Encoding: ".$this->compression);
+      header::header_add("Vary: Accept-Encoding");
     }
   }
 

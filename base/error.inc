@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: error.inc,v 1.17 2003/08/29 13:08:28 mgf Exp $
+// $Id: error.inc,v 1.18 2003/09/02 10:06:40 mgf Exp $
 // !error handling
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -19,15 +19,12 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
     case E_PARSE:
     case E_USER_ERROR:
     case E_CORE_ERROR:
-      global $pp;
-      // if an error occurs before $pp exists, just quit :
-      if(! is_object($pp))
-	die("-- "._("error")." --\n".$errstr."\n".__FILE__.' : '. __LINE__);
       echo '<table align=center border=0 cellspacing=0 cellpadding=5>'.
 	   '<tr><td width="10" align="center"><img src="/icons/error.gif">'.
 	   '<br><font size=2 color="#9C0000">'._("error").'</font></th>'.
            '<td><font size=2>'.nl2br($errstr).'</font>'.
-	   '<br><font size=1>'._("file").' : '.basename($errfile).'&nbsp;'._("line").' : '.$errline.'</font>'.
+	   '<br><font size=1>'._("file").' : '.
+	   basename($errfile).'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
 	   '</table><br>';
       die();
@@ -41,7 +38,8 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext) {
 	   '<tr><td width="15" align="center"><img src="/icons/warning.gif">'.
 	   '<br><font size=2 color="#0040BD">'._("warning").'</font></th>'.
            '<td><font size=2>'.nl2br($errstr).'</font>'.
-	   '<br><font size=1>'._("file").' : '.basename($errfile).'&nbsp;'._("line").' : '.$errline.'</font>'.
+	   '<br><font size=1>'._("file").' : '.
+	   basename($errfile).'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
 	   '</table><br>';
       break;

@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.85 2003/09/01 23:04:48 mgf Exp $
+// $Id: template.inc,v 1.86 2003/09/02 10:06:40 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -326,8 +326,7 @@ class template extends file {
     $regexp = " *([^ ]+) *(.*)\\".$this->tag_stop;
     if(! ereg($regexp, $tag_str, $tb)) {
       if($this->mime_subtype == 'html' || $this->mime_subtype == 'xhtml') {
-	global $pp;
-	$errstr = htmlentities($pp->string->cut_text(str_replace("\n", "", $tag_str), 30));
+	$errstr = htmlentities(string::cut_text(str_replace("\n", "", $tag_str), 30));
       } else {
 	$errstr = $tag_str;
       }
@@ -374,8 +373,7 @@ class template extends file {
 
     if (! $tag) {
       if($this->mime_subtype == 'html' || $this->mime_subtype == 'xhtml') {
-	global $pp;
-	$errstr = htmlentities($pp->string->cut_text(str_replace("\n", "", $tag_str), 30));
+	$errstr = htmlentities(string::cut_text(str_replace("\n", "", $tag_str), 30));
       } else {
 	$errstr = $tag_str;
       }

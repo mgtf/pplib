@@ -1,14 +1,13 @@
 <?
 
 ////
-// $Id: image.inc,v 1.15 2003/08/28 15:22:44 mgf Exp $
+// $Id: image.inc,v 1.16 2003/09/02 10:06:40 mgf Exp $
 // !tools to manipulate images
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
 
-class image extends file
-{
+class image extends file {
   var $image;
   var $xsize;
   var $ysize;
@@ -27,8 +26,7 @@ class image extends file
   // private :
   var $tpl;
 
-  function image()
-  {
+  function image() {
     $this->file();
     $this->image = -1;
     $this->truecolor = TRUE;
@@ -48,17 +46,13 @@ class image extends file
     $this->quality = -1;
   }
 
-  function image_resize($w = 'p', $h = 'p')
-  {
-    if(strstr($w, '%') && $h == 'p')
-    {
+  function image_resize($w = 'p', $h = 'p') {
+    if(strstr($w, '%') && $h == 'p') {
       $w = substr($w , 0, strlen($w) - 1);
       $ratio = ($w / 100);
       $w = (int) ($this->xsize * $ratio);
       $h = (int) ($this->ysize * $ratio);
-    }
-    else
-    {
+    } else {
       if(strstr($w, '%'))
 	user_error(_("can't use '%' with another arg"), E_USER_ERROR);
       if($w == 'p' && $h == 'p')
@@ -82,14 +76,12 @@ class image extends file
     $this->image_get_data();
   }
 
-  function image_to_file($filename, $force = 0)
-  {
+  function image_to_file($filename, $force = 0) {
     $this->filename = $filename;
     $this->write($force);
   }
 
-  function image_allocate_color($color)
-  {
+  function image_allocate_color($color) {
     str_replace('#', '', $color);
     $color = hexdec($color);
     $red = ($color & 0xFF0000) >> 16;
@@ -98,54 +90,47 @@ class image extends file
     return (imagecolorallocate($this->image, $red, $green, $blue));
   }
 
-  function image_free()
-  {
+  function image_free() {
     imagedestroy($this->image);
   }
 
-  function image_convert($format)
-  {
+  function image_convert($format) {
     if($format == $this->format)
-      user_error("image::image_convert : "._("image is already a")." .".$format, E_USER_WARNING);
+      user_error("image::image_convert : ".
+	  _("image is already a")." .".$format, E_USER_WARNING);
     if(! array_key_exists($format, $this->formats))
-      user_error("image::image_convert : "._("format")." ".$format." "._("is not supported"), E_USER_ERROR);
+      user_error("image::image_convert : ".
+	  _("format")." ".$format." "._("is not supported"), E_USER_ERROR);
     $f = $this->format.'2'.$format;
     $this->$f();
   }
 
-  function image_update_infos()
-  {
+  function image_update_infos() {
     $this->xsize = ImageSX($this->image);
     $this->ysize = ImageSY($this->image);
     $this->colors_total = imagecolorstotal($this->image);
   }
 
-  function myimagecreatefromgif()
-  {
-    global $pp;
-    $pp->ob->suspend();
+  function myimagecreatefromgif() {
+    output_buffering::suspend();
     system("/usr/bin/gif2png -d -O ".$this->filename);
     system("mv ".$this->filename.'.png '.$this->filename);
-    $pp->ob->resume();
+    output_buffering::resume();
     $this->mime_subtype = 'png';
     return imagecreatefrompng($this->filename);
   }
 
- function myimagecreatefromjpeg()
-  {
-    global $pp;
-    $pp->ob->suspend();
+ function myimagecreatefromjpeg() {
+    output_buffering::suspend();
     system("/usr/bin/convert ".$this->filename." ".$this->filename.".png");
     system("mv ".$this->filename.'.png '.$this->filename);
-    $pp->ob->resume();
+    output_buffering::resume();
     $this->mime_subtype = 'png';
     return imagecreatefrompng($this->filename);
   }
 
-  function image_create_from_file()
-  {
-    if($this->mime_subtype == -1)
-    {
+  function image_create_from_file() {
+    if($this->mime_subtype == -1) {
       $ext = split('\.', basename($this->filename)); 
       if(array_key_exists(1, $ext))
 	$ext = $ext[1];
@@ -155,8 +140,7 @@ class image extends file
 	    _("image")." '".$this->filename."' "._("has no extention"), E_USER_ERROR);
       $this->mime_subtype = $ext;
     }
-    switch($this->mime_subtype)
-    {
+    switch($this->mime_subtype) {
       case 'jpg':
       case 'jpeg':
 	$tmp_img = $this->myimagecreatefromjpeg($this->filename);
@@ -187,18 +171,16 @@ class image extends file
     $this->image_get_data();
   }
 
-  function image_create()
-  {
+  function image_create() {
     if( (! $this->xsize > 0) || (! $this->ysize > 0) )
       $pp->error("image::image_create :"._("no image size"));
-    if($this->truecolor == TRUE) 
-    {
+    if($this->truecolor == TRUE) {
       $this->image = imagecreatetruecolor($this->xsize, $this->ysize);
       if($this->alphablending == TRUE)
 	imagealphablending($this->image, TRUE);
-    }
-    else
+    } else {
       $this->image = imagecreate($this->xsize, $this->ysize);
+    }
     if(! is_resource($this->image))
       user_error("image::image_create : "._("can't create image"), E_USER_ERROR);
     if($this->interlace)
@@ -238,18 +220,16 @@ class image extends file
   //
   //
 
-  function image_get_data()
-  {
+  function image_get_data() {
     if(! array_key_exists($this->mime_subtype, $this->formats))
       user_error("'".$this->mime_subtype."' "._("format is not supported"), E_USER_ERROR);
-    global $pp;
-    $pp->ob->suspend();
+    output_buffering::suspend();
     $f = $this->formats[$this->mime_subtype];
     if($this->mime_subtype == 'jpg' && $this->quality != -1)
       $f($this->image, NULL, $this->quality);
     else
       $f($this->image);
-    $img_data = $pp->ob->resume();
+    $img_data = output_buffering::resume();
     $this->data = $img_data;
     $this->image_update_infos();
     return $this->data;

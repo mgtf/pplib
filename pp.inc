@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.95 2003/09/01 13:50:54 mgf Exp $
+//  $Id: pp.inc,v 1.96 2003/09/02 10:06:59 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -54,7 +54,6 @@ if(DEVEL_MODE) {
 require_once('base/error.inc');
 require_once('base/output_buffering.inc');
 require_once('base/i18n.inc');
-require_once('base/tree.inc');
 require_once('base/mime.inc');
 require_once('base/header.inc');
 require_once('base/file.inc');
@@ -115,13 +114,11 @@ class pp extends _stdclass {
 };
 
 function my_shutdown_function() {
-  global $pp;
-  if(is_object($pp))
-    $pp->tpl->cache->garbagecollection();
+  cache_http_request::garbagecollection();
 }
 
 function my_output_callback($buffer) {
-  global $timer, $pp;
+  global $pp;
 
   $str = $buffer;
 
@@ -137,7 +134,9 @@ function my_output_callback($buffer) {
     else
       return '';
   }
-  $str = $pp->tpl->comment_start.
+  $str = 
+    mime::get_doctype($pp->tpl->mime_subtype).
+    $pp->tpl->comment_start.
     " ".LIBNAME." v".
     $pp->version.
     " - ".
@@ -146,20 +145,8 @@ function my_output_callback($buffer) {
     "\n".
     $pp->header_str.
     $str;
-  switch($pp->tpl->mime_subtype) {
-    case 'html':
-      $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
-      break;
-    case 'xhtml':
-      $str = 
-	'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" '.
-	'"http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">'."\n".$str;
-      break;
-    case 'xml':
-      $str = '<?xml version="1.0"?>'."\n".$str;
-      break;
-  }
   if(DEVEL_MODE) {
+    global $timer;
     $timer->stop('full_page_parse_time');
     $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
     if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
@@ -176,12 +163,12 @@ function my_output_callback($buffer) {
   $str .= $pp->footer_str;
   $str = $pp->tpl->parse_template($str);
   $str = stripslashes($str);
-  if($pp->compress_data && ($pp->ob->get_compression() != 'none') ) {
-    $pp->ob->compress_add_headers();
-    $str = $pp->ob->compress($str);
+  if($pp->compress_data && (output_buffering::get_compression() != 'none') ) {
+    output_buffering::compress_add_headers();
+    $str = output_buffering::compress($str);
   }
-  $pp->header->header_add("X-Powered-By: ".LIBNAME." ".$pp->version);
-  $pp->header->header_send();
+  header::header_add("X-Powered-By: ".LIBNAME." ".$pp->version);
+  header::header_send();
   return $str;
 }
 
