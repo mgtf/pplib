@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.7 2003/08/27 11:15:35 mgf Exp $
+//  $Id: cache.inc,v 1.8 2003/08/28 11:53:50 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -46,7 +46,8 @@ class pp_cache extends pp_file {
     $get = isset($_GET) ? serialize($_GET) : '';
     $post = isset($_POST) ? serialize($_POST) : '';
     $cookie = isset($_COOKIE) ? serialize($_COOKIE) : '';
-    $context[$id] = md5($get.$post.$cookie.$id);
+    $session = isset($_SESSION) ? serialize($_SESSION) : '';
+    $context[$id] = md5($get.$post.$cookie.$session.$id);
     return CACHEFILE_PREFIX.$context[$id];
   }
 
