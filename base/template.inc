@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.95 2003/09/16 12:25:37 mgf Exp $
+// $Id: template.inc,v 1.96 2003/11/07 15:19:07 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -235,7 +235,7 @@ class template extends file {
     $str = preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $str);
     $begin = $this->find_begin($str);
     if ($begin === false)
-      return ($str);
+      return($str);
     $result = '';
     $remaining = $str;
     for ($this->parse_iteration = 0; !($begin === false); $begin = $this->find_begin($remaining)) {
@@ -254,9 +254,7 @@ class template extends file {
 	$result .= $this->parse_tag($this->parse_template($tag_string));
       $this->parse_iteration++;
     }
-    $result .= $remaining;
-    $this->parse_iteration = 0;
-    return $result;
+    return $result.$remaining;
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -285,6 +283,10 @@ class template extends file {
   ////
   // !private function
   function find_end($str, $begin = 0) {
+    static $c = array();
+    if(isset($c[$str][$begin])) {
+      return $c[$str][$begin];
+    }
     $nb = 1;
     for ($i = $begin + 1; $nb && (strlen($str) > $i); $i++) {
       switch ($str[$i]) {
@@ -298,7 +300,9 @@ class template extends file {
 	  break;
       }
     }
-    return $nb ? false : $i;
+    $r = $nb ? false : $i;
+    $c[$str][$begin] = $r;
+    return $r;
   }
 
   ////
@@ -306,13 +310,19 @@ class template extends file {
   // return the first occurence of $char in $str, starting
   // at $str[1] and where $char in not escaped
   function find_char($str, $char) {
+    static $c = array();
+    if(isset($c[$str][$char])) {
+      return $c[$str][$char];
+    }
     $l = strlen($str);
     $r = false;
     for ($i = 1; $i < $l; $i++) {
       if (($str[$i] == $char) && ($str[$i - 1] != '\\')) {
+	$c[$str][$char] = $i;
         return $i;
       }
     }
+    $c[$str][$char] = false;
     return false;
   }
 
