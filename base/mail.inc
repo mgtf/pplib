@@ -1,6 +1,6 @@
 <?
 
-// $Id: mail.inc,v 1.2 2002/04/04 09:29:11 tieum Exp $
+// $Id: mail.inc,v 1.3 2002/07/11 13:48:35 tieum Exp $
 
 class pp_mail extends pp_class
 {
@@ -9,12 +9,15 @@ class pp_mail extends pp_class
   var $subject;
   var $is_html;
   var $priority;
+  var $message;
 
   function pp_mail()
   {
     $this->pp_class();
     $this->priority = 1;
-    $this->is_html = 0;
+    $this->is_html = FALSE;
+    $this->message = '';
+    $this->subject = _("no subject").'.';
   }
 
   function send()
