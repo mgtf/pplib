@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.13 2002/06/07 10:15:37 tieum Exp $
+//  $Id: mysql.inc,v 1.14 2002/06/07 10:16:44 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -88,6 +88,7 @@ class pp_db extends pp_class {
     if ($this->debug)
       user_error($query, E_USER_WARNING);
     $this->query($query);
+    // here we need a MYSQL_NUM type array
     if (!$this->next_record(MYSQL_NUM))
       return -1;
     $row = $this->record;
