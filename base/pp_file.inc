@@ -1,27 +1,29 @@
 <?
 
 ////
-//  $Id: pp_file.inc,v 1.13 2002/09/18 11:39:41 tieum Exp $
-//  files I/O class
+// $Id: pp_file.inc,v 1.14 2002/09/18 11:58:44 tieum Exp $
+// !files I/O class
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
-//  public methods :
+// public methods :
 //
-//  exists()
-//  unlink()
-//  write()
-//  read()
-//  get_mime()
+// exists()
+// unlink()
+// write()
+// read()
+// get_mime()
 //
-//  private methods :
+// private methods :
 //
-//  sh_lock()
-//  ex_lock()
-//  unlock()
-//  split_filename()
+// sh_lock()
+// ex_lock()
+// unlock()
+// split_filename()
 //
-//  consts :
+// consts :
 //
-//  none
+// none
 
   pp_file()
   split_filename()

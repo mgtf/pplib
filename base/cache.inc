@@ -1,8 +1,10 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.3 2002/04/12 17:08:49 tieum Exp $
-//  data class
+//  $Id: cache.inc,v 1.4 2002/09/18 11:58:44 tieum Exp $
+//  !data class - not finished yet
+//  Ce fichier est soumis à la licence d'utilisation
+//  contenue dans le fichier LICENCE
 //
 //  public methods :
 //
@@ -12,7 +14,7 @@
 //
 //  consts :
 // 
-//  STORAGE_PATH
+//  CACHE_PATH
 
 
 class pp_cache extends pp_file
@@ -30,7 +32,6 @@ class pp_cache extends pp_file
   function cache($data)
   {
     $this->filename = $this->cache_path.'/'.md5($data);
-    
     $this->data = $data;
     $this->write();
   }

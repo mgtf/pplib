@@ -1,5 +1,11 @@
 <?
-// $Id: sniff.inc,v 1.2 2002/02/20 14:46:29 tieum Exp $
+
+//// 
+// $Id: sniff.inc,v 1.3 2002/09/18 11:58:45 tieum Exp $
+// !sniff client browser
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+//
 
 class pp_sniff extends pp_class
 {

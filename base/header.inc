@@ -1,5 +1,10 @@
 <? 
-// $Id: header.inc,v 1.2 2002/02/28 11:34:18 tieum Exp $
+////
+// $Id: header.inc,v 1.3 2002/09/18 11:58:44 tieum Exp $
+// ! headers
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+
 
 class pp_header extends pp_mime
 {

@@ -1,11 +1,15 @@
 <?php
 
-// $Id: microtime.inc,v 1.2 2002/02/20 13:53:07 tieum Exp $
+////
+// $Id: microtime.inc,v 1.3 2002/09/18 11:58:45 tieum Exp $
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+//
 // example:
 //         $timer = new c_Timer;
-//         $timer->start();
-//         $timer->stop();
-//         echo $timer->elapsed();
+//         $timer->start(FOO);
+//         $timer->stop(FOO);
+//         echo $timer->elapsed(FOO);
 
 class pp_microtime extends pp_class {
 

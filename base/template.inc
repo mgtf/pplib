@@ -1,52 +1,54 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.61 2002/09/11 14:14:28 tieum Exp $
-//  !pp_template.inc - general template class.
+// $Id: template.inc,v 1.62 2002/09/18 11:58:45 tieum Exp $
+// !pp_template.inc - general template class.
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
-//  public methods :
+// public methods :
 //
-//  add_tag($name, $action, $options = array())
-//  add_tag_array($array)
-//  del_tag($nom)
-//  del_tag_array($array)
-//  tag_exists($tag)
-//  parse_template_file($filename)
-//  parse_template_to_file($str, $filename, $force = 0)
-//  parse_template($str)
-//  parse_template_file_to_file($file_src, $file_dest, $force = 0)
+// add_tag($name, $action, $options = array())
+// add_tag_array($array)
+// del_tag($nom)
+// del_tag_array($array)
+// tag_exists($tag)
+// parse_template_file($filename)
+// parse_template_to_file($str, $filename, $force = 0)
+// parse_template($str)
+// parse_template_file_to_file($file_src, $file_dest, $force = 0)
 //
-//  private methods :
+// private methods :
 //
-//  pp_template()
-//  do_parse_template($str)
-//  template_echo($tag)
-//  find_begin($str)
-//  find_end($str, $begin = 0)
-//  dquote_end($str)
-//  squote_end($str)
-//  bquote_end($str)
-//  parse_tag($tag_str)
-//  tag_include($tag)
-//  tag_if($tag)
-//  tag_dynbloc($tag)
-//  tag_replace($tag)
-//  tag_debug($tag)
-//  tag_uppercase($tag)
-//  tag_br($tag)
-//  tag_ua_mozilla($tag)
-//  tag_ua_msie($tag)
-//  tag_urlencode($tag)
-//  tag_urldecode($tag)
+// pp_template()
+// do_parse_template($str)
+// template_echo($tag)
+// find_begin($str)
+// find_end($str, $begin = 0)
+// dquote_end($str)
+// squote_end($str)
+// bquote_end($str)
+// parse_tag($tag_str)
+// tag_include($tag)
+// tag_if($tag)
+// tag_dynbloc($tag)
+// tag_replace($tag)
+// tag_debug($tag)
+// tag_uppercase($tag)
+// tag_br($tag)
+// tag_ua_mozilla($tag)
+// tag_ua_msie($tag)
+// tag_urlencode($tag)
+// tag_urldecode($tag)
 //
-//  consts : 
+// consts : 
 //
-//  TEMPLATE_TIMEOUT
-//  INC_PATH
-//  TPL_PATH
-//  DEBUG
-//  DEVEL_MODE
-//  SYSLOG
+// TEMPLATE_TIMEOUT
+// INC_PATH
+// TPL_PATH
+// DEBUG
+// DEVEL_MODE
+// SYSLOG
 //
 // tags prédéfinis :
 //

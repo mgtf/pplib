@@ -1,8 +1,12 @@
 <?
 
-// $Id: pp_class.inc,v 1.12 2002/09/17 14:15:07 tieum Exp $
+////
+// $Id: pp_class.inc,v 1.13 2002/09/18 11:58:44 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // I don't even know if it's really usefull
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+//
 
 function new_(&$object, $classname, $arg = '')
 {

@@ -1,8 +1,10 @@
 <?
 
 ////
-// $Id: mail.inc,v 1.17 2002/09/13 09:23:17 tieum Exp $
-// !pp_mail.inc - send complex email with attachments.
+// $Id: mail.inc,v 1.18 2002/09/18 11:58:45 tieum Exp $
+// !send complex email with attachments
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
 // public methods : 
 //

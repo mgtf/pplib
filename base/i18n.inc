@@ -1,6 +1,10 @@
 <?
 
-// $Id: i18n.inc,v 1.2 2002/04/04 09:29:11 tieum Exp $
+////
+// $Id: i18n.inc,v 1.3 2002/09/18 11:58:44 tieum Exp $
+// !i18n
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 
 class pp_i18n extends pp_class
 {

@@ -1,6 +1,11 @@
 <?
 
-// $Id: pp_xml_expat.inc,v 1.5 2002/04/04 09:29:11 tieum Exp $
+////
+// $Id: pp_xml_expat.inc,v 1.6 2002/09/18 11:58:45 tieum Exp $
+// !xml parser class
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+//
 
 class pp_xml_expat extends pp_template
 {

@@ -1,21 +1,23 @@
 <?
 
 ////
-//  $Id: pp_form.inc,v 1.5 2002/04/04 09:29:11 tieum Exp $
-//  form class
+// $Id: pp_form.inc,v 1.6 2002/09/18 11:58:44 tieum Exp $
+// !form class
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
-//  public methods :
+// public methods :
 //
-//  add_field($type, $name, $options = '', $value = '', $img_src = '')
-//  parse_form($options = '')
+// add_field($type, $name, $options = '', $value = '', $img_src = '')
+// parse_form($options = '')
 //
-//  private methods :
+// private methods :
 //
-//  none
+// none
 //
-//  consts :
+// consts :
 //
-//  none
+// none
 
 
 class pp_form extends pp_class

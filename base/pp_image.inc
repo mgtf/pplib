@@ -1,5 +1,11 @@
 <?
-// $Id: pp_image.inc,v 1.13 2002/05/02 16:00:06 tieum Exp $
+
+////
+// $Id: pp_image.inc,v 1.14 2002/09/18 11:58:44 tieum Exp $
+// !tools to manipulate images
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+//
 
 class pp_image extends pp_file
 {

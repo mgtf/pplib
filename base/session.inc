@@ -1,7 +1,11 @@
 <?
+
+////
+// $Id: session.inc,v 1.3 2002/09/18 11:58:45 tieum Exp $
+// !session class
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
-// $Id: session.inc,v 1.2 2002/04/12 15:48:08 tieum Exp $
-// session class
 
 class pp_session extends pp_class
 {

@@ -1,21 +1,23 @@
 <?
 
 ////
-//  $Id: string.inc,v 1.1 2002/01/15 15:22:12 tieum Exp $
-//  string util class
+// $Id: string.inc,v 1.2 2002/09/18 11:58:45 tieum Exp $
+// !string util class
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
-//  public methods :
+// public methods :
 //
-//  function short_text($text, $size, $end_string = '...')
+// function short_text($text, $size, $end_string = '...')
 //
-//  private methods :
+// private methods :
 //
-//  none
+// none
 //
-//  consts :
+// consts :
 //
-//  none
-
+// none
+//
 
 class pp_string extends pp_class
 {

@@ -1,18 +1,20 @@
 <?
 
 ////
-//  $Id: pp_user.inc,v 1.2 2002/04/04 09:29:11 tieum Exp $
-//  user class
+// $Id: pp_user.inc,v 1.3 2002/09/18 11:58:45 tieum Exp $
+// !user class
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
-//  public methods :
+// public methods :
 //
-//  private methods :
+// private methods :
 //
-//  none
+// none
 //
-//  consts :
+// consts :
 //
-//  none
+// none
 
 
 class pp_user extends pp_class

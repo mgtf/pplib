@@ -1,20 +1,22 @@
 <?
 
 ////
-//  $Id: pp_mime.inc,v 1.7 2002/07/11 17:53:28 tieum Exp $
-//  mime type class
+// $Id: pp_mime.inc,v 1.8 2002/09/18 11:58:45 tieum Exp $
+// !mime type class
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //
-//  public methods :
+// public methods :
 //
-//  none
+// none
 //
-//  private methods :
+// private methods :
 //
-//  none
+// none
 //
-//  consts :
+// consts :
 //
-//  none
+// none
 
 class pp_mime_el extends pp_class
 {

@@ -1,5 +1,11 @@
 <?
-// $Id: pp_tree.inc,v 1.1 2002/01/15 15:22:12 tieum Exp $
+
+////
+// $Id: pp_tree.inc,v 1.2 2002/09/18 11:58:45 tieum Exp $
+// !class to deal with tree
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+//
 
 class pp_tree_node extends pp_class
 {

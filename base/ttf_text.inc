@@ -1,6 +1,8 @@
 <?
-// $Id: ttf_text.inc,v 1.12 2002/04/04 09:29:11 tieum Exp $
+
 ////
+// $Id: ttf_text.inc,v 1.13 2002/09/18 11:58:45 tieum Exp $
+// !class to create dynamic image from truetype font.
 // Paramètres:
 // text    	: texte à afficher
 // color   	: couleur du texte      (defaut: noir)

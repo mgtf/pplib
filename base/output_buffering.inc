@@ -1,5 +1,10 @@
 <?
-// $Id: output_buffering.inc,v 1.17 2002/07/22 12:44:15 tieum Exp $
+
+////
+// $Id: output_buffering.inc,v 1.18 2002/09/18 11:58:45 tieum Exp $
+// !ouput buffering
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 
 class pp_output_buffering extends pp_class
 {

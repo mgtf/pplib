@@ -1,37 +1,39 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.17 2002/08/07 15:07:07 tieum Exp $
-//  mysql class
+// $Id: mysql.inc,v 1.18 2002/09/18 11:58:45 tieum Exp $
+// !mysql abstraction layer
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
 //  
-//  public methods :
+// public methods :
 //
-//  pp_db($query = "")
-//  link_id() 
-//  query_id() 
-//  connect($database = "", $host = "", $user = "", $password = "") 
-//  free() 
-//  query($Query_String) 
-//  next_record() 
-//  seek($pos = 0) 
-//  lock($table, $mode="write") 
-//  unlock() 
-//  affected_rows() 
-//  num_rows() 
-//  num_fields() 
-//  nextid($seq_name) 
-//  metadata($table='',$full=false) 
+// pp_db($query = "")
+// link_id() 
+// query_id() 
+// connect($database = "", $host = "", $user = "", $password = "") 
+// free() 
+// query($Query_String) 
+// next_record() 
+// seek($pos = 0) 
+// lock($table, $mode="write") 
+// unlock() 
+// affected_rows() 
+// num_rows() 
+// num_fields() 
+// nextid($seq_name) 
+// metadata($table='',$full=false) 
 //
-//  private methods :
+// private methods :
 //
-//  table_names() 
+// table_names() 
 //
-//  consts :
+// consts :
 //
-//  DBHOST
-//  DBDB
-//  DBUSER
-//  DBPWD
+// DBHOST
+// DBDB
+// DBUSER
+// DBPWD
 //
 
 class pp_db extends pp_class {

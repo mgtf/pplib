@@ -1,5 +1,12 @@
 <?
-// $Id: error.inc,v 1.14 2002/05/14 16:24:58 tieum Exp $
+
+////
+// $Id: error.inc,v 1.15 2002/09/18 11:58:44 tieum Exp $
+// !error handling
+// Ce fichier est soumis à la licence d'utilisation
+// contenue dans le fichier LICENCE
+//
+
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
