@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.34 2002/02/27 17:37:09 tieum Exp $
+//  $Id: pp.inc,v 1.35 2002/02/28 10:13:53 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -168,5 +168,7 @@ class pp extends pp_class
 };
 
 $pp = new pp;
+
+print_r($HTTP_SERVER_VARS);
 
 ?>
