@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.74 2003/08/19 19:32:32 mgf Exp $
+// $Id: template.inc,v 1.75 2003/08/22 15:16:49 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -72,9 +72,11 @@ class pp_template extends pp_file {
   var $tpl_path;
   var $parse_iteration;
   var $dynbloc_data;
+  var $cache;
 
   function pp_template() {
     $this->pp_file();
+    new_($this->cache, 'pp_cache');
     $this->set_mime('html');
     if(defined('TEMPLATE_TIMEOUT'))
       $this->timeout = TEMPLATE_TIMEOUT;
@@ -102,9 +104,9 @@ class pp_template extends pp_file {
     $this->parse_iteration = 0;
     $this->dynbloc_data = '';
     // predefined tags :
-    $this->add_tag('include', 'tag_include');
     $this->add_tag('dynbloc', 'tag_dynbloc');
     $this->add_tag('if', 'tag_if');
+    $this->add_tag('include', 'tag_include');
     $this->add_tag('replace', 'tag_replace');
     $this->add_tag('debug', 'tag_debug');
     $this->add_tag('uppercase', 'tag_uppercase');
@@ -170,16 +172,16 @@ class pp_template extends pp_file {
       user_error("pp_template::del_tag_array : "._("arg is not an array"), E_USER_ERROR);
       return -1;
     }
-    while (list($key, $value) = each($array))
+    while(list($key, $value) = each($array))
       $this->del_tag($key);
   }
 
   ////
   // !lit le contenu de $filename, execute parse_template() et renvoie la chaine parsee
-  function parse_template_file($filename) {
+  function parse_template_file($filename, $cachetime = 0) {
     $this->filename =& $filename;
     $this->read();
-    return ($this->parse_template($this->data));
+    return ($this->parse_template($this->data, $cachetime));
   }
 
   ////
@@ -202,19 +204,19 @@ class pp_template extends pp_file {
 	$force);
   }
 
-  ///////////////////////////////////////////////////////////////////////////////
-  ///////// PRIVATE FUNCTIONS ///////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////
-
   ////
   // !private function
-  function translate($str) {
-    return _($str[1]);
-  }
-
-  ////
-  // !private function
-  function parse_template($str) {
+  // param : 
+  //   str : string to parse.
+  //   cachetime : cache during this time (sec.)
+  function parse_template($str, $cachetime = 0) {
+    if($cachetime) {
+      $md5 = md5($str.serialize($this->tags));
+    }
+    if($cachetime && ($data = $this->cache->get($md5, $cachetime))) {
+      return $data;
+    }
+    unset($data);
     $begin = $this->find_begin($str);
     if ($begin === false)
       return ($str);
@@ -237,8 +239,23 @@ class pp_template extends pp_file {
     }
     $result .= $remaining;
     $this->parse_iteration = 0;
-    // translate string like [@string to translate]
-    return preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $result);
+    // translate strings which are like : [@string to translate]
+    $result = preg_replace_callback("/\[@([^\]]*)\]/", array($this, 'translate'), $result);
+    // cache data if necessary
+    if($cachetime) {
+      $this->cache->save($md5, $result);
+    }
+    return $result;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////////
+  ///////// PRIVATE FUNCTIONS ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////
+
+  ////
+  // !private function
+  function translate($str) {
+    return _($str[1]);
   }
 
   ////

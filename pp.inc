@@ -1,8 +1,8 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.88 2003/06/16 12:13:53 mgf Exp $
-//  !pplib main class, define pp object
+//  $Id: pp.inc,v 1.89 2003/08/22 15:16:47 mgf Exp $
+//  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
 //
@@ -21,8 +21,9 @@
 //
 //  consts :
 //
-//  PP_MAJOR_VERSION
-//  PP_MINOR_VERSION
+//  LIBNAME
+//  MAJOR_VERSION
+//  MINOR_VERSION
 //  GZ_HEADER
 //  GZ_COMPRESSION_LEVEL
 //  DEVEL_MODE
@@ -31,9 +32,10 @@
 
 // do not modify below
 include('conf/pplib.conf');
-define('PP_LIB_PATH', dirname(__FILE__).'/');
-define('PP_MAJOR_VERSION', '3');
-define('PP_MINOR_VERSION', '3e');
+define('LIBNAME', 'ocms');
+define('LIBPATH', dirname(__FILE__).'/');
+define('MAJOR_VERSION', '3');
+define('MINOR_VERSION', '4');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
 
@@ -70,8 +72,7 @@ require_once('base/pp_ttf_text.inc');
 require_once('base/pp_mail.inc');
 require_once('list/pp_list.inc');
 
-class pp extends pp_class
-{
+class pp extends pp_class {
   var $version;
   var $string;
   var $db;
@@ -92,8 +93,7 @@ class pp extends pp_class
   var $no_parse;
   var $compress_data;
 
-  function pp()
-  {
+  function pp() {
     $this->pp_class();
     new_($this->ob, 'pp_output_buffering', 'my_output_callback');
     new_($this->tpl, 'pp_template');
@@ -108,7 +108,7 @@ class pp extends pp_class
     new_($this->ttf, 'pp_ttf_text');
     new_($this->header, 'pp_header');
     new_($this->mail, 'pp_mail');
-    $this->version = PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION;
+    $this->version = MAJOR_VERSION.'.'.MINOR_VERSION;
     $this->no_parse = FALSE;
     $this->header_str = '';
     $this->footer_str = '';
@@ -118,15 +118,13 @@ class pp extends pp_class
   }
 };
 
-function my_shutdown_function()
-{
+function my_shutdown_function() {
   // XXX cleanup, call destructor there ..
   // system("rm -f /path/to/cache/*");
   return;
 }
 
-function my_output_callback($buffer)
-{
+function my_output_callback($buffer) {
   global $timer, $pp;
 
   $str = $buffer;
@@ -134,8 +132,7 @@ function my_output_callback($buffer)
   if($pp->no_parse == TRUE)
     return $str;
 
-  if(MAINTENANCE_MODE == 1)
-  {
+  if(MAINTENANCE_MODE == 1) {
     if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
       return 
 	_("this application is currently in a maintenance state").
@@ -145,7 +142,7 @@ function my_output_callback($buffer)
       return '';
   }
   $str = $pp->tpl->comment_start.
-    " pplib v".
+    " ".LIBNAME." v".
     $pp->version.
     " - ".
     date("D M d Y")." ".
@@ -153,8 +150,7 @@ function my_output_callback($buffer)
     "\n".
     $pp->header_str.
     $str;
-  switch($pp->tpl->mime_subtype)
-  {
+  switch($pp->tpl->mime_subtype) {
     case 'html':
       $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
       break;
@@ -165,8 +161,7 @@ function my_output_callback($buffer)
       $str = '<?xml version="1.0"?>'."\n".$str;
       break;
   }
-  if(DEVEL_MODE)
-  {
+  if(DEVEL_MODE) {
     $timer->stop('full_page_parse_time');
     $elapsed = round($timer->elapsed('full_page_parse_time'), 3);
     if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
@@ -174,11 +169,11 @@ function my_output_callback($buffer)
 	'<div style="text-align: center; font-size: 9px; font-family: Verdana">'.
 	$pp->tpl->return_char.
 	_("page generated on ").$elapsed.' sec '.
-	'(pplib v'.$pp->version.')</div>';
+	'('.LIBNAME.' v'.$pp->version.')</div>';
     else
       $str .= 
 	_("page generated on ").$elapsed.' sec '.
-	'(pplib v'.$pp->version.')'."\n";
+	'('.LIBNAME.' v'.$pp->version.')'."\n";
   }
   $str = $str.$pp->footer_str;
   $str = $pp->tpl->parse_template($str);
@@ -187,19 +182,18 @@ function my_output_callback($buffer)
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
   // XXX - this reduce about 13% datasize send
-  if($pp->compress_data && ! DEVEL_MODE)
-  {
-    $str = str_replace("\n", "", $str);
-    $str = str_replace("\r", "", $str);
-    $str = str_replace("\t", " ", $str);
-    $str = preg_replace("/ ( )+/", " ", $str);
-  }
-  if($pp->compress_data && ($pp->ob->get_compression() != 'none') )
-  {
+  // if($pp->compress_data && ! DEVEL_MODE)
+  // {
+  //   $str = str_replace("\n", "", $str);
+  //   $str = str_replace("\r", "", $str);
+  //   $str = str_replace("\t", " ", $str);
+  //   $str = preg_replace("/ ( )+/", " ", $str);
+  // }
+  if($pp->compress_data && ($pp->ob->get_compression() != 'none') ) {
     $pp->ob->compress_add_headers();
     $str = $pp->ob->compress($str);
   }
-  $pp->header->header_add("X-Powered-By: pplib ".$pp->version);
+  $pp->header->header_add("X-Powered-By: ".LIBNAME." ".$pp->version);
   $pp->header->header_send();
   return $str;
 }
