@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.25 2002/02/11 13:38:48 tieum Exp $
+//  $Id: pp_list.inc,v 1.26 2002/02/11 15:36:44 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -380,6 +380,13 @@ class pp_list extends pp_template
     $q .= ' WHERE '.$this->sql_key.' = '.$id;
     new_($up, 'pp_db', $q);
     $this->message .= $this->message_upd;
+    // update wrapper
+    if($this->upd_wrapper != -1 && function_exists($this->upd_wrapper))
+    {
+      $wrapper = $this->upd_wrapper;
+      $wrapper($id);
+    }
+    //
   }
 
   function del_data($listdel)
