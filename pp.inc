@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.52 2002/03/20 16:14:49 tieum Exp $
+//  $Id: pp.inc,v 1.53 2002/03/21 15:09:11 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -25,9 +25,8 @@
 //  PP_SYSLOG_NAME
 //
 
-// do not forget the ending '/' : 
-define('PP_LIB_PATH', '/home/tieum/sfp/pplib');
-define('PP_SYSLOG_NAME', '[ PPLIB ]');
+// do not modify below
+include('conf/pplib.conf');
 define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '2');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");

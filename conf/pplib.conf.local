@@ -1,0 +1,6 @@
+<?
+
+define('PP_LIB_PATH', '/home/tieum/pplight/pplib');
+define('PP_SYSLOG_NAME', '[ PPLIB ]');
+
+?>
