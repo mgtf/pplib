@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.8 2002/01/23 14:19:15 tieum Exp $
+//  $Id: template.inc,v 1.9 2002/01/24 16:31:14 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -415,30 +415,42 @@ class pp_template extends pp_file
 
   function template_if($tag)
   {
-    $opt = $tag[options];
-    switch ($opt[mode])
+    $opt = $tag['options'];
+    if (($opt['cond'] == '') || 
+	($opt['cond'] == 'false') || 
+	($opt['cond'] == 'off') || 
+	($opt['cond'] == '0'))
     {
-      case 'str':
-	return ($opt[cond] != '') ? $opt["then"] : $opt["else"];
-      case 'bool':
-	if (($opt[cond] == '') || ($opt[cond] == 'false') || ($opt[cond] == 'off'))
-	  return $opt["else"];
-	else
-	  return $opt["then"];
-      case 'int':
-	if ((((int) $opt[cond]) == $opt[cond]) && ($opt[cond] != 0))
-	  return $opt["then"];
-	else
-	  return $opt["else"];
-      case 'php':
-	return (eval("return (".$opt[cond]).")" ? $opt["then"] : $opt["else"]);
-      default:
-	if (($opt[cond] == '') || ($opt[cond] == 'false') || ($opt[cond] == 'off')
-	    || ($opt[cond] == '0'))
-	  return $opt["else"];
-	else
-	  return $opt["then"];   
+      if(array_key_exists('else', $opt))
+	return $opt['else'];
+      else
+	return '';
     }
+    else
+      return $opt['then'];
+    // switch ($opt['mode'])
+    // {
+    //   case 'str':
+    //     return ($opt['cond'] != '') ? $opt['then'] : $opt['else'];
+    //   case 'bool':
+    //     if (($opt['cond'] == '') || ($opt['cond'] == 'false') || ($opt['cond'] == 'off'))
+    //       return $opt['else'];
+    //     else
+    //       return $opt['then'];
+    //   case 'int':
+    //     if ((((int) $opt['cond']) == $opt['cond']) && ($opt['cond'] != 0))
+    //       return $opt['then'];
+    //     else
+    //       return $opt['else'];
+    //   case 'php':
+    //     return (eval("return (".$opt['cond']).")" ? $opt['then'] : $opt['else']);
+    //   default:
+    //     if (($opt['cond'] == '') || ($opt['cond'] == 'false') || ($opt['cond'] == 'off')
+    //         || ($opt['cond'] == '0'))
+    //       return $opt['else'];
+    //     else
+    //       return $opt['then'];
+    // }
   }
 
   ////
@@ -463,7 +475,7 @@ class pp_template extends pp_file
       $this->del_tag_array($v);
       $this->del_tag_array(array('dynbloc_ite'));
     }
-    unset($this->dynbloc_data);
+    $this->dynbloc_data = NULL;
     return $str;
   }
 
