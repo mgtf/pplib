@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.5 2003/08/22 15:16:49 mgf Exp $
+//  $Id: cache.inc,v 1.6 2003/08/24 20:55:20 mgf Exp $
 //  !data class - not finished yet
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -65,7 +65,7 @@ class pp_cache extends pp_file {
       return;
     srand((double) microtime() * 1000000);
     // only run only 2% of times.
-    if(rand(1, 100) > 100)
+    if(rand(1, 100) > 2)
       return;
     $cmd = "find ".$this->cache_path." -type f -name '".CACHEFILE_PREFIX."*' -print";
     $a = `$cmd`;
