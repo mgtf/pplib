@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.31 2002/03/20 14:15:36 tieum Exp $
+//  $Id: pp_list.inc,v 1.32 2002/03/20 15:45:22 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -481,9 +481,12 @@ class pp_list extends pp_template
 	  onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.($this->current_page - 1).'\'">';
     for ($i = 0; $i < $nbp; $i++)
       if($i == $this->current_page)
-	$f->add_field('button', ' '.$i.' ');
+	$f->add_field('button', ' '.$i.' ', 'style="background-color:#DEEEFF;font: bold 10px"');
       else
-	$f->add_field('submit', ' '.$i.' ', 'onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.$i.'\'"');
+	$f->add_field(
+	    'submit', ' '.$i.' ', 
+	    'style="background-color:#CDDEEE;font: 10px" 
+	     onclick="document.'.$this->id.'.'.$this->id.'_want_page.value =\''.$i.'\'"');
     if(($nbp - 1) > $this->current_page)
       $f->data .= 
 	'<input type="image" src="/icons/next.gif" 

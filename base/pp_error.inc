@@ -1,5 +1,5 @@
 <?
-// $Id: pp_error.inc,v 1.8 2002/02/23 13:42:22 tieum Exp $
+// $Id: pp_error.inc,v 1.10 2002/03/20 15:51:53 tieum Exp $
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
@@ -21,8 +21,8 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
 	die("-- error --\n".$errstr."\n".__FILE__.' : '. __LINE__);
       $pp->ob->suspend();
       echo '<table align=center border=0 cellspacing=0 cellpadding=5>'.
-	   '<tr><td width="10" align=center><img src="/icons/error.png"><br><font size=2 color="#9C0000">'._("error").'</font></th>'.
-           '<td><font size=1>'.nl2br($errstr).'</font>'.
+	   '<tr><td width="10" align="center"><img src="/icons/error.gif"><br><font size=2 color="#9C0000">'._("error").'</font></th>'.
+           '<td><font size=3>'.nl2br($errstr).'</font>'.
 	   '<br><font size=1>'._("file").' : '.$errfile.'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
 	   '</table><br>';
@@ -36,8 +36,8 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
     case E_USER_WARNING:
     case E_CORE_WARNING:
       echo '<table align="center" border="1" cellspacing="0" cellpadding="5">'.
-	   '<tr><td width="15" align="center"><img src="/icons/warning.png"><br><font size=2 color="#FFD600">'._("warning").'</font></th>'.
-           '<td><font size=1>'.nl2br($errstr).'</font>'.
+	   '<tr><td width="15" align="center"><img src="/icons/warning.gif"><br><font size=2 color="#FFD600">'._("warning").'</font></th>'.
+           '<td><font size=3>'.nl2br($errstr).'</font>'.
 	   '<br><font size=1>'._("file").' : '.$errfile.'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
 	   '</table><br>';
