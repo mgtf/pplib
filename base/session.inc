@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: session.inc,v 1.4 2002/10/28 14:01:57 tieum Exp $
+// $Id: session.inc,v 1.5 2003/07/03 15:33:24 mgf Exp $
 // !session class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -23,6 +23,7 @@ class pp_session extends pp_class
     $p = session_get_cookie_params();
     setcookie(session_name(), "", 0, $p["path"], $p["domain"]); 
     header("Location: ?");
+    die();
   }
 };
 
