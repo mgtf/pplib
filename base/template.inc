@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.91 2003/09/12 13:35:30 mgf Exp $
+// $Id: template.inc,v 1.92 2003/09/12 13:57:52 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -184,7 +184,7 @@ class template extends file {
 
   ////
   // !lit le contenu de $filename, execute parse_template() et renvoie la chaine parsee
-  function parse_template_file($filename, $cachetime = CACHEFILE_MAXAGE) {
+  function parse_template_file($filename, $cachetime = 0) {
     $this->filename =& $filename;
     $this->read();
     return ($this->parse_template($this->data, $cachetime));
@@ -217,7 +217,11 @@ class template extends file {
   //   cachetime : cache during this time (sec.)
   function parse_template($str, $cachetime = 0) {
     if($cachetime) {
-      $md5 = md5($str.serialize($this->tags.$this->dynbloc_data));
+      $c[] =& $str;
+      $c[] =& $this->tags;
+      $c[] =& $this->dynbloc_data;
+      $md5 = md5(serialize($c));
+      unset($c);
     }
     if($cachetime && ($data = $this->cache->get($md5, $cachetime))) {
       return $data;

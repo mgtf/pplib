@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache_http_request.inc,v 1.6 2003/09/04 13:41:32 mgf Exp $
+//  $Id: cache_http_request.inc,v 1.7 2003/09/12 13:57:52 mgf Exp $
 //  !http request caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -34,13 +34,13 @@ class cache_http_request extends cache {
   }
 
   function get_context($id) {
-    $x[] = $id;
+    $x[] =& $id;
     if(($this->context & __CACHE_CONTEXT_GET) && isset($_GET))
-      $x[] = $_GET;
+      $x[] =& $_GET;
     if(($this->context & __CACHE_CONTEXT_POST) && isset($_POST))
-      $x[] = $_POST;
+      $x[] =& $_POST;
     if(($this->context & __CACHE_CONTEXT_COOKIE) && isset($_COOKIE))
-      $x[] = $_COOKIE;
+      $x[] =& $_COOKIE;
     if(($this->context & __CACHE_CONTEXT_SESSION) && isset($_SESSION))
       $session = isset($_SESSION) ? serialize($_SESSION) : '';
     return md5(serialize($x));
