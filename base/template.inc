@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.86 2003/09/02 10:06:40 mgf Exp $
+// $Id: template.inc,v 1.87 2003/09/02 10:16:57 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -300,24 +300,14 @@ class template extends file {
   // return the first occurence of $char in $str, starting
   // at $str[1] and where $char in not escaped
   function find_char($str, $char) {
-    // if(! DEVEL_MODE) {
-    //   $md5 = md5($str.$char);
-    // }
-    // if(! DEVEL_MODE && ($data = $this->cache->get($md5, 3600))) {
-    //   return $data;
-    // }
     $l = strlen($str);
     $r = false;
     for ($i = 1; $i < $l; $i++) {
       if (($str[$i] == $char) && ($str[$i - 1] != '\\')) {
-        $r = $i;
-        break;
+        return $i;
       }
     }
-    // if(! DEVEL_MODE) {
-    //   $this->cache->save($md5, $r);
-    // }
-    return $r;
+    return false;
   }
 
   ////
