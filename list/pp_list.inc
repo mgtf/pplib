@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.26 2002/02/11 15:36:44 tieum Exp $
+//  $Id: pp_list.inc,v 1.27 2002/02/11 15:41:36 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -142,12 +142,6 @@ class pp_list extends pp_template
 	  $this->upd_data($i);
 	  $updated = 1;
 	}
-    if($updated == 1 && $this->upd_wrapper != -1 && function_exists($this->upd_wrapper))
-    {
-      $wrapper = $this->upd_wrapper;
-      $wrapper();
-    }
-    //
     $this->get_vars();
     $this->set_tags($want_save);
     $this->get_data();
