@@ -1,7 +1,7 @@
 <?php
 
 ////
-// $Id: microtime.inc,v 1.4 2003/08/28 15:22:44 mgf Exp $
+// $Id: microtime.inc,v 1.5 2003/08/28 18:16:28 mgf Exp $
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
@@ -11,7 +11,7 @@
 //         $timer->stop(FOO);
 //         echo $timer->elapsed(FOO);
 
-class microtime extends class {
+class microtime extends _stdclass {
 
     var $t_start;
     var $t_stop;
@@ -19,7 +19,7 @@ class microtime extends class {
 
     function microtime()
     {
-      $this->class();
+      $this->_stdclass();
       $t_start = 0; 
       $t_stop = 0;
       $t_elapsed = 0;
