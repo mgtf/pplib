@@ -1,5 +1,5 @@
 <?
-// $Id: output_buffering.inc,v 1.5 2002/02/27 17:40:40 tieum Exp $
+// $Id: output_buffering.inc,v 1.4 2002/02/27 17:37:18 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -72,14 +72,21 @@ class pp_output_buffering extends pp_class
     $this->get_compression();
     if ($this->do_compression && $this->do_caching) 
     {
-      $etag = 'PPLIB-cache-' . md5(substr($this->data, -40));
+      $etag = 'PEAR-Cache-' . md5(substr($this->data, -40));
       header("ETag: $etag");
       if (strstr(stripslashes($HTTP_SERVER_VARS['HTTP_IF_NONE_MATCH']), $etag))
+      {
+        // not modified
         header('HTTP/1.0 304');
+        return;
+      }
       else
       {
+        // client accepts some encoding - send headers & data
 	header("Content-Encoding: ".$this->compression);
         header('Vary: Accept-Encoding');
+        // send GZ header manually :
+        // print "\x1f\x8b\x08\x00\x00\x00\x00\x00\x00";
       }
     }
   }
