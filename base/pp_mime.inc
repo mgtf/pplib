@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_mime.inc,v 1.4 2002/06/11 16:39:00 tieum Exp $
+//  $Id: pp_mime.inc,v 1.5 2002/07/11 15:09:01 tieum Exp $
 //  mime type class
 //
 //  public methods :
@@ -69,6 +69,7 @@ class pp_mime extends pp_mime_el
     $this->add_mime('text', 'html', array('html', 'shtml', 'htm'), '{', '}', '&nbsp;', '<!--', '-->');
     $this->add_mime('text', 'csv', array('csv'), '[', ']', ' ', ' : ', "\n");
     $this->add_mime('text', 'tex', array('tex'), '[', ']', '~', ' % ', "\n");
+    $this->add_mime('application', 'pdf', array('pdf'));
     $this->add_mime('image', 'jpeg', array('jpeg', 'jpg', 'jpe'));
     $this->add_mime('image', 'png', array('png'));
     $this->add_mime('image', 'tiff', array('tiff', 'tif'));
@@ -87,6 +88,16 @@ class pp_mime extends pp_mime_el
 			      $tag_stop, $blank_char, $comment_start, $comment_end) == -1 )
       user_error("pp_mime::add_mime : "._("can't add mime type"), E_USER_ERROR);
     $this->mimes[] = $new_mime;
+  }
+
+  function get_mime($ext)
+  {
+    if(! strlen($ext))
+      return 'application/octet-stream';
+    foreach($this->mimes as $mime_type)
+      if(in_array($ext, $mime_type->mime_extentions))
+	return $mime_type->mime_type.'/'.$mime_type->mime_subtype;
+    return 'application/octet-stream';
   }
 
   function set_mime($ext)
@@ -108,7 +119,7 @@ class pp_mime extends pp_mime_el
 	return 1;
       }
     }
-    user_error("pp_mime::get_mime : "._("this format is not supported"), E_USER_ERROR);
+    user_error("pp_mime::set_mime : "._("this mime type is not supported"), E_USER_ERROR);
   }
 
 };

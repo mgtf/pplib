@@ -1,6 +1,6 @@
 <?
 
-// $Id: mail.inc,v 1.4 2002/07/11 14:38:09 tieum Exp $
+// $Id: mail.inc,v 1.5 2002/07/11 15:09:01 tieum Exp $
 
 class pp_mail extends pp_file
 {
@@ -65,19 +65,21 @@ class pp_mail extends pp_file
       {
 	$this->message .= 
 	  "\n--$boundary\n".
-	  "Content-Type: application/octet-stream;\n".
+	  "Content-Type: application/".$data['type'].";\n".
 	  "\tname=\"$name\";\n\n".
-	  $data."\n\n";
+	  $data['data']."\n\n";
       }
-      $message .= "--$boundary-\n";
+      $this->message .= "--$boundary-\n";
     }
     mail($this->to, $this->subject, $this->message, $headers);
   }
 
-  function add_attachment($name, $data)
+  function add_attachment($name, $data, $ext = '')
   {
     $this->has_attachment = TRUE;
-    $this->attachment_data[$name] = base64_encode($data);
+    $this->attachment_data[$name] = array(
+	'data' => base64_encode($data), 
+	'type' => $this->get_mime($ext));
   }
 }
 
