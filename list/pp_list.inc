@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.17 2002/01/30 14:51:15 tieum Exp $
+//  $Id: pp_list.inc,v 1.18 2002/02/05 15:15:21 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -56,6 +56,11 @@ class pp_list extends pp_template
   var $upd_wrapper;
   var $add_wrapper;
 
+  // array like field_name => fonction_name.
+  // ex : $mylist->function_on_field = array('password' => 'PASSWORD');
+  var $function_on_field;
+  //
+
   function pp_list()
   {
     $this->pp_template();
@@ -78,6 +83,7 @@ class pp_list extends pp_template
     $this->upd_wrapper = -1;
     $this->add_wrapper = -1;
     $this->needed_fields = -1;
+    $this->function_on_field = -1;
   }
 
   function parse_list()
@@ -346,7 +352,15 @@ class pp_list extends pp_template
       if(! strstr($f, '(') )
       {
         $data = $HTTP_POST_VARS[$this->sql_table.'_'.$f.$id];
-	$q .= ', '.$f.' = \''.$data.'\'';
+	// test if we must apply function when update ( like PASSWORD() )
+	if(is_array($this->function_on_field) && 
+	   array_key_exists($f, $this->function_on_field))
+	{
+	  $fonc = $this->function_on_field($f);
+	  $q .= ', '.$f.' = '.$fonc.'(\''.$data.'\')';
+	}
+	else
+	  $q .= ', '.$f.' = \''.$data.'\'';
       }
     $q .= ' WHERE '.$this->sql_key.' = '.$id;
     new_($up, 'pp_db', $q);
@@ -404,7 +418,16 @@ class pp_list extends pp_template
 	//
 	$data = addslashes($listadd[$this->sql_table.'_'.$f]);
 	$do_query += strlen($data);
-	$q .= ', '.$f.' = \''.$data.'\'';
+	// test if we must apply function when insert ( like PASSWORD() )
+	if(is_array($this->function_on_field) && 
+	   array_key_exists($f, $this->function_on_field))
+	{
+	  $fonc = $this->function_on_field($f);
+	  $q .= ', '.$f.' = '.$fonc.'(\''.$data.'\')';
+	}
+	else
+	  $q .= ', '.$f.' = \''.$data.'\'';
+	//
       }
     if($do_query > 0)
     {
