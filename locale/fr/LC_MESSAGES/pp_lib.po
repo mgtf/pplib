@@ -6,282 +6,286 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-07-11 15:49+0200\n"
+"POT-Creation-Date: 2002-10-10 11:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: base/pp_class.inc:14
+#: base/pp_class.inc:18
 msgid "is not the name of an existing class"
 msgstr "n'est pas le nom d'une classe existante"
 
-#: base/pp_class.inc:28
+#: base/pp_class.inc:32
 msgid "you are trying to create an object from the class"
-msgstr "vous essayez de créer un objet de la classe"
+msgstr "vous essayez de crer un objet de la classe"
 
-#: base/pp_class.inc:29
+#: base/pp_class.inc:33
 msgid "but it is already an object from the class"
-msgstr "vous essayez de créer un objet de la classe"
+msgstr "vous essayez de crer un objet de la classe"
 
-#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:42
-#: base/pp_file.inc:31 base/pp_file.inc:43 base/pp_file.inc:72
+#: base/pp_class.inc:67 base/pp_error.inc:33 base/pp_error.inc:49
+#: base/pp_file.inc:60 base/pp_file.inc:72 base/pp_file.inc:101
+#: base/pp_file.inc:153
 msgid "file"
 msgstr "fichier"
 
-#: base/pp_class.inc:63 base/pp_error.inc:26 base/pp_error.inc:42
-#: base/pp_xml_expat.inc:38
+#: base/pp_class.inc:67 base/pp_error.inc:33 base/pp_error.inc:49
+#: base/pp_xml_expat.inc:43
 msgid "line"
 msgstr "ligne"
 
-#: base/pp_error.inc:21 base/pp_error.inc:24
+#: base/pp_error.inc:28 base/pp_error.inc:31
 msgid "error"
 msgstr "erreur"
 
-#: base/pp_error.inc:40
+#: base/pp_error.inc:47
 msgid "warning"
 msgstr "attention"
 
-#: base/pp_file.inc:31 base/pp_file.inc:73 base/pp_template.inc:125
-#: base/pp_template.inc:419 base/pp_template.inc:463 base/pp_ttf_text.inc:88
+#: base/pp_file.inc:60 base/pp_file.inc:102 base/pp_file.inc:153
+#: base/pp_template.inc:130 base/pp_template.inc:379 base/pp_template.inc:423
+#: base/pp_ttf_text.inc:90
 msgid "does not exist"
 msgstr "n'existe pas"
 
-#: base/pp_file.inc:37
+#: base/pp_file.inc:66
 msgid "data or filename empty"
-msgstr "aucune données ou aucun nom fichier"
+msgstr "aucune donnes ou aucun nom fichier"
 
-#: base/pp_file.inc:44
+#: base/pp_file.inc:73
 msgid "already exist, use pp_file->write(1) to force overwrite"
-msgstr "existe déjà; utilisez pp_file->write(1) pour forcer l'ecriture"
+msgstr "existe dj; utilisez pp_file->write(1) pour forcer l'ecriture"
 
-#: base/pp_file.inc:47
+#: base/pp_file.inc:76
 msgid "directory"
-msgstr "répertoire"
+msgstr "rpertoire"
 
-#: base/pp_file.inc:48
+#: base/pp_file.inc:77
 msgid "is not writeable"
-msgstr "ne peut pas être ecrit"
+msgstr "ne peut pas tre ecrit"
 
-#: base/pp_file.inc:53 base/pp_file.inc:77
+#: base/pp_file.inc:82 base/pp_file.inc:106
 msgid "can't open"
 msgstr "impossible de se connecter"
 
-#: base/pp_file.inc:57
+#: base/pp_file.inc:86
 msgid "can't write"
-msgstr "impossible de créer l'image"
+msgstr "impossible de crer l'image"
 
-#: base/pp_file.inc:62 base/pp_file.inc:87
+#: base/pp_file.inc:91 base/pp_file.inc:116
 msgid "can't close"
 msgstr "impossible de se connecter"
 
-#: base/pp_file.inc:75
+#: base/pp_file.inc:104
 msgid "is not readable"
-msgstr "n'est pas autorisé en lecture"
+msgstr "n'est pas autoris en lecture"
 
-#: base/pp_file.inc:96
+#: base/pp_file.inc:125
 msgid "can't get shared lock on file "
-msgstr "impossible de créer l'image"
+msgstr "impossible de crer l'image"
 
-#: base/pp_file.inc:105
+#: base/pp_file.inc:134
 msgid "can't get exclusive lock on file "
-msgstr "impossible de créer l'image"
+msgstr "impossible de crer l'image"
 
-#: base/pp_file.inc:112
+#: base/pp_file.inc:141
 msgid "can't unlock file "
-msgstr "impossible de créer l'image"
+msgstr "impossible de crer l'image"
 
-#: base/pp_image.inc:57
+#: base/pp_image.inc:63
 msgid "can't use '%' with another arg"
 msgstr ""
 
-#: base/pp_image.inc:59
+#: base/pp_image.inc:65
 msgid "you must specify at least one size"
-msgstr "vous devez spécifier au moins une taille"
+msgstr "vous devez spcifier au moins une taille"
 
-#: base/pp_image.inc:71
+#: base/pp_image.inc:77
 msgid "can't create temp image"
-msgstr "impossible de créer l'image"
+msgstr "impossible de crer l'image"
 
-#: base/pp_image.inc:103
+#: base/pp_image.inc:109
 msgid "image is already a"
-msgstr "l'image est déjà une"
+msgstr "l'image est dj une"
 
-#: base/pp_image.inc:105
+#: base/pp_image.inc:111
 msgid "format"
 msgstr "format"
 
-#: base/pp_image.inc:105
+#: base/pp_image.inc:111
 msgid "is not supported"
-msgstr "n'est pas supporté"
+msgstr "n'est pas support"
 
-#: base/pp_image.inc:149
+#: base/pp_image.inc:155
 msgid "image"
 msgstr "image"
 
-#: base/pp_image.inc:149
+#: base/pp_image.inc:155
 msgid "has no extention"
 msgstr "n'a pas d'extention"
 
-#: base/pp_image.inc:171 base/pp_image.inc:178
+#: base/pp_image.inc:177 base/pp_image.inc:184
 msgid "can't create image from"
-msgstr "impossible de créer l'image"
+msgstr "impossible de crer l'image"
 
-#: base/pp_image.inc:187
+#: base/pp_image.inc:193
 msgid "no image size"
 msgstr "pas de taille pour l'image"
 
-#: base/pp_image.inc:197
+#: base/pp_image.inc:203
 msgid "can't create image"
-msgstr "impossible de créer l'image"
+msgstr "impossible de crer l'image"
 
-#: base/pp_image.inc:238
+#: base/pp_image.inc:244
 msgid "format is not supported"
-msgstr "n'est pas supporté"
+msgstr "n'est pas support"
 
-#: base/pp_mail.inc:20
+#: base/pp_mail.inc:55
 #, fuzzy
 msgid "no subject"
 msgstr "pas de sujet"
 
-#: base/pp_mail.inc:28
+#: base/pp_mail.inc:85
 msgid "Missing parameters"
-msgstr "Paramètres manquants"
+msgstr "Paramtres manquants"
 
-#: base/pp_mime.inc:88
+#: base/pp_mime.inc:93
 msgid "can't add mime type"
 msgstr "impossible d'ajouter le type mime"
 
-#: base/pp_mime.inc:111
-msgid "this format is not supported"
-msgstr "n'est pas supporté"
+#: base/pp_mime.inc:126
+#, fuzzy
+msgid "this mime type is not supported"
+msgstr "n'est pas support"
 
-#: base/pp_mysql.inc:64
+#: base/pp_mysql.inc:66
 msgid "db access was not configured"
-msgstr "l'accès à la base de données n'est pas configuré"
+msgstr "l'accs  la base de donnes n'est pas configur"
 
-#: base/pp_mysql.inc:116
+#: base/pp_mysql.inc:118
 msgid "can't connect to"
 msgstr "impossible de se connecter"
 
-#: base/pp_mysql.inc:118
+#: base/pp_mysql.inc:120
 msgid "cannot use database"
-msgstr "impossible d'utiliser la base de donnée"
+msgstr "impossible d'utiliser la base de donne"
 
-#: base/pp_mysql.inc:148
+#: base/pp_mysql.inc:150
 msgid "invalid sql"
 msgstr "requete sql invalide"
 
-#: base/pp_mysql.inc:164
+#: base/pp_mysql.inc:166
 msgid "next_record called with no query pending"
-msgstr "next_record appelé sans requete"
+msgstr "next_record appel sans requete"
 
-#: base/pp_output_buffering.inc:18
+#: base/pp_output_buffering.inc:23
 msgid "no output callback function defined"
-msgstr "aucune fonction de callback définie"
+msgstr "aucune fonction de callback dfinie"
 
-#: base/pp_template.inc:125 base/pp_template.inc:418 base/pp_template.inc:462
+#: base/pp_template.inc:130 base/pp_template.inc:378 base/pp_template.inc:422
 msgid "function"
 msgstr "fonction"
 
-#: base/pp_template.inc:129 base/pp_template.inc:131
+#: base/pp_template.inc:134 base/pp_template.inc:136
 msgid "is not defined"
-msgstr "n'est pas défini"
+msgstr "n'est pas dfini"
 
-#: base/pp_template.inc:142 base/pp_template.inc:166
+#: base/pp_template.inc:152 base/pp_template.inc:182
 msgid "arg is not an array"
 msgstr "arg n'est pas un tableau"
 
-#: base/pp_template.inc:179
+#: base/pp_template.inc:195
 msgid "no file to read"
-msgstr "pas de fichier à lire"
+msgstr "pas de fichier  lire"
 
-#: base/pp_template.inc:206
+#: base/pp_template.inc:219
 msgid "no file to write"
 msgstr "pas de fichier ou ecrire"
 
-#: base/pp_template.inc:208
+#: base/pp_template.inc:221
 msgid "no data to write"
-msgstr "pas de données à ecrire"
+msgstr "pas de donnes  ecrire"
 
-#: base/pp_template.inc:240
+#: base/pp_template.inc:254
 msgid "template timeout"
 msgstr "template timeout"
 
-#: base/pp_template.inc:240
+#: base/pp_template.inc:254
 msgid "max iteration"
-msgstr "itération max"
+msgstr "itration max"
 
-#: base/pp_template.inc:356 base/pp_template.inc:409
+#: base/pp_template.inc:324 base/pp_template.inc:369
 msgid "template error"
 msgstr "erreur de traitement du gabarit"
 
-#: base/pp_template.inc:447
+#: base/pp_template.inc:407
 msgid "you must specify template name"
-msgstr "vous devez spécifier au moins une taille"
+msgstr "vous devez spcifier au moins une taille"
 
-#: base/pp_template.inc:448
+#: base/pp_template.inc:408
 msgid "correct syntax is"
 msgstr "la syntaxe correct est"
 
-#: base/pp_template.inc:457
+#: base/pp_template.inc:417
 #, fuzzy
 msgid "no such include file"
-msgstr "fichier à inclure invalide"
+msgstr "fichier  inclure invalide"
 
-#: base/pp_template.inc:468
+#: base/pp_template.inc:428
 msgid "invalid include file"
-msgstr "fichier à inclure invalide"
+msgstr "fichier  inclure invalide"
 
-#: base/pp_template.inc:498 base/pp_template.inc:579
+#: base/pp_template.inc:460 base/pp_template.inc:548
 #, fuzzy
 msgid "not set"
 msgstr "indefini"
 
-#: base/pp_template.inc:507
+#: base/pp_template.inc:469
 #, fuzzy
 msgid "you must specify `bloc` arg in dynbloc tag"
-msgstr "vous devez spécifier au moins une taille"
+msgstr "vous devez spcifier au moins une taille"
 
-#: base/pp_template.inc:581
+#: base/pp_template.inc:550
 msgid "value"
 msgstr "valeur"
 
-#: base/pp_template.inc:584
+#: base/pp_template.inc:553
 msgid "action"
 msgstr "action"
 
-#: base/pp_ttf_text.inc:83
+#: base/pp_ttf_text.inc:85
 msgid "please set"
-msgstr "veuillez spécifier"
+msgstr "veuillez spcifier"
 
-#: base/pp_ttf_text.inc:88
+#: base/pp_ttf_text.inc:90
 msgid "font file"
 msgstr "fichier de police"
 
-#: base/pp_ttf_text.inc:90
+#: base/pp_ttf_text.inc:92
 msgid "no text"
 msgstr "pas de texte"
 
-#: base/pp_ttf_text.inc:106
+#: base/pp_ttf_text.inc:108
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
 "images !"
-msgstr "Utiliser un fond transparent ET le blur produit des images de pauvre qualité"
+msgstr ""
+"Utiliser un fond transparent ET le blur produit des images de pauvre qualit"
 
-#: base/pp_xml_expat.inc:19
+#: base/pp_xml_expat.inc:24
 msgid "Can't create XML parser"
-msgstr "impossible de créer un nouveau parseur XML"
+msgstr "impossible de crer un nouveau parseur XML"
 
-#: base/pp_xml_expat.inc:36
+#: base/pp_xml_expat.inc:41
 msgid "XML parse error"
 msgstr "XML erreur"
 
 #: pp.inc:140
 msgid "pp site is currently in a maintenance state"
-msgstr "Ce site est actuellement en état de maintenance"
+msgstr "Ce site est actuellement en tat de maintenance"
 
 #: pp.inc:142
 msgid "Please come back later"
@@ -289,7 +293,7 @@ msgstr "Veuillez vous reconnecter ulterieurement"
 
 #: pp.inc:164 pp.inc:168
 msgid "page generated on "
-msgstr "page générée en "
+msgstr "page gnre en "
 
 #: list/pp_list.inc:148
 msgid "Do you confirm modifications ?"
@@ -297,7 +301,7 @@ msgstr "Souhaitez-vous vraiment sauvegarder les modifications ?"
 
 #: list/pp_list.inc:199
 msgid "invert selection"
-msgstr "inverser la sélection"
+msgstr "inverser la slection"
 
 #: list/pp_list.inc:297
 msgid "Search"
@@ -313,7 +317,7 @@ msgstr "en affichant"
 
 #: list/pp_list.inc:326
 msgid "elements per page"
-msgstr "éléments par page"
+msgstr "lments par page"
 
 #: list/pp_list.inc:326
 msgid "Sort by"
@@ -339,13 +343,13 @@ msgstr "Total"
 #~ msgstr "pas de valeur pour la constante STORAGE_PATH"
 
 #~ msgid "can't get last insert id"
-#~ msgstr "impossible de récuperer l'id du dernier enregistrement"
+#~ msgstr "impossible de rcuperer l'id du dernier enregistrement"
 
 #~ msgid "no data to store"
-#~ msgstr "pas de données à enregistrer"
+#~ msgstr "pas de donnes  enregistrer"
 
 #~ msgid "data size too big"
-#~ msgstr "taille des données trop importante"
+#~ msgstr "taille des donnes trop importante"
 
 #, fuzzy
 #~ msgid "dynbloc_data is not an array"
