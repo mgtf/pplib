@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.10 2002/01/31 12:33:10 tieum Exp $
+//  $Id: pp.inc,v 1.11 2002/01/31 12:44:43 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -169,6 +169,5 @@ $pp = new pp;
 // starting output buffering :
 $pp->ob->start();
 ob_implicit_flush(false);
-chdir(BASE_PATH);
 
 ?>
