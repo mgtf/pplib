@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.35 2002/02/28 10:13:53 tieum Exp $
+//  $Id: pp.inc,v 1.36 2002/02/28 10:22:39 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -17,7 +17,7 @@
 //  PP_LIB_PATH
 //  PP_SYSLOG_NAME
 
-define('PP_LIB_PATH', '/home/tieum/pplight/pplib/');
+define('PP_LIB_PATH', '/usr/lib/pplib/');
 define('PP_SYSLOG_NAME', '[ PPLIB ]');
 define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '1b');
@@ -168,7 +168,5 @@ class pp extends pp_class
 };
 
 $pp = new pp;
-
-print_r($HTTP_SERVER_VARS);
 
 ?>
