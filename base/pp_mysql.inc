@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_mysql.inc,v 1.5 2002/01/21 16:02:19 tieum Exp $
+//  $Id: pp_mysql.inc,v 1.6 2002/01/21 16:12:32 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -135,17 +135,20 @@ class pp_db extends pp_class {
   /* public: perform a query */
   function query($query) 
   {
-    if ($query == "" || !$this->connect)
+    if ($query == "")
+      return 0;
+    if(!$this->connect() )
       return 0;
     if ($this->query_id)
       $this->free();
+    // if ($this->debug)
+    //   $this->warning("pp_db::query : "._("query")." = '$query'");
     $this->query_id = @mysql_query($query,$this->link_id);
     $this->row   = 0;
     $this->errno = mysql_errno();
     $this->error = mysql_error();
-    if (! $this->query_id)
-      $this->error("pp_db::query : "._("invalid query").": ".$query."<br>".
-	           $this->error.'('.$this->errno.')');
+    if (!$this->query_id)
+      $this->error("pp_db::query : "._("invalid sql").": ".$query);
     else
       return $this->query_id;
   }
