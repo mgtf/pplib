@@ -47,9 +47,11 @@ xgettext:
 	scripts/xgettext.sh
 
 msgmerge:
+	chmod +x scripts/msgmerge.sh
 	scripts/msgmerge.sh
 
 msgfmt:
+	chmod +x scripts/msgfmt.sh
 	scripts/msgfmt.sh
 
 #
