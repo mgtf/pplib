@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.2 2002/01/18 10:23:03 tieum Exp $
+//  $Id: pp_list.inc,v 1.3 2002/01/18 11:45:22 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -54,7 +54,7 @@ class pp_list extends pp_template
   function pp_list()
   {
     $this->pp_template();
-    $this->tpl = 'list_default.html';
+    $this->tpl = 'please_define_a_template.html';
     $this->order = 'ASC';
     $this->current_page = 0;
     if(defined('LIST_MAX_ELEMENTS'))
@@ -67,6 +67,7 @@ class pp_list extends pp_template
     $this->message_del = '[ suppression effectuée ]';
     $this->message_add = '[ ajout effectué ]';
     $this->message_upd = '[ modification effectuée ]';
+    $this->message = '';
     $this->id = 'wow';
   }
 
@@ -79,14 +80,29 @@ class pp_list extends pp_template
       $this->error("parse_list::parse_list : you must specify sql table");
     if(! strlen($this->sql_key) )
       $this->error("parse_list::parse_list : you must specify primary key");
-    if(! strlen($this->order_fields) )
+    if(! isset($this->order_fields) )
       $this->order_fields = $this->sql_key;
     // actions : 
-    $listdel = $HTTP_POST_VARS[$this->id.'_listdel'];
-    $listadd = $HTTP_POST_VARS[$this->id.'_listadd'];
-    $list_ids = $HTTP_POST_VARS[$this->id.'_list_ids'];
-    $was_updated = $HTTP_POST_VARS[$this->id.'_was_updated'];
-    $want_save = $HTTP_POST_VARS[$this->id.'_want_save'];
+    if(array_key_exists($this->id.'_listdel', $HTTP_POST_VARS))
+      $listdel = $HTTP_POST_VARS[$this->id.'_listdel'];
+    else
+      $listdel = -1;
+    if(array_key_exists($this->id.'_listadd', $HTTP_POST_VARS))
+      $listadd = $HTTP_POST_VARS[$this->id.'_listadd'];
+    else
+      $listadd = -1;
+    if(array_key_exists($this->id.'_list_ids', $HTTP_POST_VARS))
+      $list_ids = $HTTP_POST_VARS[$this->id.'_list_ids'];
+    else
+      $list_ids = -1;
+    if(array_key_exists($this->id.'_was_updated', $HTTP_POST_VARS))
+      $was_updated = $HTTP_POST_VARS[$this->id.'_was_updated'];
+    else
+      $was_updated = -1;
+    if(array_key_exists($this->id.'_want_save', $HTTP_POST_VARS))
+      $want_save = $HTTP_POST_VARS[$this->id.'_want_save'];
+    else
+      $want_save = -1;
     if(is_array($listdel) && $want_save)
       $this->del_data($listdel);
     if(is_array($listadd) && $want_save)
@@ -111,19 +127,22 @@ class pp_list extends pp_template
   function get_vars()
   {
     global $HTTP_POST_VARS;
-    $this->search_string = ($HTTP_POST_VARS[$this->id.'_search_string']) ? 
-                            $HTTP_POST_VARS[$this->id.'_search_string'] : '';
-    $this->current_search_field = $HTTP_POST_VARS[$this->id.'_current_search_field'];
-    $this->max_elements = ($HTTP_POST_VARS[$this->id.'_max_elements']) ? 
+    $this->search_string = array_key_exists($this->id.'_search_string', $HTTP_POST_VARS) ? 
+                           $HTTP_POST_VARS[$this->id.'_search_string'] : '';
+    $this->current_search_field = array_key_exists($this->id.'_current_search_field', $HTTP_POST_VARS) ? 
+                                  $HTTP_POST_VARS[$this->id.'_current_search_field'] : '';
+    $this->max_elements = array_key_exists($this->id.'_max_elements', $HTTP_POST_VARS) ?
                           $HTTP_POST_VARS[$this->id.'_max_elements'] : $this->max_elements;
-    $this->current_page = ($HTTP_POST_VARS[$this->id.'_current_page']) ? 
+    $this->current_page = array_key_exists($this->id.'_current_page', $HTTP_POST_VARS) ?
                           $HTTP_POST_VARS[$this->id.'_current_page'] : 0 ;
-    $this->current_order_field = ($HTTP_POST_VARS[$this->id.'_current_order_field']) ? 
-                                 ($HTTP_POST_VARS[$this->id.'_current_order_field']) : $this->sql_key;
-    $this->order = $HTTP_POST_VARS[$this->id.'_order'];
-    if($HTTP_POST_VARS[$this->id.'_want_page'])
-      $this->current_page = $HTTP_POST_VARS[$this->id.'_want_page'];
-    $this->search = $HTTP_POST_VARS[$this->id.'_list_search'];
+    $this->current_order_field = array_key_exists($this->id.'_current_order_field', $HTTP_POST_VARS) ?
+                                 $HTTP_POST_VARS[$this->id.'_current_order_field'] : $this->sql_key;
+    $this->order = array_key_exists($this->id.'_order', $HTTP_POST_VARS) ? 
+                   $HTTP_POST_VARS[$this->id.'_order'] : '';
+    $this->current_page = array_key_exists($this->id.'_want_page', $HTTP_POST_VARS) ? 
+                          $HTTP_POST_VARS[$this->id.'_want_page'] : '';
+    $this->search = array_key_exists($this->id.'_list_search', $HTTP_POST_VARS) ?
+                    $HTTP_POST_VARS[$this->id.'_list_search'] : '';
     $this->start = $this->current_page * $this->max_elements;
   }
 
@@ -142,9 +161,9 @@ class pp_list extends pp_template
 			       <input type=submit value="enregistrer" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
 			       <font size=1><input type="button" value="inverser la séléction" onclick="javascript:invertsel(\''.$this->id.'\')"></font>
     '));
-    $this->add_tag($this->id.'_list_hidden_fields', hidden_fields);
-    $this->add_tag($this->id.'_list_search', list_search);
-    $this->add_tag($this->id.'_list_compteur', compteur);
+    $this->add_tag($this->id.'_list_hidden_fields', 'hidden_fields');
+    $this->add_tag($this->id.'_list_search', 'list_search');
+    $this->add_tag($this->id.'_list_compteur', 'compteur');
   }
 
   function hidden_fields()
@@ -215,7 +234,6 @@ class pp_list extends pp_template
 	$data[$i][$this->id.'_id_list'] = $k;
 	$data[$i][$this->id.'_list_check_update'] = $list_check_update;
 	$data[$i][$this->id.'_list_del'] = '<input type="checkbox" name="'.$this->id.'_listdel['.$k.']">';
-        // echo "@@@".$this->id.'_'.$f."@@@";
 	$data[$i][$this->id.'_'.$f] = ($sql->Record[$f]) ? 
 	                stripslashes( strtr($sql->Record[$f], array('"' => '')) )
 			: '';
