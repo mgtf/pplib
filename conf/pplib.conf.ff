@@ -1,6 +1,6 @@
 <?
 
-define('PP_LIB_PATH', '/usr/lib/pplib');
+define('PP_LIB_PATH', '/usr/lib/pplib/');
 define('PP_SYSLOG_NAME', '[ PPLIB ]');
 define('GENERAL_WEBMASTER_MAIL', 'tieum@boo.taktile.com');
 
