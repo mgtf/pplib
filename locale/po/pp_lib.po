@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-03-05 14:27+0100\n"
+"POT-Creation-Date: 2002-03-05 14:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgid "warning"
 msgstr ""
 
 #: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:107
-#: base/pp_template.inc:384 base/pp_template.inc:419
+#: base/pp_template.inc:384 base/pp_template.inc:419 base/pp_ttf_text.inc:86
 msgid "does not exist"
 msgstr ""
 
@@ -201,15 +201,15 @@ msgid "arg is not an array"
 msgstr ""
 
 #: base/pp_template.inc:161
-msgid "no file to read."
+msgid "no file to read"
 msgstr ""
 
 #: base/pp_template.inc:188
-msgid "no file to write."
+msgid "no file to write"
 msgstr ""
 
 #: base/pp_template.inc:190
-msgid "no data to write."
+msgid "no data to write"
 msgstr ""
 
 #: base/pp_template.inc:222
@@ -252,10 +252,6 @@ msgstr ""
 msgid "font file"
 msgstr ""
 
-#: base/pp_ttf_text.inc:86
-msgid "does not exist."
-msgstr ""
-
 #: base/pp_ttf_text.inc:89
 msgid "no text"
 msgstr ""
@@ -275,11 +271,11 @@ msgid "XML parse error"
 msgstr ""
 
 #: pp.inc:126
-msgid "pp site is currently in a maintenance state."
+msgid "pp site is currently in a maintenance state"
 msgstr ""
 
 #: pp.inc:128
-msgid "Please come back later."
+msgid "Please come back later"
 msgstr ""
 
 #: pp.inc:150 pp.inc:154
