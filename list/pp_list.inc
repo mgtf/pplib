@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.24 2002/02/11 10:51:03 tieum Exp $
+//  $Id: pp_list.inc,v 1.25 2002/02/11 13:38:48 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -418,19 +418,19 @@ class pp_list extends pp_template
 
   function add_data($listadd)
   {
+    // test if at least one needed field is empty :
+    if($this->needed_fields != -1)
+    {
+      foreach( (explode(',', strtr($this->needed_fields, array(' ' => '')))) as $nf)
+	if(strlen($listadd[$this->sql_table.'_'.$nf]) == 0)
+	  return (0);
+    }
+    //
     $do_query = NULL;
     $q = 'INSERT INTO '.$this->sql_table.' SET '.$this->sql_key.' = \'\'';
     foreach( (explode(',', strtr($this->sql_fields, array(' ' => '')))) as $f)
       if(! strstr($f, '(') )
       {
-	// test if at least one needed field is empty :
-	if($this->needed_fields != -1)
-	{
-	  foreach( (explode(',', strtr($this->needed_fields, array(' ' => '')))) as $nf)
-	    if($f == $nf && strlen($listadd[$this->sql_table.'_'.$f]) == 0)
-	      return (0);
-	}
-	//
 	$data = addslashes($listadd[$this->sql_table.'_'.$f]);
 	$do_query += strlen($data);
 	// test if we must apply function when insert ( like PASSWORD() )

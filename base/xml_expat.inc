@@ -1,6 +1,6 @@
 <?
 
-// $Id: xml_expat.inc,v 1.1 2002/01/15 15:22:12 tieum Exp $
+// $Id: xml_expat.inc,v 1.2 2002/02/11 13:38:47 tieum Exp $
 
 class pp_xml_expat extends pp_template
 {
@@ -42,7 +42,6 @@ class pp_xml_expat extends pp_template
       $err .= _("line").' :'.xml_get_current_line_number($this->parser);
       $this->error($err);
     }
-    // $this->buffer = nl2br($this->buffer);
     return strlen($this->buffer);
   }
 
@@ -55,17 +54,13 @@ class pp_xml_expat extends pp_template
   function h_start_el($parser, $name, $attrs)
   {
     $this->level++;
-    // if(isset($this->tags[strtolower($name)]))
-    // {
     $this->buffer .= ' {'.strtolower($name);
       while(list($k, $v) = each($attrs))
 	$this->buffer .= ' '.$k.'="'.$v.'"';
-    // }
   }
 
   function h_end_el($parser, $name)
   {
-    // if(isset($this->tags[strtolower($name)]))
     $this->buffer .= "}\n";
     $this->level--;
   }
