@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.12 2002/01/31 13:47:02 tieum Exp $
+//  $Id: pp.inc,v 1.13 2002/01/31 13:59:09 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -98,9 +98,11 @@ class pp extends pp_class
 
 };
 
-function my_output_callback($str)
+function my_output_callback($buffer)
 {
   global $pp, $timer;
+
+  $str = $buffer;
 
   // continue only if $pp is define at this time.
   if(! is_object($pp))
