@@ -1,5 +1,5 @@
 <?
-// $Id: pp_file.inc,v 1.11 2002/09/18 11:24:40 tieum Exp $
+// $Id: pp_file.inc,v 1.12 2002/09/18 11:30:00 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -119,6 +119,12 @@ class pp_file extends pp_mime
 
   function get_mime()
   {
+    // XXX - the future new solution (currently from php4 CVS) :
+    // $mime = mime_content_type($this->filename);
+    // $mime = split('/', $mime[1]);
+    // $this->mime_type = substr($mime[0], 1);
+    // $this->mime_subtype = $mime[1];
+    // XXX - my own solution :)
     if(! $this->exists())
       user_error('pp_file::get_mime : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
     global $pp;
