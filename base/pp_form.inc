@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_form.inc,v 1.2 2002/02/15 13:12:29 tieum Exp $
+//  $Id: pp_form.inc,v 1.3 2002/02/19 17:21:20 tieum Exp $
 //  form class
 //
 //  public methods :
@@ -126,7 +126,7 @@ class pp_form extends pp_class
     $this->data .= $data;
   }
 
-  function parse_form($options = '')
+  function parse_form($fields_only = 0)
   {
     $this->send_to_mail = (strstr($this->action, 'mailto:') == FALSE) ? 0 : 1;
     if($this->has_file)
