@@ -1,5 +1,5 @@
 <?
-// $Id: ttf_text.inc,v 1.9 2002/02/25 13:20:26 tieum Exp $
+// $Id: ttf_text.inc,v 1.10 2002/02/28 16:52:28 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -121,7 +121,7 @@ class pp_ttf_text extends pp_image
     }
     imagettftext($this->image, $this->size, 
 		 $this->angle, $pos[0], $pos[1], 
-		 $fore, $font, $this->text);
+		 $fore, $font, utf8_encode($this->text));
   }
 
   function ttf_text_get_size()
