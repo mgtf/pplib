@@ -1,5 +1,5 @@
 <?
-// $Id: pp_image.inc,v 1.8 2002/02/13 11:17:35 tieum Exp $
+// $Id: pp_image.inc,v 1.9 2002/02/13 11:21:27 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -67,8 +67,10 @@ class pp_image extends pp_file
     $tmp->mime_subtype = $this->mime_subtype;
     $tmp->truecolor = 1;
     $tmp->image_create();
-    imagecopyresampled($tmp->image, $this->image, 0, 0, 0, 0, $w, $h,
-                       $this->xsize, $this->ysize);
+    if(! is_resource($tmp->image) )
+      $this->error('pp_image::image_resize : '._("can't create temp image"));
+    imagecopyresampled($tmp->image, $this->image, 0, 0, 0, 0, 
+	               $w, $h, $this->xsize, $this->ysize);
     $this = $tmp;
     $this->image_update_infos();
     $this->image_get_data();

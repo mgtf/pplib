@@ -1,5 +1,5 @@
 <?
-// $Id: image.inc,v 1.7 2002/02/12 15:50:55 tieum Exp $
+// $Id: image.inc,v 1.8 2002/02/13 11:17:35 tieum Exp $
 
 class pp_image extends pp_file
 {
@@ -121,7 +121,7 @@ class pp_image extends pp_file
 	$ext = $ext[1];
       else
 	$this->error('pp_file::image_create_from_file : '.
-	              _("image")."'".$this->filename."'"._("has no extention"));
+	              _("image")." '".$this->filename."' "._("has no extention"));
       $this->mime_subtype = $ext;
     }
     switch($this->mime_subtype)
@@ -140,6 +140,9 @@ class pp_image extends pp_file
 	return -1;
     }
     $tmp_img = $create_func($this->filename);
+    if(! is_resource($tmp_img) )
+      $this->error('pp_file::image_create_from_file : '.
+	           _("can't create image from")." '".$this->filename."'");
     $this->xsize = ImageSX($tmp_img);
     $this->ysize = ImageSY($tmp_img);
     $this->set_mime($this->mime_subtype);
@@ -212,8 +215,8 @@ class pp_image extends pp_file
       $f($this->image, NULL, $this->quality);
     else
       $f($this->image);
-    $img = $pp->ob->resume();
-    $this->data = $img;
+    $img_data = $pp->ob->resume();
+    $this->data = $img_data;
     $this->image_update_infos();
     return $this->data;
   }

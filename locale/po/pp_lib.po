@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-12 15:28+0100\n"
+"POT-Creation-Date: 2002-02-13 12:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,27 +116,43 @@ msgstr ""
 msgid "you must specify at least one size"
 msgstr ""
 
-#: base/pp_image.inc:101
+#: base/pp_image.inc:71
+msgid "can't create temp image"
+msgstr ""
+
+#: base/pp_image.inc:103
 msgid "image is already a"
 msgstr ""
 
-#: base/pp_image.inc:103
+#: base/pp_image.inc:105
 msgid "format"
 msgstr ""
 
-#: base/pp_image.inc:103
+#: base/pp_image.inc:105
 msgid "is not supported"
 msgstr ""
 
-#: base/pp_image.inc:152
+#: base/pp_image.inc:126
+msgid "image"
+msgstr ""
+
+#: base/pp_image.inc:126
+msgid "has no extention"
+msgstr ""
+
+#: base/pp_image.inc:147
+msgid "can't create image from"
+msgstr ""
+
+#: base/pp_image.inc:161
 msgid "no image size"
 msgstr ""
 
-#: base/pp_image.inc:162
+#: base/pp_image.inc:171
 msgid "can't create image"
 msgstr ""
 
-#: base/pp_image.inc:203
+#: base/pp_image.inc:212
 msgid "format is not supported"
 msgstr ""
 
@@ -220,11 +236,11 @@ msgstr ""
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:537
+#: base/pp_template.inc:514
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:540
+#: base/pp_template.inc:517
 msgid "action"
 msgstr ""
 
@@ -258,15 +274,15 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:114
+#: pp.inc:117
 msgid "This site is currently in a maintenance state."
 msgstr ""
 
-#: pp.inc:116
+#: pp.inc:119
 msgid "Please come back later."
 msgstr ""
 
-#: pp.inc:137 pp.inc:140
+#: pp.inc:140 pp.inc:143
 msgid "page generated on "
 msgstr ""
 

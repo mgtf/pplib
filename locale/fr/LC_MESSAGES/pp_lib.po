@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-12 15:28+0100\n"
+"POT-Creation-Date: 2002-02-13 12:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,27 +127,45 @@ msgstr ""
 msgid "you must specify at least one size"
 msgstr "vous devez spécifier au moins une taille"
 
-#: base/pp_image.inc:101
+#: base/pp_image.inc:71
+#, fuzzy
+msgid "can't create temp image"
+msgstr "impossible de créer l'image"
+
+#: base/pp_image.inc:103
 msgid "image is already a"
 msgstr "l'image est déjà une"
 
-#: base/pp_image.inc:103
+#: base/pp_image.inc:105
 msgid "format"
 msgstr "format"
 
-#: base/pp_image.inc:103
+#: base/pp_image.inc:105
 msgid "is not supported"
 msgstr "n'est pas supporté"
 
-#: base/pp_image.inc:152
+#: base/pp_image.inc:126
+msgid "image"
+msgstr "image"
+
+#: base/pp_image.inc:126
+msgid "has no extention"
+msgstr "n'a pas d'extention"
+
+#: base/pp_image.inc:147
+#, fuzzy
+msgid "can't create image from"
+msgstr "impossible de créer l'image"
+
+#: base/pp_image.inc:161
 msgid "no image size"
 msgstr "pas de taille pour l'image"
 
-#: base/pp_image.inc:162
+#: base/pp_image.inc:171
 msgid "can't create image"
 msgstr "impossible de créer l'image"
 
-#: base/pp_image.inc:203
+#: base/pp_image.inc:212
 #, fuzzy
 msgid "format is not supported"
 msgstr "n'est pas supporté"
@@ -238,11 +256,11 @@ msgstr "la syntaxe correct est"
 msgid "invalid include file"
 msgstr "fichier à inclure invalide"
 
-#: base/pp_template.inc:537
+#: base/pp_template.inc:514
 msgid "value"
 msgstr "valeur"
 
-#: base/pp_template.inc:540
+#: base/pp_template.inc:517
 msgid "action"
 msgstr "action"
 
@@ -277,15 +295,15 @@ msgstr "impossible de créer un nouveau parseur XML"
 msgid "XML parse error"
 msgstr "XML erreur"
 
-#: pp.inc:114
+#: pp.inc:117
 msgid "This site is currently in a maintenance state."
 msgstr "Ce site est actuellement en état de maintenance."
 
-#: pp.inc:116
+#: pp.inc:119
 msgid "Please come back later."
 msgstr "Veuillez vous reconnecter ulterieurement."
 
-#: pp.inc:137 pp.inc:140
+#: pp.inc:140 pp.inc:143
 msgid "page generated on "
 msgstr "page générée en "
 
