@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.11 2002/02/13 10:56:27 tieum Exp $
+//  $Id: template.inc,v 1.12 2002/02/15 15:22:36 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -119,9 +119,9 @@ class pp_template extends pp_file
     return (1);
   }
 
-  function tag_exists($tag)
+  function tag_exists($tagname)
   {
-    return isset($this->tags[$name]);
+    return array_key_exists($tagname, $this->tags);
   }
 
   function del_tag($name)
