@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.81 2002/10/28 14:22:26 tieum Exp $
+//  $Id: pp.inc,v 1.82 2002/10/31 11:01:30 tieum Exp $
 //  !pplib main class, define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -156,6 +156,9 @@ function my_output_callback($buffer)
   {
     case 'html':
       $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
+      break;
+    case 'xhtml':
+      $str = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n".$str;
       break;
     case 'xml':
       $str = '<?xml version="1.0"?>'."\n".$str;
