@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.76 2002/07/05 10:18:51 tieum Exp $
+//  $Id: pp.inc,v 1.77 2002/07/11 18:02:39 tieum Exp $
 //  !pplib main class, define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -32,7 +32,7 @@
 // do not modify below
 include('conf/pplib.conf');
 define('PP_MAJOR_VERSION', '3');
-define('PP_MINOR_VERSION', '3a');
+define('PP_MINOR_VERSION', '3b');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
 
