@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.57 2002/03/27 16:54:01 tieum Exp $
+//  $Id: pp.inc,v 1.58 2002/04/04 09:47:22 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -26,7 +26,7 @@
 // do not modify below
 include('conf/pplib.conf');
 define('PP_MAJOR_VERSION', '3');
-define('PP_MINOR_VERSION', '2');
+define('PP_MINOR_VERSION', '2a');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
 define('RUSAGE_BOTH', -2);
