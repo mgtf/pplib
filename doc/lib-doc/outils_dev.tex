@@ -1,12 +1,13 @@
-% $Id: outils_dev.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $
+% $Id: outils_dev.tex,v 1.2 2002/03/25 12:06:48 tieum Exp $
 \textcolor{section}{\section{Outils de développement}}
-  \textcolor{subsection}{\subsection{Indentation du code, commentaires, organisation des fichiers}}
+  \textcolor{subsection}{\subsection{Indentation du code, commentaires, organisation des fichiers, validation}}
    \textcolor{subsubsection}{\subsubsection{indentation du code}}
      On indente le code \textbf{de deux espaces}, sans tabulation.
    \textcolor{subsubsection}{\subsubsection{en-tête des fonctions php}}
      Nous utilisons phpxref pour commenter notre code. Ce systême permet de générer automatiquement 
      une documentation en HTML de toutes les fonctions et variables utilisées.
      Veuillez respecter cette syntaxe pour tout fichier et fonction que vous créez dans cette librairie.
+     Il est inutile de respecter cette syntaxe pour le code autre que la librairie.
      \\
      Exemple de fonction :
      \begin{verbatim}
@@ -30,7 +31,7 @@
      Exemple du fichier template\_image.inc :
      \begin{verbatim}
      <?
-     /* $Id: outils_dev.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $ */
+     /* $Id: outils_dev.tex,v 1.2 2002/03/25 12:06:48 tieum Exp $ */
      // template_image.inc - Ensemble de fonctions permettant l'insertion d'image texte dynamique 
      // template_image.inc - à base de font truetype (.ttf) dans un template
      ...
@@ -70,4 +71,8 @@
     \begin{verbatim}
       cvs co -c
     \end{verbatim}
+ \textcolor{subsection}{\subsection{Validation - validateurs}}
+   Tout le code HTML doit passer au validateur (accessible depuis l'intranet). 
+   Le validateur CSS doit aussi être utilisé pour valider les CSS.
+   Chaque page doit être conforme au spécification HTML 4.0 du w3c.
  \textcolor{subsection}{\subsection{TODO}}
