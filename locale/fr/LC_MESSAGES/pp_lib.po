@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-20 19:53+0100\n"
+"POT-Creation-Date: 2002-02-21 20:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgid "error"
 msgstr "erreur"
 
 #: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:31
-#: base/pp_file.inc:42 base/pp_file.inc:66
+#: base/pp_file.inc:42 base/pp_file.inc:68
 msgid "file"
 msgstr "fichier"
 
@@ -61,7 +61,7 @@ msgstr "ligne"
 msgid "warning"
 msgstr "attention"
 
-#: base/pp_file.inc:31 base/pp_file.inc:67 base/pp_template.inc:107
+#: base/pp_file.inc:31 base/pp_file.inc:69 base/pp_template.inc:107
 #: base/pp_template.inc:384 base/pp_template.inc:417
 #, fuzzy
 msgid "does not exist"
@@ -84,37 +84,37 @@ msgstr "répertoire"
 msgid "is not writeable"
 msgstr "ne peut pas être ecrit"
 
-#: base/pp_file.inc:51 base/pp_file.inc:71
+#: base/pp_file.inc:51 base/pp_file.inc:73
 #, fuzzy
 msgid "can't open"
 msgstr "impossible de se connecter"
 
-#: base/pp_file.inc:53
+#: base/pp_file.inc:54
 #, fuzzy
 msgid "can't write"
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:57 base/pp_file.inc:80
+#: base/pp_file.inc:59 base/pp_file.inc:82
 #, fuzzy
 msgid "can't close"
 msgstr "impossible de se connecter"
 
-#: base/pp_file.inc:69
+#: base/pp_file.inc:71
 #, fuzzy
 msgid "is not readable"
 msgstr "n'est pas supporté"
 
-#: base/pp_file.inc:88
+#: base/pp_file.inc:90
 #, fuzzy
 msgid "can't get shared lock on file "
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:95
+#: base/pp_file.inc:97
 #, fuzzy
 msgid "can't get exclusive lock on file "
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:101
+#: base/pp_file.inc:103
 #, fuzzy
 msgid "can't unlock file "
 msgstr "impossible de créer l'image"
@@ -178,10 +178,6 @@ msgstr "impossible d'ajouter le type mime"
 #, fuzzy
 msgid "this format is not supported"
 msgstr "n'est pas supporté"
-
-#: base/pp_module.inc:24 base/pp_ttf_text.inc:76
-msgid "please set"
-msgstr "veuillez spécifier"
 
 #: base/pp_mysql.inc:68
 msgid "db access was not configured"
@@ -268,6 +264,10 @@ msgstr "valeur"
 msgid "action"
 msgstr "action"
 
+#: base/pp_ttf_text.inc:76
+msgid "please set"
+msgstr "veuillez spécifier"
+
 #: base/pp_ttf_text.inc:80
 msgid "font file"
 msgstr "fichier de police"
@@ -295,15 +295,15 @@ msgstr "impossible de créer un nouveau parseur XML"
 msgid "XML parse error"
 msgstr "XML erreur"
 
-#: pp.inc:121
+#: pp.inc:120
 msgid "This site is currently in a maintenance state."
 msgstr "Ce site est actuellement en état de maintenance."
 
-#: pp.inc:123
+#: pp.inc:122
 msgid "Please come back later."
 msgstr "Veuillez vous reconnecter ulterieurement."
 
-#: pp.inc:144 pp.inc:147
+#: pp.inc:143 pp.inc:146
 msgid "page generated on "
 msgstr "page générée en "
 
