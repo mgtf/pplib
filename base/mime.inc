@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mime.inc,v 1.8 2002/09/18 11:58:45 tieum Exp $
+// $Id: mime.inc,v 1.9 2002/10/31 11:09:19 tieum Exp $
 // !mime type class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -69,6 +69,7 @@ class pp_mime extends pp_mime_el
     $this->pp_mime_el();
     // $mime_type, $mime_subtype, $mime_extentions, $tag_start, $tag_stop, $blank_char, $comment_start, $comment_end)
     $this->add_mime('text', 'html', array('html', 'shtml', 'htm'), '{', '}', '&nbsp;', '<!--', '-->');
+    $this->add_mime('text', 'xhtml', array('xhtml'), '{', '}', '&nbsp;', '<!--', '-->');
     $this->add_mime('text', 'csv', array('csv'), '[', ']', ' ', ' : ', "\n");
     $this->add_mime('text', 'tex', array('tex'), '[', ']', '~', ' % ', "\n");
     $this->add_mime('application', 'pdf', array('pdf'));
