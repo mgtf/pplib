@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.55 2002/07/22 13:12:19 tieum Exp $
+//  $Id: template.inc,v 1.56 2002/07/25 09:47:54 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -271,6 +271,8 @@ class pp_template extends pp_file
   function find_begin($str)
   {/*{{{*/
     $len = strlen($str);
+    if(! $len)
+      return FALSE;
     if($str[0] == $this->tag_start)
       return 0;
     for ($i = 1; $i < $len; $i++)
