@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mysql.inc,v 1.18 2002/09/18 11:58:45 tieum Exp $
+// $Id: mysql.inc,v 1.19 2003/06/08 19:43:06 mgf Exp $
 // !mysql abstraction layer
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -23,6 +23,8 @@
 // num_fields() 
 // nextid($seq_name) 
 // metadata($table='',$full=false) 
+// commit()
+// rollback()
 //
 // private methods :
 //
@@ -254,6 +256,14 @@ class pp_db extends pp_class {
       $i++;
     }
     return $return;
+  }
+
+  function commit() {
+    @mysql_query('COMMIT', $this->link_id);
+  }
+
+  function rollback() {
+    @mysql_query('ROLLBACK', $this->link_id);
   }
 };
 
