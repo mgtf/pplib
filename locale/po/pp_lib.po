@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-04-02 16:46+0200\n"
+"POT-Creation-Date: 2002-04-04 10:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,16 @@ msgstr ""
 msgid "but it is already an object from the class"
 msgstr ""
 
+#: base/pp_class.inc:61 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_file.inc:31 base/pp_file.inc:42 base/pp_file.inc:69
+msgid "file"
+msgstr ""
+
+#: base/pp_class.inc:61 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_xml_expat.inc:38
+msgid "line"
+msgstr ""
+
 #: base/pp_data.inc:84
 msgid "constant STORAGE_PATH not set"
 msgstr ""
@@ -42,17 +52,8 @@ msgstr ""
 msgid "data size too big"
 msgstr ""
 
-#: base/pp_error.inc:24
+#: base/pp_error.inc:21 base/pp_error.inc:24
 msgid "error"
-msgstr ""
-
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:31
-#: base/pp_file.inc:42 base/pp_file.inc:69
-msgid "file"
-msgstr ""
-
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:38
-msgid "line"
 msgstr ""
 
 #: base/pp_error.inc:39

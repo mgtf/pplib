@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-04-02 16:46+0200\n"
+"POT-Creation-Date: 2002-04-04 10:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,16 @@ msgstr "vous essayez de créer un objet de la classe"
 msgid "but it is already an object from the class"
 msgstr "vous essayez de créer un objet de la classe"
 
+#: base/pp_class.inc:61 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_file.inc:31 base/pp_file.inc:42 base/pp_file.inc:69
+msgid "file"
+msgstr "fichier"
+
+#: base/pp_class.inc:61 base/pp_error.inc:26 base/pp_error.inc:41
+#: base/pp_xml_expat.inc:38
+msgid "line"
+msgstr "ligne"
+
 #: base/pp_data.inc:84
 msgid "constant STORAGE_PATH not set"
 msgstr "pas de valeur pour la constante STORAGE_PATH"
@@ -42,18 +52,9 @@ msgstr "pas de données à enregistrer"
 msgid "data size too big"
 msgstr "taille des données trop importante"
 
-#: base/pp_error.inc:24
+#: base/pp_error.inc:21 base/pp_error.inc:24
 msgid "error"
 msgstr "erreur"
-
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:31
-#: base/pp_file.inc:42 base/pp_file.inc:69
-msgid "file"
-msgstr "fichier"
-
-#: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:38
-msgid "line"
-msgstr "ligne"
 
 #: base/pp_error.inc:39
 msgid "warning"
@@ -226,7 +227,7 @@ msgstr "itération max"
 
 #: base/pp_template.inc:336 base/pp_template.inc:389
 msgid "template error"
-msgstr "XML erreur"
+msgstr "erreur de traitement du gabarit"
 
 #: base/pp_template.inc:417
 msgid "you must specify template name"
