@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: mysql.inc,v 1.9 2002/02/06 13:30:02 tieum Exp $
+//  $Id: mysql.inc,v 1.10 2002/02/06 14:39:34 tieum Exp $
 //  mysql class
 //  
 //  public methods :
@@ -44,7 +44,6 @@ class pp_db extends pp_class {
 
   /* public: configuration parameters */
   var $auto_free     = 0;     ## Set to 1 for automatic mysql_free_result()
-  var $seq_Table     = "db_sequence";
 
   /* public: result array and current row number */
   var $record   = array();

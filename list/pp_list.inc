@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.19 2002/02/05 15:18:44 tieum Exp $
+//  $Id: pp_list.inc,v 1.20 2002/02/06 14:39:36 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -190,10 +190,10 @@ class pp_list extends pp_template
 			       $this->id.'_want_page' => 0,
 			       $this->id.'_want_save' => 0,
 			       $this->id.'_list_submit_add' => '
-			       <a href="javascript:'.$this->id.'_confirm_del()"><img src="icons/save.gif"></a>',
+			       <a href="javascript:'.$this->id.'_confirm_del()"><img src="/icons/save.gif"></a>',
 			       $this->id.'_list_submit' => '
-			       <a href="javascript:'.$this->id.'_confirm_del()"><img src="icons/save.gif"></a>
-			       <font size=1><img src="icons/invert.gif" alt="'.
+			       <a href="javascript:'.$this->id.'_confirm_del()"><img src="/icons/save.gif"></a>
+			       <font size=1><img src="/icons/invert.gif" alt="'.
 			       _("invert selection").
 			       '" onclick="javascript:'.$this->id.'_invertsel(\''.$this->id.'\')"></font>
     '));
