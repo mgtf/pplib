@@ -1,6 +1,6 @@
 <?
 
-// $Id: class.inc,v 1.8 2002/04/04 09:29:11 tieum Exp $
+// $Id: class.inc,v 1.9 2002/04/04 09:29:52 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // don't know if it's really usefull
 
@@ -9,8 +9,9 @@ function new_(&$object, $classname, $arg = '')
   if(! class_exists($classname))
   {
     new_($tpl, 'pp_template');
-    $tpl->error("new_ : '$classname' ".
-	        _("is not the name of an existing class"));
+    $tpl->error(
+	"new_ : '$classname' ".
+	_("is not the name of an existing class"));
   }
   if(! is_object($object))
     $object = new $classname($arg);
@@ -23,8 +24,9 @@ function new_(&$object, $classname, $arg = '')
   else
   {
     global $pp;
-    $pp->error("new_ : "._("you are trying to create an object from the class")." $classname\n".
-	       _("but it is already an object from the class")." $class");
+    $pp->error(
+	"new_ : "._("you are trying to create an object from the class")." $classname\n".
+	_("but it is already an object from the class")." $class");
   }
   return 1;
 }
