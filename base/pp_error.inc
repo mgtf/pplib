@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_error.inc,v 1.15 2002/09/18 11:58:44 tieum Exp $
+// $Id: pp_error.inc,v 1.16 2003/08/27 11:54:02 mgf Exp $
 // !error handling
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -26,16 +26,13 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
       // if an error occurs before $pp exists, just quit :
       if(! is_object($pp))
 	die("-- "._("error")." --\n".$errstr."\n".__FILE__.' : '. __LINE__);
-      // $pp->ob->suspend();
       echo '<table align=center border=0 cellspacing=0 cellpadding=5>'.
-	   '<tr><td width="10" align="center"><img src="/icons/error.gif"><br><font size=2 color="#9C0000">'._("error").'</font></th>'.
+	   '<tr><td width="10" align="center"><img src="/icons/error.gif">'.
+	   '<br><font size=2 color="#9C0000">'._("error").'</font></th>'.
            '<td><font size=2>'.nl2br($errstr).'</font>'.
-	   '<br><font size=1>'._("file").' : '.$errfile.'&nbsp;'._("line").' : '.$errline.'</font>'.
+	   '<br><font size=1>'._("file").' : '.basename($errfile).'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
 	   '</table><br>';
-      // $errstr = $pp->ob->resume();
-      // $pp->ob->clean();
-      // die($errstr);
       die();
       break;
     case E_WARNING:
@@ -44,9 +41,10 @@ function my_error_handler($errno, $errstr, $errfile, $errline, $errcontext)
     case E_USER_WARNING:
     case E_CORE_WARNING:
       echo '<table align="center" border="0" cellspacing="0" cellpadding="5">'.
-	   '<tr><td width="15" align="center"><img src="/icons/warning.gif"><br><font size=2 color="#0040BD">'._("warning").'</font></th>'.
+	   '<tr><td width="15" align="center"><img src="/icons/warning.gif">'.
+	   '<br><font size=2 color="#0040BD">'._("warning").'</font></th>'.
            '<td><font size=2>'.nl2br($errstr).'</font>'.
-	   '<br><font size=1>'._("file").' : '.$errfile.'&nbsp;'._("line").' : '.$errline.'</font>'.
+	   '<br><font size=1>'._("file").' : '.basename($errfile).'&nbsp;'._("line").' : '.$errline.'</font>'.
 	   '</td></tr>'.
 	   '</table><br>';
       break;

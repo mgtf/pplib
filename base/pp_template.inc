@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_template.inc,v 1.77 2003/08/27 11:33:06 mgf Exp $
+// $Id: pp_template.inc,v 1.78 2003/08/27 11:54:02 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -279,7 +279,7 @@ class pp_template extends pp_file {
   // !private function
   function find_end($str, $begin = 0) {
     $nb = 1;
-    for ($i = $begin + 1; $nb && isset($str[$i]); $i++) {
+    for ($i = $begin + 1; $nb && (strlen($str) > $i); $i++) {
       switch ($str[$i]) {
 	case $this->tag_start:
 	  if($str[$i - 1] != '\\')
@@ -314,8 +314,16 @@ class pp_template extends pp_file {
   // !private function
   function parse_tag($tag_str) {
     $regexp = " *([^ ]+) *(.*)\\".$this->tag_stop;
-    if (!ereg($regexp, $tag_str, $tb))
-      return user_error('pp_template::parse_tag : '._("template error"), E_USER_ERROR);
+    if(! ereg($regexp, $tag_str, $tb)) {
+      if($this->mime_subtype == 'html' || $this->mime_subtype == 'xhtml') {
+	global $pp;
+	$errstr = htmlentities($pp->string->cut_text(str_replace("\n", "", $tag_str), 30));
+      } else {
+	$errstr = $tag_str;
+      }
+      return user_error(
+	  "pp_template::parse_tag : "._("parse error : ").$this->return_char.$errstr, E_USER_ERROR);
+    }
     if (array_key_exists($tb[1], $this->tags))
       $tag = $this->tags[$tb[1]];
     else
@@ -356,13 +364,13 @@ class pp_template extends pp_file {
 
     if (! $tag) {
       if($this->mime_subtype == 'html' || $this->mime_subtype == 'xhtml') {
-	return user_error(
-	    "pp_template::parse_tag : "._("parse error : ").
-	    htmlentities($tag_str), E_USER_ERROR);
+	global $pp;
+	$errstr = htmlentities($pp->string->cut_text(str_replace("\n", "", $tag_str), 30));
       } else {
-	return user_error(
-	    "pp_template::parse_tag : "._("parse error : ").$tag_str, E_USER_ERROR);
+	$errstr = $tag_str;
       }
+      return user_error(
+	  "pp_template::parse_tag : "._("parse error : ").$this->return_char.$errstr, E_USER_ERROR);
     }
     $f =& $tag['action'];
 
