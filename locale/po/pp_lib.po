@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-03-19 19:26+0100\n"
+"POT-Creation-Date: 2002-04-02 16:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,6 +156,10 @@ msgstr ""
 msgid "format is not supported"
 msgstr ""
 
+#: base/pp_mail.inc:25
+msgid "Missing parameters"
+msgstr ""
+
 #: base/pp_mime.inc:88
 msgid "can't add mime type"
 msgstr ""
@@ -244,15 +248,11 @@ msgstr ""
 msgid "you must specify `bloc` arg in dynbloc tag"
 msgstr ""
 
-#: base/pp_template.inc:479
-msgid "dynbloc_data is not an array"
-msgstr ""
-
-#: base/pp_template.inc:551
+#: base/pp_template.inc:552
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:554
+#: base/pp_template.inc:555
 msgid "action"
 msgstr ""
 
@@ -282,15 +282,15 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:136
+#: pp.inc:137
 msgid "pp site is currently in a maintenance state"
 msgstr ""
 
-#: pp.inc:138
+#: pp.inc:139
 msgid "Please come back later"
 msgstr ""
 
-#: pp.inc:160 pp.inc:164
+#: pp.inc:161 pp.inc:165
 msgid "page generated on "
 msgstr ""
 
