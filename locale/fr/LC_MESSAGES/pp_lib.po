@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-21 20:28+0100\n"
+"POT-Creation-Date: 2002-02-23 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgid "error"
 msgstr "erreur"
 
 #: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:31
-#: base/pp_file.inc:42 base/pp_file.inc:68
+#: base/pp_file.inc:42 base/pp_file.inc:69
 msgid "file"
 msgstr "fichier"
 
@@ -61,7 +61,7 @@ msgstr "ligne"
 msgid "warning"
 msgstr "attention"
 
-#: base/pp_file.inc:31 base/pp_file.inc:69 base/pp_template.inc:107
+#: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:107
 #: base/pp_template.inc:384 base/pp_template.inc:417
 #, fuzzy
 msgid "does not exist"
@@ -84,37 +84,37 @@ msgstr "répertoire"
 msgid "is not writeable"
 msgstr "ne peut pas être ecrit"
 
-#: base/pp_file.inc:51 base/pp_file.inc:73
+#: base/pp_file.inc:51 base/pp_file.inc:74
 #, fuzzy
 msgid "can't open"
 msgstr "impossible de se connecter"
 
-#: base/pp_file.inc:54
+#: base/pp_file.inc:55
 #, fuzzy
 msgid "can't write"
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:59 base/pp_file.inc:82
+#: base/pp_file.inc:60 base/pp_file.inc:84
 #, fuzzy
 msgid "can't close"
 msgstr "impossible de se connecter"
 
-#: base/pp_file.inc:71
+#: base/pp_file.inc:72
 #, fuzzy
 msgid "is not readable"
 msgstr "n'est pas supporté"
 
-#: base/pp_file.inc:90
+#: base/pp_file.inc:92
 #, fuzzy
 msgid "can't get shared lock on file "
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:97
+#: base/pp_file.inc:99
 #, fuzzy
 msgid "can't get exclusive lock on file "
 msgstr "impossible de créer l'image"
 
-#: base/pp_file.inc:103
+#: base/pp_file.inc:105
 #, fuzzy
 msgid "can't unlock file "
 msgstr "impossible de créer l'image"

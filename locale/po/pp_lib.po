@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-21 20:28+0100\n"
+"POT-Creation-Date: 2002-02-23 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgid "error"
 msgstr ""
 
 #: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_file.inc:31
-#: base/pp_file.inc:42 base/pp_file.inc:68
+#: base/pp_file.inc:42 base/pp_file.inc:69
 msgid "file"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "warning"
 msgstr ""
 
-#: base/pp_file.inc:31 base/pp_file.inc:69 base/pp_template.inc:107
+#: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:107
 #: base/pp_template.inc:384 base/pp_template.inc:417
 msgid "does not exist"
 msgstr ""
@@ -80,31 +80,31 @@ msgstr ""
 msgid "is not writeable"
 msgstr ""
 
-#: base/pp_file.inc:51 base/pp_file.inc:73
+#: base/pp_file.inc:51 base/pp_file.inc:74
 msgid "can't open"
 msgstr ""
 
-#: base/pp_file.inc:54
+#: base/pp_file.inc:55
 msgid "can't write"
 msgstr ""
 
-#: base/pp_file.inc:59 base/pp_file.inc:82
+#: base/pp_file.inc:60 base/pp_file.inc:84
 msgid "can't close"
 msgstr ""
 
-#: base/pp_file.inc:71
+#: base/pp_file.inc:72
 msgid "is not readable"
 msgstr ""
 
-#: base/pp_file.inc:90
+#: base/pp_file.inc:92
 msgid "can't get shared lock on file "
 msgstr ""
 
-#: base/pp_file.inc:97
+#: base/pp_file.inc:99
 msgid "can't get exclusive lock on file "
 msgstr ""
 
-#: base/pp_file.inc:103
+#: base/pp_file.inc:105
 msgid "can't unlock file "
 msgstr ""
 
