@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.15 2002/01/28 10:20:28 tieum Exp $
+//  $Id: pp_list.inc,v 1.16 2002/01/28 13:20:29 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -381,7 +381,7 @@ class pp_list extends pp_template
     if($this->del_wrapper != -1 && function_exists($this->del_wrapper))
     {
       $wrapper = $this->del_wrapper;
-      $wrapper();
+      $wrapper($listdel);
     }
   }
 
