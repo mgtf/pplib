@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.4 2002/01/23 11:06:46 tieum Exp $
+//  $Id: pp_list.inc,v 1.6 2002/01/23 11:50:28 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -160,10 +160,16 @@ class pp_list extends pp_template
 			       $this->id.'_want_page' => 0,
 			       $this->id.'_want_save' => 0,
 			       $this->id.'_list_submit_add' => '
-			       <input type=image src="icons/add.gif" alt="'._("add").'" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
+			       <input type=image src="icons/add.gif" alt="'.
+			       _("add").
+			       '" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">',
 			       $this->id.'_list_submit' => '
-			       <input type=image src="icons/save.gif" alt="'._("save modification").'" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
-			       <font size=1><input type="button" value="inverser la séléction" onclick="javascript:invertsel(\''.$this->id.'\')"></font>
+			       <input type=image src="icons/save.gif" alt="'.
+			       _("save modification").
+			       '" onclick="document.list'.$this->id.'.'.$this->id.'_want_save.value =\'1\'">
+			       <font size=1><img src="icons/invert.gif" alt="'.
+			       _("invert selection").
+			       '" onclick="javascript:invertsel(\''.$this->id.'\')"></font>
     '));
     $this->add_tag($this->id.'_list_hidden_fields', 'hidden_fields');
     $this->add_tag($this->id.'_list_search', 'list_search');

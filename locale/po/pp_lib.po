@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-23 10:52+0100\n"
+"POT-Creation-Date: 2002-01-23 12:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,8 +87,8 @@ msgstr ""
 msgid "can't close"
 msgstr ""
 
-#: base/pp_file.inc:64 base/pp_template.inc:95 base/pp_template.inc:371
-#: base/pp_template.inc:404
+#: base/pp_file.inc:64 base/pp_template.inc:95 base/pp_template.inc:372
+#: base/pp_template.inc:405
 msgid "does not exist"
 msgstr ""
 
@@ -152,11 +152,11 @@ msgstr ""
 msgid "cannot use database"
 msgstr ""
 
-#: base/pp_mysql.inc:151
+#: base/pp_mysql.inc:153
 msgid "invalid sql"
 msgstr ""
 
-#: base/pp_mysql.inc:159
+#: base/pp_mysql.inc:161
 msgid "next_record called with no query pending"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:95 base/pp_template.inc:371 base/pp_template.inc:403
+#: base/pp_template.inc:95 base/pp_template.inc:372 base/pp_template.inc:404
 msgid "function"
 msgstr ""
 
@@ -172,51 +172,51 @@ msgstr ""
 msgid "is not defined"
 msgstr ""
 
-#: base/pp_template.inc:112 base/pp_template.inc:135
+#: base/pp_template.inc:112 base/pp_template.inc:136
 msgid "arg is not an array"
 msgstr ""
 
-#: base/pp_template.inc:148
+#: base/pp_template.inc:149
 msgid "no file to read."
 msgstr ""
 
-#: base/pp_template.inc:175
+#: base/pp_template.inc:176
 msgid "no file to write."
 msgstr ""
 
-#: base/pp_template.inc:177
+#: base/pp_template.inc:178
 msgid "no data to write."
 msgstr ""
 
-#: base/pp_template.inc:209
+#: base/pp_template.inc:210
 msgid "template timeout"
 msgstr ""
 
-#: base/pp_template.inc:209
+#: base/pp_template.inc:210
 msgid "max iteration"
 msgstr ""
 
-#: base/pp_template.inc:309 base/pp_template.inc:362
+#: base/pp_template.inc:310 base/pp_template.inc:363
 msgid "template error"
 msgstr ""
 
-#: base/pp_template.inc:388
+#: base/pp_template.inc:389
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:389
+#: base/pp_template.inc:390
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:410
+#: base/pp_template.inc:411
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:512
+#: base/pp_template.inc:513
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:515
+#: base/pp_template.inc:516
 msgid "action"
 msgstr ""
 
@@ -262,38 +262,50 @@ msgstr ""
 msgid "page generated on "
 msgstr ""
 
-#: list/pp_list.inc:255
+#: list/pp_list.inc:164
+msgid "add"
+msgstr ""
+
+#: list/pp_list.inc:168
+msgid "save modification"
+msgstr ""
+
+#: list/pp_list.inc:171
+msgid "invert selection"
+msgstr ""
+
+#: list/pp_list.inc:261
 msgid "Search"
 msgstr ""
 
-#: list/pp_list.inc:257
+#: list/pp_list.inc:263
 msgid "into"
 msgstr ""
 
-#: list/pp_list.inc:277
+#: list/pp_list.inc:283
 msgid "displaying"
 msgstr ""
 
-#: list/pp_list.inc:284
+#: list/pp_list.inc:290
 msgid "elements per page."
 msgstr ""
 
-#: list/pp_list.inc:284
+#: list/pp_list.inc:290
 msgid "Sort by"
 msgstr ""
 
-#: list/pp_list.inc:303
+#: list/pp_list.inc:309
 msgid "order"
 msgstr ""
 
-#: list/pp_list.inc:305
+#: list/pp_list.inc:311
 msgid "ascendent"
 msgstr ""
 
-#: list/pp_list.inc:306
+#: list/pp_list.inc:312
 msgid "descendent"
 msgstr ""
 
-#: list/pp_list.inc:391
+#: list/pp_list.inc:397
 msgid "Total"
 msgstr ""

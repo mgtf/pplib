@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-23 10:52+0100\n"
+"POT-Creation-Date: 2002-01-23 12:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,8 +93,8 @@ msgstr "impossible de créer l'image"
 msgid "can't close"
 msgstr "impossible de se connecter"
 
-#: base/pp_file.inc:64 base/pp_template.inc:95 base/pp_template.inc:371
-#: base/pp_template.inc:404
+#: base/pp_file.inc:64 base/pp_template.inc:95 base/pp_template.inc:372
+#: base/pp_template.inc:405
 #, fuzzy
 msgid "does not exist"
 msgstr "n'existe pas."
@@ -163,11 +163,11 @@ msgstr "impossible de se connecter"
 msgid "cannot use database"
 msgstr "impossible d'utiliser la base de donnée"
 
-#: base/pp_mysql.inc:151
+#: base/pp_mysql.inc:153
 msgid "invalid sql"
 msgstr "requete sql invalide"
 
-#: base/pp_mysql.inc:159
+#: base/pp_mysql.inc:161
 msgid "next_record called with no query pending"
 msgstr "next_record appelé sans requete"
 
@@ -176,7 +176,7 @@ msgstr "next_record appelé sans requete"
 msgid "no output callback function defined"
 msgstr "aucune fonction de callback définie"
 
-#: base/pp_template.inc:95 base/pp_template.inc:371 base/pp_template.inc:403
+#: base/pp_template.inc:95 base/pp_template.inc:372 base/pp_template.inc:404
 #, fuzzy
 msgid "function"
 msgstr "fonction"
@@ -186,53 +186,53 @@ msgstr "fonction"
 msgid "is not defined"
 msgstr "n'est pas défini"
 
-#: base/pp_template.inc:112 base/pp_template.inc:135
+#: base/pp_template.inc:112 base/pp_template.inc:136
 msgid "arg is not an array"
 msgstr "arg n'est pas un tableau"
 
-#: base/pp_template.inc:148
+#: base/pp_template.inc:149
 msgid "no file to read."
 msgstr "pas de fichier à lire"
 
-#: base/pp_template.inc:175
+#: base/pp_template.inc:176
 msgid "no file to write."
 msgstr "pas de fichier ou ecrire"
 
-#: base/pp_template.inc:177
+#: base/pp_template.inc:178
 msgid "no data to write."
 msgstr "pas de données à ecrire"
 
-#: base/pp_template.inc:209
+#: base/pp_template.inc:210
 msgid "template timeout"
 msgstr "template timeout"
 
-#: base/pp_template.inc:209
+#: base/pp_template.inc:210
 msgid "max iteration"
 msgstr "itération max"
 
-#: base/pp_template.inc:309 base/pp_template.inc:362
+#: base/pp_template.inc:310 base/pp_template.inc:363
 #, fuzzy
 msgid "template error"
 msgstr "XML erreur"
 
-#: base/pp_template.inc:388
+#: base/pp_template.inc:389
 #, fuzzy
 msgid "you must specify template name"
 msgstr "vous devez spécifier au moins une taille"
 
-#: base/pp_template.inc:389
+#: base/pp_template.inc:390
 msgid "correct syntax is"
 msgstr "la syntaxe correct est"
 
-#: base/pp_template.inc:410
+#: base/pp_template.inc:411
 msgid "invalid include file"
 msgstr "fichier à inclure invalide"
 
-#: base/pp_template.inc:512
+#: base/pp_template.inc:513
 msgid "value"
 msgstr "valeur"
 
-#: base/pp_template.inc:515
+#: base/pp_template.inc:516
 msgid "action"
 msgstr "action"
 
@@ -279,38 +279,50 @@ msgstr "Veuillez vous reconnecter ulterieurement."
 msgid "page generated on "
 msgstr "page générée en "
 
-#: list/pp_list.inc:255
+#: list/pp_list.inc:164
+msgid "add"
+msgstr "ajouter"
+
+#: list/pp_list.inc:168
+msgid "save modification"
+msgstr "sauvegarder les modifications"
+
+#: list/pp_list.inc:171
+msgid "invert selection"
+msgstr "inverser la sélection"
+
+#: list/pp_list.inc:261
 msgid "Search"
 msgstr "Rechercher"
 
-#: list/pp_list.inc:257
+#: list/pp_list.inc:263
 msgid "into"
 msgstr "dans"
 
-#: list/pp_list.inc:277
+#: list/pp_list.inc:283
 msgid "displaying"
 msgstr "en affichant"
 
-#: list/pp_list.inc:284
+#: list/pp_list.inc:290
 msgid "elements per page."
 msgstr "éléments par page."
 
-#: list/pp_list.inc:284
+#: list/pp_list.inc:290
 msgid "Sort by"
 msgstr "Classer par"
 
-#: list/pp_list.inc:303
+#: list/pp_list.inc:309
 msgid "order"
 msgstr "par ordre"
 
-#: list/pp_list.inc:305
+#: list/pp_list.inc:311
 msgid "ascendent"
 msgstr "croissant"
 
-#: list/pp_list.inc:306
+#: list/pp_list.inc:312
 msgid "descendent"
 msgstr "decroissant"
 
-#: list/pp_list.inc:391
+#: list/pp_list.inc:397
 msgid "Total"
 msgstr "Total"
