@@ -5,11 +5,11 @@ I. Objet de cette licence
 Cet accord de licence est un contrat entre vous, 
 personne physique ou morale, et :
 
-Taktile SARL
-52 rue de Ponthieu
-75008 PARIS - FRANCE
+Iota SARL
+146 rue du point du jour
+92100 Boulogne-Billancourt - FRANCE
 
-ci-après 'Taktile', vous permettant d'utiliser la librairie :
+ci-après 'Iota', vous permettant d'utiliser la librairie :
 pplib Version 3.3 et plus, ci-après 'la librairie'.
 
 VOUS DEVEZ IMPERATIVEMENT ACCEPTER L'ENSEMBLE DES TERMES DE CET ACCORD 
@@ -18,11 +18,11 @@ AVANT D'INSTALLER ET D'UTILISER LA LIBRAIRIE.
 Si, pour une raison quelconque, l'un des termes de cet accord ne peut 
 s'appliquer à vous (par exemple du fait de votre réglementation locale), 
 vous n'êtes pas autorisé à utiliser la librairie. 
-Pour cela, veuillez requérir par écrit auprès de Taktile un accord spécifique.
+Pour cela, veuillez requérir par écrit auprès de Iota un accord spécifique.
 
 II. Conditions d'utilisation de la librairie
 
-Sur acceptation des termes du présent accord, Taktile vous accorde une licence 
+Sur acceptation des termes du présent accord, Iota vous accorde une licence 
 non exclusive d'utilisation de la librairie dans les conditions d'exploitation suivantes :
 
 * Chaque licence n'est valable que pour une seule application 
@@ -30,7 +30,7 @@ non exclusive d'utilisation de la librairie dans les conditions d'exploitation s
 * Pour une application donnée, chaque licence vous permet 
   d'installer la librairie sur un unique serveur.
 * L'utilisation de cette librairie est limité au développement de l'application 
-  pour laquelle Taktile vous à fournit cette librairie. Elle ne peut en aucun cas
+  pour laquelle Iota vous à fournit cette librairie. Elle ne peut en aucun cas
   être utilisée pour d'autre développement que cette application.
 * La licence d'utilisation qui vous est accordée est permanente.
 
@@ -41,7 +41,7 @@ Chaque licence d'utilisation binaire permet à un développeur :
 * d'accéder à la documentation de la librairie 
   (informations générales, guide du programmeur, documentation de référence, APIs, ...)
 * d'utiliser les bibliothèques de composants (fichiers PHP compilés) pour la modification
-  de l'application pour laquelle Taktile vous à fournit cette librairie.
+  de l'application pour laquelle Iota vous à fournit cette librairie.
 
 IV. Garanties
 
@@ -50,34 +50,34 @@ ni expresse ni implicite, sur son utilité, ses performances ou son bon fonctionn
 
 V. Limitation de responsabilité
 
-Taktile ne pourra être tenu pour responsable des préjudices directs ou indirects, 
+Iota ne pourra être tenu pour responsable des préjudices directs ou indirects, 
 de quelque nature que ce soit, résultant de l'utilisation de cette librairie
 ou d'une imperfection de celle-ci, y compris perte de données ou perte d'exploitation 
 résultant d'une perte de données ou de l'impossibilité d'utilisation de la librairie, 
-et ce même si Taktile a été avisé d'une telle possibilité.
+et ce même si Iota a été avisé d'une telle possibilité.
 
 VI. Propriété intellectuelle
 
-Cette librairie est la pleine et entière propriété de Taktile. 
+Cette librairie est la pleine et entière propriété de Iota. 
 Le présent accord de licence ne constitue en aucun cas un transfert 
-de propriété de la librairie mais un simple droit d'utilisation concédé par Taktile.
+de propriété de la librairie mais un simple droit d'utilisation concédé par Iota.
 
 Cette librarie est protégée en France par le code de la propriété intellectuelle, 
 et à l'étranger par les conventions internationales sur le droit d'auteur.
 
-Vous vous engagez à respecter pleinement le droit d'auteur de Taktile. En particulier :
+Vous vous engagez à respecter pleinement le droit d'auteur de Iota. En particulier :
 
 * de reproduire, modifier, adapter, arranger, traduire la librairie 
   ainsi que la documentation qui l'accompagne.
 * de procéder à la rétro-analyse, à la décompilation ou au désassemblage 
   de cette librairie, en vue de découvrir ou de reconstituer son code source.
 
-Copyright © 1999-2002, Taktile S.A.R.L., Paris, France - Tous droits réservés.
+Copyright © 2003, Iota S.A.R.L., Paris, France - Tous droits réservés.
 
 VII. Redistribution
 
 La redistribution de la librairie en tant que bibliothèque de composants, 
-ou partie d'une biliothèque de composants, est interdite sans l'accord préalable de Taktile.
+ou partie d'une biliothèque de composants, est interdite sans l'accord préalable de Iota.
 La redistribution des sources de la librairie, modifiés ou non, et de sa documentation, 
 sous quelque forme que ce soit, est strictement interdite.
 

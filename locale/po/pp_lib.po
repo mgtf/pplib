@@ -1,13 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-12-02 12:19+0100\n"
+"POT-Creation-Date: 2003-06-16 14:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,23 +159,23 @@ msgstr ""
 msgid "this mime type is not supported"
 msgstr ""
 
-#: base/pp_mysql.inc:66
+#: base/pp_mysql.inc:68
 msgid "db access was not configured"
 msgstr ""
 
-#: base/pp_mysql.inc:118
+#: base/pp_mysql.inc:120
 msgid "can't connect to"
 msgstr ""
 
-#: base/pp_mysql.inc:120
+#: base/pp_mysql.inc:122
 msgid "cannot use database"
 msgstr ""
 
-#: base/pp_mysql.inc:150
+#: base/pp_mysql.inc:152
 msgid "invalid sql"
 msgstr ""
 
-#: base/pp_mysql.inc:166
+#: base/pp_mysql.inc:168
 msgid "next_record called with no query pending"
 msgstr ""
 
@@ -278,15 +277,15 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:140
+#: pp.inc:141
 msgid "this application is currently in a maintenance state"
 msgstr ""
 
-#: pp.inc:142
+#: pp.inc:143
 msgid "Please come back later"
 msgstr ""
 
-#: pp.inc:174 pp.inc:178
+#: pp.inc:176 pp.inc:180
 msgid "page generated on "
 msgstr ""
 
