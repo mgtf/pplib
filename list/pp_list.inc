@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.12 2002/01/24 11:06:37 tieum Exp $
+//  $Id: pp_list.inc,v 1.13 2002/01/24 11:19:06 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -341,7 +341,10 @@ class pp_list extends pp_template
     new_($up, 'pp_db', $q);
     $this->message .= $this->message_upd;
     if($this->upd_wrapper != -1 && function_exists($this->upd_wrapper))
-      $this->upd_wrapper();
+    {
+      $wrapper = $this->upd_wrapper;
+      $wrapper();
+    }
   }
 
   function del_data($listdel)
@@ -372,7 +375,10 @@ class pp_list extends pp_template
     }
     $this->message .= $this->message_del;
     if($this->del_wrapper != -1 && function_exists($this->del_wrapper))
-      $this->del_wrapper();
+    {
+      $wrapper = $this->del_wrapper;
+      $wrapper();
+    }
   }
 
   function add_data($listadd)
@@ -392,7 +398,10 @@ class pp_list extends pp_template
       $add->free();
       $this->message .= $this->message_add;
       if($this->add_wrapper != -1 && function_exists($this->add_wrapper))
-	$this->add_wrapper();
+      {
+        $wrapper = $this->add_wrapper;
+        $wrapper();
+      }
       return (1);
     }
     return (-1);
