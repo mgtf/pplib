@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.56 2002/07/25 09:47:54 tieum Exp $
+//  $Id: template.inc,v 1.57 2002/07/26 16:21:23 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -454,7 +454,7 @@ class pp_template extends pp_file
     $str = '';
     $id = array_key_exists('id', $tag['options']) ? $id = $tag['options']['id'] : '';
     if (strlen($id))
-      if(! array_key_exists($id, $this->dynbloc_data))
+      if(! isset($this->dynbloc_data[$id]))
 	user_error("pp_template::tag_dynbloc : dynbloc_data['$id'] "._("not set")." !", E_USER_ERROR);
       else
 	$data = $this->dynbloc_data[$id];
