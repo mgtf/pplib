@@ -1,0 +1,33 @@
+v0.2 - 30/April/2001
+	+ Added include_once and require_once as aliases for include and require
+
+	+ Added the ability to associate author names with php files using
+	  a '// filename.php - author: jsmith'
+	  syntax - courtesy of Gottfried Szing
+
+	+ Added the looking up of SQL table descriptions referenced in
+	  inline comments directly from a MySQL database; added some
+	  configuration options to make this work - see the sample.cfg file
+	  for details.  Courtesy of Gottfried Szing.
+
+	+ Fixed a bug with BAD_EXT where extensions such as .php~ 
+	  (with the trailing tilde) wouldn't be matched
+
+	+ Added support for relative pathnames used with require() or include()
+	  so things like:
+	  require("../file.php")
+	  should now resolve okay if you configure INCLUDEPATH correctly
+
+	+ Fixed a few typos
+
+v0.1.2 - 27/July/2000
+	+ Updated the parsing/handling of require and include statements
+	to handle more formats.. resolve_require() still needs to
+	be improved though (ie. so it handles '../dir/file.php' cases)
+
+	+ Updated the sample.cfg file so that INCLUDEPATH references
+	the current directory.
+
+
+v0.1.1 - 17/July/2000
+	+ Initial release

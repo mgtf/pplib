@@ -1,0 +1,73 @@
+% $Id: outils_dev.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $
+\textcolor{section}{\section{Outils de développement}}
+  \textcolor{subsection}{\subsection{Indentation du code, commentaires, organisation des fichiers}}
+   \textcolor{subsubsection}{\subsubsection{indentation du code}}
+     On indente le code \textbf{de deux espaces}, sans tabulation.
+   \textcolor{subsubsection}{\subsubsection{en-tête des fonctions php}}
+     Nous utilisons phpxref pour commenter notre code. Ce systême permet de générer automatiquement 
+     une documentation en HTML de toutes les fonctions et variables utilisées.
+     Veuillez respecter cette syntaxe pour tout fichier et fonction que vous créez dans cette librairie.
+     \\
+     Exemple de fonction :
+     \begin{verbatim}
+     ////
+     // !Une courte description du rôle de la fonction.
+     // Une description plus longue ou vous detaillez ce que la fonction
+     // prend comme parametres, ce qu'elle retourne ... ...
+     function boo(...) 
+     {
+       // deux espaces pour indenter
+       ...
+     }
+     \end{verbatim} 
+     Notez le `////' pour commencer la description de la fonction.
+     Notez également le `!' pour commenter le resumé de la fonction.
+   \textcolor{subsubsection}{\subsubsection{Repertoire de travail}}
+     votre répertoire de travail est `\~~/public\_html' auquel vous accéderez via l'url : \\
+     http://et/\~~votre\_login/
+   \textcolor{subsubsection}{\subsubsection{En-tête des fichiers pour les fichiers php}}
+     Voici une en-tête standard des fichiers à respecter \textbf{impérativement}.
+     Exemple du fichier template\_image.inc :
+     \begin{verbatim}
+     <?
+     /* $Id: outils_dev.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $ */
+     // template_image.inc - Ensemble de fonctions permettant l'insertion d'image texte dynamique 
+     // template_image.inc - à base de font truetype (.ttf) dans un template
+     ...
+     ...
+     \end{verbatim}
+     Le format est le suivant : 
+     `// nom\_exact\_du\_fichier - description du rôle de ce fichier.'
+ \textcolor{subsection}{\subsection{Nom de variables}} 
+     Pour les nom de variables \textbf{global}, prenez un nom de variable \textbf{long et explicite}~\\
+     Pour les nom de variables \textbf{local}, prenez un nom de variable \textbf{court}\\
+ \textcolor{subsection}{\subsection{Fonctions}}
+     Les fonctions doivent être courtes, et ne doivent faire \textbf{qu'une seule chose}.\\
+     Elle doivent tenir en largeur dans une petite fenetre (ISO/ANSI : 80x24).
+     Une fonction ne doit pas contenir plus de 5 à 7 variables locales.\\
+ \textcolor{subsection}{\subsection{Commentaires}}
+     Ne cherchez pas à expliquer comment marche votre fonction, mais plutôt \textbf{ce qu'elle fait}.
+     Préferez un commentaire dans l'en tête de votre fonction plutôt qu'à l'intérieur de son code.
+ \textcolor{subsection}{\subsection{CVS}}
+    \textcolor{subsubsection}{\subsubsection{Considérations générales}}
+    CVS est un système de contrôle de version qui permet:
+    \begin{itemize}
+     \item de contrôler la version de chaque fichier.
+     \item de savoir ce qui a été modifier par quelqu'un d'autre.
+     \item de mettre en ligne une application en uploadant uniquement les fichiers modifiés
+           depuis la précédante mise en ligne.
+     \item de travailler à distance en récupérant les sources d'un projet.
+     \item de générer des fichiers de patchs entre deux versions d'un projet.
+    \end{itemize}
+    Nous utilisons CVS. Si vous ne savez pas ce que c'est, consultez : 
+    http://www.cvshome.org \\
+    Lorsque vous créez un nouveau fichier, ajoutez :\\
+    `/* \$Id\$ */' (pour du C ou du PHP) ou `$<$!-- \$Id\$ --$>$' (pour du HTML)
+    en-tête de ce fichier.
+    Cette ligne sera remplacée par différentes informations utiles lorsque vous ferez un `cvs commit' sur ce fichier.
+    \textcolor{subsubsection}{\subsubsection{Organisation des modules}}
+    Regardez la liste des modules CVS existants ainsi que leur description en faisant :\\
+    \begin{verbatim}
+      cvs co -c
+    \end{verbatim}
+ \textcolor{subsection}{\subsection{TODO}}

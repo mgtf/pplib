@@ -1,0 +1,107 @@
+% $Id: proportail.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $
+% Documentation de proportail
+% Nécessite LaTeX 2e
+
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[french]{babel}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{url}
+\usepackage{pst-node,pst-tree}
+\geometry{tmargin=10mm,bmargin=10mm,lmargin=10mm,rmargin=10mm}
+\definecolor{section}{rgb}{0,0.4,0}
+\definecolor{subsection}{rgb}{0,0,0.4}
+\definecolor{subsubsection}{rgb}{0,0,0.2}
+
+\newenvironment{vars_def}[1]
+{
+  ~\\
+  ~\\
+  \begin{tabular}{|c|}\hline
+    \textbf{Variables de la classe #1 }\\\hline
+  \end{tabular}
+  ~ \\
+  ~ \\
+  \begin{tabular}{|c|p{15cm}|}\hline
+    \textbf{Variable} & \textbf{Description}\\\hline\hline
+    ~ & ~ \\
+}
+{
+  \end{tabular}
+}
+
+
+\newenvironment{methods_def}[1]
+{
+  ~\\
+  ~\\
+  \begin{tabular}{|c|}\hline
+    \textbf{Méthodes de la classe #1 }\\\hline
+  \end{tabular}
+  ~ \\
+  ~ \\
+  \begin{tabular}{|c|p{7cm}|}\hline
+    \textbf{Méthode} & \textbf{Description}\\\hline\hline
+    ~ & ~ \\
+}
+{
+  \end{tabular}
+}
+
+\newenvironment{constants_def}[1]
+{
+  ~\\
+  ~\\
+  ~\\
+  \begin{tabular}{|c|}\hline
+    \textbf{Constantes pour la classe #1 }\\\hline
+  \end{tabular}
+  ~ \\
+  ~ \\
+  \begin{tabular}{|c|p{7cm}|}\hline
+    \textbf{Methode} & \textbf{Description}\\\hline\hline
+    ~ & ~ \\
+}
+{
+  \end{tabular}
+}
+
+\newcommand{\method}[3]{
+    \small{\textbf{#1}(#2)} & \small{#3} \\\hline
+}
+
+\newcommand{\const}[2]{
+    \textbf{#1} & \small{#2} \\\hline
+}
+
+\newcommand{\var}[2]{
+    \textbf{\$#1} & \small{#2} \\\hline
+}
+
+%
+% BEGIN DOCUMENT
+%
+
+\begin{document}
+
+\author{Taktile}
+\title{Documentation librairie Proportail\small{\copyright}}
+\date{crée le 12 Mai 2001}
+
+\maketitle
+
+\begin{center}\includegraphics[scale=.25]{logo.eps}\end{center}
+\frenchspacing
+\tableofcontents
+
+\include{generalites}
+\include{classes}
+\include{outils_dev}
+\include{liens}
+\include{parc_machines}
+\include{applications_local}
+\end{document}

@@ -1,0 +1,19 @@
+% $Id: url.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $
+
+\textcolor{blue}{\section{URL GET/POST - !!!OBSOLETE!!!}}
+ \subsection{Système général}
+  \begin{description}
+   \item[Fichier] \file{include/navigation.inc}
+   \item[Fonctions] ~
+    \begin{itemize}
+      \item \function{addgetvar}{\$var, \$val}{ajoute \str{\&\$var$=$\$val}
+          à l'URL.}
+    \end{itemize}
+   \item[Globales] ~
+    \begin{itemize}
+      \item \id{\$GetVars}\\
+      Il faut mettre \id{\$GetVars} en global. Pour un lien : 
+        \text{echo '$<$a href="'.\$GetVars.'"$>$'};
+    \end{itemize}
+  \end{description}
+

@@ -1,0 +1,235 @@
+% $Id: classes.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $
+\textcolor{section}{\section{Description des classes}}
+  Les classes sont accessibles via l'objet \$pp, vous pouvez toutefois créer des nouveaux objets directement.
+  \textcolor{subsection}{\subsection{Classe pp\_template}}
+  Cette classe implémente un parseur permettant d'exécuter des remplacements de chaînes. 
+  la source peut provenir d'un fichier HTML ou non, ou d'une chaîne de caractères. 
+  Le résultat pourra être stocké dans une autre chaîne, ou dans un fichier.
+  L'objectif de ce parseur est la rapidité et la simplicité d'utilisation. Elle permet d'être étendu simplemement.
+  \begin{vars_def}{pp\_template}
+    \var{dynbloc\_data}{tableau associatif contenant les données devant être remplie \textbf{avant} l'utilisation du tag '\{dynbloc ... \}'}
+    \var{timeout}{Définit le nombre d'itérations maximum du parseur. par défaut : constante TEMPLATE\_TIMEOUT}
+    \var{debug}{Mode verbeux. par défaut : constante DEBUG}
+    \var{tpl\_path}{Chemin vers les gabarits. par défaut : constant TPL\_PATH}
+    \var{inc\_path}{Chemin vers les fichiers à inclure. défaut : constant TPL\_PATH}
+  \end{vars_def}
+  \begin{methods_def}{pp\_template}
+    \method{pp\_template}{}{Constructeur de la classe}
+    \method{change\_env}{\$new\_env}{Permet de changer l'environnement courant}
+    \method{get\_env\_name}{}{Renvoi le nom de l'environnement courant}
+    \method{get\_env}{}{Renvoi l'environnement courant}
+    \method{add\_tag}{\$name, \$action, \$options = array()}{Définit le tag \$name qui sera remplacé
+							     par le contenu du retour de la fonction \$action().
+							     La fonction handler \$action est de la forme \$action(\$tag)}
+    \method{add\_tag\_array}{\$array}{Définit \textbf{un ensemble de tags} contenu dans le tableau associatif \$array.}
+    \method{tag\_exists}{\$tag}{Renvoi TRUE si \$tag existe, FALSE sinon.}
+    \method{del\_tag}{\$name}{Supprime le tag \$name.}
+    \method{del\_tag\_array}{\$array}{Supprime les tags contenu dans \$array.}
+    \method{parse\_template\_file}{\$filename}{Lit le contenu de \$filename, le traite et renvoi la chaîne parsée.}
+    \method{parse\_template}{\$str}{Traite \$str et renvoi la chaîne parsée.}
+    \method{parse\_template\_to\_file}{\$str, \$filename, \$force = 0}{Traite \$str et ecrit la chaîne parsée dans \$filename. 
+								       Si \$filename existe, il ne le modifie que si \$force 
+								       est TRUE}
+    \method{parse\_template\_file\_to\_file}{\$file\_src, \$file\_dest, \$force = 0}{Traite \$file\_src et ecrit la chaîne parsée 
+										     il ne le modifie que si \$force est TRUE}
+  \end{methods_def}
+  \begin{constants_def}{pp\_template}
+    \const{TEMPLATE\_TIMEOUT}{Définit le nombre d'itérations maximum du parseur }
+    \const{INC\_PATH}{Chemin vers les fichiers à inclure}
+    \const{TPL\_PATH}{Chemin vers les gabarits}
+    \const{DEBUG}{Mode verbeux}
+  \end{constants_def}
+  ~\\
+  ~\\
+
+  \textcolor{subsubsection}{\subsubsection{Tags prédéfinis}}
+  Cette classe prédéfinit les tags suivants, utilisables dans un gabarit : 
+  \begin{itemize}
+    \item \{if\} 
+    exemple d'utilisation : affichage en fonction du navigateur du client.
+    \begin{verbatim}
+<?
+...
+$ua_netscape = (strstr($HTTP_USER_AGENT, 'Mozilla') != FALSE &&
+	       ((strstr($HTTP_USER_AGENT, '4.51') != FALSE) || 
+	        (strstr($HTTP_USER_AGENT, '4.75') != FALSE)) ) ? 1 : 0;
+$pp->tpl->add_tag_array( array('ua_netscape' => $ua_netscape) );
+$pp->tpl->parse_template("
+      <h1>votre navigateur est du type : 
+      {if cond='{ua_netscape}' then='netscape' else='internet explorer'}</h1>
+  ");
+...
+?>
+    \end{verbatim}
+    \item \{include\}
+    Ce tag prend une option `type' qui peut valoir 'raw' ou 'php' (défaut).\\
+    exemple 1 : '\{include name="inscription" type="raw"\}' parse et inclut le fichier 'inscription.html'.\\
+    exemple 2 : '\{include name="inscription" type="php"\}' inclut le fichier source 'inscription.inc' qui \textbf{doit contenir} la fonction template\_inscription et l'execute, le parseur remplace le tag par le résultat de la fonction template\_inscription.
+    ~\\
+    \item \{debug\}
+    Affiche un tableau HTML avec l'ensemble des tags définis (ainsi que leur valeur ou leur fonction handler) à l'instant ou le parseur rencontre ce tag.
+    ~\\
+    \item \{dynbloc\}
+    Permet d'ajouter un bloc dynamique dans un template.\\
+    exemple d'utilisation :\\
+    \begin{verbatim}
+<?
+...
+$pp->tpl->dynbloc_data = array(
+    1 => array('nom' => 'dupont',
+               'prenom' => 'paul'),
+    2 => array('nom' => 'durand',
+               'prenom' => 'pierre')
+    );
+echo '<table>'.
+     $pp->tpl->parse_template("{dynbloc bloc='<tr><td>{nom}</td><td>{prenom}</td></tr>'}").
+     '</table>';
+...
+?>
+    \end{verbatim}
+    ce code retournera :
+    \begin{verbatim}
+    <table>
+      <tr>
+        <td>dupont</td>
+        <td>paul</td>
+      </tr>
+      <tr>
+        <td>durand</td>
+        <td>pierre</td>
+      </tr>
+    </table>
+    \end{verbatim}
+    \item \{replace\}
+    Ce tag permet d'effectuer des remplacements de chaînes par expressions regulières.\\
+    Ses arguments sont :\\
+    \begin{tabular}{|c|c|c|}\hline
+    \textbf{argument} & \textbf{type} & \textbf{description} \\\hline\hline
+    in & string & chaîne où effectuer les remplacements\\\hline
+    what & string & chaîne à remplacer\\\hline
+    by & string & Valeur de remplacement\\\hline
+    mode & str | posix | perl & Mode remplacement\\\hline
+    \end{tabular}
+  \end{itemize}
+
+  \textcolor{subsection}{\subsection{Classe pp\_xml\_expat}}
+  Cette classe définit un parseur XML en utilisant expat (\url{http://expat.sourceforge.net}).
+  Elle peut être étendue pour permettre de créer rapidement un parseur XML compatible avec le reste de la librairie.
+  Toutes les méthodes qui commencent par `h\_' sont des handlers prédéfinis par le parser expat.
+  \begin{methods_def}{pp\_xml\_expat}
+    \method{pp\_xml\_expat}{}{Constructeur de la classe}
+    \method{parse}{\$data}{Parse le contenu de \$data}
+    \method{free}{}{Libère le parser XML}
+    \method{h\_start\_el}{\$parser, \$name, \$attrs}{}
+    \method{h\_end\_el}{\$parser, \$name}{}
+    \method{h\_char\_data}{\$parser, \$data}{}
+    \method{h\_pi}{\$parser, \$target, \$data}{}
+    \method{h\_default}{\$parser, \$data}{}
+    \method{h\_unparsed\_entity\_decl}{\$parser, \$data}{}
+    \method{h\_notation\_decl}{\$parser, \$notationname, \$base, \$systemid, \$publicid}{}
+    \method{h\_external\_entity\_ref}{\$parser, \$openentitynames, \$base, \$systemid, \$publicid}{}
+  \end{methods_def}
+
+  \textcolor{subsection}{\subsection{Classe pp\_form}}
+  Cette classe permet de générer des formulaires HTML rapidement.
+  \begin{methods_def}{pp\_form}
+    \method{pp\_form}{}{Constructeur de la classe}
+    \method{add\_field}{\$type, \$name, \$options = '', \$value = '', \$img\_src = ''}{Ajoute le champ de type \$type, 
+                                                                                       de nom \$nom. \$options est une chaîne libre 
+										       permettant d'ajouter d'autres paramètres au champ. 
+										       (comme un appel javascript). \$value est la valeur 
+										       du champ. \$img\_src est utilisé
+										       dans le cas d'un champ de type image.
+                                                                                      }
+    \method{parse\_form}{\$options = ''}{Génère le code HTML du formulaire dans son integralité}
+  \end{methods_def}
+
+  
+  \textcolor{subsection}{\subsection{Classe pp\_mysql}}
+    'database abstraction layer' pour MySQL. ( pas encore documenté )
+    Cette classe a gardé pour des raisons de simplicité d'adaptation les mêmes noms de méthode que la classe PHPLIB.
+    Toutefois, tous les noms de méthodes et de variables sont en minuscule.
+    Certaines méthodes de cette librairie n'ont pas été réecrites car elles ne nous etaient pas utiles.
+  \textcolor{subsection}{\subsection{Classe pp\_pgsql}}
+    'database abstraction layer' pour Postgresql. ( pas encore documenté )
+    Cette classe à gardé pour des raisons de simplicité d'adaptation les mêmes noms de méthode que la classe PHPLIB.
+    Toutefois, tous les noms de méthodes et de variables sont en minuscule.
+    Certaines méthodes de cette librairie n'ont pas été réécrites car elles ne nous étaient pas utiles.
+  
+  \textcolor{subsection}{\subsection{Classe pp\_user}}
+    Gestion simple des utilisateurs.
+    \begin{methods_def}{pp\_user}
+      \method{pp\_user}{}{Constructeur de classe}
+      \method{create\_table}{\$drop\_if\_exists = FALSE}{Créer la table user}
+      \method{add}{}{Ajoute l'utilisateur.}
+      \method{remove}{}{Supprime l'utilisateur.}
+      \method{select}{}{Authentifie l'utilisateur.}
+      \method{get\_id}{}{Renvoi l'id de l'utilisateur courant.}
+      \method{get\_groupe\_id}{}{Renvoi l'id du groupe de l'utilisateur courant.}
+    \end{methods_def}
+  
+  \textcolor{subsection}{\subsection{Classe pp\_data}}
+    Stockage de données dans des fichiers ou des champs BLOB.  ( pas encore documenté )
+
+  \textcolor{subsection}{\subsection{Classe pp\_file}}
+    Classe interne à la librairie mais peut être utilisée directement. ( pas encore documenté )
+  
+  \textcolor{subsection}{\subsection{Classe pp\_i18n}}
+    Support de l'internationalisation (support gettex). ( pas encore documenté )
+    \begin{methods_def}{pp\_i18n}
+      \method{pp\_i18n}{}{Constructeur de la classe}
+      \method{set\_language}{}{Définit la langue à utiliser.}
+    \end{methods_def}
+  
+  \textcolor{subsection}{\subsection{Classe pp\_image}}
+    Génération d'images dynamiques (gif, jpg, png, swf), support des fontes TrueType, et des fichiers swf ( pas encore documenté )
+    A cette classe s'ajoute les fichiers affiche\_text.php et affiche\_image.php qui permettent d'afficher des images dynamiques,
+    des images stockées dans des champs BLOB, traitement automatisé d'images, ..
+    \begin{methods_def}{pp\_image}
+      \method{pp\_image}{}{Constructeur de la classe}
+      \method{load}{\$filename}{}
+      \method{resample}{\$filename}{}
+      \method{create}{}{}
+    \end{methods_def}
+
+  \textcolor{subsection}{\subsection{Classe pp\_list}}
+    Classe permettant de générer des listes en html avec moteur de recherche, 
+    ajout/modification/suppression (cette classe est plus une fonctionnalité à part entière qu'un simple outil)\\
+    Régardez l'exemple d'utilisation du tag '\{liste\}'.
+    \begin{methods_def}{pp\_list}
+      \method{pp\_list}{}{Constructeur de la classe}
+      \method{parse\_list}{}{ Génére une liste complète en HTML}
+      \method{get\_vars}{}{Méthode privée}
+      \method{set\_tags}{}{Méthode privée}
+      \method{hidden\_fields}{}{Méthode privée}
+      \method{get\_data}{}{Méthode privée}
+      \method{list\_search}{\$tag}{Méthode privée}
+      \method{upd\_data}{\$id}{Méthode privée}
+      \method{del\_data}{\$listdel}{Méthode privée}
+      \method{add\_data}{\$listadd}{Méthode privée}
+      \method{compteur}{}{Méthode privée}
+      \method{get\_where}{}{Méthode privée}
+    \end{methods_def}
+  
+  \textcolor{subsection}{\subsection{Classe pp\_session}}
+    Outils de gestion de sessions utilisateurs. ( pas encore documenté )
+  
+  \textcolor{subsection}{\subsection{Classe pp\_string}}
+    Outils de traitement de chaînes de caractères. ( pas encore documenté )
+
+  \textcolor{subsection}{\subsection{Classe pp\_microtime}}
+    Classe interne à la librairie. ( pas encore documenté )
+
+  \textcolor{subsection}{\subsection{Classe pp\_mime}}
+    Classe interne à la librairie. ( pas encore documenté )
+
+  \textcolor{subsection}{\subsection{Classe pp\_class}}
+    Classe interne à la librairie. ( pas encore documenté )
+  
+  \textcolor{subsection}{\subsection{Classe pp\_error}}
+    Classe interne à la librairie.
+    La librairie redéfinit la fonction handler de traitement des erreurs.
+    Elle applique une uniformisation des messages d'erreurs entre la librairie 
+    et les messages générés par le PHP.
+
+\pagebreak

@@ -1,0 +1,128 @@
+PHPXREF 0.2
+Gareth Watts <gareth@omnipotent.net>
+
+CONTRIBUTORS
+Gottfried Szing <goofy@yasd.dhs.org>
+
+April 2001
+
+
+SYNOPSIS
+
+PHPXref parses a set of PHP files and extracts suitably formatted comments 
+placed in the scripts to generate a cross-referenced set of HTML documentation 
+that you can view using any web browser, with or without a web server.
+
+Features:
+* Provides an easy means of documenting your PHP scripts whilst you code
+* Cross-references functions, variables, include() and require()'d files and 
+  SQL table usage
+* Produces a complete function, variable and (optionally) a table list
+* Generates plain HTML output that can be viewed with any web browser and 
+  downloaded onto the local machine for quick reference.
+* Generates a client-side quick-search search box for javascript-enabled 
+  browsers
+
+Requirements:
+* Perl 5.004 or later
+* A web browser - Having javascript enabled provides a nice search box, 
+  but it's optional
+
+
+
+USAGE
+
+1) Copy the contents of this tar file into a directory somewhere
+
+2) Create a configuration file - a sample.cfg file is provided.  The file has
+comments throughout; the main items you need to edit are 
+SOURCE, OUTPUT, HEADERFILE, FOOTERFILE
+
+3) Create a header and footer file and place the filenames into the 
+HEADERFILE and FOOTERFILE
+
+4) Run the script using "phpxref.pl -c config.cfg" after some crunching the 
+results should end up in the directory specified by OUTPUT in your 
+configuration file
+
+
+
+DOCUMENTING YOUR SCRIPTS
+
+PHPXref requires that you comment your files in a certain style for your 
+entries to be used as documentation.
+
+There are a few different comments that PHPXref recognizes:
+
+1) File description:
+This provides a one line summary of what the file is and will show up in the
+directory listings.  To use it you should place one comment near the top of 
+each file in the following format:
+// filename.php - This is a description of the file called filename.php
+ie. the line must begin with '//' followed by the name of the file, followed
+by a hyphen and then the description.
+If you need an extra line then add one in the same format:
+// filename.php - This is a description of the file called filename.php
+// filename.php - that needs two lines to describe it
+
+You can also designate an author for the file by adding a line thus:
+// filename.php - author: gareth,james
+
+2) Function description:
+The main reason this script exists is to provide a means of documenting each 
+function in use.  Each description consists of a one line summary and a 
+long description.
+Example:
+
+////
+// !A short summary about what this function does
+// A longer, more complete description would go here
+// We might include details of what the function parameters do and what the 
+// result should be, etc.
+function example_function($foo) {
+	...
+}
+
+Points to note:  The description must begin with four forward slashes "////" on a line
+by itself.  
+The one line summary must begin with "// !" (note the exclamation mark).
+The remainder of the description must begin with "// " on each line
+The function declaration should immediately follow the description.
+
+
+If you already have documented source code, but it's in a slightly different 
+style and you know a bit of Perl, you could always just change the script 
+a little bit.
+Have a read of the comments at the top of the script for a hint.
+
+
+3) Table references:
+As the parser has no reliable means of determining when you reference a 
+database table in your code (ie. you may be referencing by variable, etc) you 
+need to give it a hint by using a comment in the following style:
+// TABLES: table1, table2, table3
+You can insert these comments anywhere in your scripts.  I recommend adding 
+them to the end of each function description to note what tables that 
+function uses.
+
+As of version 0.2, you can configure phpxref to obtain table descriptions
+referenced in your comments by contacting your SQL server directly; phpxref
+will send a 'describe <tablename>' command to the SQL server to obtain
+that information.  This feature is enabled by setting the SQL server details
+in the configuration file.
+NOTE: This feature only works with MySQL for the time being; feel free
+to make it generic and send me the patch ;-)
+
+
+ICONS
+
+The two icons used came supplied with the Apache web server and originally 
+with Mosaic for X.  The Apache documentation states that they are in the 
+public domain.
+
+
+
+CONTACT
+
+Email: gareth@omnipotent.net
+Web: http://phpxref.sourceforge.net/

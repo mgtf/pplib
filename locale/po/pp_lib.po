@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2002-01-15 16:39+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: base/pp_class.inc:13
+msgid "is not the name of an existing class"
+msgstr ""
+
+#: base/pp_class.inc:26
+msgid "you are trying to create an object from the class"
+msgstr ""
+
+#: base/pp_class.inc:27
+msgid "but it is already an object from the class"
+msgstr ""
+
+#: base/pp_data.inc:84
+msgid "constant STORAGE_PATH not set"
+msgstr ""
+
+#: base/pp_data.inc:102
+msgid "can't get last insert id"
+msgstr ""
+
+#: base/pp_data.inc:113
+msgid "no data to store"
+msgstr ""
+
+#: base/pp_data.inc:135
+msgid "data size too big"
+msgstr ""
+
+#: base/pp_error.inc:21
+msgid "error"
+msgstr ""
+
+#: base/pp_error.inc:24 base/pp_error.inc:40 base/pp_file.inc:41
+#: base/pp_file.inc:64
+msgid "file"
+msgstr ""
+
+#: base/pp_error.inc:24 base/pp_error.inc:40 base/pp_xml_expat.inc:42
+msgid "line"
+msgstr ""
+
+#: base/pp_error.inc:37
+msgid "warning"
+msgstr ""
+
+#: base/pp_file.inc:36
+msgid "data or filename empty"
+msgstr ""
+
+#: base/pp_file.inc:42
+msgid "already exist, use pp_file->write(1) to force overwrite"
+msgstr ""
+
+#: base/pp_file.inc:44
+msgid "directory"
+msgstr ""
+
+#: base/pp_file.inc:45
+msgid "is not writeable"
+msgstr ""
+
+#: base/pp_file.inc:48 base/pp_file.inc:69
+msgid "can't open"
+msgstr ""
+
+#: base/pp_file.inc:50
+msgid "can't write"
+msgstr ""
+
+#: base/pp_file.inc:52 base/pp_file.inc:72
+msgid "can't close"
+msgstr ""
+
+#: base/pp_file.inc:65 base/pp_template.inc:368 base/pp_template.inc:401
+msgid "does not exist"
+msgstr ""
+
+#: base/pp_file.inc:67
+msgid "is not readable"
+msgstr ""
+
+#: base/pp_file.inc:81
+msgid "can't create lock file"
+msgstr ""
+
+#: base/pp_image.inc:57
+msgid "can't use '%' with another arg"
+msgstr ""
+
+#: base/pp_image.inc:59
+msgid "you must specify at least one size"
+msgstr ""
+
+#: base/pp_image.inc:101
+msgid "image is already a"
+msgstr ""
+
+#: base/pp_image.inc:103
+msgid "format"
+msgstr ""
+
+#: base/pp_image.inc:103
+msgid "is not supported"
+msgstr ""
+
+#: base/pp_image.inc:149
+msgid "no image size"
+msgstr ""
+
+#: base/pp_image.inc:159
+msgid "can't create image"
+msgstr ""
+
+#: base/pp_image.inc:169
+msgid "format is not supported"
+msgstr ""
+
+#: base/pp_mime.inc:88
+msgid "can't add mime type"
+msgstr ""
+
+#: base/pp_mime.inc:111
+msgid "this format is not supported"
+msgstr ""
+
+#: base/pp_mysql.inc:70
+msgid "db access was not configured"
+msgstr ""
+
+#: base/pp_mysql.inc:120
+msgid "can't connect to"
+msgstr ""
+
+#: base/pp_mysql.inc:122
+msgid "cannot use database"
+msgstr ""
+
+#: base/pp_mysql.inc:151
+msgid "query"
+msgstr ""
+
+#: base/pp_mysql.inc:158
+msgid "invalid sql"
+msgstr ""
+
+#: base/pp_mysql.inc:168
+msgid "next_record called with no query pending"
+msgstr ""
+
+#: base/pp_output_buffering.inc:14
+msgid "no output callback function defined"
+msgstr ""
+
+#: base/pp_template.inc:96 base/pp_template.inc:98
+msgid "is not defined"
+msgstr ""
+
+#: base/pp_template.inc:109 base/pp_template.inc:132
+msgid "arg is not an array"
+msgstr ""
+
+#: base/pp_template.inc:145
+msgid "no file to read."
+msgstr ""
+
+#: base/pp_template.inc:172
+msgid "no file to write."
+msgstr ""
+
+#: base/pp_template.inc:174
+msgid "no data to write."
+msgstr ""
+
+#: base/pp_template.inc:206
+msgid "template timeout"
+msgstr ""
+
+#: base/pp_template.inc:206
+msgid "max iteration"
+msgstr ""
+
+#: base/pp_template.inc:306 base/pp_template.inc:359
+msgid "template error"
+msgstr ""
+
+#: base/pp_template.inc:368 base/pp_template.inc:400
+msgid "function"
+msgstr ""
+
+#: base/pp_template.inc:385
+msgid "you must specify template name"
+msgstr ""
+
+#: base/pp_template.inc:386
+msgid "correct syntax is"
+msgstr ""
+
+#: base/pp_template.inc:407
+msgid "invalid include file"
+msgstr ""
+
+#: base/pp_template.inc:499
+msgid "value"
+msgstr ""
+
+#: base/pp_template.inc:502
+msgid "action"
+msgstr ""
+
+#: base/pp_ttf_text.inc:57
+msgid "please set"
+msgstr ""
+
+#: base/pp_ttf_text.inc:77
+msgid "font file"
+msgstr ""
+
+#: base/pp_ttf_text.inc:77
+msgid "does not exist."
+msgstr ""
+
+#: base/pp_ttf_text.inc:80
+msgid "no text"
+msgstr ""
+
+#: base/pp_ttf_text.inc:87
+msgid ""
+"using both transparent background and antialiasing produce poor quality "
+"images !"
+msgstr ""
+
+#: base/pp_xml_expat.inc:19
+msgid "Can't create XML parser"
+msgstr ""
+
+#: base/pp_xml_expat.inc:40
+msgid "XML parse error"
+msgstr ""
+
+#: pp.inc:109
+msgid "This site is currently in a maintenance state."
+msgstr ""
+
+#: pp.inc:111
+msgid "Please come back later."
+msgstr ""
+
+#: pp.inc:134 pp.inc:137
+msgid "page generated on "
+msgstr ""

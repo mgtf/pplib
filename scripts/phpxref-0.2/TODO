@@ -1,0 +1,5 @@
+* Add support for PHP4 classes
+* Perhaps add an option to do a purdy javascript expanding tree for the directory browser
+* Re-write the whole thing (in PHP4 perhaps rather than Perl) in code that doesn't suck
+* Internationalize the strings used in the code
+* Add support for descriptions of variables defined in a script

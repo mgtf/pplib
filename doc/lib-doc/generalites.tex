@@ -1,0 +1,77 @@
+% $Id: generalites.tex,v 1.1 2002/01/15 15:43:05 tieum Exp $
+\textcolor{section}{\section{Introduction et généralités}}
+  \textcolor{subsection}{\subsection{Introduction}}
+  Ce document décrit le fonctionnement de la librairie. Il est destiné aux developpeurs qui 
+  souhaitent utiliser cette librairie lors du développement d'application avec le language PHP. 
+  Cette librairie est ecrite pour fonctionner avec PHP version 4.
+  La librairie est composée d'un ensemble de classes PHP, en voici un aperçu :
+    \begin{itemize}
+      \item pp\_xml\_expat -- Support XML en utilisant le parseur expat.
+      \item pp\_form -- Génération de formulaires HTML.
+      \item pp\_mysql -- 'database abstraction layer' pour MySQL.
+      \item pp\_pgsql -- 'database abstraction layer' pour Postgresql.
+      \item pp\_template -- Parseur de gabarits.
+      \item pp\_user -- Gestion simple des utilisateurs.
+      \item pp\_data -- Stockage de données dans des fichiers ou des champs BLOB. 
+      \item pp\_class -- Classe interne à la librairie.
+      \item pp\_error -- Classe interne à la librairie.
+      \item pp\_file -- Classe interne à la librairie mais peut être utilisée directement.
+      \item pp\_i18n -- Support de l'internationnalisation (support gettex).
+      \item pp\_image -- Génération d'images dynamiques (gif, jpg, png), support des fontes TrueType.
+      \item pp\_list -- Classe permettant de générer des listes en html avec moteur de recherche, 
+                        ajout/modification/suppression (cette classe est plus une fonctionnalité à part entière qu'un simple outil) 
+      \item pp\_microtime -- Classe interne à la librairie.
+      \item pp\_mime -- Classe interne à la librairie.
+      \item pp\_session -- Outils de gestion de sessions utilisateurs.
+      \item pp\_string -- Outils de traitement de chaînes de caractères.
+    \end{itemize}
+  D'autres classes sont aussi disponibles. Sont listées ici uniquement les classes stables et testées. Regardez le contenu de la librairie pour lister les autres classes en cours de développement.
+  \textcolor{subsection}{\subsection{Installation de la librairie}}
+  Cette librairie a été testée sur plusieurs types de plate-formes Unix (Linux i386, Linux PPC, freeBSD).
+  Elle peut toutefois être utilisée en environnement win32 mais aucun test n'a été effectué sur cette plateforme.
+  Copiez le repertoire contenant la librairie quelque part sur votre serveur, 
+  par exemple dans `/usr/local/lib/pplib'.  Pour des raisons de souplesse d'utilisation, 
+  vous pouvez ajouter ce repertoire d'installation au chemin ou le PHP va 
+  chercher les fichiers à inclure :
+    \begin{itemize}
+      \item Soit dans apache, ajoutez : \textbf{"php\_value include\_path .:/le/chemin/de/la/lib"}
+            dans la declaration d'un virtualhost par exemple.
+      \item Soit dans le fichier de configuration du PHP (php.ini), ajoutez : 
+            \textbf{"include\_path = ".:/le/chemin/de/la/lib"}
+    \end{itemize}
+    \textcolor{subsubsection}{\subsubsection{Langages supportés}}
+    Tout les messages de la librairie sont traduis en anglais et français. Ils peuvent être traduis dans d'autre langue facilement grâce au support gettex.
+  \textcolor{subsection}{\subsection{Premier exemple d'utilisation}}
+  Utiliser cette librairie est simple en ce sens qu'il suffit d'inclure un seul fichier 
+  dans votre fichier PHP pour pouvoir l'utiliser.  Une fois cette librairie incluse, 
+  vous avez accès à l'objet '\$pp', qui permet d'accéder aux méthodes de l'ensemble des 
+  classes de la librairie. Examinez au moins une fois le fichier pp.inc pour comprendre comment 
+  toutes les classes sont accessibles à travers l'objet \$pp.
+  \begin{verbatim}
+      <?
+      // configuration pour utiliser la librairie.
+      define('SITE_NAME', 'test');
+      define('DBHOST', 'test.mydomain.com');
+      define('DBDB', '');
+      define('DBUSER', '');
+      define('DBPWD', '');
+      define('STORAGE_PATH', 'cache/');
+      define('LANGUAGE', 'fr_FR');
+      define('MAINTENANCE_MODE', FALSE);
+      define('SYSLOG', FALSE);
+      define('DEVEL_MODE', FALSE);
+      define('DEBUG', FALSE);
+
+      // inclusion de la librairie :
+      include_once('pp.inc');
+
+      $pp->tpl->add_tag_array( array('nom' => "Dupont", 'prenom' => "Paul") );
+      echo '{prenom} {nom}';
+      ?>
+  \end{verbatim}
+  Ce fichier php retournera la chaîne : \textbf{'Paul Dupont'}.
+  La Méthode add\_tag\_array() appartient à la classe pp\_template et permet d'ajouter un tableau associatif 
+  de tags qui seront remplacés par leur valeur respective au moment ou la chaîne sera traitée par le parseur.
+  Les tags commencent par défaut par \textbf{'\{'} et se terminent par \textbf{'\}'}.
+
+\pagebreak
