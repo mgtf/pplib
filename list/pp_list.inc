@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.2 2002/01/23 08:08:09 tieum Exp $
+//  $Id: pp_list.inc,v 1.1 2002/01/23 08:03:53 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -117,7 +117,7 @@ class pp_list extends pp_template
     $this->get_vars();
     $this->set_tags();
     $this->get_data();
-    $str = $this->parse_template_file("pplib/list/list.js");
+    $str = ($this->mime_subtype == 'html') ? $this->parse_template_file($this->tpl_path."list.js") : '';
     $str .= $this->parse_template_file($this->tpl);
     return $str;
   }
