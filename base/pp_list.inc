@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.6 2002/01/18 15:49:10 tieum Exp $
+//  $Id: pp_list.inc,v 1.7 2002/01/21 15:10:14 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -304,7 +304,6 @@ class pp_list extends pp_template
     $form->add_field('option', 'décroissant', ($this->order == 'DESC') ? 'SELECTED' : '', 'DESC');
     $form->add_field('end_select', '');
     //
-
     return $form->parse_form('name="'.$this->id.'_list_search"');
   }
 
