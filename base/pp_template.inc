@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.52 2002/07/22 12:00:31 tieum Exp $
+//  $Id: pp_template.inc,v 1.53 2002/07/22 12:05:50 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -200,9 +200,6 @@ class pp_template extends pp_file
   // !parse la chaine entrée en parametre et renvoie la chaine parsee
   function parse_template($str)
   {
-    if (!$this->parse_iteration)
-      $this->parse_iteration = 0;
-
     $result = $this->do_parse_template($str);
     while ($result != $str)
     {
@@ -247,7 +244,7 @@ class pp_template extends pp_file
       return ($str);
     $result = '';
     $remaining = $str;
-    for (; !($begin === false); $begin = $this->find_begin($remaining))
+    for ($this->parse_iteration = 0; !($begin === false); $begin = $this->find_begin($remaining))
     {
       $this->parse_iteration++;
       if ($this->parse_iteration >= $this->timeout)
@@ -263,8 +260,6 @@ class pp_template extends pp_file
 	$result .= $this->parse_tag($tag_string);
       else
 	$result .= $this->parse_tag($this->parse_template($tag_string));
-      // XXX - ancien code.
-      // $result .= $this->parse_tag($this->parse_template($tag_string));
     }
     $result .= $remaining;
     $this->parse_iteration = 0;
