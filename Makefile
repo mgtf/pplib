@@ -6,7 +6,7 @@ RM = rm -f
 RMR = rm -rf
 # PDF_READER = /usr/bin/xpdf
 PDF_READER = /usr/X11R6/bin/gv
-CONF_LIB=phpxref_pplib_doc.cfg
+CONF_LIB=conf/phpxref_pplib_doc.cfg
 DOC_OUTPUT=doc/phpxref
 PHPXREF=scripts/phpxref-0.2/phpxref.pl
 

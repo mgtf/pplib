@@ -1,8 +1,8 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.1 2002/01/15 15:30:51 tieum Exp $
-//  proportail main class
+//  $Id: pp.inc,v 1.2 2002/01/15 15:49:28 tieum Exp $
+//  pplib main class
 //
 //  public methods :
 //
