@@ -5,7 +5,7 @@ define('APPNAME', 'millidata');
 define('SYSLOG', true);
 define('DEVEL_MODE', false);
 define('DEBUG', true);
-define('BASE_PATH', dirname(__FILE__).'../');
+define('BASE_PATH', '');
 define('IP', '62.93.232.25');
 define('DBHOST', 'localhost');
 define('DBDB', 'null');
@@ -16,12 +16,11 @@ define('DOMAIN', 'null');
 
 chdir('..');
 include('pp.inc');
-chdir(BASE_PATH);
 set_time_limit(0);
 
 require_once('base/pp_microtime.inc');
 
-echo "-- iotalib Benchmarking tool --<br>";
+echo "-- iotalib Benchmarking tool --<br><br>";
 echo "1. test parsing speed...<br>";
 
 $sum = 0;
