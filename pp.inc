@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.5 2002/01/16 12:33:43 tieum Exp $
+//  $Id: pp.inc,v 1.6 2002/01/18 10:12:54 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -70,6 +70,9 @@ class pp extends pp_class
   var $ob;
   var $header;
 
+  var $header_str;
+  var $footer_str;
+
   // private : 
   var $no_parse;
 
@@ -90,6 +93,8 @@ class pp extends pp_class
     new_($this->header, 'pp_header');
     $this->version = PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION;
     $this->no_parse = FALSE;
+    $this->header_str = '';
+    $this->footer_str = '';
   }
 
 };
@@ -122,6 +127,7 @@ function my_output_callback($buffer)
          date("D M d Y").
          $pp->tpl->comment_end.
          "\n".
+	 $pp->header_str.
          $str;
   if($pp->tpl->mime_subtype == 'html')
     $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
@@ -139,7 +145,7 @@ function my_output_callback($buffer)
   }
   if(AUTO_STRIPSLASHES)
     $str = stripslashes($str);
-  return $str;
+  return $str.$pp->footer_str;
 }
 
 function my_shutdown_function()
