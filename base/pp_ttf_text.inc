@@ -1,5 +1,5 @@
 <?
-// $Id: pp_ttf_text.inc,v 1.4 2002/02/18 17:47:08 tieum Exp $
+// $Id: pp_ttf_text.inc,v 1.5 2002/02/25 11:50:42 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -10,8 +10,8 @@
 // angle   	: angle d'affichage     (defaut: 0)
 // margin  	: marge autour du texte (defaut: 0)
 // antialias    : antialising           (defaut: 0)
-// width   	: largeur               (defaut: auto)
-// height  	: hauteur               (defaut: auto)
+// xsize   	: largeur               (defaut: auto)
+// ysize  	: hauteur               (defaut: auto)
 // align   	: alignement horizontal (defaut: center)
 // valign  	: alignement vertical   (defaut: center)
 
@@ -57,8 +57,8 @@ class pp_ttf_text extends pp_image
       $this->fonts_path = TTF_PATH;
     $this->margin = 0;
     $this->antialias = TRUE;
-    $this->width = -1;
-    $this->height = -1;
+    $this->xsize = -1;
+    $this->ysize = -1;
     $this->bgcolor = "FFFFFF";
     $this->color = "000000";
     $this->align = '';
@@ -138,7 +138,7 @@ class pp_ttf_text extends pp_image
       $py = (int) (-$top);
     else
       $py = (int) (-$top + ($this->ysize - $this->txt_ysize) / 2);
-    return array($px, $py + 1);
+    return array($px, $py);
   }
 };
 
