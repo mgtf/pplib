@@ -1,6 +1,6 @@
 <?
 
-// $Id: pp_xml_expat.inc,v 1.3 2002/02/15 15:25:51 tieum Exp $
+// $Id: pp_xml_expat.inc,v 1.4 2002/02/15 15:27:39 tieum Exp $
 
 class pp_xml_expat extends pp_template
 {
@@ -31,8 +31,6 @@ class pp_xml_expat extends pp_template
   function parse($data)
   {
     xml_set_object($this->parser, &$this);
-    $data = ereg_replace("\ \ +", "", $data);
-    $data = ereg_replace("\n", "", $data);
     if( (xml_parse($this->parser, $data)) == FALSE )
     {
       $err = "pp_xml_expat::parse_xml_stream : "._("XML parse error")."<br>".
