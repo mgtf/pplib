@@ -1,5 +1,5 @@
 <?
-// $Id: pp_output_buffering.inc,v 1.10 2002/03/07 10:03:15 tieum Exp $
+// $Id: pp_output_buffering.inc,v 1.11 2002/03/08 10:49:27 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -85,9 +85,8 @@ class pp_output_buffering extends pp_class
     $len = strlen($data);
     $crc = crc32($data);
     $data_compress = gzcompress($data, 9);
-    $data_compress = substr($data_compress, 0, 
-	strlen($data_compress) - 4) . pack('V', $crc) . pack('V', $len);
-	return "\x1f\x8b\x08\x00\x00\x00\x00\x00".$data_compress;
+    $data_compress = substr($data_compress, 0, strlen($data_compress) - 4) . pack('V', $crc) . pack('V', $len);
+    return "\x1f\x8b\x08\x00\x00\x00\x00\x00".$data_compress;
   }
 };
 
