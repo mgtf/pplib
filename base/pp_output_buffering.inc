@@ -1,5 +1,5 @@
 <?
-// $Id: pp_output_buffering.inc,v 1.14 2002/04/04 09:29:11 tieum Exp $
+// $Id: pp_output_buffering.inc,v 1.15 2002/04/12 10:51:28 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -63,7 +63,7 @@ class pp_output_buffering extends pp_class
       return ($this->compression = 'x-gzip');
     if (strpos($accept_encoding, 'gzip') !== false)
       return ($this->compression = 'gzip');
-    return 0;
+    return 'none';
   }
 
   function compress_add_headers() 
