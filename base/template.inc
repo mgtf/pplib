@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.88 2003/09/02 10:23:01 mgf Exp $
+// $Id: template.inc,v 1.89 2003/09/05 07:34:29 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -184,7 +184,7 @@ class template extends file {
 
   ////
   // !lit le contenu de $filename, execute parse_template() et renvoie la chaine parsee
-  function parse_template_file($filename, $cachetime = CACHE_DEFAULT_MAX_AGE) {
+  function parse_template_file($filename, $cachetime = CACHEFILE_MAXAGE) {
     $this->filename =& $filename;
     $this->read();
     return ($this->parse_template($this->data, $cachetime));
