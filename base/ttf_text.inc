@@ -1,5 +1,5 @@
 <?
-// $Id: ttf_text.inc,v 1.7 2002/02/25 13:12:18 tieum Exp $
+// $Id: ttf_text.inc,v 1.8 2002/02/25 13:19:07 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -71,6 +71,8 @@ class pp_ttf_text extends pp_image
     $this->mime_type = 'image';
     $this->force_xpos = -1;
     $this->force_ypos = -1;
+    $this->force_xsize = -1;
+    $this->force_usze = -1;
   }
 
   function create_ttf_text()
@@ -90,6 +92,10 @@ class pp_ttf_text extends pp_image
       $pos[0] = $this->force_xpos;
     if($this->force_ypos != -1)
       $pos[1] = $this->force_ypos;
+    if($this->force_xsize != -1)
+      $this->xsize = $this->force_xsize;
+    if($this->force_ysize != -1)
+      $this->ysize = $this->force_ysize;
     $this->image_create();
     if ($this->bgcolor == 'trans')
     {
