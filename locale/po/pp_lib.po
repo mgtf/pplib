@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-01-18 16:31+0100\n"
+"POT-Creation-Date: 2002-01-18 15:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,8 +87,7 @@ msgstr ""
 msgid "can't close"
 msgstr ""
 
-#: base/pp_file.inc:64 base/pp_template.inc:95 base/pp_template.inc:371
-#: base/pp_template.inc:404
+#: base/pp_file.inc:64 base/pp_template.inc:369 base/pp_template.inc:402
 msgid "does not exist"
 msgstr ""
 
@@ -140,7 +139,7 @@ msgstr ""
 msgid "this format is not supported"
 msgstr ""
 
-#: base/pp_mysql.inc:69
+#: base/pp_mysql.inc:70
 msgid "db access was not configured"
 msgstr ""
 
@@ -168,59 +167,59 @@ msgstr ""
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:95 base/pp_template.inc:371 base/pp_template.inc:403
-msgid "function"
-msgstr ""
-
-#: base/pp_template.inc:99 base/pp_template.inc:101
+#: base/pp_template.inc:97 base/pp_template.inc:99
 msgid "is not defined"
 msgstr ""
 
-#: base/pp_template.inc:112 base/pp_template.inc:135
+#: base/pp_template.inc:110 base/pp_template.inc:133
 msgid "arg is not an array"
 msgstr ""
 
-#: base/pp_template.inc:148
+#: base/pp_template.inc:146
 msgid "no file to read."
 msgstr ""
 
-#: base/pp_template.inc:175
+#: base/pp_template.inc:173
 msgid "no file to write."
 msgstr ""
 
-#: base/pp_template.inc:177
+#: base/pp_template.inc:175
 msgid "no data to write."
 msgstr ""
 
-#: base/pp_template.inc:209
+#: base/pp_template.inc:207
 msgid "template timeout"
 msgstr ""
 
-#: base/pp_template.inc:209
+#: base/pp_template.inc:207
 msgid "max iteration"
 msgstr ""
 
-#: base/pp_template.inc:309 base/pp_template.inc:362
+#: base/pp_template.inc:307 base/pp_template.inc:360
 msgid "template error"
 msgstr ""
 
-#: base/pp_template.inc:388
+#: base/pp_template.inc:369 base/pp_template.inc:401
+msgid "function"
+msgstr ""
+
+#: base/pp_template.inc:386
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:389
+#: base/pp_template.inc:387
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:410
+#: base/pp_template.inc:408
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:512
+#: base/pp_template.inc:510
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:515
+#: base/pp_template.inc:513
 msgid "action"
 msgstr ""
 
