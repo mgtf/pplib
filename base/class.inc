@@ -1,6 +1,6 @@
 <?
 
-// $Id: class.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: class.inc,v 1.2 2002/01/16 11:46:27 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // don't know if it's really usefull
 
@@ -56,8 +56,7 @@ class pp_class
       syslog(LOG_ERR, $errstr);
       closelog();
     }
-    if($this->debug)
-      user_error($errstr, E_USER_ERROR);
+    user_error($errstr, E_USER_ERROR);
   }
 
   function warning($errstr)

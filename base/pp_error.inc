@@ -1,5 +1,5 @@
 <?
-// $Id: pp_error.inc,v 1.1 2002/01/15 15:22:11 tieum Exp $
+// $Id: pp_error.inc,v 1.2 2002/01/16 11:49:42 tieum Exp $
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
@@ -16,6 +16,9 @@ function my_error_handler($errno, $errstr, $errfile, $errline)
     case E_USER_ERROR:
     case E_CORE_ERROR:
       global $pp;
+      // if error occurs before $pp exists, just quit :
+      if(! is_object($pp))
+	die("-- error --\n".__FILE__.' : '. __LINE__);
       $pp->ob->suspend();
       echo '<table align=center border=1 cellspacing=0 cellpadding=2>'.
 	   '<tr><th bgcolor="FFCCCC"><font size=1 color="red">'._("error").'</font></th></tr>'.

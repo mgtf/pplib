@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.3 2002/01/16 11:42:04 tieum Exp $
+//  $Id: pp.inc,v 1.4 2002/01/16 11:49:41 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -22,7 +22,7 @@ define('PP_LIB_PATH', '/home/tieum/public_html/proportail3/lib/');
 define('PP_LOG_NAME', 'pplib');
 define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '0c');
-// microsecond to sleep between each try
+// sleeping time between each try
 define('LOCK_SLEEP_TIME', '1000000');
 
 // all classes extend this one :
