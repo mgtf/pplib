@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.22 2002/02/26 13:27:09 tieum Exp $
+//  $Id: template.inc,v 1.23 2002/02/26 13:44:55 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -411,14 +411,13 @@ class pp_template extends pp_file
 	$file = $this->inc_path."$name".'.inc';
 	if (!file_exists($file))
 	  return $this->error("No such include file: $file");
-	
 	include_once($file);
-	if(! function_exists("template_$name"))
-	  return $this->error("pp_template::template_include : ".
-	                       _("function")." : 'template_$name()' ".
-			       _("does not exist"));
-	$s = 'return template_'.$name.'($tag);';
-	$s = eval($s);
+	$function = 'template_'.$name;
+        if(! function_exists($function))
+          return $this->error("pp_template::template_include : ".
+                               _("function")." : 'template_$name()' ".
+                               _("does not exist"));
+        $s = $function($tag);
 	if ($s)
 	 return ($this->parse_template($s));
 	else
