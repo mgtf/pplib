@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.91 2003/08/29 08:38:24 mgf Exp $
+//  $Id: pp.inc,v 1.92 2003/08/29 08:55:37 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -122,7 +122,6 @@ class pp extends _stdclass {
 function my_shutdown_function() {
   global $pp;
   $pp->tpl->cache->garbagecollection();
-  return;
 }
 
 function my_output_callback($buffer) {
@@ -133,7 +132,7 @@ function my_output_callback($buffer) {
   if($pp->no_parse == TRUE)
     return $str;
 
-  if(MAINTENANCE_MODE == 1) {
+  if(defined('MAINTENANCE_MODE') && MAINTENANCE_MODE) {
     if($pp->tpl->mime_subtype == 'html' || $pp->tpl->mime_subtype == 'xhtml')
       return 
 	_("this application is currently in a maintenance state").
@@ -156,7 +155,9 @@ function my_output_callback($buffer) {
       $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
       break;
     case 'xhtml':
-      $str = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">'."\n".$str;
+      $str = 
+	'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" '.
+	'"http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">'."\n".$str;
       break;
     case 'xml':
       $str = '<?xml version="1.0"?>'."\n".$str;
@@ -176,27 +177,15 @@ function my_output_callback($buffer) {
 	_("page generated on ").$elapsed.' sec '.
 	'('.LIBNAME.' v'.$pp->version.')'."\n";
   }
-  $str = $str.$pp->footer_str;
+  $str .= $pp->footer_str;
   $str = $pp->tpl->parse_template($str);
-  // XXX - this break javascript since some javascript code 
-  // should need to escape `'' also
-  if(AUTO_STRIPSLASHES)
-    $str = stripslashes($str);
-  // XXX - this reduce about 13% datasize send
-  // if($pp->compress_data && ! DEVEL_MODE)
-  // {
-  //   $str = str_replace("\n", "", $str);
-  //   $str = str_replace("\r", "", $str);
-  //   $str = str_replace("\t", " ", $str);
-  //   $str = preg_replace("/ ( )+/", " ", $str);
-  // }
   if($pp->compress_data && ($pp->ob->get_compression() != 'none') ) {
     $pp->ob->compress_add_headers();
     $str = $pp->ob->compress($str);
   }
   $pp->header->header_add("X-Powered-By: ".LIBNAME." ".$pp->version);
   $pp->header->header_send();
-  return $str;
+  return stripslashes($str);
 }
 
 register_shutdown_function('my_shutdown_function');
