@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-02-23 16:31+0100\n"
+"POT-Creation-Date: 2002-03-05 14:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgid "warning"
 msgstr ""
 
 #: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:107
-#: base/pp_template.inc:384 base/pp_template.inc:417
+#: base/pp_template.inc:384 base/pp_template.inc:419
 msgid "does not exist"
 msgstr ""
 
@@ -184,11 +184,11 @@ msgstr ""
 msgid "next_record called with no query pending"
 msgstr ""
 
-#: base/pp_output_buffering.inc:14
+#: base/pp_output_buffering.inc:18
 msgid "no output callback function defined"
 msgstr ""
 
-#: base/pp_template.inc:107 base/pp_template.inc:384 base/pp_template.inc:416
+#: base/pp_template.inc:107 base/pp_template.inc:384 base/pp_template.inc:418
 msgid "function"
 msgstr ""
 
@@ -224,43 +224,43 @@ msgstr ""
 msgid "template error"
 msgstr ""
 
-#: base/pp_template.inc:401
+#: base/pp_template.inc:403
 msgid "you must specify template name"
 msgstr ""
 
-#: base/pp_template.inc:402
+#: base/pp_template.inc:404
 msgid "correct syntax is"
 msgstr ""
 
-#: base/pp_template.inc:423
+#: base/pp_template.inc:424
 msgid "invalid include file"
 msgstr ""
 
-#: base/pp_template.inc:525
+#: base/pp_template.inc:527
 msgid "value"
 msgstr ""
 
-#: base/pp_template.inc:528
+#: base/pp_template.inc:530
 msgid "action"
 msgstr ""
 
-#: base/pp_ttf_text.inc:76
+#: base/pp_ttf_text.inc:82
 msgid "please set"
 msgstr ""
 
-#: base/pp_ttf_text.inc:80
+#: base/pp_ttf_text.inc:86
 msgid "font file"
 msgstr ""
 
-#: base/pp_ttf_text.inc:80
+#: base/pp_ttf_text.inc:86
 msgid "does not exist."
 msgstr ""
 
-#: base/pp_ttf_text.inc:83
+#: base/pp_ttf_text.inc:89
 msgid "no text"
 msgstr ""
 
-#: base/pp_ttf_text.inc:90
+#: base/pp_ttf_text.inc:104
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
 "images !"
@@ -274,15 +274,15 @@ msgstr ""
 msgid "XML parse error"
 msgstr ""
 
-#: pp.inc:120
-msgid "This site is currently in a maintenance state."
+#: pp.inc:126
+msgid "pp site is currently in a maintenance state."
 msgstr ""
 
-#: pp.inc:122
+#: pp.inc:128
 msgid "Please come back later."
 msgstr ""
 
-#: pp.inc:143 pp.inc:146
+#: pp.inc:150 pp.inc:154
 msgid "page generated on "
 msgstr ""
 
@@ -307,7 +307,7 @@ msgid "displaying"
 msgstr ""
 
 #: list/pp_list.inc:326
-msgid "elements per page."
+msgid "elements per page"
 msgstr ""
 
 #: list/pp_list.inc:326

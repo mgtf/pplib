@@ -2,11 +2,10 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-03-05 14:27+0100\n"
+"POT-Creation-Date: 2002-03-05 14:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +22,6 @@ msgid "you are trying to create an object from the class"
 msgstr "vous essayez de créer un objet de la classe"
 
 #: base/pp_class.inc:27
-#, fuzzy
 msgid "but it is already an object from the class"
 msgstr "vous essayez de créer un objet de la classe"
 
@@ -53,7 +51,6 @@ msgid "file"
 msgstr "fichier"
 
 #: base/pp_error.inc:26 base/pp_error.inc:41 base/pp_xml_expat.inc:38
-#, fuzzy
 msgid "line"
 msgstr "ligne"
 
@@ -62,10 +59,9 @@ msgid "warning"
 msgstr "attention"
 
 #: base/pp_file.inc:31 base/pp_file.inc:70 base/pp_template.inc:107
-#: base/pp_template.inc:384 base/pp_template.inc:419
-#, fuzzy
+#: base/pp_template.inc:384 base/pp_template.inc:419 base/pp_ttf_text.inc:86
 msgid "does not exist"
-msgstr "n'existe pas."
+msgstr "n'existe pas"
 
 #: base/pp_file.inc:37
 msgid "data or filename empty"
@@ -80,42 +76,34 @@ msgid "directory"
 msgstr "répertoire"
 
 #: base/pp_file.inc:46
-#, fuzzy
 msgid "is not writeable"
 msgstr "ne peut pas être ecrit"
 
 #: base/pp_file.inc:51 base/pp_file.inc:74
-#, fuzzy
 msgid "can't open"
 msgstr "impossible de se connecter"
 
 #: base/pp_file.inc:55
-#, fuzzy
 msgid "can't write"
 msgstr "impossible de créer l'image"
 
 #: base/pp_file.inc:60 base/pp_file.inc:84
-#, fuzzy
 msgid "can't close"
 msgstr "impossible de se connecter"
 
 #: base/pp_file.inc:72
-#, fuzzy
 msgid "is not readable"
 msgstr "n'est pas supporté"
 
 #: base/pp_file.inc:92
-#, fuzzy
 msgid "can't get shared lock on file "
 msgstr "impossible de créer l'image"
 
 #: base/pp_file.inc:99
-#, fuzzy
 msgid "can't get exclusive lock on file "
 msgstr "impossible de créer l'image"
 
 #: base/pp_file.inc:105
-#, fuzzy
 msgid "can't unlock file "
 msgstr "impossible de créer l'image"
 
@@ -128,7 +116,6 @@ msgid "you must specify at least one size"
 msgstr "vous devez spécifier au moins une taille"
 
 #: base/pp_image.inc:71
-#, fuzzy
 msgid "can't create temp image"
 msgstr "impossible de créer l'image"
 
@@ -153,7 +140,6 @@ msgid "has no extention"
 msgstr "n'a pas d'extention"
 
 #: base/pp_image.inc:169 base/pp_image.inc:176
-#, fuzzy
 msgid "can't create image from"
 msgstr "impossible de créer l'image"
 
@@ -166,7 +152,6 @@ msgid "can't create image"
 msgstr "impossible de créer l'image"
 
 #: base/pp_image.inc:236
-#, fuzzy
 msgid "format is not supported"
 msgstr "n'est pas supporté"
 
@@ -175,7 +160,6 @@ msgid "can't add mime type"
 msgstr "impossible d'ajouter le type mime"
 
 #: base/pp_mime.inc:111
-#, fuzzy
 msgid "this format is not supported"
 msgstr "n'est pas supporté"
 
@@ -200,17 +184,14 @@ msgid "next_record called with no query pending"
 msgstr "next_record appelé sans requete"
 
 #: base/pp_output_buffering.inc:18
-#, fuzzy
 msgid "no output callback function defined"
 msgstr "aucune fonction de callback définie"
 
 #: base/pp_template.inc:107 base/pp_template.inc:384 base/pp_template.inc:418
-#, fuzzy
 msgid "function"
 msgstr "fonction"
 
 #: base/pp_template.inc:111 base/pp_template.inc:113
-#, fuzzy
 msgid "is not defined"
 msgstr "n'est pas défini"
 
@@ -219,15 +200,15 @@ msgid "arg is not an array"
 msgstr "arg n'est pas un tableau"
 
 #: base/pp_template.inc:161
-msgid "no file to read."
+msgid "no file to read"
 msgstr "pas de fichier à lire"
 
 #: base/pp_template.inc:188
-msgid "no file to write."
+msgid "no file to write"
 msgstr "pas de fichier ou ecrire"
 
 #: base/pp_template.inc:190
-msgid "no data to write."
+msgid "no data to write"
 msgstr "pas de données à ecrire"
 
 #: base/pp_template.inc:222
@@ -239,12 +220,10 @@ msgid "max iteration"
 msgstr "itération max"
 
 #: base/pp_template.inc:322 base/pp_template.inc:375
-#, fuzzy
 msgid "template error"
 msgstr "XML erreur"
 
 #: base/pp_template.inc:403
-#, fuzzy
 msgid "you must specify template name"
 msgstr "vous devez spécifier au moins une taille"
 
@@ -272,16 +251,11 @@ msgstr "veuillez spécifier"
 msgid "font file"
 msgstr "fichier de police"
 
-#: base/pp_ttf_text.inc:86
-msgid "does not exist."
-msgstr "n'existe pas."
-
 #: base/pp_ttf_text.inc:89
 msgid "no text"
 msgstr "pas de texte"
 
 #: base/pp_ttf_text.inc:104
-#, fuzzy
 msgid ""
 "using both transparent background and antialiasing produce poor quality "
 "images !"
@@ -296,13 +270,12 @@ msgid "XML parse error"
 msgstr "XML erreur"
 
 #: pp.inc:126
-#, fuzzy
-msgid "pp site is currently in a maintenance state."
-msgstr "Ce site est actuellement en état de maintenance."
+msgid "pp site is currently in a maintenance state"
+msgstr "Ce site est actuellement en état de maintenance"
 
 #: pp.inc:128
-msgid "Please come back later."
-msgstr "Veuillez vous reconnecter ulterieurement."
+msgid "Please come back later"
+msgstr "Veuillez vous reconnecter ulterieurement"
 
 #: pp.inc:150 pp.inc:154
 msgid "page generated on "
@@ -329,7 +302,6 @@ msgid "displaying"
 msgstr "en affichant"
 
 #: list/pp_list.inc:326
-#, fuzzy
 msgid "elements per page"
 msgstr "éléments par page"
 
@@ -352,9 +324,3 @@ msgstr "decroissant"
 #: list/pp_list.inc:475
 msgid "Total"
 msgstr "Total"
-
-#~ msgid "add"
-#~ msgstr "ajouter"
-
-#~ msgid "save modification"
-#~ msgstr "sauvegarder les modifications"
