@@ -1,8 +1,8 @@
 <?
-// $Id: pp_module.inc,v 1.3 2002/02/20 18:42:09 tieum Exp $
+// $Id: pp_module.inc,v 1.4 2002/02/20 19:10:37 tieum Exp $
 //
 // conf file syntax :
-// module_key<tab>file_to_include
+// id_site<tab>module_file<tab>module_name<tab>menu
 
 class pp_module extends pp_file
 {
@@ -45,8 +45,10 @@ class pp_module extends pp_file
 	  {
 	    $module_file = $data[1];
 	    $module_name = $data[2];
+	    $module_menu = $data[3];
 	    $_SESSION['modules_list'][$i]['module_file'] = $module_file;
 	    $_SESSION['modules_list'][$i]['module_name'] = $module_name;
+	    $_SESSION['modules_list'][$i]['module_menu'] = $module_menu;
 	    $i++;
 	    include_once($this->module_path.'/'.$module_file);
 	    if(DEBUG && SYSLOG)
