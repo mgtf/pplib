@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.56 2002/03/27 11:29:47 tieum Exp $
+//  $Id: pp.inc,v 1.57 2002/03/27 16:54:01 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -21,9 +21,7 @@
 //
 //  PP_MAJOR_VERSION
 //  PP_MINOR_VERSION
-//  PP_LIB_PATH
-//  PP_SYSLOG_NAME
-//
+//  GZ_COMPRESSION_LEVEL
 
 // do not modify below
 include('conf/pplib.conf');
@@ -32,7 +30,6 @@ define('PP_MINOR_VERSION', '2');
 define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
 define('GZ_COMPRESSION_LEVEL', 9);
 define('RUSAGE_BOTH', -2);
-define('GENERAL_WEBMASTER_MAIL', 'tieum@boo.taktile.com');
 
 // all classes extend this one :
 require_once('base/pp_class.inc');
