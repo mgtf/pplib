@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.20 2002/02/18 10:49:23 tieum Exp $
+//  $Id: pp.inc,v 1.21 2002/02/18 16:56:13 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -15,10 +15,10 @@
 //  PP_MAJOR_VERSION
 //  PP_MINOR_VERSION
 //  PP_LIB_PATH
-//  PP_LOG_NAME
+//  PP_SYSLOG_NAME
 
 define('PP_LIB_PATH', '/home/tieum/pplight/pplib/');
-define('PP_LOG_NAME', 'pplib');
+define('PP_SYSLOG_NAME', 'pplib');
 define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '1');
 
@@ -67,6 +67,7 @@ class pp extends pp_class
   var $i18n;
   var $session;
   var $image;
+  var $ttf;
   var $ob;
   var $header;
 
@@ -90,6 +91,7 @@ class pp extends pp_class
     new_($this->i18n, 'pp_i18n');
     new_($this->session, 'pp_session');
     new_($this->image, 'pp_image');
+    new_($this->ttf, 'pp_ttf_text');
     new_($this->header, 'pp_header');
     $this->version = PP_MAJOR_VERSION.'.'.PP_MINOR_VERSION;
     $this->no_parse = FALSE;

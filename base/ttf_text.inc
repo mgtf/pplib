@@ -1,5 +1,5 @@
 <?
-// $Id: ttf_text.inc,v 1.1 2002/01/15 15:22:12 tieum Exp $
+// $Id: ttf_text.inc,v 1.2 2002/02/18 16:56:15 tieum Exp $
 ////
 // Paramètres:
 // text    	: texte à afficher
@@ -137,7 +137,6 @@ class pp_ttf_text extends pp_image
       $py = (int) (-$top + ($this->ysize - $this->txt_ysize) / 2);
     return array($px, $py + 1);
   }
-
 };
 
 ?>

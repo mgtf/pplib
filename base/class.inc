@@ -1,6 +1,6 @@
 <?
 
-// $Id: class.inc,v 1.3 2002/02/15 15:22:57 tieum Exp $
+// $Id: class.inc,v 1.4 2002/02/18 16:56:15 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // don't know if it's really usefull
 
@@ -50,7 +50,7 @@ class pp_class
 
   function syslog($errstr)
   {
-    openlog(PP_LOG_NAME, LOG_PID | LOG_PERROR, LOG_LOCAL0);
+    openlog(PP_SYSLOG_NAME, LOG_PID | LOG_PERROR, LOG_LOCAL0);
     syslog(LOG_ERR, $errstr);
     closelog();
   }
