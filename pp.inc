@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.92 2003/08/29 08:55:37 mgf Exp $
+//  $Id: pp.inc,v 1.93 2003/08/29 14:17:29 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -28,7 +28,6 @@
 //  GZ_COMPRESSION_LEVEL
 //  DEVEL_MODE
 //  MAINTENANCE_MODE
-//  AUTO_STRIPSLASHES
 
 // do not modify below
 define('LIBNAME', 'ocms');
@@ -155,9 +154,7 @@ function my_output_callback($buffer) {
       $str = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\n".$str;
       break;
     case 'xhtml':
-      $str = 
-	'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" '.
-	'"http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">'."\n".$str;
+      $str = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">'."\n".$str;
       break;
     case 'xml':
       $str = '<?xml version="1.0"?>'."\n".$str;
@@ -179,13 +176,14 @@ function my_output_callback($buffer) {
   }
   $str .= $pp->footer_str;
   $str = $pp->tpl->parse_template($str);
+  $str = stripslashes($str);
   if($pp->compress_data && ($pp->ob->get_compression() != 'none') ) {
     $pp->ob->compress_add_headers();
     $str = $pp->ob->compress($str);
   }
   $pp->header->header_add("X-Powered-By: ".LIBNAME." ".$pp->version);
   $pp->header->header_send();
-  return stripslashes($str);
+  return $str;
 }
 
 register_shutdown_function('my_shutdown_function');
