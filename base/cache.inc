@@ -1,13 +1,15 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.8 2003/08/28 11:53:50 mgf Exp $
+//  $Id: cache.inc,v 1.9 2003/08/28 13:46:07 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
 //
 //  public methods :
-//
+//  get($id, $max_age = CACHE_DEFAULT_MAX_AGE)
+//  save($id, $data) {
+//  
 //  private methods :
 //
 //  none
@@ -35,23 +37,15 @@ class pp_cache extends pp_file {
     else
       user_error(_("please define CACHE_PATH"), E_USER_ERROR);
     if(! defined('CACHE_DEFAULT_MAX_AGE')) {
-      define('CACHE_DEFAULT_MAX_AGE', 5);
+      define('CACHE_DEFAULT_MAX_AGE', (DEVEL_MODE ? 0 : 3600));
     }
   }
 
   function get_context($id) {
-    static $context = array();
-    if(isset($context[$id]))
-      return CACHEFILE_PREFIX.$context[$id];
-    $get = isset($_GET) ? serialize($_GET) : '';
-    $post = isset($_POST) ? serialize($_POST) : '';
-    $cookie = isset($_COOKIE) ? serialize($_COOKIE) : '';
-    $session = isset($_SESSION) ? serialize($_SESSION) : '';
-    $context[$id] = md5($get.$post.$cookie.$session.$id);
-    return CACHEFILE_PREFIX.$context[$id];
+    return CACHEFILE_PREFIX.md5($id);
   }
 
-  function is_expired($id, $max_age = CACHE_DEFAULT_MAX_AGE) {
+  function is_expired($id, $max_age) {
     $file = $this->cache_path.$this->get_context($id);
     clearstatcache();
     return (! file_exists($file) || ((time() - fileatime($file)) > $max_age));
@@ -60,8 +54,12 @@ class pp_cache extends pp_file {
   function get($id, $max_age = CACHE_DEFAULT_MAX_AGE) {
     if(! $this->is_expired($id, $max_age))
       return $this->load($id);
-    else
+    else {
+      $this->filename = $this->cache_path.$this->get_context($id);
+      if($this->exists())
+	$this->unlink();
       return false;
+    }
   }
 
   function save($id, $data) {
@@ -72,7 +70,6 @@ class pp_cache extends pp_file {
   }
   
   function load($id) {
-    $this->garbagecollection();
     $this->filename = $this->cache_path.$this->get_context($id);
     if($this->exists()) {
       $this->read();
@@ -90,6 +87,7 @@ class pp_cache extends pp_file {
     // run only 2% of times.
     if(rand(1, 100) > 2)
       return;
+    $this->syslog("http request garbagecollection called");
     $cmd = "find ".$this->cache_path." -type f -name '".CACHEFILE_PREFIX."*' -print";
     $a = `$cmd`;
     $files = explode("\n", $a);
@@ -100,7 +98,6 @@ class pp_cache extends pp_file {
     }
     $already_run = true;
   }
-
 };
 
 ?>

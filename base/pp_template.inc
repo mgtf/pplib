@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_template.inc,v 1.78 2003/08/27 11:54:02 mgf Exp $
+// $Id: pp_template.inc,v 1.79 2003/08/28 13:46:07 mgf Exp $
 // !pp_template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -76,7 +76,7 @@ class pp_template extends pp_file {
 
   function pp_template() {
     $this->pp_file();
-    new_($this->cache, 'pp_cache');
+    new_($this->cache, 'pp_cache_http_request');
     $this->set_mime('html');
     if(defined('TEMPLATE_TIMEOUT'))
       $this->timeout = TEMPLATE_TIMEOUT;
@@ -184,7 +184,7 @@ class pp_template extends pp_file {
 
   ////
   // !lit le contenu de $filename, execute parse_template() et renvoie la chaine parsee
-  function parse_template_file($filename, $cachetime = 0) {
+  function parse_template_file($filename, $cachetime = CACHE_DEFAULT_MAX_AGE) {
     $this->filename =& $filename;
     $this->read();
     return ($this->parse_template($this->data, $cachetime));
@@ -299,6 +299,12 @@ class pp_template extends pp_file {
   // return the first occurence of $char in $str, starting
   // at $str[1] and where $char in not escaped
   function find_char($str, $char) {
+    // if(! DEVEL_MODE) {
+    //   $md5 = md5($str.$char);
+    // }
+    // if(! DEVEL_MODE && ($data = $this->cache->get($md5, 3600))) {
+    //   return $data;
+    // }
     $l = strlen($str);
     $r = false;
     for ($i = 1; $i < $l; $i++) {
@@ -307,6 +313,9 @@ class pp_template extends pp_file {
         break;
       }
     }
+    // if(! DEVEL_MODE) {
+    //   $this->cache->save($md5, $r);
+    // }
     return $r;
   }
 
