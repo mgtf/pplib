@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: mail.inc,v 1.14 2002/08/08 13:40:59 tieum Exp $
+// $Id: mail.inc,v 1.15 2002/08/08 13:45:12 tieum Exp $
 // !pp_mail.inc - send complex email with attachments.
 //
 // public methods : 
@@ -60,7 +60,7 @@ class pp_mail extends pp_mime
 
   ////
   // !public
-  function check_mail($mail)
+  function check($mail)
   {
     // first, check syntax.
     if(! eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $mail))
