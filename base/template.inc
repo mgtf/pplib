@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.10 2002/02/12 14:33:22 tieum Exp $
+//  $Id: template.inc,v 1.11 2002/02/13 10:56:27 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -428,29 +428,6 @@ class pp_template extends pp_file
     }
     else
       return $opt['then'];
-    // switch ($opt['mode'])
-    // {
-    //   case 'str':
-    //     return ($opt['cond'] != '') ? $opt['then'] : $opt['else'];
-    //   case 'bool':
-    //     if (($opt['cond'] == '') || ($opt['cond'] == 'false') || ($opt['cond'] == 'off'))
-    //       return $opt['else'];
-    //     else
-    //       return $opt['then'];
-    //   case 'int':
-    //     if ((((int) $opt['cond']) == $opt['cond']) && ($opt['cond'] != 0))
-    //       return $opt['then'];
-    //     else
-    //       return $opt['else'];
-    //   case 'php':
-    //     return (eval("return (".$opt['cond']).")" ? $opt['then'] : $opt['else']);
-    //   default:
-    //     if (($opt['cond'] == '') || ($opt['cond'] == 'false') || ($opt['cond'] == 'off')
-    //         || ($opt['cond'] == '0'))
-    //       return $opt['else'];
-    //     else
-    //       return $opt['then'];
-    // }
   }
 
   ////
