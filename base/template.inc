@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.48 2002/06/28 11:09:49 tieum Exp $
+//  $Id: template.inc,v 1.49 2002/07/05 09:11:11 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -34,6 +34,7 @@
 //  tag_replace($tag)
 //  tag_debug($tag)
 //  tag_uppercase($tag)
+//  tag_br($tag)
 //  tag_ua_mozilla($tag)
 //  tag_ua_msie($tag)
 //  tag_urlencode($tag)
@@ -114,6 +115,7 @@ class pp_template extends pp_file
     $this->add_tag('ua_msie', 'tag_ua_msie');
     $this->add_tag('urlencode', 'tag_urlencode');
     $this->add_tag('urldecode', 'tag_urldecode');
+    $this->add_tag('br', 'tag_br');
     $this->add_tag('hrdate', 'tag_hrdate');
   }
 
@@ -598,17 +600,11 @@ class pp_template extends pp_file
 
   ////
   // !private function
-  function tag_urlencode($tag)
-  {
-    return urlencode($tag['options']['data']);
-  }
+  function tag_urlencode($tag) { return urlencode($tag['options']['data']); }
 
   ////
   // !private function
-  function tag_urldecode($tag)
-  {
-    return urldecode($tag['options']['data']);
-  }
+  function tag_urldecode($tag) { return urldecode($tag['options']['data']); }
 
   ////
   // !private function
@@ -680,6 +676,8 @@ class pp_template extends pp_file
       $annee = substr($annee, 2, 2);
     return "$jour/$mois/$annee";
   }
+
+  function tag_br($tag) { return nl2br($tag['options']['data']); }
 };
 
 ?>
