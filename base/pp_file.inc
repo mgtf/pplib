@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: pp_file.inc,v 1.16 2002/10/16 12:01:30 tieum Exp $
+// $Id: pp_file.inc,v 1.17 2002/10/16 12:08:29 tieum Exp $
 // !files I/O class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -140,14 +140,18 @@ class pp_file extends pp_mime
 
   function get_mime()
   {
-    // XXX - the future new solution (currently from php4 CVS) :
-    // $mime = mime_content_type($this->filename);
-    // $mime = split('/', $mime[1]);
-    // $this->mime_type = substr($mime[0], 1);
-    // $this->mime_subtype = $mime[1];
-    // XXX - my own solution :)
     if(! $this->exists())
       user_error('pp_file::get_mime : '._("file")." '".$this->filename."' "._("does not exist"), E_USER_ERROR);
+    // XXX - future solution (currently from php4 CVS) :
+    if(function_exists('mime_content_type'))
+    {
+      $mime = mime_content_type($this->filename);
+      $mime = split('/', $mime[1]);
+      $this->mime_type = substr($mime[0], 1);
+      $this->mime_subtype = $mime[1];
+      return;
+    }
+    // XXX - my own solution :)
     global $pp;
     $pp->ob->suspend();
     system('/usr/bin/file -i '.$this->filename);
