@@ -1,5 +1,5 @@
 <?
-// $Id: sniff.inc,v 1.1 2002/02/20 14:38:39 tieum Exp $
+// $Id: sniff.inc,v 1.2 2002/02/20 14:46:29 tieum Exp $
 
 class pp_sniff extends pp_class
 {
@@ -13,21 +13,19 @@ class pp_sniff extends pp_class
     $this->platform = -1;
     $this->browser = -1;
     $this->browser_version = -1;
-    // unset ($BROWSER_AGENT);
-    // unset ($BROWSER_VER);
-    // unset ($BROWSER_PLATFORM);
+    $this->browser_get_agent();
+    $this->browser_get_platform();
   }
 
   function browser_get_agent() 
   {
-    global $BROWSER_AGENT;
-    $this->browser = $BROWSER_AGENT;
+    global $HTTP_USER_AGENT;
     if(ereg('MSIE ([0-9].[0-9]{1,2})', 
 	    $HTTP_USER_AGENT, 
 	    $log_version)) 
     {
       $this->browser_version=$log_version[1];
-      $this->browser='ie';
+      $this->browser='msie';
     }
     elseif(ereg('Opera ([0-9].[0-9]{1,2})',
 	        $HTTP_USER_AGENT,
@@ -50,12 +48,6 @@ class pp_sniff extends pp_class
     }
   }
 
-  // function browser_get_version()
-  // {
-  //   global $BROWSER_VER;
-  //   $this->browser_version = $BROWSER_VER;
-  // }
-  //
   function browser_get_platform() 
   {
     global $HTTP_USER_AGENT;

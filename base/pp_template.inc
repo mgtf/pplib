@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_template.inc,v 1.18 2002/02/20 14:38:39 tieum Exp $
+//  $Id: pp_template.inc,v 1.19 2002/02/20 14:46:29 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -544,16 +544,10 @@ class pp_template extends pp_file
   // return 1 if browser is MSIE, 0 else
   function template_browser()
   {
-    global $BROWSER_AGENT, $HTTP_USER_AGENT;
-    // die(getenv("HTTP_USER_AGENT"));
-    // die(getenv("BROWSER_AGENT"));
-    $browser = get_browser();
-    die($browser->browser);
-    global $HTTP_USER_AGENT;
-    $browser = $HTTP_USER_AGENT;
-    $browser = split(' ', $browser);
-    $browser = $browser['0'];
-    echo $browser;
+    new_($agent, 'pp_sniff');
+    $agent->browser_get_platform();
+    $agent->browser_get_agent();
+    die($agent->browser.$agent->browser_version.$agent->platform);
   }
 
 };
