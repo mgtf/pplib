@@ -1,5 +1,5 @@
 <?
-// $Id: pp_file.inc,v 1.3 2002/01/28 16:04:59 tieum Exp $
+// $Id: pp_file.inc,v 1.4 2002/02/07 17:01:42 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -90,49 +90,6 @@ class pp_file extends pp_mime
     if( flock($this->fd, LOCK_UN) == FALSE)
       $this->error("pp_file::lock : "._("can't unlock file ").$this->filename);
   }
-
-  // this implement a simple lock system,
-  // but php4 flock() function is a better (and simpler) implementation
-  //
-  // function lock()
-  // {
-  //   $this->wait_for_lock();
-  //   $lockfile = $this->get_lock_filename();
-  //   if( @touch($lockfile) == FALSE )
-  //     $this->error("pp_file::lock : "._("can't create lock file").": $lockfile");
-  // }
-  //
-  // function unlock()
-  // {
-  //   $lockfile = $this->get_lock_filename();
-  //   if($this->is_lock())
-  //     @unlink($lockfile);
-  // }
-  //
-  // function get_lock_filename()
-  // {
-  //   $p = $this->split_filename();
-  //   return $p[0].'.'.$p[1];
-  // }
-  //
-  // function is_lock()
-  // {
-  //   $lockfile = $this->get_lock_filename();
-  //   return file_exists($lockfile);
-  // }
-  //
-  // function wait_for_lock()
-  // {
-  //   if(! $this->is_lock())
-  //     return;
-  //   $lockfile = $this->get_lock_filename();
-  //   while(file_exists($lockfile))
-  //   {
-  //     usleep(LOCK_SLEEP_TIME);
-  //     clearstatcache();
-  //   }
-  // }
-  
 };
 
 ?>

@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.15 2002/02/01 11:13:32 tieum Exp $
+//  $Id: pp.inc,v 1.16 2002/02/07 17:02:10 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -21,8 +21,6 @@ define('PP_LIB_PATH', '/home/tieum/pplight/pplib/');
 define('PP_LOG_NAME', 'pplib');
 define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '0d');
-// sleeping time between each try
-define('LOCK_SLEEP_TIME', '1000000');
 
 // all classes extend this one :
 require_once('base/pp_class.inc');
@@ -53,6 +51,7 @@ require_once('base/pp_session.inc');
 require_once('base/pp_xml_expat.inc');
 require_once('base/pp_image.inc');
 require_once('base/pp_ttf_text.inc');
+// require_once('base/pp_wddx.inc');
 require_once('list/pp_list.inc');
 
 class pp extends pp_class
