@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.30 2002/02/26 12:47:42 tieum Exp $
+//  $Id: pp.inc,v 1.31 2002/02/26 12:53:26 tieum Exp $
 //  pplib main class
 //
 //  public methods :
@@ -99,11 +99,14 @@ class pp extends pp_class
     $this->no_parse = FALSE;
     $this->header_str = '';
     $this->footer_str = '';
+
+    $this->ob->start();
+    ob_implicit_flush(false);
   }
 
   function my_shutdown_function()
   {
-    // III cleanup, call destructor there ..
+    // XXX cleanup, call destructor there ..
     // system("rm -f /home/tieum/public_html/proportail3/cache/*");
     return;
   }
@@ -117,7 +120,8 @@ class pp extends pp_class
     if($pp->no_parse == TRUE)
       return $str;
 
-    // continue only if $pp is define at this time.
+    // continue only if $pp is define at 
+    // this time since we need $pp after;
     if(! is_object($pp))
       return "-- output error --\n";
     if(MAINTENANCE_MODE == 1)
@@ -161,10 +165,7 @@ class pp extends pp_class
     return $str;
   }
 };
-// create $pp object
+
 $pp = new pp;
-// starting output buffering :
-$pp->ob->start();
-ob_implicit_flush(false);
 
 ?>
