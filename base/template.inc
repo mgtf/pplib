@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: template.inc,v 1.34 2002/05/14 16:28:31 tieum Exp $
+//  $Id: template.inc,v 1.35 2002/05/15 09:59:43 tieum Exp $
 //  !pp_template.inc - general template class.
 //
 //  public methods :
@@ -436,7 +436,7 @@ class pp_template extends pp_file
 	if ($s)
 	 return ($this->parse_template($s));
 	else
-	  return user_error(_("invalid include file").": $include_rep/$name", E_USER_ERROR);
+	  return user_error(_("invalid include file").": $file", E_USER_ERROR);
     }
   }
 
