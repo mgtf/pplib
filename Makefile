@@ -41,6 +41,7 @@ locale-undo:
 	cvs update locale/fr/LC_MESSAGES/pp_lib.po
 
 xgettext:
+	chmod +x scripts/xgettext.sh
 	test -d locale/po || mkdir locale/po
 	echo > locale/po/pp_lib.po
 	scripts/xgettext.sh
