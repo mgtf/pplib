@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.96 2003/11/07 15:19:07 mgf Exp $
+// $Id: template.inc,v 1.97 2003/11/08 11:50:36 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -195,7 +195,6 @@ class template extends file {
     if($cachetime && ($data = $this->cache->get($md5, $cachetime))) {
       return $data;
     }
-    unset($data);
     $this->filename =& $filename;
     $this->read();
     $result = $this->parse_template($this->data, $cachetime);
@@ -237,8 +236,8 @@ class template extends file {
     if ($begin === false)
       return($str);
     $result = '';
-    $remaining = $str;
-    for ($this->parse_iteration = 0; !($begin === false); $begin = $this->find_begin($remaining)) {
+    $remaining =& $str;
+    for ($this->parse_iteration = 0; $begin !== false; $begin = $this->find_begin($remaining)) {
       // XXX - à tester, le message ne s'affiche pas.
       if ($this->parse_iteration >= $this->timeout)
 	user_error('template::parse_template : '.
