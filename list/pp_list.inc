@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp_list.inc,v 1.29 2002/03/05 13:27:19 tieum Exp $
+//  $Id: pp_list.inc,v 1.30 2002/03/07 09:57:22 tieum Exp $
 //  lists class
 //
 //  public methods :
@@ -59,7 +59,7 @@ class pp_list extends pp_template
 
   // array like : field_name => fonction_name.
   // ex : $mylist->function_on_field = array('password' => 'MD5');
-  // this will use SQL MD5 function with insert & updat query.
+  // this will use SQL MD5 function with insert & update query.
   var $function_on_field;
   //
 

@@ -1,5 +1,5 @@
 <?
-// $Id: output_buffering.inc,v 1.8 2002/03/04 15:31:12 tieum Exp $
+// $Id: output_buffering.inc,v 1.9 2002/03/07 09:58:08 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -66,7 +66,7 @@ class pp_output_buffering extends pp_class
     return '';
   }
 
-  function compress_send_headers() 
+  function compress_add_headers() 
   {
     global $HTTP_SERVER_VARS, $pp;
     $this->get_compression();
