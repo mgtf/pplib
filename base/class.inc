@@ -1,6 +1,6 @@
 <?
 
-// $Id: class.inc,v 1.5 2002/02/23 13:42:22 tieum Exp $
+// $Id: class.inc,v 1.6 2002/03/18 12:01:34 tieum Exp $
 // just a test to try get_class(), class_exists(), ...
 // don't know if it's really usefull
 
@@ -29,7 +29,7 @@ function new_(&$object, $classname, $arg = '')
   return 1;
 }
 
-class pp_class
+class pp_class extends stdclass
 {
   var $debug;
   var $syslog;

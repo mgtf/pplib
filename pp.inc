@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.48 2002/03/07 10:03:14 tieum Exp $
+//  $Id: pp.inc,v 1.49 2002/03/18 12:01:33 tieum Exp $
 //  !pplib main class, define pp object
 //
 //  properties :
@@ -29,6 +29,9 @@ define('PP_LIB_PATH', '/home/tieum/sfp/pplib');
 define('PP_SYSLOG_NAME', '[ PPLIB ]');
 define('PP_MAJOR_VERSION', '3');
 define('PP_MINOR_VERSION', '2');
+define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
+define('GZ_COMPRESSION_LEVEL', 9);
+define('RUSAGE_BOTH', -2);
 
 // all classes extend this one :
 require_once('base/pp_class.inc');
@@ -44,24 +47,34 @@ if(DEVEL_MODE)
 
 require_once('base/pp_error.inc');
 require_once('base/pp_output_buffering.inc');
+echo get_rusage();
 require_once('base/pp_i18n.inc');
 require_once('base/pp_sniff.inc');
+echo get_rusage();
 require_once('base/pp_tree.inc');
 require_once('base/pp_mime.inc');
+echo get_rusage();
 require_once('base/pp_header.inc');
 require_once('base/pp_file.inc');
+echo get_rusage();
 require_once('base/pp_data.inc');
 require_once('base/pp_template.inc');
+echo get_rusage();
 require_once('base/pp_mysql.inc');
 require_once('base/pp_string.inc');
+echo get_rusage();
 require_once('base/pp_user.inc');
 require_once('base/pp_form.inc');
+echo get_rusage();
 require_once('base/pp_session.inc');
 require_once('base/pp_xml_expat.inc');
+echo get_rusage();
 require_once('base/pp_image.inc');
 require_once('base/pp_ttf_text.inc');
+echo get_rusage();
 require_once('base/pp_wddx.inc');
 require_once('list/pp_list.inc');
+echo get_rusage();
 
 class pp extends pp_class
 {
@@ -107,7 +120,7 @@ class pp extends pp_class
     $this->footer_str = '';
     $this->ob->start();
     $this->compress_data = FALSE;
-    ob_implicit_flush(false);
+    ob_implicit_flush(FALSE);
   }
 };
 
@@ -160,6 +173,8 @@ function my_output_callback($buffer)
       $str .= 
 	_("page generated on ").$elapsed.' sec '.
 	'(pplib version : '.$pp->version.')'."\n";
+    foreach(get_rusage(1) as $rusage)
+      $str .= $rusage.' | ';
   }
   $str = $str.$pp->footer_str;
   $str = $pp->tpl->parse_template($str);
@@ -173,6 +188,16 @@ function my_output_callback($buffer)
   }
   $pp->header->header_send();
   return $str;
+}
+
+function get_rusage($dump = 0)
+{ 
+  static $rusage;
+  if($dump)
+    return $rusage;
+  $dat = getrusage();
+  $rusage[] = $dat['ru_utime.tv_sec'] + $dat['ru_stime.tv_sec'].'/'.$dat['ru_oublock'];
+  flush();
 }
 
 register_shutdown_function('my_shutdown_function');

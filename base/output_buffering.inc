@@ -1,7 +1,5 @@
 <?
-// $Id: output_buffering.inc,v 1.12 2002/03/12 10:17:24 tieum Exp $
-
-define('GZ_HEADER', "\x1f\x8b\x08\x00\x00\x00\x00\x00");
+// $Id: output_buffering.inc,v 1.13 2002/03/18 12:01:34 tieum Exp $
 
 class pp_output_buffering extends pp_class
 {
@@ -86,7 +84,7 @@ class pp_output_buffering extends pp_class
   {
     $len = strlen($data);
     $crc = crc32($data);
-    $data_compress = gzcompress($data, 9);
+    $data_compress = gzcompress($data, GZ_COMPRESSION_LEVEL);
     $data_compress = substr($data_compress, 0, strlen($data_compress) - 4) . pack('V', $crc) . pack('V', $len);
     return GZ_HEADER.$data_compress;
   }
