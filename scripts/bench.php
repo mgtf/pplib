@@ -13,19 +13,20 @@ define('DBUSER', 'null');
 define('DBPWD', 'null');
 define('SITE_NAME', 'bench');
 define('DOMAIN', 'null');
+define('CACHE_PATH', '/tmp/');
 
 chdir('..');
 include('pp.inc');
 set_time_limit(0);
 
-require_once('base/pp_microtime.inc');
+require_once('base/microtime.inc');
 
 echo "-- iotalib Benchmarking tool --<br><br>";
 echo "1. test parsing speed...<br>";
 
 $sum = 0;
 for($j = 0 ; $j < 5; $j++) {
-  $timer = new pp_microtime;
+  $timer = new microtime;
   $timer->start('bench'.$j);
 
   for($i = 0; $i < 2000; $i++) {

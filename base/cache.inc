@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: cache.inc,v 1.13 2003/08/29 13:04:42 mgf Exp $
+//  $Id: cache.inc,v 1.14 2003/09/01 12:28:20 mgf Exp $
 //  !caching system
 //  Ce fichier est soumis à la licence d'utilisation
 //  contenue dans le fichier LICENCE
@@ -88,7 +88,7 @@ class cache extends file {
     // run only 2% of times.
     if(rand(1, 100) > 2)
       return;
-    $this->syslog("cache garbagecollection called");
+    $this->syslog("cache::garbagecollection() called");
     $cmd = "find ".$this->cache_path." -type f -name '".CACHEFILE_PREFIX."*' -print";
     $a = `$cmd`;
     $files = explode("\n", $a);

@@ -1,7 +1,7 @@
 <?
 
 ////
-//  $Id: pp.inc,v 1.93 2003/08/29 14:17:29 mgf Exp $
+//  $Id: pp.inc,v 1.94 2003/09/01 12:28:19 mgf Exp $
 //  !ocms main class, it define pp object
 //  Ce fichier est soumis à la licence d'utilisation 
 //  contenue dans le fichier LICENCE
@@ -54,7 +54,6 @@ if(DEVEL_MODE) {
 require_once('base/error.inc');
 require_once('base/output_buffering.inc');
 require_once('base/i18n.inc');
-require_once('base/sniff.inc');
 require_once('base/tree.inc');
 require_once('base/mime.inc');
 require_once('base/header.inc');
@@ -67,11 +66,9 @@ require_once('base/string.inc');
 require_once('base/user.inc');
 require_once('base/form.inc');
 require_once('base/session.inc');
-require_once('base/xml_expat.inc');
 require_once('base/image.inc');
 require_once('base/ttf_text.inc');
 require_once('base/mail.inc');
-// require_once('list/list.inc');
 
 class pp extends _stdclass {
   var $version;
@@ -79,7 +76,6 @@ class pp extends _stdclass {
   var $db;
   var $form;
   var $tpl;
-  var $list;
   var $file;
   var $i18n;
   var $session;
@@ -120,7 +116,8 @@ class pp extends _stdclass {
 
 function my_shutdown_function() {
   global $pp;
-  $pp->tpl->cache->garbagecollection();
+  if(is_object($pp))
+    $pp->tpl->cache->garbagecollection();
 }
 
 function my_output_callback($buffer) {

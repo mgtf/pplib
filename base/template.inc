@@ -1,7 +1,7 @@
 <?
 
 ////
-// $Id: template.inc,v 1.83 2003/08/29 14:28:58 mgf Exp $
+// $Id: template.inc,v 1.84 2003/09/01 12:28:20 mgf Exp $
 // !template.inc - general template class.
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
@@ -577,6 +577,7 @@ class template extends file {
     if(array_key_exists('browser', (array) $_SESSION)) {
       return ($_SESSION['browser'] == 'mozilla') ? 1 : 0;
     } else {
+      include_once('sniff.inc');
       new_($agent, 'sniff');
       $this->add_tag_array(
 	  array('ua_mozilla' => ($agent->browser == 'mozilla') ? 1 : 0)
@@ -591,6 +592,7 @@ class template extends file {
     if(array_key_exists('browser', (array) $_SESSION)) {
       return ($_SESSION['browser'] == 'msie') ? 1 : 0;
     } else {
+      include_once('sniff.inc');
       new_($agent, 'sniff');
       $this->add_tag_array(
 	  array('ua_msie' => ($agent->browser == 'msie') ? 1 : 0)

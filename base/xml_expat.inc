@@ -1,21 +1,19 @@
 <?
 
 ////
-// $Id: xml_expat.inc,v 1.7 2003/08/28 15:22:45 mgf Exp $
+// $Id: xml_expat.inc,v 1.8 2003/09/01 12:28:20 mgf Exp $
 // !xml parser class
 // Ce fichier est soumis à la licence d'utilisation
 // contenue dans le fichier LICENCE
 //
 
-class xml_expat extends template
-{
+class xml_expat extends template {
   var $parser;
   var $env;
   var $buffer;
   var $level;
 
-  function xml_expat()
-  {
+  function xml_expat() {
     $this->template();
     $this->buffer = '';
     $this->level = 0;
@@ -33,11 +31,9 @@ class xml_expat extends template
     xml_set_external_entity_ref_handler($this->parser, "h_external_entity_ref");
   }
 
-  function parse($data)
-  {
+  function parse($data) {
     xml_set_object($this->parser, &$this);
-    if( (xml_parse($this->parser, $data)) == FALSE )
-    {
+    if( (xml_parse($this->parser, $data)) == FALSE ) {
       $err = "xml_expat::parse_xml_stream : "._("XML parse error")."<br>".
 	     xml_error_string(xml_get_error_code($this->parser))."<br>".
 	      _("line").' :'.xml_get_current_line_number($this->parser);
@@ -46,8 +42,7 @@ class xml_expat extends template
     return strlen($this->buffer);
   }
 
-  function free()
-  {
+  function free() {
     xml_parser_free($this->parser);
     $this->buffer = '';
   }
