@@ -1,5 +1,5 @@
 <?
-// $Id: file.inc,v 1.5 2002/02/08 12:50:22 tieum Exp $
+// $Id: file.inc,v 1.6 2002/02/08 16:29:15 tieum Exp $
 
 class pp_file extends pp_mime
 {
@@ -21,6 +21,14 @@ class pp_file extends pp_mime
     $filename = $array_path[sizeof($array_path) - 1];
     $path = substr($this->filename, 0, strlen($this->filename) - strlen($filename));
     return array($path, $filename);
+  }
+
+  function unlink()
+  {
+    if( file_exists($this->filename))
+      unlink($this->filename);
+    else
+      $this->error('pp_file::unlink : '._("file")." '".$this->filename."' "._("does not exist"));
   }
 
   function write($force = 0, $lock = 1)
