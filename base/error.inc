@@ -1,5 +1,5 @@
 <?
-// $Id: error.inc,v 1.2 2002/01/16 11:49:42 tieum Exp $
+// $Id: error.inc,v 1.3 2002/01/18 14:37:59 tieum Exp $
 
 if(DEVEL_MODE == TRUE)
   error_reporting(E_ALL);
@@ -21,7 +21,7 @@ function my_error_handler($errno, $errstr, $errfile, $errline)
 	die("-- error --\n".__FILE__.' : '. __LINE__);
       $pp->ob->suspend();
       echo '<table align=center border=1 cellspacing=0 cellpadding=2>'.
-	   '<tr><th bgcolor="FFCCCC"><font size=1 color="red">'._("error").'</font></th></tr>'.
+	   '<tr><th bgcolor="FFCCCC"><font size=1 color="red"><img src="../icons/error.png">'._("error").'</font></th></tr>'.
            '<tr><td align=center><font size=1>'.nl2br($errstr).'</font></td></tr>'.
            '<tr><td align=center><font size=1>'.
 	   '<b>'._("file").' : </b>'.$errfile.'&nbsp;<b>'._("line").' : </b>'.$errline.'</font>'.
@@ -37,7 +37,7 @@ function my_error_handler($errno, $errstr, $errfile, $errline)
     case E_USER_WARNING:
     case E_CORE_WARNING:
       echo '<table align=center border=1 cellspacing=0 cellpadding=2>'.
-	   '<tr><th bgcolor="FFCCCC"><font size=1 color="green">'._("warning").'</font></th></tr>'.
+	   '<tr><th bgcolor="FFCCCC"><font size=1 color="green"><img src="../icons/error.png">'._("warning").'</font></th></tr>'.
            '<tr><td align=center><font size=1>'.nl2br($errstr).'</font></td></tr>'.
            '<tr><td align=center><font size=1>'.
 	   '<b>'._("file").' : </b>'.$errfile.'&nbsp;<b>'._("line").' : </b>'.$errline.'</font>'.
